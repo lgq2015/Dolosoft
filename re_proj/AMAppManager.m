@@ -39,7 +39,7 @@
 - (void)dumpHeadersForApp:(AMApp *)app {
     NSString *decryptedBinaryPath = [NSString stringWithFormat:@"%@/%@",
                                      [fileManager decryptedBinariesDirectoryPath],
-                                     app.displayName];
+                                     app.executableName];
     
     NSString *dumpPath = [NSString stringWithFormat:@"%@/%@ headers",
                           [fileManager headersDirectoryPath],

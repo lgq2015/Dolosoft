@@ -203,43 +203,6 @@
     }
 }
 
-- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-    /*
-     The following options are deprecated in 10.9. Use NSAlertFirstButtonReturn instead
-     NSAlertDefaultReturn = 1,
-     NSAlertAlternateReturn = 0,
-     NSAlertOtherReturn = -1,
-     NSAlertErrorReturn = -2
-     NSOKButton = 1, // NSModalResponseOK should be used
-     NSCancelButton = 0 // NSModalResponseCancel should be used
-     */
-    if (returnCode == NSOKButton)
-    {
-        NSLog(@"(returnCode == NSOKButton)");
-    }
-    else if (returnCode == NSCancelButton)
-    {
-        NSLog(@"(returnCode == NSCancelButton)");
-    }
-    else if(returnCode == NSAlertFirstButtonReturn)
-    {
-        NSLog(@"if (returnCode == NSAlertFirstButtonReturn)");
-    }
-    else if (returnCode == NSAlertSecondButtonReturn)
-    {
-        NSLog(@"else if (returnCode == NSAlertSecondButtonReturn)");
-    }
-    else if (returnCode == NSAlertThirdButtonReturn)
-    {
-        NSLog(@"else if (returnCode == NSAlertThirdButtonReturn)");
-    }
-    else
-    {
-        NSLog(@"All Other return code %d",returnCode);
-    }
-}
-
 - (IBAction)analyzeAppButtonClicked:(id)sender {
     // lifesaver: https://stackoverflow.com/questions/16283652/understanding-dispatch-async?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
     selectedClass = nil; // This is because I need to clear the methods table view after a new app selected
