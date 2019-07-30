@@ -1,0 +1,746 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02AC23C5662A679B49C9284BB4290021 /* socket_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 47F96E92A9A18F489E43F3752D823032 /* socket_helper.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0481BD21D20874DC6AFE01ECD3150E06 /* NMSSH+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D1BDD7ED2F283BA03A062ACD4933E21 /* NMSSH+Protected.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1B2D730D612E082B17E4A31807639676 /* RegExCategories-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BD94B20EB7E73F5D61A001938AF30C17 /* RegExCategories-dummy.m */; };
+		304167C4E18259A30AE078AFF8854C1E /* Pods-AMiOSReverser-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C7BB4A803628887C4ADB4588B3050D /* Pods-AMiOSReverser-dummy.m */; };
+		392DC06C0ACD295E348109DDA8877264 /* NMSSHLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0D1B6A899E207D52C255FBA22DE26 /* NMSSHLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3AAA355F4F33B9ACDA37680FF331E217 /* NMSFTPFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C62501875ACA98348C287BC15EAA461 /* NMSFTPFile.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		4029F264FB7309B9977A6CAD99527ED7 /* NMSSHHostConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AE6BCB3BB196D2680E337CD0E1AF72E /* NMSSHHostConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		55DE497E2396907EDF6E3CC9C7EEA6CC /* NMSSHSession.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1430BB2C51F1C77C9CCAE3D8039DC7 /* NMSSHSession.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		950A2F85B5E1CC11619385EF8A2F2E71 /* NMSSHSessionDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A2479D8DEDF6EEE61BB78DF543E5C2 /* NMSSHSessionDelegate.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9A18AF5C20D4BA72FCE07170B7569F0B /* NMSSHConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = AD72B8745A8D9A1B064910701A083954 /* NMSSHConfig.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		9F5F522F4381462B790A7908520B9322 /* socket_helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE20B84EA16C65D7584829E853A3D76 /* socket_helper.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		A5092AA77E188681E4385BE1BF1AE5AB /* NMSSHChannelDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F9B80200480AF8ECC3F99307D7C4217 /* NMSSHChannelDelegate.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B8370C7B684AB41CDDFBB11E0547BB48 /* NMSSHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB164673831DFAD8D40D4CF7E5C1D1C /* NMSSHChannel.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		B87B950D1284814FEB541AB56BFF2515 /* libssh2.h in Headers */ = {isa = PBXBuildFile; fileRef = 8831CC2402E430FBF1E01B569AA8CD26 /* libssh2.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B8A79AA9DF283C1A6C878AD0AF829224 /* NMSFTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 695F3249BD33D360D2E9C7119079F024 /* NMSFTP.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		BA0125C48BB75FAAEB55BDCD9630433C /* NMSFTP.h in Headers */ = {isa = PBXBuildFile; fileRef = 69D79D72A4F81B9B03B149FB62F46243 /* NMSFTP.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BE187B27EA70401AA14D2BE7459A1769 /* libssh2_publickey.h in Headers */ = {isa = PBXBuildFile; fileRef = 970879B6DB61AA56A531128FC24FA628 /* libssh2_publickey.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C1AD8222D429C207D9DE6DE004FBCB10 /* libssh2_sftp.h in Headers */ = {isa = PBXBuildFile; fileRef = C79573088D129144D82856B997B7F44E /* libssh2_sftp.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DD84385F1717D6E1BFDC7166B5CF8C48 /* RegExCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B921CDBFD63B37E2E1C680B12464BA /* RegExCategories.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E4D8A9E9C4E8B5368E14794E27602327 /* NMSSH-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1898DC1BBA4AE31C3066658C0E63BE /* NMSSH-dummy.m */; };
+		E519163E6797CC0391C0ACB101795096 /* RegExCategories.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EA0DC8BBEDD3673AEFB1DAD3D8340B5 /* RegExCategories.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E659D1D404411FD8C149909B3D159053 /* NMSSHChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 393C16833460EE7AF77D96548EB6B2DB /* NMSSHChannel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		ED5A87F4E98D25994A815ECEF30B48CE /* NMSSHHostConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4689029266920153513F2308522CBE1D /* NMSSHHostConfig.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		EE3DACEE9E96B9679F0C24D6A6DAC19D /* NMSSH.h in Headers */ = {isa = PBXBuildFile; fileRef = A6C44C15A66E933F2790BAB86FEB69A9 /* NMSSH.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F2215F41D89781C7B38C09C8248CD354 /* NMSFTPFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C609BA0B5CC52889B26E241AE40AC0E /* NMSFTPFile.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F5DE5938BCCEFABED60985DBE25E9E37 /* NMSSHConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = FA5028144630E17999CF301471EF0EF5 /* NMSSHConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F9B4F2CB64F305C77BE8C5681D38BBD2 /* NMSSHLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5273FF082797E40E0BD7D5A65B8395 /* NMSSHLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		FDD36B9B49C21984BBE514BD72B99AB2 /* NMSSHSession.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C1324DDFCA1E949467CAC35B80F0A2 /* NMSSHSession.h */; settings = {ATTRIBUTES = (Project, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		53901AAFAB21EC02C33DE0EC428B8C49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E36E3194AA9B06BC5873E083ED10B917;
+			remoteInfo = NMSSH;
+		};
+		9177DD5AC2A5651F09A3971A40EE8C24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F65E3BC3C44923E6D2DE23A2BC0450E;
+			remoteInfo = RegExCategories;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05C7BB4A803628887C4ADB4588B3050D /* Pods-AMiOSReverser-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AMiOSReverser-dummy.m"; sourceTree = "<group>"; };
+		0C609BA0B5CC52889B26E241AE40AC0E /* NMSFTPFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSFTPFile.h; path = NMSSH/NMSFTPFile.h; sourceTree = "<group>"; };
+		1CE20B84EA16C65D7584829E853A3D76 /* socket_helper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = socket_helper.m; path = NMSSH/Config/socket_helper.m; sourceTree = "<group>"; };
+		2D1BDD7ED2F283BA03A062ACD4933E21 /* NMSSH+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NMSSH+Protected.h"; path = "NMSSH/Config/NMSSH+Protected.h"; sourceTree = "<group>"; };
+		393C16833460EE7AF77D96548EB6B2DB /* NMSSHChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHChannel.h; path = NMSSH/NMSSHChannel.h; sourceTree = "<group>"; };
+		3EA0DC8BBEDD3673AEFB1DAD3D8340B5 /* RegExCategories.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RegExCategories.h; sourceTree = "<group>"; };
+		3F9B80200480AF8ECC3F99307D7C4217 /* NMSSHChannelDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHChannelDelegate.h; path = NMSSH/Protocols/NMSSHChannelDelegate.h; sourceTree = "<group>"; };
+		43E2104979E1F01A689D3EC3EA673CBF /* Pods-AMiOSReverser-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AMiOSReverser-acknowledgements.plist"; sourceTree = "<group>"; };
+		4689029266920153513F2308522CBE1D /* NMSSHHostConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHHostConfig.m; path = NMSSH/NMSSHHostConfig.m; sourceTree = "<group>"; };
+		47F96E92A9A18F489E43F3752D823032 /* socket_helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = socket_helper.h; path = NMSSH/Config/socket_helper.h; sourceTree = "<group>"; };
+		5A32F9923AF6A8E4A51555DFBB63B9FB /* NMSSH.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMSSH.xcconfig; sourceTree = "<group>"; };
+		5FA02B23550B379304D2AAC77316E570 /* Pods-AMiOSReverser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AMiOSReverser.release.xcconfig"; sourceTree = "<group>"; };
+		695F3249BD33D360D2E9C7119079F024 /* NMSFTP.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSFTP.m; path = NMSSH/NMSFTP.m; sourceTree = "<group>"; };
+		69D79D72A4F81B9B03B149FB62F46243 /* NMSFTP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSFTP.h; path = NMSSH/NMSFTP.h; sourceTree = "<group>"; };
+		6AE6BCB3BB196D2680E337CD0E1AF72E /* NMSSHHostConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHHostConfig.h; path = NMSSH/NMSSHHostConfig.h; sourceTree = "<group>"; };
+		6E5273FF082797E40E0BD7D5A65B8395 /* NMSSHLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHLogger.m; path = NMSSH/Config/NMSSHLogger.m; sourceTree = "<group>"; };
+		6EEC77F51858349E93EF74E23C115C64 /* libNMSSH.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libNMSSH.a; path = libNMSSH.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		723936D54963C1CB2E66E41B5343F100 /* libssh2.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libssh2.a; path = "NMSSH-OSX/Libraries/lib/libssh2.a"; sourceTree = "<group>"; };
+		7C62501875ACA98348C287BC15EAA461 /* NMSFTPFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSFTPFile.m; path = NMSSH/NMSFTPFile.m; sourceTree = "<group>"; };
+		7D571D1DEAB00BD63A556990B50D1474 /* libcrypto.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libcrypto.a; path = "NMSSH-OSX/Libraries/lib/libcrypto.a"; sourceTree = "<group>"; };
+		7FB164673831DFAD8D40D4CF7E5C1D1C /* NMSSHChannel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHChannel.m; path = NMSSH/NMSSHChannel.m; sourceTree = "<group>"; };
+		8831CC2402E430FBF1E01B569AA8CD26 /* libssh2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2.h; path = "NMSSH-OSX/Libraries/include/libssh2/libssh2.h"; sourceTree = "<group>"; };
+		970879B6DB61AA56A531128FC24FA628 /* libssh2_publickey.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2_publickey.h; path = "NMSSH-OSX/Libraries/include/libssh2/libssh2_publickey.h"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A6C44C15A66E933F2790BAB86FEB69A9 /* NMSSH.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSH.h; path = NMSSH/NMSSH.h; sourceTree = "<group>"; };
+		AC1898DC1BBA4AE31C3066658C0E63BE /* NMSSH-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NMSSH-dummy.m"; sourceTree = "<group>"; };
+		AC7F27B3C8B95CE66BB5DFAAADEED8E6 /* RegExCategories.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RegExCategories.xcconfig; sourceTree = "<group>"; };
+		AD72B8745A8D9A1B064910701A083954 /* NMSSHConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHConfig.m; path = NMSSH/NMSSHConfig.m; sourceTree = "<group>"; };
+		ADCA3E3385D20308EBCAA4230EB727DA /* libRegExCategories.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRegExCategories.a; path = libRegExCategories.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B06A7131F8A6B037DBBC5113ED7E87C4 /* Pods-AMiOSReverser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AMiOSReverser.debug.xcconfig"; sourceTree = "<group>"; };
+		B443C3C9F98A63575380CFDC499C2E36 /* RegExCategories-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RegExCategories-prefix.pch"; sourceTree = "<group>"; };
+		B7C1324DDFCA1E949467CAC35B80F0A2 /* NMSSHSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHSession.h; path = NMSSH/NMSSHSession.h; sourceTree = "<group>"; };
+		BD94B20EB7E73F5D61A001938AF30C17 /* RegExCategories-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RegExCategories-dummy.m"; sourceTree = "<group>"; };
+		C3B921CDBFD63B37E2E1C680B12464BA /* RegExCategories.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RegExCategories.m; sourceTree = "<group>"; };
+		C79573088D129144D82856B997B7F44E /* libssh2_sftp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2_sftp.h; path = "NMSSH-OSX/Libraries/include/libssh2/libssh2_sftp.h"; sourceTree = "<group>"; };
+		D45667B6C23D7B3C7B069DC5D5B3CD50 /* libssl.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libssl.a; path = "NMSSH-OSX/Libraries/lib/libssl.a"; sourceTree = "<group>"; };
+		DA1430BB2C51F1C77C9CCAE3D8039DC7 /* NMSSHSession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHSession.m; path = NMSSH/NMSSHSession.m; sourceTree = "<group>"; };
+		E1A2479D8DEDF6EEE61BB78DF543E5C2 /* NMSSHSessionDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHSessionDelegate.h; path = NMSSH/Protocols/NMSSHSessionDelegate.h; sourceTree = "<group>"; };
+		EFC75FBCBAF7577A3F301F80A5227852 /* libPods-AMiOSReverser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-AMiOSReverser.a"; path = "libPods-AMiOSReverser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4493CBA702D27336D4CB0F01DB25380 /* NMSSH-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NMSSH-prefix.pch"; sourceTree = "<group>"; };
+		F5E0D1B6A899E207D52C255FBA22DE26 /* NMSSHLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHLogger.h; path = NMSSH/Config/NMSSHLogger.h; sourceTree = "<group>"; };
+		FA5028144630E17999CF301471EF0EF5 /* NMSSHConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHConfig.h; path = NMSSH/NMSSHConfig.h; sourceTree = "<group>"; };
+		FFE935CD91C886378EEB291B131F44FC /* Pods-AMiOSReverser-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AMiOSReverser-acknowledgements.markdown"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04D6A507E9CF7C404EEB21F6657456B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6289A415B426B1D568B6FE3DE72607F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D05B4A55F7A2F20B0F5178E7F8144039 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05196601CD0AFD79934C0F82F677F226 /* RegExCategories */ = {
+			isa = PBXGroup;
+			children = (
+				3EA0DC8BBEDD3673AEFB1DAD3D8340B5 /* RegExCategories.h */,
+				C3B921CDBFD63B37E2E1C680B12464BA /* RegExCategories.m */,
+				8830382FAF94CFF0E3D9E118ACD5CB92 /* Support Files */,
+			);
+			name = RegExCategories;
+			path = RegExCategories;
+			sourceTree = "<group>";
+		};
+		0DB5C531C293E2F7FBE60D3E676B3149 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				147387CE83401A0038F076995C61EF11 /* NMSSH */,
+				05196601CD0AFD79934C0F82F677F226 /* RegExCategories */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		0DE0537043A302694C1394E7FBC8E02A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DEA0E265FC625F2EBC542B27CF9BF776 /* Pods-AMiOSReverser */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		147387CE83401A0038F076995C61EF11 /* NMSSH */ = {
+			isa = PBXGroup;
+			children = (
+				8831CC2402E430FBF1E01B569AA8CD26 /* libssh2.h */,
+				970879B6DB61AA56A531128FC24FA628 /* libssh2_publickey.h */,
+				C79573088D129144D82856B997B7F44E /* libssh2_sftp.h */,
+				69D79D72A4F81B9B03B149FB62F46243 /* NMSFTP.h */,
+				695F3249BD33D360D2E9C7119079F024 /* NMSFTP.m */,
+				0C609BA0B5CC52889B26E241AE40AC0E /* NMSFTPFile.h */,
+				7C62501875ACA98348C287BC15EAA461 /* NMSFTPFile.m */,
+				A6C44C15A66E933F2790BAB86FEB69A9 /* NMSSH.h */,
+				2D1BDD7ED2F283BA03A062ACD4933E21 /* NMSSH+Protected.h */,
+				393C16833460EE7AF77D96548EB6B2DB /* NMSSHChannel.h */,
+				7FB164673831DFAD8D40D4CF7E5C1D1C /* NMSSHChannel.m */,
+				3F9B80200480AF8ECC3F99307D7C4217 /* NMSSHChannelDelegate.h */,
+				FA5028144630E17999CF301471EF0EF5 /* NMSSHConfig.h */,
+				AD72B8745A8D9A1B064910701A083954 /* NMSSHConfig.m */,
+				6AE6BCB3BB196D2680E337CD0E1AF72E /* NMSSHHostConfig.h */,
+				4689029266920153513F2308522CBE1D /* NMSSHHostConfig.m */,
+				F5E0D1B6A899E207D52C255FBA22DE26 /* NMSSHLogger.h */,
+				6E5273FF082797E40E0BD7D5A65B8395 /* NMSSHLogger.m */,
+				B7C1324DDFCA1E949467CAC35B80F0A2 /* NMSSHSession.h */,
+				DA1430BB2C51F1C77C9CCAE3D8039DC7 /* NMSSHSession.m */,
+				E1A2479D8DEDF6EEE61BB78DF543E5C2 /* NMSSHSessionDelegate.h */,
+				47F96E92A9A18F489E43F3752D823032 /* socket_helper.h */,
+				1CE20B84EA16C65D7584829E853A3D76 /* socket_helper.m */,
+				CF032C9A499C1B26EECF13A2F7BA2CF2 /* Frameworks */,
+				72E4860B178D696B66E6B959C9F1D139 /* Support Files */,
+			);
+			name = NMSSH;
+			path = NMSSH;
+			sourceTree = "<group>";
+		};
+		47E6A176F13B70AFA0B6CD3D2E21DF83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6EEC77F51858349E93EF74E23C115C64 /* libNMSSH.a */,
+				EFC75FBCBAF7577A3F301F80A5227852 /* libPods-AMiOSReverser.a */,
+				ADCA3E3385D20308EBCAA4230EB727DA /* libRegExCategories.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		72E4860B178D696B66E6B959C9F1D139 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5A32F9923AF6A8E4A51555DFBB63B9FB /* NMSSH.xcconfig */,
+				AC1898DC1BBA4AE31C3066658C0E63BE /* NMSSH-dummy.m */,
+				F4493CBA702D27336D4CB0F01DB25380 /* NMSSH-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/NMSSH";
+			sourceTree = "<group>";
+		};
+		8830382FAF94CFF0E3D9E118ACD5CB92 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC7F27B3C8B95CE66BB5DFAAADEED8E6 /* RegExCategories.xcconfig */,
+				BD94B20EB7E73F5D61A001938AF30C17 /* RegExCategories-dummy.m */,
+				B443C3C9F98A63575380CFDC499C2E36 /* RegExCategories-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/RegExCategories";
+			sourceTree = "<group>";
+		};
+		CF032C9A499C1B26EECF13A2F7BA2CF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D571D1DEAB00BD63A556990B50D1474 /* libcrypto.a */,
+				723936D54963C1CB2E66E41B5343F100 /* libssh2.a */,
+				D45667B6C23D7B3C7B069DC5D5B3CD50 /* libssl.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				0DB5C531C293E2F7FBE60D3E676B3149 /* Pods */,
+				47E6A176F13B70AFA0B6CD3D2E21DF83 /* Products */,
+				0DE0537043A302694C1394E7FBC8E02A /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DEA0E265FC625F2EBC542B27CF9BF776 /* Pods-AMiOSReverser */ = {
+			isa = PBXGroup;
+			children = (
+				FFE935CD91C886378EEB291B131F44FC /* Pods-AMiOSReverser-acknowledgements.markdown */,
+				43E2104979E1F01A689D3EC3EA673CBF /* Pods-AMiOSReverser-acknowledgements.plist */,
+				05C7BB4A803628887C4ADB4588B3050D /* Pods-AMiOSReverser-dummy.m */,
+				B06A7131F8A6B037DBBC5113ED7E87C4 /* Pods-AMiOSReverser.debug.xcconfig */,
+				5FA02B23550B379304D2AAC77316E570 /* Pods-AMiOSReverser.release.xcconfig */,
+			);
+			name = "Pods-AMiOSReverser";
+			path = "Target Support Files/Pods-AMiOSReverser";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1DACEB26F31505ACA583385C47DF45CE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		63BB4A443FE26F43EAD17F75744C9B4A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B87B950D1284814FEB541AB56BFF2515 /* libssh2.h in Headers */,
+				BE187B27EA70401AA14D2BE7459A1769 /* libssh2_publickey.h in Headers */,
+				C1AD8222D429C207D9DE6DE004FBCB10 /* libssh2_sftp.h in Headers */,
+				BA0125C48BB75FAAEB55BDCD9630433C /* NMSFTP.h in Headers */,
+				F2215F41D89781C7B38C09C8248CD354 /* NMSFTPFile.h in Headers */,
+				0481BD21D20874DC6AFE01ECD3150E06 /* NMSSH+Protected.h in Headers */,
+				EE3DACEE9E96B9679F0C24D6A6DAC19D /* NMSSH.h in Headers */,
+				E659D1D404411FD8C149909B3D159053 /* NMSSHChannel.h in Headers */,
+				A5092AA77E188681E4385BE1BF1AE5AB /* NMSSHChannelDelegate.h in Headers */,
+				F5DE5938BCCEFABED60985DBE25E9E37 /* NMSSHConfig.h in Headers */,
+				4029F264FB7309B9977A6CAD99527ED7 /* NMSSHHostConfig.h in Headers */,
+				392DC06C0ACD295E348109DDA8877264 /* NMSSHLogger.h in Headers */,
+				FDD36B9B49C21984BBE514BD72B99AB2 /* NMSSHSession.h in Headers */,
+				950A2F85B5E1CC11619385EF8A2F2E71 /* NMSSHSessionDelegate.h in Headers */,
+				02AC23C5662A679B49C9284BB4290021 /* socket_helper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D65363626ABAEBC1F3F3389EC879974 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E519163E6797CC0391C0ACB101795096 /* RegExCategories.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		6F65E3BC3C44923E6D2DE23A2BC0450E /* RegExCategories */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC1091D5159B3154D3BE723FCAE12D42 /* Build configuration list for PBXNativeTarget "RegExCategories" */;
+			buildPhases = (
+				9D65363626ABAEBC1F3F3389EC879974 /* Headers */,
+				AD4788BA07908BE06E71A7306A8F2CD6 /* Sources */,
+				04D6A507E9CF7C404EEB21F6657456B3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RegExCategories;
+			productName = RegExCategories;
+			productReference = ADCA3E3385D20308EBCAA4230EB727DA /* libRegExCategories.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		82723F38C6ECEB23967085DA9C6D3EF5 /* Pods-AMiOSReverser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8A2F252494EF04B7A9C0317706EB413 /* Build configuration list for PBXNativeTarget "Pods-AMiOSReverser" */;
+			buildPhases = (
+				1DACEB26F31505ACA583385C47DF45CE /* Headers */,
+				750E64224F1D06548DB74B9671AA80AB /* Sources */,
+				D05B4A55F7A2F20B0F5178E7F8144039 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6A8AAB1E520FC399DB088FD64F269991 /* PBXTargetDependency */,
+				0C465BFDC5941D0798726C9357602E45 /* PBXTargetDependency */,
+			);
+			name = "Pods-AMiOSReverser";
+			productName = "Pods-AMiOSReverser";
+			productReference = EFC75FBCBAF7577A3F301F80A5227852 /* libPods-AMiOSReverser.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FABDE59113AFFA4EE15F6387B5A6DAEC /* Build configuration list for PBXNativeTarget "NMSSH" */;
+			buildPhases = (
+				63BB4A443FE26F43EAD17F75744C9B4A /* Headers */,
+				77E647CE3708E83ADC8FE1560239808F /* Sources */,
+				6289A415B426B1D568B6FE3DE72607F0 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NMSSH;
+			productName = NMSSH;
+			productReference = 6EEC77F51858349E93EF74E23C115C64 /* libNMSSH.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 47E6A176F13B70AFA0B6CD3D2E21DF83 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */,
+				82723F38C6ECEB23967085DA9C6D3EF5 /* Pods-AMiOSReverser */,
+				6F65E3BC3C44923E6D2DE23A2BC0450E /* RegExCategories */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		750E64224F1D06548DB74B9671AA80AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				304167C4E18259A30AE078AFF8854C1E /* Pods-AMiOSReverser-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77E647CE3708E83ADC8FE1560239808F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B8A79AA9DF283C1A6C878AD0AF829224 /* NMSFTP.m in Sources */,
+				3AAA355F4F33B9ACDA37680FF331E217 /* NMSFTPFile.m in Sources */,
+				E4D8A9E9C4E8B5368E14794E27602327 /* NMSSH-dummy.m in Sources */,
+				B8370C7B684AB41CDDFBB11E0547BB48 /* NMSSHChannel.m in Sources */,
+				9A18AF5C20D4BA72FCE07170B7569F0B /* NMSSHConfig.m in Sources */,
+				ED5A87F4E98D25994A815ECEF30B48CE /* NMSSHHostConfig.m in Sources */,
+				F9B4F2CB64F305C77BE8C5681D38BBD2 /* NMSSHLogger.m in Sources */,
+				55DE497E2396907EDF6E3CC9C7EEA6CC /* NMSSHSession.m in Sources */,
+				9F5F522F4381462B790A7908520B9322 /* socket_helper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD4788BA07908BE06E71A7306A8F2CD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B2D730D612E082B17E4A31807639676 /* RegExCategories-dummy.m in Sources */,
+				DD84385F1717D6E1BFDC7166B5CF8C48 /* RegExCategories.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0C465BFDC5941D0798726C9357602E45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RegExCategories;
+			target = 6F65E3BC3C44923E6D2DE23A2BC0450E /* RegExCategories */;
+			targetProxy = 9177DD5AC2A5651F09A3971A40EE8C24 /* PBXContainerItemProxy */;
+		};
+		6A8AAB1E520FC399DB088FD64F269991 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NMSSH;
+			target = E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */;
+			targetProxy = 53901AAFAB21EC02C33DE0EC428B8C49 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		18530CC7D3ABEFFCEB6473EE69D205AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FA02B23550B379304D2AAC77316E570 /* Pods-AMiOSReverser.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		23AF36A2BFE14D5B45C8413EC6020DEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B06A7131F8A6B037DBBC5113ED7E87C4 /* Pods-AMiOSReverser.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4505730DEDD2B541264C80DD70F5EC11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A32F9923AF6A8E4A51555DFBB63B9FB /* NMSSH.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = NMSSH;
+				PRODUCT_NAME = NMSSH;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+			};
+			name = Debug;
+		};
+		642D4C6E47834C4AA8BE44B83E0257BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A32F9923AF6A8E4A51555DFBB63B9FB /* NMSSH.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/NMSSH/NMSSH-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = NMSSH;
+				PRODUCT_NAME = NMSSH;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+			};
+			name = Release;
+		};
+		9382317ED75CFC741F429FC224405042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		A1648E276651540F3A5C933836E715F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC7F27B3C8B95CE66BB5DFAAADEED8E6 /* RegExCategories.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/RegExCategories/RegExCategories-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = RegExCategories;
+				PRODUCT_NAME = RegExCategories;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+			};
+			name = Debug;
+		};
+		E4DEAC9B52796426D2A37E7074A1738D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		FC352A64D64CC9B239AB01819298DF7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC7F27B3C8B95CE66BB5DFAAADEED8E6 /* RegExCategories.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/RegExCategories/RegExCategories-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = RegExCategories;
+				PRODUCT_NAME = RegExCategories;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9382317ED75CFC741F429FC224405042 /* Debug */,
+				E4DEAC9B52796426D2A37E7074A1738D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8A2F252494EF04B7A9C0317706EB413 /* Build configuration list for PBXNativeTarget "Pods-AMiOSReverser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23AF36A2BFE14D5B45C8413EC6020DEE /* Debug */,
+				18530CC7D3ABEFFCEB6473EE69D205AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FABDE59113AFFA4EE15F6387B5A6DAEC /* Build configuration list for PBXNativeTarget "NMSSH" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4505730DEDD2B541264C80DD70F5EC11 /* Debug */,
+				642D4C6E47834C4AA8BE44B83E0257BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC1091D5159B3154D3BE723FCAE12D42 /* Build configuration list for PBXNativeTarget "RegExCategories" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1648E276651540F3A5C933836E715F6 /* Debug */,
+				FC352A64D64CC9B239AB01819298DF7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
