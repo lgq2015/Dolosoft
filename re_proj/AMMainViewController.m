@@ -111,8 +111,7 @@
 
 
         appManager.appList = [self getUserAppsForSession:connectionHandler.session];
-        // RE-ENABLE!!
-        //[self addUserAppsDocumentsDirectory];
+        [self addUserAppsDocumentsDirectory];
 
         [appsTableView setAction:@selector(tableViewClicked:)];
         [classesTableView setAction:@selector(tableViewClicked:)];
