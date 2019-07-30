@@ -16,6 +16,7 @@
 @property(retain,nonatomic) NSString *decryptedBinariesDirectoryPath;
 @property(retain,nonatomic) NSString *headersDirectoryPath;
 @property(retain,nonatomic) NSString *tweaksDirectoryPath;
+@property(retain,nonatomic) NSString *fridaDirectoryPath;
 - (instancetype)init;
 - (void)createAMMainDirectory;
 - (void)createDecryptedDirectory;

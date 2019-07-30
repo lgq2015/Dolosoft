@@ -16,6 +16,8 @@
 #import "AMAppManager.h"
 #import "AMTweakBuilder.h"
 #import "AMLogger.h"
+#import "NSAlert+SynchronousSheet.h"
+
 
 @class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass;
 

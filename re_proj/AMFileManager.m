@@ -16,6 +16,7 @@
         [self createDecryptedDirectory];
         [self createHeadersDirectory];
         [self createTweaksDirectory];
+        self.fridaDirectoryPath = [NSString stringWithFormat:@"%@/frida-ios-dump", self.mainDirectoryPath];
     }
     return self;
 }
@@ -85,7 +86,7 @@
 }
 
 - (NSString *)pathOfDecryptedBinaryForApp:(AMApp *)app {
-    return [NSString stringWithFormat:@"%@/%@.decrypted",
+    return [NSString stringWithFormat:@"%@/%@.ipa",
             [self decryptedBinariesDirectoryPath],
             app.displayName];
 }

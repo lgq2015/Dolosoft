@@ -25,6 +25,7 @@
 		0CA40BD1207EE38800789BEB /* AMAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA40BD0207EE38800789BEB /* AMAppManager.m */; };
 		0CEFBF102096468C00B41490 /* AMTweakBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */; };
 		4152167E22F08C850096DCFB /* password.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4152167D22F08C850096DCFB /* password.txt */; };
+		417202A122F0EECE0051B167 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4172029F22F0EECE0051B167 /* NSAlert+SynchronousSheet.m */; };
 		F815A0F3DD7D012597F74ACA /* libPods-AMiOSReverser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A920D31B7105700E8023FE84 /* libPods-AMiOSReverser.a */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,8 @@
 		0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTweakBuilder.m; sourceTree = "<group>"; };
 		125AF07CF68C9185FFA0F6A9 /* Pods-AMiOSReverser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AMiOSReverser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AMiOSReverser/Pods-AMiOSReverser.debug.xcconfig"; sourceTree = "<group>"; };
 		4152167D22F08C850096DCFB /* password.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = password.txt; sourceTree = "<group>"; };
+		4172029F22F0EECE0051B167 /* NSAlert+SynchronousSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAlert+SynchronousSheet.m"; path = "../../../Downloads/NSAlert-SynchronousSheet-master/NSAlert+SynchronousSheet.m"; sourceTree = "<group>"; };
+		417202A022F0EECE0051B167 /* NSAlert+SynchronousSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAlert+SynchronousSheet.h"; path = "../../../Downloads/NSAlert-SynchronousSheet-master/NSAlert+SynchronousSheet.h"; sourceTree = "<group>"; };
 		767BB33F96D38DB4F3041426 /* Pods-re_proj.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-re_proj.release.xcconfig"; path = "Pods/Target Support Files/Pods-re_proj/Pods-re_proj.release.xcconfig"; sourceTree = "<group>"; };
 		8FD20B5D5818DE6AE48B27AC /* Pods-re_proj.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-re_proj.debug.xcconfig"; path = "Pods/Target Support Files/Pods-re_proj/Pods-re_proj.debug.xcconfig"; sourceTree = "<group>"; };
 		A920D31B7105700E8023FE84 /* libPods-AMiOSReverser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AMiOSReverser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +152,8 @@
 				0C16DFAA207C1A0100AA0952 /* AppDelegate.m */,
 				0C16DFAC207C1A0100AA0952 /* AMMainViewController.h */,
 				0C16DFAD207C1A0100AA0952 /* AMMainViewController.m */,
+				417202A022F0EECE0051B167 /* NSAlert+SynchronousSheet.h */,
+				4172029F22F0EECE0051B167 /* NSAlert+SynchronousSheet.m */,
 				0C101C7520975F0A000792B2 /* AMLogger.h */,
 				0C101C7620975F0A000792B2 /* AMLogger.m */,
 				0CEFBF0E2096468C00B41490 /* AMTweakBuilder.h */,
@@ -384,6 +389,7 @@
 				0C95DE50207D29F400639022 /* AMFileManager.m in Sources */,
 				0CA40BCC207ED1A900789BEB /* AMClassDumpParser.m in Sources */,
 				0C95DE4D207D1FB300639022 /* AMConnectionHandler.m in Sources */,
+				417202A122F0EECE0051B167 /* NSAlert+SynchronousSheet.m in Sources */,
 				0CA40BC9207EBAFE00789BEB /* AMObjcClass.m in Sources */,
 				0C16DFAE207C1A0100AA0952 /* AMMainViewController.m in Sources */,
 				0CA40BD1207EE38800789BEB /* AMAppManager.m in Sources */,
