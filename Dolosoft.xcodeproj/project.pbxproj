@@ -528,7 +528,7 @@
 			baseConfigurationReference = F480EE88976D307E159D90C5 /* Pods-Dolosoft.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Dolosoft/re_proj.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Dolosoft/Dolosoft.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = V9H9RJKQ77;
@@ -556,7 +556,7 @@
 			baseConfigurationReference = C9FCA4F99BB0352A3C56D478 /* Pods-Dolosoft.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Dolosoft/re_proj.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Dolosoft/Dolosoft.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = V9H9RJKQ77;

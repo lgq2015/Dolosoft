@@ -1,6 +1,6 @@
 //
 //  AMFileManager.h
-//  re_proj
+//  Dolosoft
 //
 //  Created by Ander Moran on 4/10/18.
 //  Copyright © 2018 Ander Moran. All rights reserved.

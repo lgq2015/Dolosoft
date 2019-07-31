@@ -1,6 +1,6 @@
 //
 //  AMLogger.m
-//  AMiOSReverser
+//  Dolosoft
 //
 //  Created by Ander Moran on 4/30/18.
 //  Copyright © 2018 Ander Moran. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  AMClassDumpParser.h
-//  re_proj
+//  Dolosoft
 //
 //  Created by Ander Moran on 4/11/18.
 //  Copyright © 2018 Ander Moran. All rights reserved.
