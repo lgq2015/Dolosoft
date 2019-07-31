@@ -15,6 +15,8 @@
  
 */
 
+#define TEST_MODE YES
+
 @implementation AMMainViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -118,7 +120,7 @@
 //        classesTableView.focusRingType = NSFocusRingTypeNone;
 //        methodsTableView.focusRingType = NSFocusRingTypeNone;
 
-        terminalTextView.editable        = NO;
+        terminalTextView.editable = NO;
         terminalTextView.drawsBackground = NO;
 
         terminalTextView.backgroundColor = [NSColor colorWithCalibratedRed:45.0f/255.0f
@@ -126,10 +128,11 @@
                                                                       blue:63.0f/255.0f
                                                                      alpha:1];
 
-        terminalTextView.textColor = [NSColor whiteColor];
         terminalTextView.font = [NSFont fontWithName:@"Monaco" size:12];
         
-        logTextView.textColor = [NSColor blackColor];
+        
+        
+        logTextView.editable = NO;
         logTextView.font = [NSFont fontWithName:@"Monaco" size:12];
 
 
@@ -229,6 +232,9 @@
                                    encoding:NSUTF8StringEncoding
                                       error:nil];
 
+    /*  had to remove this because it broke the program whenever I selected a class in one app and then switched to another.
+        problem is when the index selected is higher than the maximum number of classes in the new app
+     */
 //    NSAlert *alert = [[NSAlert alloc] init];
 //    [alert addButtonWithTitle:@"Continue"];
 //    [alert setMessageText:@"Before preceding..."];
@@ -237,15 +243,8 @@
 //    [alert runModalSheet];
 
 
-//    [classesTableView reloadData];
-//    [methodsTableView reloadData];
-//    dispatch_async(dispatch_get_main_queue(), ^(void){
-//        NSLog(@"FOO4.1");
-//        fflush(stderr);
-//        [classesTableView reloadData];
-//        [methodsTableView reloadData];
-//    });
-    
+    [classesTableView reloadData];
+    [methodsTableView reloadData];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         /* check to see if we have decrypted file or headers */
@@ -387,15 +386,12 @@
             selectedClass = [selectedApp classWithName:selectedApp.classList[tableView.selectedRow].className];
             [methodsTableView reloadData];
         }
-        // Will uncomment code below once I figure out this bug when switching apps :)
-        /*
          else if (tableView == appsTableView) {
-         selectedApp = [appManager
-         appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
-         [classesTableView reloadData];
-         [methodsTableView reloadData];
+             selectedApp = [appManager appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
+             selectedClass = nil;
+             [classesTableView reloadData];
+             [methodsTableView reloadData];
          }
-         */
     }
 }
 
@@ -482,13 +478,14 @@
     //    this will only work for iOS 10, need to update command for other iOSs
     //    make sure to have glib installed via Cydia
     //    find /var/containers/Bundle/Application/* -iname *.app
-    
-    // MAKE SURE DolosoftTools IS ON DEVICE!!!!!
-    //    NSError *error = nil;
-    //    NSString *response = [session.channel execute:@"DolosoftTools/userapps.sh" error:&error];
-    //    NSLog(@"repsonse: %@" , response);
-    
-    NSString *response = @"Piq\nPiq\ncom.andermoran.piqme\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app/Piq\nChrome\nChrome\ncom.google.chrome.ios\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app/Chrome";
+
+    NSError *error = nil;
+    NSString *response;
+    if (TEST_MODE) {
+        response = @"Piq\nPiq\ncom.andermoran.piqme\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app/Piq\nChrome\nChrome\ncom.google.chrome.ios\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app/Chrome";
+    } else {
+        NSString *response = [session.channel execute:@"DolosoftTools/userapps.sh" error:&error];
+    }
     
     NSArray *lines = [response componentsSeparatedByString: @"\n"];
     
@@ -518,9 +515,14 @@
 }
 
 - (void)addUserAppsDocumentsDirectory {
-//    NSError *error = nil;
-//    NSString *response = [connectionHandler.session.channel execute:@"DolosoftTools/userappsextended.sh" error:&error];
-    NSString *response = @"/var/mobile/Containers/Data/Application/D885F73F-B14A-4CB7-9AD7-B53498ED2B19\ncom.andermoran.piqme\ncom.google.chrome.ios\n/var/mobile/Containers/Data/Application/3B291374-6BF0-4508-8692-ACA0AC712B28";
+    NSError *error = nil;
+    NSString *response;
+    if (TEST_MODE) {
+        response = @"/var/mobile/Containers/Data/Application/D885F73F-B14A-4CB7-9AD7-B53498ED2B19\ncom.andermoran.piqme\ncom.google.chrome.ios\n/var/mobile/Containers/Data/Application/3B291374-6BF0-4508-8692-ACA0AC712B28";
+    } else {
+        response = [connectionHandler.session.channel execute:@"DolosoftTools/userappsextended.sh" error:&error];
+    }
+
     NSArray *lines = [response componentsSeparatedByString: @"\n"];
     
     for (int i = 0; i+1 < [lines count]; i+=2) {
