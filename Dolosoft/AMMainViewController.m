@@ -22,8 +22,6 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"password" ofType:@"txt"];
     NSString *password = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
     
-
-    NSLog(@"HERE");
     self.view.layer.backgroundColor = [NSColor colorWithCalibratedRed:71.0f/255.0f
                                                                 green:69.0f/255.0f
                                                                  blue:68.0f/255.0f
@@ -113,10 +111,9 @@
         appManager.appList = [self getUserAppsForSession:connectionHandler.session];
         [self addUserAppsDocumentsDirectory];
 
-        [appsTableView setAction:@selector(tableViewClicked:)];
-        [classesTableView setAction:@selector(tableViewClicked:)];
-        [methodsTableView setAction:@selector(methodsTableViewClicked:)];
-
+//        [appsTableView setAction:@selector(tableViewClicked:)];
+//        [classesTableView setAction:@selector(tableViewClicked:)];
+//        [methodsTableView setAction:@selector(methodsTableViewClicked:)];
 
         terminalTextView.editable        = NO;
         terminalTextView.drawsBackground = NO;
@@ -340,18 +337,35 @@
     [createTweakProgressBar stopAnimation:nil];
 }
 
-- (void)methodsTableViewClicked:(id)sender {
-    methodsTableView.selectedCell.backgroundStyle = NSBackgroundStyleDark;
-}
+//- (void)methodsTableViewClicked:(id)sender {
+//    methodsTableView.selectedCell.backgroundStyle = NSBackgroundStyleDark;
+//}
 
-// TODO: Add support to go through classes with the arrow keys and not only by clicking on them
+/*  Used to handle user clicking on class name but now
+    I just use tableViewSelectionDidChange:notification
+    because it handles the user changing the class by
+    using the arrow keys as well
+ 
+    Leaving here for now because of the TODO inside of it
+    and in case I need this method to implement said TODO
+ */
 
-- (void)tableViewClicked:(id)sender {
-    /* TODO: Allow a user to select multiple cells by just clicking on them normally
-     and a cell's background color will change if selected */
-    NSTableView *tableView = sender;
+//- (void)tableViewClicked:(id)sender {
+//    /* TODO: Allow a user to select multiple cells by just clicking on them normally
+//     and a cell's background color will change if selected */
+//    NSTableView *tableView = sender;
+//    if (tableView == classesTableView) {
+//        NSLog(@"tableViewClicked ROW = %ld", (long)tableView.clickedRow);
+//        selectedClass = [selectedApp classWithName:selectedApp.classList[tableView.clickedRow].className];
+//        [methodsTableView reloadData];
+//    }
+//}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+    NSTableView *tableView = notification.object;
     if (tableView == classesTableView) {
-        selectedClass = [selectedApp classWithName:selectedApp.classList[tableView.clickedRow].className];
+        NSLog(@"tableViewSelectionDidChange ROW = %ld", (long)tableView.selectedRow);
+        selectedClass = [selectedApp classWithName:selectedApp.classList[tableView.selectedRow].className];
         [methodsTableView reloadData];
     }
 }
@@ -386,44 +400,6 @@
     [super setRepresentedObject:representedObject];
 
     // Update the view, if already loaded.
-}
-
-/* TODO: Move these last two methods into their own class, doesnt belong in a viewcontroller */
-/* TODO: Remove parameter for function and just use connectionHandler.session.channel instead!! */
-- (NSArray *)getUserAppsForSession:(NMSSHSession *)session {
-    //    this will only work for iOS 10, need to update command for other iOSs
-    //    make sure to have glib installed via Cydia
-    //    find /var/containers/Bundle/Application/* -iname *.app
-    
-    // MAKE SURE DolosoftTools IS ON DEVICE!!!!!
-    NSError *error = nil;
-    NSString *response = [session.channel execute:@"DolosoftTools/userapps.sh" error:&error];
-    NSLog(@"repsonse: %@" , response);
-    NSArray *lines = [response componentsSeparatedByString: @"\n"];
-    
-    NSMutableArray *apps = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i+4 < [lines count]; i+=5) {
-        AMApp *app = [[AMApp alloc] initWithDisplayName:lines[i]
-                                         executableName:lines[i+1]
-                                       bundleIdentifier:lines[i+2]
-                                              pathToDir:lines[i+3]
-                                       pathToExecutable:lines[i+4]];
-        
-        if ([app.displayName isEqualToString:@"(null)"]) {
-            app.displayName = app.executableName;
-        }
-        [apps addObject:app];
-    }
-    
-    NSArray *sortedArray;
-    sortedArray = [apps sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-        NSString *first = [(AMApp *)a displayName];
-        NSString *second = [(AMApp *)b displayName];
-        return [first compare:second];
-    }];
-    NSLog(@"Got user's apps' info");
-    return sortedArray;
 }
 
 - (void)decryptAppAndDownload:(AMApp *)app {
@@ -477,9 +453,51 @@
     while ([task isRunning]) {}
 }
 
+/* TODO: Move these last two methods into their own class, doesnt belong in a viewcontroller */
+/* TODO: Remove parameter for function and just use connectionHandler.session.channel instead!! */
+- (NSArray *)getUserAppsForSession:(NMSSHSession *)session {
+    //    this will only work for iOS 10, need to update command for other iOSs
+    //    make sure to have glib installed via Cydia
+    //    find /var/containers/Bundle/Application/* -iname *.app
+    
+    // MAKE SURE DolosoftTools IS ON DEVICE!!!!!
+    //    NSError *error = nil;
+    //    NSString *response = [session.channel execute:@"DolosoftTools/userapps.sh" error:&error];
+    //    NSLog(@"repsonse: %@" , response);
+    
+    NSString *response = @"Piq\nPiq\ncom.andermoran.piqme\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app/Piq\nChrome\nChrome\ncom.google.chrome.ios\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app/Chrome";
+    
+    NSArray *lines = [response componentsSeparatedByString: @"\n"];
+    
+    NSMutableArray *apps = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i+4 < [lines count]; i+=5) {
+        AMApp *app = [[AMApp alloc] initWithDisplayName:lines[i]
+                                         executableName:lines[i+1]
+                                       bundleIdentifier:lines[i+2]
+                                              pathToDir:lines[i+3]
+                                       pathToExecutable:lines[i+4]];
+        
+        if ([app.displayName isEqualToString:@"(null)"]) {
+            app.displayName = app.executableName;
+        }
+        [apps addObject:app];
+    }
+    
+    NSArray *sortedArray;
+    sortedArray = [apps sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSString *first = [(AMApp *)a displayName];
+        NSString *second = [(AMApp *)b displayName];
+        return [first compare:second];
+    }];
+    NSLog(@"Got user's apps' info");
+    return sortedArray;
+}
+
 - (void)addUserAppsDocumentsDirectory {
-    NSError *error = nil;
-    NSString *response = [connectionHandler.session.channel execute:@"DolosoftTools/userappsextended.sh" error:&error];
+//    NSError *error = nil;
+//    NSString *response = [connectionHandler.session.channel execute:@"DolosoftTools/userappsextended.sh" error:&error];
+    NSString *response = @"/var/mobile/Containers/Data/Application/D885F73F-B14A-4CB7-9AD7-B53498ED2B19\ncom.andermoran.piqme\ncom.google.chrome.ios\n/var/mobile/Containers/Data/Application/3B291374-6BF0-4508-8692-ACA0AC712B28";
     NSArray *lines = [response componentsSeparatedByString: @"\n"];
     
     for (int i = 0; i+1 < [lines count]; i+=2) {
