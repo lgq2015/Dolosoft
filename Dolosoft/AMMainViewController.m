@@ -198,7 +198,7 @@
 }
 
 - (IBAction)editTweakButtonClicked:(id)sender {
-    if (![[NSWorkspace sharedWorkspace] openFile:[selectedApp tweakPath] withApplication:@"CodeRunner"]) {
+    if (![[NSWorkspace sharedWorkspace] openFile:[selectedApp tweakPath]]) {
         [[NSWorkspace sharedWorkspace] openFile:[selectedApp tweakPath] withApplication:@"Xcode"];
     }
 }
@@ -209,6 +209,7 @@
     selectedClass = nil; // This is because I need to clear the methods table view after a new app selected
     selectedApp = [appManager
                    appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
+    
     /* this line below is used for interdevice communication between macOS and iOS so that cycript can launch with the executableName for the -p argument */
     [selectedApp.executableName writeToFile:[NSString stringWithFormat:@"%@/selectedApp.txt",
                                              [fileManager mainDirectoryPath]]
