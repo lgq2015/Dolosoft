@@ -1,6 +1,6 @@
 inhibit_all_warnings!
 
-target 'AMiOSReverser' do
+target 'Dolosoft' do
 	pod 'NMSSH'
 	pod 'RegExCategories', '~> 1.0'
 end

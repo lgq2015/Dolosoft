@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "82723F38C6ECEB23967085DA9C6D3EF5"
-               BuildableName = "libPods-AMiOSReverser.a"
-               BlueprintName = "Pods-AMiOSReverser"
+               BlueprintIdentifier = "A3B4E0D6361F45E72AD25A2095C5DB14"
+               BuildableName = "libPods-Dolosoft.a"
+               BlueprintName = "Pods-Dolosoft"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

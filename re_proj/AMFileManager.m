@@ -33,7 +33,7 @@
     if ([appSupportDir count] > 0) {
         // Append the bundle ID to the URL for the
         // Application Support directory
-        dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:@"Dolosoft"]; /* used to append targetName (changed for dolosoft bc target name is old) */
+        dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:targetName];
         
         // If the directory does not exist, this method creates it.
         // This method is only available in macOS 10.7 and iOS 5.0 or later.

@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		02AC23C5662A679B49C9284BB4290021 /* socket_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 47F96E92A9A18F489E43F3752D823032 /* socket_helper.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0481BD21D20874DC6AFE01ECD3150E06 /* NMSSH+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D1BDD7ED2F283BA03A062ACD4933E21 /* NMSSH+Protected.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		13E4C37ED443BB079D25AE029ECD7B72 /* Pods-Dolosoft-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EA700897D4E6E8B8259666DA0FD42594 /* Pods-Dolosoft-dummy.m */; };
 		1B2D730D612E082B17E4A31807639676 /* RegExCategories-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BD94B20EB7E73F5D61A001938AF30C17 /* RegExCategories-dummy.m */; };
-		304167C4E18259A30AE078AFF8854C1E /* Pods-AMiOSReverser-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C7BB4A803628887C4ADB4588B3050D /* Pods-AMiOSReverser-dummy.m */; };
 		392DC06C0ACD295E348109DDA8877264 /* NMSSHLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = F5E0D1B6A899E207D52C255FBA22DE26 /* NMSSHLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3AAA355F4F33B9ACDA37680FF331E217 /* NMSFTPFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C62501875ACA98348C287BC15EAA461 /* NMSFTPFile.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		4029F264FB7309B9977A6CAD99527ED7 /* NMSSHHostConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AE6BCB3BB196D2680E337CD0E1AF72E /* NMSSHHostConfig.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -38,14 +38,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		53901AAFAB21EC02C33DE0EC428B8C49 /* PBXContainerItemProxy */ = {
+		21F6C736B3F102AF9635C2EEC454CDF3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E36E3194AA9B06BC5873E083ED10B917;
 			remoteInfo = NMSSH;
 		};
-		9177DD5AC2A5651F09A3971A40EE8C24 /* PBXContainerItemProxy */ = {
+		930C7A0E2E8D1B4AB6969621E2B75BD7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -55,18 +55,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05C7BB4A803628887C4ADB4588B3050D /* Pods-AMiOSReverser-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AMiOSReverser-dummy.m"; sourceTree = "<group>"; };
+		0823F77D1A1A88A88D72980EF465E3B3 /* Pods-Dolosoft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Dolosoft.debug.xcconfig"; sourceTree = "<group>"; };
 		0C609BA0B5CC52889B26E241AE40AC0E /* NMSFTPFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSFTPFile.h; path = NMSSH/NMSFTPFile.h; sourceTree = "<group>"; };
+		13C983F7BB2C0B4EEBE928B532B35CBE /* Pods-Dolosoft-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Dolosoft-acknowledgements.plist"; sourceTree = "<group>"; };
 		1CE20B84EA16C65D7584829E853A3D76 /* socket_helper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = socket_helper.m; path = NMSSH/Config/socket_helper.m; sourceTree = "<group>"; };
 		2D1BDD7ED2F283BA03A062ACD4933E21 /* NMSSH+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NMSSH+Protected.h"; path = "NMSSH/Config/NMSSH+Protected.h"; sourceTree = "<group>"; };
 		393C16833460EE7AF77D96548EB6B2DB /* NMSSHChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHChannel.h; path = NMSSH/NMSSHChannel.h; sourceTree = "<group>"; };
 		3EA0DC8BBEDD3673AEFB1DAD3D8340B5 /* RegExCategories.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RegExCategories.h; sourceTree = "<group>"; };
 		3F9B80200480AF8ECC3F99307D7C4217 /* NMSSHChannelDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHChannelDelegate.h; path = NMSSH/Protocols/NMSSHChannelDelegate.h; sourceTree = "<group>"; };
-		43E2104979E1F01A689D3EC3EA673CBF /* Pods-AMiOSReverser-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AMiOSReverser-acknowledgements.plist"; sourceTree = "<group>"; };
 		4689029266920153513F2308522CBE1D /* NMSSHHostConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHHostConfig.m; path = NMSSH/NMSSHHostConfig.m; sourceTree = "<group>"; };
 		47F96E92A9A18F489E43F3752D823032 /* socket_helper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = socket_helper.h; path = NMSSH/Config/socket_helper.h; sourceTree = "<group>"; };
 		5A32F9923AF6A8E4A51555DFBB63B9FB /* NMSSH.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NMSSH.xcconfig; sourceTree = "<group>"; };
-		5FA02B23550B379304D2AAC77316E570 /* Pods-AMiOSReverser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AMiOSReverser.release.xcconfig"; sourceTree = "<group>"; };
 		695F3249BD33D360D2E9C7119079F024 /* NMSFTP.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSFTP.m; path = NMSSH/NMSFTP.m; sourceTree = "<group>"; };
 		69D79D72A4F81B9B03B149FB62F46243 /* NMSFTP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSFTP.h; path = NMSSH/NMSFTP.h; sourceTree = "<group>"; };
 		6AE6BCB3BB196D2680E337CD0E1AF72E /* NMSSHHostConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHHostConfig.h; path = NMSSH/NMSSHHostConfig.h; sourceTree = "<group>"; };
@@ -75,16 +74,18 @@
 		723936D54963C1CB2E66E41B5343F100 /* libssh2.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libssh2.a; path = "NMSSH-OSX/Libraries/lib/libssh2.a"; sourceTree = "<group>"; };
 		7C62501875ACA98348C287BC15EAA461 /* NMSFTPFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSFTPFile.m; path = NMSSH/NMSFTPFile.m; sourceTree = "<group>"; };
 		7D571D1DEAB00BD63A556990B50D1474 /* libcrypto.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libcrypto.a; path = "NMSSH-OSX/Libraries/lib/libcrypto.a"; sourceTree = "<group>"; };
+		7E75AB0F573106BFB2662C3289F4B63A /* libPods-Dolosoft.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Dolosoft.a"; path = "libPods-Dolosoft.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FB164673831DFAD8D40D4CF7E5C1D1C /* NMSSHChannel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHChannel.m; path = NMSSH/NMSSHChannel.m; sourceTree = "<group>"; };
 		8831CC2402E430FBF1E01B569AA8CD26 /* libssh2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2.h; path = "NMSSH-OSX/Libraries/include/libssh2/libssh2.h"; sourceTree = "<group>"; };
 		970879B6DB61AA56A531128FC24FA628 /* libssh2_publickey.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = libssh2_publickey.h; path = "NMSSH-OSX/Libraries/include/libssh2/libssh2_publickey.h"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A6C44C15A66E933F2790BAB86FEB69A9 /* NMSSH.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSH.h; path = NMSSH/NMSSH.h; sourceTree = "<group>"; };
+		AAD8F5D3947F8418A6026C6D2A667892 /* Pods-Dolosoft.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Dolosoft.release.xcconfig"; sourceTree = "<group>"; };
 		AC1898DC1BBA4AE31C3066658C0E63BE /* NMSSH-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NMSSH-dummy.m"; sourceTree = "<group>"; };
 		AC7F27B3C8B95CE66BB5DFAAADEED8E6 /* RegExCategories.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RegExCategories.xcconfig; sourceTree = "<group>"; };
 		AD72B8745A8D9A1B064910701A083954 /* NMSSHConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHConfig.m; path = NMSSH/NMSSHConfig.m; sourceTree = "<group>"; };
 		ADCA3E3385D20308EBCAA4230EB727DA /* libRegExCategories.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRegExCategories.a; path = libRegExCategories.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B06A7131F8A6B037DBBC5113ED7E87C4 /* Pods-AMiOSReverser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AMiOSReverser.debug.xcconfig"; sourceTree = "<group>"; };
+		AF467011A25BFAD3445943055B169429 /* Pods-Dolosoft-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Dolosoft-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B443C3C9F98A63575380CFDC499C2E36 /* RegExCategories-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RegExCategories-prefix.pch"; sourceTree = "<group>"; };
 		B7C1324DDFCA1E949467CAC35B80F0A2 /* NMSSHSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHSession.h; path = NMSSH/NMSSHSession.h; sourceTree = "<group>"; };
 		BD94B20EB7E73F5D61A001938AF30C17 /* RegExCategories-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RegExCategories-dummy.m"; sourceTree = "<group>"; };
@@ -93,11 +94,10 @@
 		D45667B6C23D7B3C7B069DC5D5B3CD50 /* libssl.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libssl.a; path = "NMSSH-OSX/Libraries/lib/libssl.a"; sourceTree = "<group>"; };
 		DA1430BB2C51F1C77C9CCAE3D8039DC7 /* NMSSHSession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMSSHSession.m; path = NMSSH/NMSSHSession.m; sourceTree = "<group>"; };
 		E1A2479D8DEDF6EEE61BB78DF543E5C2 /* NMSSHSessionDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHSessionDelegate.h; path = NMSSH/Protocols/NMSSHSessionDelegate.h; sourceTree = "<group>"; };
-		EFC75FBCBAF7577A3F301F80A5227852 /* libPods-AMiOSReverser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-AMiOSReverser.a"; path = "libPods-AMiOSReverser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA700897D4E6E8B8259666DA0FD42594 /* Pods-Dolosoft-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Dolosoft-dummy.m"; sourceTree = "<group>"; };
 		F4493CBA702D27336D4CB0F01DB25380 /* NMSSH-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NMSSH-prefix.pch"; sourceTree = "<group>"; };
 		F5E0D1B6A899E207D52C255FBA22DE26 /* NMSSHLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHLogger.h; path = NMSSH/Config/NMSSHLogger.h; sourceTree = "<group>"; };
 		FA5028144630E17999CF301471EF0EF5 /* NMSSHConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NMSSHConfig.h; path = NMSSH/NMSSHConfig.h; sourceTree = "<group>"; };
-		FFE935CD91C886378EEB291B131F44FC /* Pods-AMiOSReverser-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AMiOSReverser-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +115,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D05B4A55F7A2F20B0F5178E7F8144039 /* Frameworks */ = {
+		C2DBA81041C34858DCE1729C2E716186 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -143,14 +143,6 @@
 				05196601CD0AFD79934C0F82F677F226 /* RegExCategories */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		0DE0537043A302694C1394E7FBC8E02A /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				DEA0E265FC625F2EBC542B27CF9BF776 /* Pods-AMiOSReverser */,
-			);
-			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		147387CE83401A0038F076995C61EF11 /* NMSSH */ = {
@@ -186,16 +178,6 @@
 			path = NMSSH;
 			sourceTree = "<group>";
 		};
-		47E6A176F13B70AFA0B6CD3D2E21DF83 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6EEC77F51858349E93EF74E23C115C64 /* libNMSSH.a */,
-				EFC75FBCBAF7577A3F301F80A5227852 /* libPods-AMiOSReverser.a */,
-				ADCA3E3385D20308EBCAA4230EB727DA /* libRegExCategories.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		72E4860B178D696B66E6B959C9F1D139 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +189,16 @@
 			path = "../Target Support Files/NMSSH";
 			sourceTree = "<group>";
 		};
+		78BA852B2D703457FC347606BBDE4C82 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6EEC77F51858349E93EF74E23C115C64 /* libNMSSH.a */,
+				7E75AB0F573106BFB2662C3289F4B63A /* libPods-Dolosoft.a */,
+				ADCA3E3385D20308EBCAA4230EB727DA /* libRegExCategories.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8830382FAF94CFF0E3D9E118ACD5CB92 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +208,19 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/RegExCategories";
+			sourceTree = "<group>";
+		};
+		90579753526873310CFD68DBF4B5396E /* Pods-Dolosoft */ = {
+			isa = PBXGroup;
+			children = (
+				AF467011A25BFAD3445943055B169429 /* Pods-Dolosoft-acknowledgements.markdown */,
+				13C983F7BB2C0B4EEBE928B532B35CBE /* Pods-Dolosoft-acknowledgements.plist */,
+				EA700897D4E6E8B8259666DA0FD42594 /* Pods-Dolosoft-dummy.m */,
+				0823F77D1A1A88A88D72980EF465E3B3 /* Pods-Dolosoft.debug.xcconfig */,
+				AAD8F5D3947F8418A6026C6D2A667892 /* Pods-Dolosoft.release.xcconfig */,
+			);
+			name = "Pods-Dolosoft";
+			path = "Target Support Files/Pods-Dolosoft";
 			sourceTree = "<group>";
 		};
 		CF032C9A499C1B26EECF13A2F7BA2CF2 /* Frameworks */ = {
@@ -234,8 +239,8 @@
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
 				0DB5C531C293E2F7FBE60D3E676B3149 /* Pods */,
-				47E6A176F13B70AFA0B6CD3D2E21DF83 /* Products */,
-				0DE0537043A302694C1394E7FBC8E02A /* Targets Support Files */,
+				78BA852B2D703457FC347606BBDE4C82 /* Products */,
+				D9EAC9FFB254A38F6486FFF09FBC4A36 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -246,29 +251,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DEA0E265FC625F2EBC542B27CF9BF776 /* Pods-AMiOSReverser */ = {
+		D9EAC9FFB254A38F6486FFF09FBC4A36 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FFE935CD91C886378EEB291B131F44FC /* Pods-AMiOSReverser-acknowledgements.markdown */,
-				43E2104979E1F01A689D3EC3EA673CBF /* Pods-AMiOSReverser-acknowledgements.plist */,
-				05C7BB4A803628887C4ADB4588B3050D /* Pods-AMiOSReverser-dummy.m */,
-				B06A7131F8A6B037DBBC5113ED7E87C4 /* Pods-AMiOSReverser.debug.xcconfig */,
-				5FA02B23550B379304D2AAC77316E570 /* Pods-AMiOSReverser.release.xcconfig */,
+				90579753526873310CFD68DBF4B5396E /* Pods-Dolosoft */,
 			);
-			name = "Pods-AMiOSReverser";
-			path = "Target Support Files/Pods-AMiOSReverser";
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1DACEB26F31505ACA583385C47DF45CE /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		63BB4A443FE26F43EAD17F75744C9B4A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -299,6 +292,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ED2905595482D8BE5EEE912EEFA1FA1B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -319,23 +319,23 @@
 			productReference = ADCA3E3385D20308EBCAA4230EB727DA /* libRegExCategories.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		82723F38C6ECEB23967085DA9C6D3EF5 /* Pods-AMiOSReverser */ = {
+		A3B4E0D6361F45E72AD25A2095C5DB14 /* Pods-Dolosoft */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D8A2F252494EF04B7A9C0317706EB413 /* Build configuration list for PBXNativeTarget "Pods-AMiOSReverser" */;
+			buildConfigurationList = E0290A3ACBBF3A7B7EEE997214378BC0 /* Build configuration list for PBXNativeTarget "Pods-Dolosoft" */;
 			buildPhases = (
-				1DACEB26F31505ACA583385C47DF45CE /* Headers */,
-				750E64224F1D06548DB74B9671AA80AB /* Sources */,
-				D05B4A55F7A2F20B0F5178E7F8144039 /* Frameworks */,
+				ED2905595482D8BE5EEE912EEFA1FA1B /* Headers */,
+				C9B47A5E0335C3882B01D264E34E91B6 /* Sources */,
+				C2DBA81041C34858DCE1729C2E716186 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6A8AAB1E520FC399DB088FD64F269991 /* PBXTargetDependency */,
-				0C465BFDC5941D0798726C9357602E45 /* PBXTargetDependency */,
+				C2F1557763C72F7BBB067334224B087D /* PBXTargetDependency */,
+				391E0B64B7822AD2C4243376AA0424E1 /* PBXTargetDependency */,
 			);
-			name = "Pods-AMiOSReverser";
-			productName = "Pods-AMiOSReverser";
-			productReference = EFC75FBCBAF7577A3F301F80A5227852 /* libPods-AMiOSReverser.a */;
+			name = "Pods-Dolosoft";
+			productName = "Pods-Dolosoft";
+			productReference = 7E75AB0F573106BFB2662C3289F4B63A /* libPods-Dolosoft.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */ = {
@@ -372,26 +372,18 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 47E6A176F13B70AFA0B6CD3D2E21DF83 /* Products */;
+			productRefGroup = 78BA852B2D703457FC347606BBDE4C82 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */,
-				82723F38C6ECEB23967085DA9C6D3EF5 /* Pods-AMiOSReverser */,
+				A3B4E0D6361F45E72AD25A2095C5DB14 /* Pods-Dolosoft */,
 				6F65E3BC3C44923E6D2DE23A2BC0450E /* RegExCategories */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		750E64224F1D06548DB74B9671AA80AB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				304167C4E18259A30AE078AFF8854C1E /* Pods-AMiOSReverser-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		77E647CE3708E83ADC8FE1560239808F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -417,70 +409,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C9B47A5E0335C3882B01D264E34E91B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13E4C37ED443BB079D25AE029ECD7B72 /* Pods-Dolosoft-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0C465BFDC5941D0798726C9357602E45 /* PBXTargetDependency */ = {
+		391E0B64B7822AD2C4243376AA0424E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RegExCategories;
 			target = 6F65E3BC3C44923E6D2DE23A2BC0450E /* RegExCategories */;
-			targetProxy = 9177DD5AC2A5651F09A3971A40EE8C24 /* PBXContainerItemProxy */;
+			targetProxy = 930C7A0E2E8D1B4AB6969621E2B75BD7 /* PBXContainerItemProxy */;
 		};
-		6A8AAB1E520FC399DB088FD64F269991 /* PBXTargetDependency */ = {
+		C2F1557763C72F7BBB067334224B087D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = NMSSH;
 			target = E36E3194AA9B06BC5873E083ED10B917 /* NMSSH */;
-			targetProxy = 53901AAFAB21EC02C33DE0EC428B8C49 /* PBXContainerItemProxy */;
+			targetProxy = 21F6C736B3F102AF9635C2EEC454CDF3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		18530CC7D3ABEFFCEB6473EE69D205AE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FA02B23550B379304D2AAC77316E570 /* Pods-AMiOSReverser.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				EXECUTABLE_PREFIX = lib;
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		23AF36A2BFE14D5B45C8413EC6020DEE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B06A7131F8A6B037DBBC5113ED7E87C4 /* Pods-AMiOSReverser.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				EXECUTABLE_PREFIX = lib;
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
 		4505730DEDD2B541264C80DD70F5EC11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5A32F9923AF6A8E4A51555DFBB63B9FB /* NMSSH.xcconfig */;
@@ -524,6 +478,29 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+			};
+			name = Release;
+		};
+		6E019E90076D4852956E6C511B84C62B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAD8F5D3947F8418A6026C6D2A667892 /* Pods-Dolosoft.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -613,6 +590,29 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+			};
+			name = Debug;
+		};
+		BEAD2DFBA47573DAE49A32F9DD1D9BE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0823F77D1A1A88A88D72980EF465E3B3 /* Pods-Dolosoft.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -713,11 +713,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D8A2F252494EF04B7A9C0317706EB413 /* Build configuration list for PBXNativeTarget "Pods-AMiOSReverser" */ = {
+		E0290A3ACBBF3A7B7EEE997214378BC0 /* Build configuration list for PBXNativeTarget "Pods-Dolosoft" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				23AF36A2BFE14D5B45C8413EC6020DEE /* Debug */,
-				18530CC7D3ABEFFCEB6473EE69D205AE /* Release */,
+				BEAD2DFBA47573DAE49A32F9DD1D9BE2 /* Debug */,
+				6E019E90076D4852956E6C511B84C62B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

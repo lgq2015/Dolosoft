@@ -26,7 +26,7 @@
 		0CEFBF102096468C00B41490 /* AMTweakBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */; };
 		4152167E22F08C850096DCFB /* password.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4152167D22F08C850096DCFB /* password.txt */; };
 		417202A122F0EECE0051B167 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4172029F22F0EECE0051B167 /* NSAlert+SynchronousSheet.m */; };
-		F815A0F3DD7D012597F74ACA /* libPods-AMiOSReverser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A920D31B7105700E8023FE84 /* libPods-AMiOSReverser.a */; };
+		C6A7D673F72EBDD58DAB5303 /* libPods-Dolosoft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25455E4E0D1EFD2E5E3F99FD /* libPods-Dolosoft.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,13 +86,15 @@
 		0CEFBF0E2096468C00B41490 /* AMTweakBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTweakBuilder.h; sourceTree = "<group>"; };
 		0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTweakBuilder.m; sourceTree = "<group>"; };
 		125AF07CF68C9185FFA0F6A9 /* Pods-AMiOSReverser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AMiOSReverser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AMiOSReverser/Pods-AMiOSReverser.debug.xcconfig"; sourceTree = "<group>"; };
+		25455E4E0D1EFD2E5E3F99FD /* libPods-Dolosoft.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dolosoft.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4152167D22F08C850096DCFB /* password.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = password.txt; sourceTree = "<group>"; };
 		4172029F22F0EECE0051B167 /* NSAlert+SynchronousSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSAlert+SynchronousSheet.m"; path = "../../../Downloads/NSAlert-SynchronousSheet-master/NSAlert+SynchronousSheet.m"; sourceTree = "<group>"; };
 		417202A022F0EECE0051B167 /* NSAlert+SynchronousSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSAlert+SynchronousSheet.h"; path = "../../../Downloads/NSAlert-SynchronousSheet-master/NSAlert+SynchronousSheet.h"; sourceTree = "<group>"; };
 		767BB33F96D38DB4F3041426 /* Pods-re_proj.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-re_proj.release.xcconfig"; path = "Pods/Target Support Files/Pods-re_proj/Pods-re_proj.release.xcconfig"; sourceTree = "<group>"; };
 		8FD20B5D5818DE6AE48B27AC /* Pods-re_proj.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-re_proj.debug.xcconfig"; path = "Pods/Target Support Files/Pods-re_proj/Pods-re_proj.debug.xcconfig"; sourceTree = "<group>"; };
-		A920D31B7105700E8023FE84 /* libPods-AMiOSReverser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AMiOSReverser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9FCA4F99BB0352A3C56D478 /* Pods-Dolosoft.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dolosoft.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dolosoft/Pods-Dolosoft.release.xcconfig"; sourceTree = "<group>"; };
 		E937B1F43AC622CB21BC310D /* Pods-AMiOSReverser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AMiOSReverser.release.xcconfig"; path = "Pods/Target Support Files/Pods-AMiOSReverser/Pods-AMiOSReverser.release.xcconfig"; sourceTree = "<group>"; };
+		F480EE88976D307E159D90C5 /* Pods-Dolosoft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dolosoft.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dolosoft/Pods-Dolosoft.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C9CD9CD2231A18E0020A723 /* CoreFoundation.framework in Frameworks */,
-				F815A0F3DD7D012597F74ACA /* libPods-AMiOSReverser.a in Frameworks */,
+				C6A7D673F72EBDD58DAB5303 /* libPods-Dolosoft.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +216,7 @@
 				0C791EFC222F276400D04DBE /* libssl.a */,
 				0C791EFA222F275000D04DBE /* libcrypto.a */,
 				0C791EF8222F272D00D04DBE /* CoreFoundation.framework */,
-				A920D31B7105700E8023FE84 /* libPods-AMiOSReverser.a */,
+				25455E4E0D1EFD2E5E3F99FD /* libPods-Dolosoft.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -226,6 +228,8 @@
 				767BB33F96D38DB4F3041426 /* Pods-re_proj.release.xcconfig */,
 				125AF07CF68C9185FFA0F6A9 /* Pods-AMiOSReverser.debug.xcconfig */,
 				E937B1F43AC622CB21BC310D /* Pods-AMiOSReverser.release.xcconfig */,
+				F480EE88976D307E159D90C5 /* Pods-Dolosoft.debug.xcconfig */,
+				C9FCA4F99BB0352A3C56D478 /* Pods-Dolosoft.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -233,9 +237,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0C16DFA5207C1A0100AA0952 /* AMiOSReverser */ = {
+		0C16DFA5207C1A0100AA0952 /* Dolosoft */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0C16DFD0207C1A0100AA0952 /* Build configuration list for PBXNativeTarget "AMiOSReverser" */;
+			buildConfigurationList = 0C16DFD0207C1A0100AA0952 /* Build configuration list for PBXNativeTarget "Dolosoft" */;
 			buildPhases = (
 				556F15236147F2E0CCF99FCE /* [CP] Check Pods Manifest.lock */,
 				0C16DFA2207C1A0100AA0952 /* Sources */,
@@ -246,7 +250,7 @@
 			);
 			dependencies = (
 			);
-			name = AMiOSReverser;
+			name = Dolosoft;
 			productName = re_proj;
 			productReference = 0C16DFA6207C1A0100AA0952 /* Dolosoft.app */;
 			productType = "com.apple.product-type.application";
@@ -325,7 +329,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0C16DFA5207C1A0100AA0952 /* AMiOSReverser */,
+				0C16DFA5207C1A0100AA0952 /* Dolosoft */,
 				0C16DFBB207C1A0100AA0952 /* DolosoftTests */,
 				0C16DFC6207C1A0100AA0952 /* DolosoftUITests */,
 			);
@@ -371,7 +375,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AMiOSReverser-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Dolosoft-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -422,12 +426,12 @@
 /* Begin PBXTargetDependency section */
 		0C16DFBE207C1A0100AA0952 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0C16DFA5207C1A0100AA0952 /* AMiOSReverser */;
+			target = 0C16DFA5207C1A0100AA0952 /* Dolosoft */;
 			targetProxy = 0C16DFBD207C1A0100AA0952 /* PBXContainerItemProxy */;
 		};
 		0C16DFC9207C1A0100AA0952 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0C16DFA5207C1A0100AA0952 /* AMiOSReverser */;
+			target = 0C16DFA5207C1A0100AA0952 /* Dolosoft */;
 			targetProxy = 0C16DFC8207C1A0100AA0952 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -549,7 +553,7 @@
 		};
 		0C16DFD1207C1A0100AA0952 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 125AF07CF68C9185FFA0F6A9 /* Pods-AMiOSReverser.debug.xcconfig */;
+			baseConfigurationReference = F480EE88976D307E159D90C5 /* Pods-Dolosoft.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = re_proj/re_proj.entitlements;
@@ -577,7 +581,7 @@
 		};
 		0C16DFD2207C1A0100AA0952 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E937B1F43AC622CB21BC310D /* Pods-AMiOSReverser.release.xcconfig */;
+			baseConfigurationReference = C9FCA4F99BB0352A3C56D478 /* Pods-Dolosoft.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = re_proj/re_proj.entitlements;
@@ -673,7 +677,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0C16DFD0207C1A0100AA0952 /* Build configuration list for PBXNativeTarget "AMiOSReverser" */ = {
+		0C16DFD0207C1A0100AA0952 /* Build configuration list for PBXNativeTarget "Dolosoft" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0C16DFD1207C1A0100AA0952 /* Debug */,

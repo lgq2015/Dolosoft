@@ -203,6 +203,7 @@
     }
 }
 
+
 - (IBAction)analyzeAppButtonClicked:(id)sender {
     // lifesaver: https://stackoverflow.com/questions/16283652/understanding-dispatch-async?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
     selectedClass = nil; // This is because I need to clear the methods table view after a new app selected
@@ -342,6 +343,7 @@
     methodsTableView.selectedCell.backgroundStyle = NSBackgroundStyleDark;
 }
 
+// TODO: Add support to go through classes with the arrow keys and not only by clicking on them
 
 - (void)tableViewClicked:(id)sender {
     /* TODO: Allow a user to select multiple cells by just clicking on them normally
