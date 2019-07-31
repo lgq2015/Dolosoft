@@ -30,6 +30,7 @@
     AMTweakBuilder *tweakBuilder;
     AMLogger *logger;
     
+    IBOutlet NSButton *analyzeAppButton;
     IBOutlet NSTextField *analyzeAppProgressLabel;
     IBOutlet NSProgressIndicator *analyzeAppProgressBar;
     IBOutlet NSProgressIndicator *createTweakProgressBar;

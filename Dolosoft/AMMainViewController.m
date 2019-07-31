@@ -111,9 +111,12 @@
         appManager.appList = [self getUserAppsForSession:connectionHandler.session];
         [self addUserAppsDocumentsDirectory];
 
-//        [appsTableView setAction:@selector(tableViewClicked:)];
-//        [classesTableView setAction:@selector(tableViewClicked:)];
-//        [methodsTableView setAction:@selector(methodsTableViewClicked:)];
+        [appsTableView setAction:@selector(tableViewClicked:)];
+        [classesTableView setAction:@selector(tableViewClicked:)];
+        [methodsTableView setAction:@selector(tableViewClicked:)];
+//        appsTableView.focusRingType = NSFocusRingTypeNone;
+//        classesTableView.focusRingType = NSFocusRingTypeNone;
+//        methodsTableView.focusRingType = NSFocusRingTypeNone;
 
         terminalTextView.editable        = NO;
         terminalTextView.drawsBackground = NO;
@@ -200,12 +203,23 @@
     }
 }
 
-
 - (IBAction)analyzeAppButtonClicked:(id)sender {
     // lifesaver: https://stackoverflow.com/questions/16283652/understanding-dispatch-async?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
     selectedClass = nil; // This is because I need to clear the methods table view after a new app selected
+    
+    if (appsTableView.selectedRow == -1) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Ok"];
+        [alert setMessageText:@"Error"];
+        [alert setInformativeText:@"No app selected"];
+        [alert setAlertStyle:NSAlertStyleCritical];
+        [alert runModalSheet];
+        return;
+    }
+    
     selectedApp = [appManager
                    appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
+
     
     /* this line below is used for interdevice communication between macOS and iOS so that cycript can launch with the executableName for the -p argument */
     [selectedApp.executableName writeToFile:[NSString stringWithFormat:@"%@/selectedApp.txt",
@@ -337,9 +351,16 @@
     [createTweakProgressBar stopAnimation:nil];
 }
 
-//- (void)methodsTableViewClicked:(id)sender {
-//    methodsTableView.selectedCell.backgroundStyle = NSBackgroundStyleDark;
-//}
+- (void)keyDown:(NSEvent *)event {
+    // https://stackoverflow.com/questions/4668847/nstableview-delete-key
+    
+    unichar key = [[event charactersIgnoringModifiers] characterAtIndex:0];
+    if ((key == NSEnterCharacter || key == NSCarriageReturnCharacter)
+        && NSView.focusView == appsTableView) {
+        [analyzeAppButton performClick:self];
+    }
+    [super keyDown:event];
+}
 
 /*  Used to handle user clicking on class name but now
     I just use tableViewSelectionDidChange:notification
@@ -349,17 +370,12 @@
     Leaving here for now because of the TODO inside of it
     and in case I need this method to implement said TODO
  */
-
-//- (void)tableViewClicked:(id)sender {
-//    /* TODO: Allow a user to select multiple cells by just clicking on them normally
-//     and a cell's background color will change if selected */
-//    NSTableView *tableView = sender;
-//    if (tableView == classesTableView) {
-//        NSLog(@"tableViewClicked ROW = %ld", (long)tableView.clickedRow);
-//        selectedClass = [selectedApp classWithName:selectedApp.classList[tableView.clickedRow].className];
-//        [methodsTableView reloadData];
-//    }
-//}
+- (void)tableViewClicked:(id)sender {
+    /* TODO: Allow a user to select multiple cells by just clicking on them normally
+     and a cell's background color will change if selected */
+    NSTableView *tableView = sender;
+    tableView.lockFocus; // Need this code so we know how to handle the user pressing the return key
+}
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSTableView *tableView = notification.object;
@@ -394,12 +410,6 @@
     } else {
         return @"THIS SHOULD NEVER RETURN";
     }
-}
-
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
 }
 
 - (void)decryptAppAndDownload:(AMApp *)app {
@@ -511,5 +521,11 @@
             app.pathToAppStorageDir = documentDir;
         }
     }
+}
+
+- (void)setRepresentedObject:(id)representedObject {
+    [super setRepresentedObject:representedObject];
+    
+    // Update the view, if already loaded.
 }
 @end
