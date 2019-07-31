@@ -205,8 +205,9 @@
 
 - (IBAction)analyzeAppButtonClicked:(id)sender {
     // lifesaver: https://stackoverflow.com/questions/16283652/understanding-dispatch-async?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-    selectedClass = nil; // This is because I need to clear the methods table view after a new app selected
     
+    selectedClass = nil; // This is because I need to clear the methods table view after a new app selected
+
     if (appsTableView.selectedRow == -1) {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"Ok"];
@@ -216,35 +217,38 @@
         [alert runModalSheet];
         return;
     }
-    
+
     selectedApp = [appManager
                    appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
+    NSLog(@"selectedApp = %@", [selectedApp displayName]);
 
-    
     /* this line below is used for interdevice communication between macOS and iOS so that cycript can launch with the executableName for the -p argument */
     [selectedApp.executableName writeToFile:[NSString stringWithFormat:@"%@/selectedApp.txt",
                                              [fileManager mainDirectoryPath]]
                                  atomically:YES
                                    encoding:NSUTF8StringEncoding
                                       error:nil];
+
+//    NSAlert *alert = [[NSAlert alloc] init];
+//    [alert addButtonWithTitle:@"Continue"];
+//    [alert setMessageText:@"Before preceding..."];
+//    [alert setInformativeText:[NSString stringWithFormat:@"Please open %@ on your iOS device", selectedApp.displayName]];
+//    [alert setAlertStyle:NSAlertStyleCritical];
+//    [alert runModalSheet];
+
+
+//    [classesTableView reloadData];
+//    [methodsTableView reloadData];
+//    dispatch_async(dispatch_get_main_queue(), ^(void){
+//        NSLog(@"FOO4.1");
+//        fflush(stderr);
+//        [classesTableView reloadData];
+//        [methodsTableView reloadData];
+//    });
     
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert addButtonWithTitle:@"Continue"];
-    [alert setMessageText:@"Before preceding..."];
-    [alert setInformativeText:[NSString stringWithFormat:@"Please open %@ on your iOS device", selectedApp.displayName]];
-    [alert setAlertStyle:NSAlertStyleCritical];
-    [alert runModalSheet];
-    
-    
-    dispatch_async(dispatch_get_main_queue(), ^(void){
-        [classesTableView reloadData];
-        [methodsTableView reloadData];
-    });
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        NSLog(@"selectedApp = %@", [selectedApp displayName]);
         /* check to see if we have decrypted file or headers */
-
         if (![fileManager fileExistsAtPath:[fileManager pathOfDecryptedBinaryForApp:selectedApp]] &&
             ![fileManager fileExistsAtPath:[fileManager pathOfHeaderForApp:selectedApp]]) {
             NSLog(@"AM::App has not been decrypted and/or downloaded. Decrypting and downloading now.");
@@ -252,7 +256,6 @@
                 [analyzeAppProgressLabel setStringValue:@"Decrypting app"];
                 [analyzeAppProgressLabel display];
             });
-
             [self decryptAppAndDownload:selectedApp];
         }
 
@@ -266,12 +269,12 @@
             });
             [appManager dumpHeadersForApp:selectedApp];
         }
-        
+
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [analyzeAppProgressLabel setStringValue:@"Parsing headers"];
             [analyzeAppProgressLabel display];
         });
-
+        
         //NSLog(@"LABEL = %@", [analyzeAppProgressLabel di]);
         [appManager initializeClassListForApp:selectedApp];
 
@@ -379,10 +382,20 @@
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSTableView *tableView = notification.object;
-    if (tableView == classesTableView) {
-        NSLog(@"tableViewSelectionDidChange ROW = %ld", (long)tableView.selectedRow);
-        selectedClass = [selectedApp classWithName:selectedApp.classList[tableView.selectedRow].className];
-        [methodsTableView reloadData];
+    if (tableView.selectedRow != -1) {
+        if (tableView == classesTableView) {
+            selectedClass = [selectedApp classWithName:selectedApp.classList[tableView.selectedRow].className];
+            [methodsTableView reloadData];
+        }
+        // Will uncomment code below once I figure out this bug when switching apps :)
+        /*
+         else if (tableView == appsTableView) {
+         selectedApp = [appManager
+         appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
+         [classesTableView reloadData];
+         [methodsTableView reloadData];
+         }
+         */
     }
 }
 

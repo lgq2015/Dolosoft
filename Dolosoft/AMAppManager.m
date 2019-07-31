@@ -21,19 +21,18 @@
     NSString *directoryPath = [NSString stringWithFormat:@"%@/%@ headers/", [fileManager headersDirectoryPath], app.displayName];
     NSMutableArray<AMObjcClass*> *classList = [[NSMutableArray alloc] init];
     NSArray *headerFilePaths = [AMFileManager filesInDirectory:directoryPath];
-    
     for (NSString *headerFilePath in headerFilePaths) {
         //[_mainViewController.analyzeAppProgressBar incrementBy:0.1]; progress bar does not work. Apple's bug.
         NSString *CDHeaderOutput = [NSString stringWithContentsOfFile:headerFilePath
                                                              encoding:NSUTF8StringEncoding
                                                                 error:nil];
         AMObjcClass *objcClass = [[AMObjcClass alloc] initWithClassDump:CDHeaderOutput];
+
         if (objcClass) {
             [classList addObject:objcClass];
         }
     }
     app.classList = [classList copy];
-    
 }
 
 - (void)dumpHeadersForApp:(AMApp *)app {
