@@ -13,8 +13,6 @@
 		0C16DFB0207C1A0100AA0952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C16DFAF207C1A0100AA0952 /* Assets.xcassets */; };
 		0C16DFB3207C1A0100AA0952 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C16DFB1207C1A0100AA0952 /* Main.storyboard */; };
 		0C16DFB6207C1A0100AA0952 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C16DFB5207C1A0100AA0952 /* main.m */; };
-		0C16DFC1207C1A0100AA0952 /* re_projTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C16DFC0207C1A0100AA0952 /* re_projTests.m */; };
-		0C16DFCC207C1A0100AA0952 /* re_projUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C16DFCB207C1A0100AA0952 /* re_projUITests.m */; };
 		0C95DE4D207D1FB300639022 /* AMConnectionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C95DE4C207D1FB300639022 /* AMConnectionHandler.m */; };
 		0C95DE50207D29F400639022 /* AMFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C95DE4F207D29F400639022 /* AMFileManager.m */; };
 		0C9CD9CD2231A18E0020A723 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C791EF8222F272D00D04DBE /* CoreFoundation.framework */; };
@@ -60,11 +58,7 @@
 		0C16DFB5207C1A0100AA0952 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0C16DFB7207C1A0100AA0952 /* re_proj.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = re_proj.entitlements; sourceTree = "<group>"; };
 		0C16DFBC207C1A0100AA0952 /* DolosoftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DolosoftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C16DFC0207C1A0100AA0952 /* re_projTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = re_projTests.m; sourceTree = "<group>"; };
-		0C16DFC2207C1A0100AA0952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C16DFC7207C1A0100AA0952 /* DolosoftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DolosoftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C16DFCB207C1A0100AA0952 /* re_projUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = re_projUITests.m; sourceTree = "<group>"; };
-		0C16DFCD207C1A0100AA0952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C791EF8222F272D00D04DBE /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		0C791EFA222F275000D04DBE /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../Downloads/SDMMobileDevice/build/libcrypto.a; sourceTree = "<group>"; };
 		0C791EFC222F276400D04DBE /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../Downloads/SDMMobileDevice/build/libssl.a; sourceTree = "<group>"; };
@@ -127,10 +121,8 @@
 		0C16DF9D207C1A0100AA0952 = {
 			isa = PBXGroup;
 			children = (
-				0C16DFA8207C1A0100AA0952 /* re_proj */,
+				0C16DFA8207C1A0100AA0952 /* Dolosoft */,
 				0C9CD9CA2231959F0020A723 /* External */,
-				0C16DFBF207C1A0100AA0952 /* re_projTests */,
-				0C16DFCA207C1A0100AA0952 /* re_projUITests */,
 				0C16DFA7207C1A0100AA0952 /* Products */,
 				AB0969440D382F7B2098BD8B /* Pods */,
 				7B6CFCB687472DC898D536A4 /* Frameworks */,
@@ -147,7 +139,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0C16DFA8207C1A0100AA0952 /* re_proj */ = {
+		0C16DFA8207C1A0100AA0952 /* Dolosoft */ = {
 			isa = PBXGroup;
 			children = (
 				0C16DFA9207C1A0100AA0952 /* AppDelegate.h */,
@@ -181,25 +173,7 @@
 				0C16DFB7207C1A0100AA0952 /* re_proj.entitlements */,
 				4152167D22F08C850096DCFB /* password.txt */,
 			);
-			path = re_proj;
-			sourceTree = "<group>";
-		};
-		0C16DFBF207C1A0100AA0952 /* re_projTests */ = {
-			isa = PBXGroup;
-			children = (
-				0C16DFC0207C1A0100AA0952 /* re_projTests.m */,
-				0C16DFC2207C1A0100AA0952 /* Info.plist */,
-			);
-			path = re_projTests;
-			sourceTree = "<group>";
-		};
-		0C16DFCA207C1A0100AA0952 /* re_projUITests */ = {
-			isa = PBXGroup;
-			children = (
-				0C16DFCB207C1A0100AA0952 /* re_projUITests.m */,
-				0C16DFCD207C1A0100AA0952 /* Info.plist */,
-			);
-			path = re_projUITests;
+			path = Dolosoft;
 			sourceTree = "<group>";
 		};
 		0C9CD9CA2231959F0020A723 /* External */ = {
@@ -409,7 +383,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C16DFC1207C1A0100AA0952 /* re_projTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,7 +390,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C16DFCC207C1A0100AA0952 /* re_projUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,7 +528,7 @@
 			baseConfigurationReference = F480EE88976D307E159D90C5 /* Pods-Dolosoft.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = re_proj/re_proj.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Dolosoft/re_proj.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = V9H9RJKQ77;
@@ -568,7 +540,7 @@
 					"\"${PODS_ROOT}/Headers/Public/RegExCategories\"",
 					"\"$(SRCROOT)/External/\"",
 				);
-				INFOPLIST_FILE = re_proj/Info.plist;
+				INFOPLIST_FILE = Dolosoft/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -584,7 +556,7 @@
 			baseConfigurationReference = C9FCA4F99BB0352A3C56D478 /* Pods-Dolosoft.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = re_proj/re_proj.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Dolosoft/re_proj.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = V9H9RJKQ77;
@@ -596,7 +568,7 @@
 					"\"${PODS_ROOT}/Headers/Public/RegExCategories\"",
 					"\"$(SRCROOT)/External/\"",
 				);
-				INFOPLIST_FILE = re_proj/Info.plist;
+				INFOPLIST_FILE = Dolosoft/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
