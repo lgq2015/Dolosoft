@@ -204,7 +204,7 @@
 }
 
 - (IBAction)installTweakButtonClicked:(id)sender {
-    if ([fileManager fileExistsAtPath:[NSString stringWithFormat:@"%@/amiosreversertemptweak", [fileManager tweaksDirectoryPath]] isDirectory:YES]) {
+    if ([fileManager fileExistsAtPath:[NSString stringWithFormat:@"%@/amiosreversertemptweak", [fileManager tweaksDirectoryPath]] isDirectory:nil]) {
         [tweakBuilder makeDoTheosForApp:[appManager appWithDisplayName:selectedApp.displayName]];
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
@@ -230,8 +230,7 @@
         [alert addButtonWithTitle:@"Ok"];
         [alert setMessageText:@"Error"];
         [alert setInformativeText:@"No app selected"];
-        [alert setAlertStyle:NSAlertStyleCritical];
-        [alert runModalSheet];
+        [alert runModal];
         return;
     }
 
