@@ -91,17 +91,21 @@
 
 - (void)makeDoTheosForApp:(AMApp *)app {
     NSString *currentDir = [NSString stringWithFormat:@"%@/amiosreversertemptweak", [fileManager tweaksDirectoryPath]];
-    
-    NSString *command = [NSString stringWithFormat:@"cd %@; make do", currentDir];
-    
-    
     /* for this to work properly you need to be able to run
      "make do" without theos requesting your password for
-     your mobile device. Look up how to do this.
+     your mobile device.
+     The instructions are in this post: https://www.reddit.com/r/jailbreak/comments/47wc05/tutorial_setting_up_the_latest_version_of_theos/
+     - on your Mac run:
+        ssh-keygen -t rsa -b 2048
+        ssh-copy-id root@localhost -p 2222
+     - make sure to run:
+        echo "export THEOS_DEVICE_IP=localhost" >> ~/.profile
+        echo "export THEOS_DEVICE_PORT=2222" >> ~/.profile
      */
+    NSString *command = [NSString stringWithFormat:@"cd %@/amiosreversertemptweak; make do", [fileManager tweaksDirectoryPath]];
     NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath:@"/bin/bash"];
-    [task setCurrentDirectoryPath:@"/Users/andermoran/Library/Application-Support/AMiOSReverser/Tweaks/amiosreversertemptweak"]; // leaving this here so I know I tried this. Does not work bc NSTask treats alias/symlink as the original dir which has a space which theos hates :))))
+    [task setCurrentDirectoryPath:currentDir]; // leaving this here so I know I tried this. Does not work bc NSTask treats alias/symlink as the original dir which has a space which theos hates :))))
     [task setArguments:@[ @"-l", @"-c", command ]];
     [task launch];
     // This waits for the task to finish before returning
