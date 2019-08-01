@@ -204,7 +204,14 @@
 }
 
 - (IBAction)installTweakButtonClicked:(id)sender {
-    [tweakBuilder makeDoTheosForApp:[appManager appWithDisplayName:selectedApp.displayName]];
+    if ([fileManager fileExistsAtPath:[NSString stringWithFormat:@"%@/amiosreversertemptweak", [fileManager tweaksDirectoryPath]] isDirectory:YES]) {
+        [tweakBuilder makeDoTheosForApp:[appManager appWithDisplayName:selectedApp.displayName]];
+    } else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Ok"];
+        [alert setMessageText:@"No tweak to install. You must create a tweak before installing."];
+        [alert runModal];
+    }
 }
 
 - (IBAction)editTweakButtonClicked:(id)sender {
@@ -346,7 +353,6 @@
      return returnedObj;
     */
     
-//    NSLog(@"selectedApp.tweakPath = %@", selectedApp.tweakPath);
     NSError *error = nil;
     [tweakCode writeToFile:selectedApp.tweakPath
                 atomically:YES
@@ -524,7 +530,7 @@
     NSError *error = nil;
     NSString *response;
     if (TEST_MODE) {
-        response = @"/var/mobile/Containers/Data/Application/D885F73F-B14A-4CB7-9AD7-B53498ED2B19\ncom.andermoran.piqme\ncom.google.chrome.ios\n/var/mobile/Containers/Data/Application/37B44BA7-53D4-455A-B740-210690543215";
+        response = @"/var/mobile/Containers/Data/Application/D885F73F-B14A-4CB7-9AD7-B53498ED2B19\ncom.andermoran.piqme\n/var/mobile/Containers/Data/Application/37B44BA7-53D4-455A-B740-210690543215\ncom.google.chrome.ios\n";
     } else {
         response = [connectionHandler.session.channel execute:@"DolosoftTools/userappsextended.sh" error:&error];
     }

@@ -19,7 +19,7 @@
 - (NSString *)logForApp:(AMApp *)app {
     NSString *source = [NSString stringWithFormat:@"%@/Documents/AMLog.txt", app.pathToAppStorageDir];
     NSString *dest = [NSString stringWithFormat:@"%@/AMLog.txt", [fileManager mainDirectoryPath]];
-    
+//    
 //    NSLog(@"AM::Getting log");
 //    NSLog(@"source = %@", source);
 //    NSLog(@"dest = %@", dest);
