@@ -56,7 +56,6 @@
 		0C16DFB2207C1A0100AA0952 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C16DFB4207C1A0100AA0952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C16DFB5207C1A0100AA0952 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0C16DFB7207C1A0100AA0952 /* re_proj.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = re_proj.entitlements; sourceTree = "<group>"; };
 		0C16DFBC207C1A0100AA0952 /* DolosoftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DolosoftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C16DFC7207C1A0100AA0952 /* DolosoftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DolosoftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C791EF8222F272D00D04DBE /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -170,7 +169,6 @@
 				0C16DFB1207C1A0100AA0952 /* Main.storyboard */,
 				0C16DFB4207C1A0100AA0952 /* Info.plist */,
 				0C16DFB5207C1A0100AA0952 /* main.m */,
-				0C16DFB7207C1A0100AA0952 /* re_proj.entitlements */,
 				4152167D22F08C850096DCFB /* password.txt */,
 			);
 			path = Dolosoft;

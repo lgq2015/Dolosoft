@@ -24,6 +24,11 @@
 //    NSLog(@"source = %@", source);
 //    NSLog(@"dest = %@", dest);
     [_connectionHandler.session.channel downloadFile:source to:dest];
-    return [NSString stringWithContentsOfFile:dest encoding:NSUTF8StringEncoding error:nil];
+    NSString *logContent = [NSString stringWithContentsOfFile:dest encoding:NSUTF8StringEncoding error:nil];
+    if (!logContent) {
+        return @"";
+    } else {
+        return logContent;
+    }
 }
 @end

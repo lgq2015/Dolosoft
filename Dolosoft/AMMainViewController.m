@@ -189,11 +189,18 @@
     [logTextView setString:@""];
 }
 
-- (IBAction)getLogButtonClicked:(id)sender {
-//    NSLog(@"AM::getLogButtonClicked");
+- (void)getAppLog {
     NSString *logPath = [NSString stringWithFormat:@"%@/AMLog.txt", [fileManager mainDirectoryPath]];
     [fileManager removeItemAtPath:logPath error:nil];
     [logTextView setString:[logger logForApp:selectedApp]];
+}
+
+- (IBAction)getLogButtonClicked:(id)sender {
+    /* TODO: Make the log live update */
+//    NSTimer *timer;
+//    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+//                                             target:self selector:@selector(getAppLog) userInfo:nil repeats:YES];
+    [self getAppLog];
 }
 
 - (IBAction)installTweakButtonClicked:(id)sender {

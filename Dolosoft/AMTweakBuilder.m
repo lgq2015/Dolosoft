@@ -62,7 +62,7 @@
                          @"com.amiosreverser.amiosreverser-temp-tweak",
                          @"AMiOSReverser",
                          app.bundleIdentifier,
-                         @"-"
+                         app.displayName
                          ];
 
     NSTask *task = [[NSTask alloc] init];
