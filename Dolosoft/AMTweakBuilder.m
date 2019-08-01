@@ -29,12 +29,35 @@
 
 - (void)createTheosProjectForApp:(AMApp *)app {
     [self removeTheosProjectForApp:app];
-    /*  TODO: Ok so the template numbers change (tweak used to be 11, now it's 10), so instead of
-     hard coding the number, id like to run cat $THEOS/bin/nic.pl
-     then grep and use regex to find out what number tweaks are
-     */
+    // TODO: Not related to this part but just wanted to remind myself to terminate all NSTasks when done using them!
+    // Use NSTasks terminate method
+    
+    /*
+        for the life of me I could not figure out how to extract only matched text with regex on the command line.
+        (not sure why this was so hard to find on google????)
+        this page saved me: https://www.commandlinefu.com/commands/view/13429/print-only-matched-pattern
+        I am forever in your debt.
+     
+        I have this next peace of code to regex the number that needs to be inputted to create a tweak.
+        I did this instead of hardcoding it because the number sometimes changes as theos updates.
+    */
+    // Here we get the number that needs to be inputted into the template to create the tweak
+    NSPipe * outputPipe = [NSPipe pipe];
+    NSTask *t = [[NSTask alloc] init];
+    [t setStandardOutput:outputPipe];
+    [t setLaunchPath:@"/bin/bash"];
+    [t setCurrentDirectoryPath:@"/"];
+    [t setArguments:@[ @"-l", @"-c", @"printf \"\" | $THEOS/bin/nic.pl 2> /dev/null | perl -ne '/(\\d+(?=.+tweak))/ && print \"$1\\n\";'" ]]; // I hated making this
+    [t launch];
+    
+    NSFileHandle *fileHandle = [outputPipe fileHandleForReading];
+    NSData *data = [fileHandle readDataToEndOfFile];
+    int numberForCreateTweak = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] intValue]; // TODO: This is ugly and I know there's a better way but dont have time to commit to it right now
+    [t terminate];
+    
+    // Creating the tweak
     NSString *command = [NSString stringWithFormat:@"printf \"%d\\n%@\\n%@\\n%@\\n%@\\n%@\\n\" | $THEOS/bin/nic.pl ",
-                         10,
+                         numberForCreateTweak,
                          @"amiosreverser-temp-tweak",
                          @"com.amiosreverser.amiosreverser-temp-tweak",
                          @"AMiOSReverser",
@@ -44,15 +67,18 @@
 
     NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath:@"/bin/bash"];
+    [task setCurrentDirectoryPath:fileManager.tweaksDirectoryPath];
+    [task setArguments:@[ @"-l", @"-c", command ]]; // the "-l" argument loads the user's normal environment variables
+    [task launch];
     /* TODO: rewrite NSTasks so that
      instead of [task setLaunchPath:@"/bin/bash"];
      it is [task setLaunchPath:@"/usr/local/bin/iproxy"];
      
      */
-    [task setCurrentDirectoryPath:fileManager.tweaksDirectoryPath];
-    [task setArguments:@[ @"-l", @"-c", command ]]; // the "-l" argument loads the user's normal environment variables
-    [task launch];
+    
+    
     // This waits for the task to finish before returning
+    // TODO: See if I can replace with with NSTask's waitUntilExit method
     while ([task isRunning]) {}
     /* this part is to fix builds with Xcode 10
      https://github.com/theos/theos/issues/346
@@ -69,7 +95,7 @@
     NSString *command = [NSString stringWithFormat:@"cd %@; make do", currentDir];
     
     
-    /* for this to work properly you need to be ablt to run
+    /* for this to work properly you need to be able to run
      "make do" without theos requesting your password for
      your mobile device. Look up how to do this.
      */
