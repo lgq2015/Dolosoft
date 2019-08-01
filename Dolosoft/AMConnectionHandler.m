@@ -22,6 +22,7 @@
 }
 - (void)initializeProxy {
     //  Starts iproxy (make sure it is installed before hand)
+    /* TODO: Do this with NSTask, its cleander */
     FILE *fp;
     fp = popen("/usr/local/bin/iproxy", "r");
     if (!fp) {

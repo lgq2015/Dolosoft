@@ -24,7 +24,7 @@
                            displayName];
         self.tweakPath = [NSString stringWithFormat:@"%@/%@",
                           [fileManager tweaksDirectoryPath],
-                          @"amiosreversertemptweak/Tweak.xm"];
+                          @"amiosreversertemptweak/Tweak.x"];
     }
     return self;
 }

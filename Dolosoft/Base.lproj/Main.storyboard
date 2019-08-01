@@ -982,17 +982,6 @@
                                     <action selector="removeTweakButtonClicked:" target="XfG-lQ-9wD" id="xbb-tz-4Mi"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vqQ-Zf-TRg">
-                                <rect key="frame" x="424" y="32" width="144" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <buttonCell key="cell" type="push" title="Build/Load tweak" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="chV-yl-WxA">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="buildTweakButtonClicked:" target="XfG-lQ-9wD" id="Zm8-ii-irZ"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CGH-Um-oy6">
                                 <rect key="frame" x="1107" y="53" width="84" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -1122,6 +1111,17 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="killAppButtonClicked:" target="XfG-lQ-9wD" id="JKO-t7-Zvh"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vqQ-Zf-TRg">
+                                <rect key="frame" x="424" y="33" width="144" height="31"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="push" title="Install tweak" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="chV-yl-WxA">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="installTweakButtonClicked:" target="XfG-lQ-9wD" id="hJa-6g-KQi"/>
                                 </connections>
                             </button>
                         </subviews>

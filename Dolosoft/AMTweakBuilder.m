@@ -29,31 +29,38 @@
 
 - (void)createTheosProjectForApp:(AMApp *)app {
     [self removeTheosProjectForApp:app];
-    NSString *command = [NSString stringWithFormat:@"printf \"%d\\n%@\\n%@\\n%@\\n%@\\n%@\\n\" | /opt/theos/bin/nic.pl ",
-                         11,
+    /*  TODO: Ok so the template numbers change (tweak used to be 11, now it's 10), so instead of
+     hard coding the number, id like to run cat $THEOS/bin/nic.pl
+     then grep and use regex to find out what number tweaks are
+     */
+    NSString *command = [NSString stringWithFormat:@"printf \"%d\\n%@\\n%@\\n%@\\n%@\\n%@\\n\" | $THEOS/bin/nic.pl ",
+                         10,
                          @"amiosreverser-temp-tweak",
                          @"com.amiosreverser.amiosreverser-temp-tweak",
                          @"AMiOSReverser",
                          app.bundleIdentifier,
                          @"-"
                          ];
-    
-    
+
     NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath:@"/bin/bash"];
+    /* TODO: rewrite NSTasks so that
+     instead of [task setLaunchPath:@"/bin/bash"];
+     it is [task setLaunchPath:@"/usr/local/bin/iproxy"];
+     
+     */
     [task setCurrentDirectoryPath:fileManager.tweaksDirectoryPath];
-    [task setArguments:@[ @"-c", command ]];
+    [task setArguments:@[ @"-l", @"-c", command ]]; // the "-l" argument loads the user's normal environment variables
     [task launch];
     // This waits for the task to finish before returning
     while ([task isRunning]) {}
-    
     /* this part is to fix builds with Xcode 10
      https://github.com/theos/theos/issues/346
      */
-    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:[NSString stringWithFormat:@"%@/amiosreversertemptweak/Makefile", [fileManager tweaksDirectoryPath]]];
-    [fileHandle seekToEndOfFile];
-    [fileHandle writeData:[@"amiosreversertemptweak_CFLAGS = -std=c++11 -stdlib=libc++\namiosreversertemptweak_LDFLAGS = -stdlib=libc++" dataUsingEncoding:NSUTF8StringEncoding]];
-    [fileHandle closeFile];
+//    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:[NSString stringWithFormat:@"%@/amiosreversertemptweak/Makefile", [fileManager tweaksDirectoryPath]]];
+//    [fileHandle seekToEndOfFile];
+//    [fileHandle writeData:[@"amiosreversertemptweak_CFLAGS = -std=c++11 -stdlib=libc++\namiosreversertemptweak_LDFLAGS = -stdlib=libc++" dataUsingEncoding:NSUTF8StringEncoding]];
+//    [fileHandle closeFile];
 }
 
 - (void)makeDoTheosForApp:(AMApp *)app {

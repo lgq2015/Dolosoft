@@ -196,7 +196,7 @@
     [logTextView setString:[logger logForApp:selectedApp]];
 }
 
-- (IBAction)buildTweakButtonClicked:(id)sender {
+- (IBAction)installTweakButtonClicked:(id)sender {
     [tweakBuilder makeDoTheosForApp:[appManager appWithDisplayName:selectedApp.displayName]];
 }
 
@@ -297,7 +297,6 @@
     [createTweakProgressBar setUsesThreadedAnimation:YES];
     [createTweakProgressBar startAnimation:nil];
 
-    
     [tweakBuilder createTheosProjectForApp:[appManager appWithDisplayName:selectedApp.displayName]];
     
     NSMutableString *tweakCode = [[NSMutableString alloc] init];
