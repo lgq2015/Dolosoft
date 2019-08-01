@@ -124,6 +124,8 @@
         stringFormatSpecifier = @"%lld";
     } else if ([objectType isEqualToString:@"unsigned long long"]) {
         stringFormatSpecifier = @"%llu";
+    } else if ([objectType isEqualToString:@"_Bool"]) {
+        stringFormatSpecifier = @"%s";
     } else {
         
     }
@@ -131,6 +133,8 @@
 }
 
 - (NSString *)formatMethodForTweak:(AMObjcMethod *)method {
+    NSMutableArray *argsThatAreBoolean = [[NSMutableArray alloc] init];
+    
     NSMutableString *formattedMethod = [[NSMutableString alloc] init];
     [formattedMethod appendFormat:@"\n%@ {", method.callSyntax];
     NSString *specifier;
@@ -138,7 +142,11 @@
     if (![method.returnType isEqualToString:@"void"])  {
         [formattedMethod appendFormat:@"\n\t%@ returnedObj = %%orig;", method.returnType];
         specifier = [self formatSpecifierForObjectType:method.returnType];
-        [formattedMethod appendFormat:@"\n\tNSString *log = [NSString stringWithFormat:@\"(<%%p>%@)[", specifier];
+        if ([method.returnType isEqualToString:@"_Bool"])  {
+            [formattedMethod appendFormat:@"\n\tNSString *log = [NSString stringWithFormat:@\"(%@)[", specifier];
+        } else {
+            [formattedMethod appendFormat:@"\n\tNSString *log = [NSString stringWithFormat:@\"(<%%p>%@)[", specifier];
+        }
     } else if ([method.returnType isEqualToString:@"void"]) {
         [formattedMethod appendString:@"\n\tNSString *log = [NSString stringWithFormat:@\"(void)["];
     }
@@ -152,6 +160,10 @@
     for (int i = 0; i < methodArguments.count - 1; i++) {
         NSString *methodArgument = methodArguments[i];
         specifier = [self formatSpecifierForObjectType:method.argumentTypes[i]];
+        
+        if ([method.argumentTypes[i] isEqualToString:@"_Bool"])  {
+            [argsThatAreBoolean addObject:[NSNumber numberWithInteger:i]];
+        }
         if (i == methodArguments.count - 2) {
             [formattedMethod appendFormat:@"%@:%@", methodArgument, specifier];
         } else {
@@ -160,14 +172,23 @@
     }
     
     if (![method.returnType isEqualToString:@"void"])  {
-        [formattedMethod appendString:@"];\", returnedObj, returnedObj"];
+        if ([method.returnType isEqualToString:@"_Bool"])  {
+            [formattedMethod appendString:@"];\", returnedObj ? \"YES\" : \"NO\""];
+        } else {
+            [formattedMethod appendString:@"];\", returnedObj, returnedObj"];
+        }
     } else if ([method.returnType isEqualToString:@"void"]) {
         [formattedMethod appendString:@"];\""];
     }
     
-    
+    NSLog(@"ARR = %@", argsThatAreBoolean);
     for (int i = 1; i < methodArguments.count; i++) {
-        [formattedMethod appendFormat:@", arg%d", i];
+        // Using i-1 since this loop starts at index 1
+        if ([argsThatAreBoolean containsObject:[NSNumber numberWithInteger:i-1]]) {
+            [formattedMethod appendFormat:@", arg%d ? \"YES\" : \"NO\"", i];
+        } else {
+            [formattedMethod appendFormat:@", arg%d", i];
+        }
     }
     
     [formattedMethod appendString:@"];"];
