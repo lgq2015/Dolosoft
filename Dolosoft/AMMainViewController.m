@@ -490,7 +490,7 @@
     if (TEST_MODE) {
         response = @"Piq\nPiq\ncom.andermoran.piqme\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app/Piq\nChrome\nChrome\ncom.google.chrome.ios\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app/Chrome";
     } else {
-        NSString *response = [session.channel execute:@"DolosoftTools/userapps.sh" error:&error];
+        response = [session.channel execute:@"DolosoftTools/userapps.sh" error:&error];
     }
     
     NSArray *lines = [response componentsSeparatedByString: @"\n"];
@@ -524,7 +524,7 @@
     NSError *error = nil;
     NSString *response;
     if (TEST_MODE) {
-        response = @"/var/mobile/Containers/Data/Application/D885F73F-B14A-4CB7-9AD7-B53498ED2B19\ncom.andermoran.piqme\ncom.google.chrome.ios\n/var/mobile/Containers/Data/Application/3B291374-6BF0-4508-8692-ACA0AC712B28";
+        response = @"/var/mobile/Containers/Data/Application/D885F73F-B14A-4CB7-9AD7-B53498ED2B19\ncom.andermoran.piqme\ncom.google.chrome.ios\n/var/mobile/Containers/Data/Application/37B44BA7-53D4-455A-B740-210690543215";
     } else {
         response = [connectionHandler.session.channel execute:@"DolosoftTools/userappsextended.sh" error:&error];
     }

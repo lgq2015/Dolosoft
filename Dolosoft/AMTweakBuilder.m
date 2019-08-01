@@ -132,71 +132,54 @@
 
 - (NSString *)formatMethodForTweak:(AMObjcMethod *)method {
     NSMutableString *formattedMethod = [[NSMutableString alloc] init];
-    [formattedMethod appendFormat:@"\n%@ {",method.callSyntax];
+    [formattedMethod appendFormat:@"\n%@ {", method.callSyntax];
+    NSString *specifier;
     
-    if (![method.returnType isEqualToString:@"void"]) {
+    if (![method.returnType isEqualToString:@"void"])  {
         [formattedMethod appendFormat:@"\n\t%@ returnedObj = %%orig;", method.returnType];
-        NSString *specifier = [self formatSpecifierForObjectType:method.returnType];
+        specifier = [self formatSpecifierForObjectType:method.returnType];
         [formattedMethod appendFormat:@"\n\tNSString *log = [NSString stringWithFormat:@\"(<%%p>%@)[", specifier];
-        
-        NSArray *methodArguments = [method.methodName componentsSeparatedByString:@":"];
-        
-        if (methodArguments.count == 1) {
-            [formattedMethod appendFormat:@"%@", methodArguments[0]];
-        }
-        
-        for (int i = 0; i < methodArguments.count-1; i++) {
-            NSString *methodArgument = methodArguments[i];
-            specifier = [self formatSpecifierForObjectType:method.argumentTypes[i]];
-            if (i == methodArguments.count-2) {
-                [formattedMethod appendFormat:@"%@:%@", methodArgument, specifier];
-            } else {
-                [formattedMethod appendFormat:@"%@:%@ ", methodArgument, specifier];
-            }
-        }
-        
-        [formattedMethod appendString:@"];\", returnedObj, returnedObj"];
-        
-        for (int i = 1; i < methodArguments.count; i++) {
-            [formattedMethod appendFormat:@", arg%d", i];
-        }
-        
-        [formattedMethod appendString:@"];"];
-        [formattedMethod appendString:@"\n\tAMLog(log);"];
-        [formattedMethod appendString:@"\n\treturn returnedObj;"];
+    } else if ([method.returnType isEqualToString:@"void"]) {
+        [formattedMethod appendString:@"\n\tNSString *log = [NSString stringWithFormat:@\"(void)["];
     }
     
-    if ([method.returnType isEqualToString:@"void"]) {
-        [formattedMethod appendString:@"\n\tNSString *log = [NSString stringWithFormat:@\"(void)["];
-        
-        NSArray *methodArguments = [method.methodName componentsSeparatedByString:@":"];
-        
-        if (methodArguments.count == 1) {
-            [formattedMethod appendFormat:@"%@", methodArguments[0]];
+    NSArray *methodArguments = [method.methodName componentsSeparatedByString:@":"];
+    
+    if (methodArguments.count == 1) {
+        [formattedMethod appendFormat:@"%@", methodArguments[0]];
+    }
+    
+    for (int i = 0; i < methodArguments.count - 1; i++) {
+        NSString *methodArgument = methodArguments[i];
+        specifier = [self formatSpecifierForObjectType:method.argumentTypes[i]];
+        if (i == methodArguments.count - 2) {
+            [formattedMethod appendFormat:@"%@:%@", methodArgument, specifier];
+        } else {
+            [formattedMethod appendFormat:@"%@:%@ ", methodArgument, specifier];
         }
-        
-        for (int i = 0; i < methodArguments.count-1; i++) {
-            NSString *methodArgument = methodArguments[i];
-            NSString *specifier = [self formatSpecifierForObjectType:method.argumentTypes[i]];
-            if (i == methodArguments.count-2) {
-                [formattedMethod appendFormat:@"%@:%@", methodArgument, specifier];
-            } else {
-                [formattedMethod appendFormat:@"%@:%@ ", methodArgument, specifier];
-            }
-        }
-        
+    }
+    
+    if (![method.returnType isEqualToString:@"void"])  {
+        [formattedMethod appendString:@"];\", returnedObj, returnedObj"];
+    } else if ([method.returnType isEqualToString:@"void"]) {
         [formattedMethod appendString:@"];\""];
-        
-        for (int i = 1; i < methodArguments.count; i++) {
-            [formattedMethod appendFormat:@", arg%d", i];
-        }
-        
-        [formattedMethod appendString:@"];"];
-        [formattedMethod appendString:@"\n\tAMLog(log);"];
+    }
+    
+    
+    for (int i = 1; i < methodArguments.count; i++) {
+        [formattedMethod appendFormat:@", arg%d", i];
+    }
+    
+    [formattedMethod appendString:@"];"];
+    [formattedMethod appendString:@"\n\tAMLog(log);"];
+    
+    if (![method.returnType isEqualToString:@"void"])  {
+        [formattedMethod appendString:@"\n\treturn returnedObj;"];
+    } else if ([method.returnType isEqualToString:@"void"]) {
         [formattedMethod appendString:@"\n\t%orig;"];
     }
-    [formattedMethod appendFormat:@"\n}"];
     
+    [formattedMethod appendFormat:@"\n}"];
     return [NSString stringWithString:formattedMethod];
 }
 @end
