@@ -18,8 +18,22 @@
 #define TEST_MODE YES
 
 @implementation AMMainViewController
+- (void)redirectLogToDocuments {
+    // https://stackoverflow.com/questions/7271528/how-to-nslog-into-a-file
+    NSString *targetName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Target name"];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *dirPath = nil;
+    NSArray* appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
+                                        inDomains:NSUserDomainMask];
+    dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:targetName];
+    NSString *pathForLog = [NSString stringWithFormat:@"%@/liveTerminalLog.txt", [dirPath path]];
+    freopen([pathForLog cStringUsingEncoding:NSASCIIStringEncoding],"a+",stderr);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self redirectLogToDocuments];
+    
     NSError *error = nil;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"password" ofType:@"txt"];
     NSString *password = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
@@ -56,6 +70,7 @@
     tweakBuilder = [[AMTweakBuilder alloc] init];
     tweakBuilder.mainViewController = self;
     logger = [[AMLogger alloc] init];
+    deviceManager = [[AMDeviceManager alloc] init];
 
 
     connectionHandler = [[AMConnectionHandler alloc]
@@ -66,6 +81,11 @@
 
     if (connectionHandler.session.isConnected) {
         logger.connectionHandler = connectionHandler;
+        
+        if (![deviceManager toolsInstalled]) {
+            [deviceManager installTools];
+        }
+        
         
         NSString *response = [connectionHandler.session.channel
                               execute:@"if [ ! -d /var/root/DolosoftTools ]; then echo '/var/root/DolosoftTools does not exist'; fi"
@@ -417,6 +437,8 @@
         return 0;
     }
 }
+
+// TODO: Color code the methods! It's hard to search
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex {
     NSString *identifier = [tableColumn identifier];

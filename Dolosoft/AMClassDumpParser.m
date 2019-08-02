@@ -11,9 +11,7 @@
 @implementation AMClassDumpParser
 + (NSString *)getClassName:(NSString *)CDHeaderOutput {
     @try {
-        
         NSString *className = [CDHeaderOutput matches:RX(@"(?<=@interface )[A-Z0-9_].+?(?= :)")][0];
-//        NSLog(@"className = %@", className);
         return className;
     } @catch (NSException *e) {
         return nil;
@@ -22,7 +20,6 @@
 
 + (NSString *)getSuperClassName:(NSString *)CDHeaderOutput {
     NSString *superClassName = [CDHeaderOutput matches:RX(@"(?<= : )[A-z0-9_]+")][0];
-//    NSLog(@"superClassName = %@", superClassName);
     return superClassName;
 }
 
@@ -30,7 +27,6 @@
     NSMutableArray *methodList = [[NSMutableArray alloc] init];
     
     NSArray* methods = [CDHeaderOutput matches:RX(@"[-+] \\([A-z0-9_].+(?=;)")];
-//    NSLog(@"%ld", methods.count);
     for (int i = 0; i < methods.count; i++) {
         AMObjcMethod *objcMethod = [[AMObjcMethod alloc] init];
         NSString *returnType = [methods[i] matches:RX(@"(?<=[-+] \\()([A-z0-9 _*])+(?=\\))")][0];

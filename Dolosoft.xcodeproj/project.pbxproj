@@ -24,6 +24,7 @@
 		0CEFBF102096468C00B41490 /* AMTweakBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */; };
 		4152167E22F08C850096DCFB /* password.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4152167D22F08C850096DCFB /* password.txt */; };
 		417202A922F238F40051B167 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 417202A822F238F40051B167 /* NSAlert+SynchronousSheet.m */; };
+		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
 		C6A7D673F72EBDD58DAB5303 /* libPods-Dolosoft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25455E4E0D1EFD2E5E3F99FD /* libPods-Dolosoft.a */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,8 @@
 		4152167D22F08C850096DCFB /* password.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = password.txt; sourceTree = "<group>"; };
 		417202A722F238F40051B167 /* NSAlert+SynchronousSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+SynchronousSheet.h"; sourceTree = "<group>"; };
 		417202A822F238F40051B167 /* NSAlert+SynchronousSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+SynchronousSheet.m"; sourceTree = "<group>"; };
+		41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceManager.h; sourceTree = "<group>"; };
+		41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceManager.m; sourceTree = "<group>"; };
 		767BB33F96D38DB4F3041426 /* Pods-re_proj.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-re_proj.release.xcconfig"; path = "Pods/Target Support Files/Pods-re_proj/Pods-re_proj.release.xcconfig"; sourceTree = "<group>"; };
 		8FD20B5D5818DE6AE48B27AC /* Pods-re_proj.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-re_proj.debug.xcconfig"; path = "Pods/Target Support Files/Pods-re_proj/Pods-re_proj.debug.xcconfig"; sourceTree = "<group>"; };
 		C9FCA4F99BB0352A3C56D478 /* Pods-Dolosoft.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dolosoft.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dolosoft/Pods-Dolosoft.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				0C16DFAA207C1A0100AA0952 /* AppDelegate.m */,
 				0C16DFAC207C1A0100AA0952 /* AMMainViewController.h */,
 				0C16DFAD207C1A0100AA0952 /* AMMainViewController.m */,
+				41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */,
+				41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */,
 				0C101C7520975F0A000792B2 /* AMLogger.h */,
 				0C101C7620975F0A000792B2 /* AMLogger.m */,
 				0CEFBF0E2096468C00B41490 /* AMTweakBuilder.h */,
@@ -362,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CEFBF102096468C00B41490 /* AMTweakBuilder.m in Sources */,
+				41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */,
 				0C95DE50207D29F400639022 /* AMFileManager.m in Sources */,
 				0CA40BCC207ED1A900789BEB /* AMClassDumpParser.m in Sources */,
 				0C95DE4D207D1FB300639022 /* AMConnectionHandler.m in Sources */,

@@ -16,10 +16,11 @@
 #import "AMAppManager.h"
 #import "AMTweakBuilder.h"
 #import "AMLogger.h"
+#import "AMDeviceManager.h"
 #import "NSAlert+SynchronousSheet.h"
 
 
-@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass;
+@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager;
 
 @interface AMMainViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource> {
     AMAppManager *appManager;
@@ -29,6 +30,7 @@
     AMObjcClass *selectedClass;
     AMTweakBuilder *tweakBuilder;
     AMLogger *logger;
+    AMDeviceManager *deviceManager;
     
     IBOutlet NSButton *analyzeAppButton;
     IBOutlet NSTextField *analyzeAppProgressLabel;
