@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addUserAppsDocumentsDirectory:(AMAppManager *)appManager;
 - (BOOL)toolsInstalled;
 - (void)installTools;
+- (void)decryptAppAndDownload:(AMApp *)app;
 @end
 
 NS_ASSUME_NONNULL_END
