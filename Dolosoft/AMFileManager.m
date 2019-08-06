@@ -13,12 +13,38 @@
     self = [super init];
     if (self) {
         [self createAMMainDirectory];
+        [self createApplicationSupportSymbolicLink];
+        _mainDirectoryPath = [_mainDirectoryPath stringByReplacingOccurrencesOfString:@"Application Support"
+                                               withString:@"Application-Support"];
         [self createDecryptedDirectory];
         [self createHeadersDirectory];
         [self createTweaksDirectory];
         self.fridaDirectoryPath = [NSString stringWithFormat:@"%@/frida-ios-dump", self.mainDirectoryPath];
     }
     return self;
+}
+
+- (void)createApplicationSupportSymbolicLink {
+    /*
+     Creates alias for "~/Library/Application Support" as "~/Library/Application Support"
+     The "-" is needed because when theos tries to build a package, the path of the package
+     cannot have a space in the name.
+    */
+    NSError *error = nil;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *applicationSupportDirectory = [paths firstObject];
+    NSString *applicationSupportSymbolicLinkDirectory = [applicationSupportDirectory stringByReplacingOccurrencesOfString:@"Application Support"
+                                                                          withString:@"Application-Support"];
+    
+    if([self createSymbolicLinkAtPath:applicationSupportSymbolicLinkDirectory withDestinationPath:applicationSupportDirectory error:&error]) {
+        NSLog(@"Dolosoft::Created Application-Support symlink at %@", applicationSupportSymbolicLinkDirectory);
+    } else {
+        if ([self fileExistsAtPath:applicationSupportSymbolicLinkDirectory]) {
+            NSLog(@"Dolosoft::Application-Support symlink already exists");
+        } else {
+            NSLog(@"Dolosoft::Error creating Application-Support symlink\n%@", error);
+        }
+    }
 }
 
 - (void)createAMMainDirectory {
@@ -77,10 +103,7 @@
 
 - (void)createTweaksDirectory {
     NSError *error = nil;
-    // Replace "Application Support" with "Application_Support" symlink bc theos hates spaces
     NSString *path = [NSString stringWithFormat:@"%@/Tweaks", _mainDirectoryPath];
-    path = [path stringByReplacingOccurrencesOfString:@"Application Support"
-                                           withString:@"Application-Support"];
     [self createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:&error];
     _tweaksDirectoryPath = path;
 }

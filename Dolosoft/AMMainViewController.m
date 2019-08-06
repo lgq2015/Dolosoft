@@ -69,7 +69,6 @@
     tweakBuilder.mainViewController = self;
     logger = [[AMLogger alloc] init];
 
-
     connectionHandler = [[AMConnectionHandler alloc]
                                               initWithHost:@"localhost"
                                                       port:2222
@@ -86,9 +85,6 @@
         } else {
             [deviceManager installTools];
         }
-
-        /* end of TODO */
-
 
         appManager.appList = [deviceManager getUserApps];
         [deviceManager addUserAppsDocumentsDirectory:appManager];
@@ -318,7 +314,6 @@
     [methodsTableView.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
         AMObjcMethod *objcMethod = selectedClass.methodsList[index];
         [tweakCode appendString:[tweakBuilder formatMethodForTweak:objcMethod]];
-        
     }];
 
     [tweakCode appendString:@"\n%end"];
