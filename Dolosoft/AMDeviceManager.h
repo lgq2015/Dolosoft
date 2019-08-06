@@ -7,10 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AMConnectionHandler.h"
+#import "AMFileManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AMDeviceManager : NSObject
+
+@interface AMDeviceManager : NSObject {
+    AMConnectionHandler *connectionHandler;
+    AMFileManager *fileManager;
+}
+- (instancetype)initWithConnectionHandler:(AMConnectionHandler *)handler fileManger:(AMFileManager *)manager;
 - (BOOL)toolsInstalled;
 - (void)installTools;
 @end

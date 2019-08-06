@@ -15,7 +15,7 @@
  
 */
 
-#define TEST_MODE YES
+#define TEST_MODE NO
 
 @implementation AMMainViewController
 - (void)redirectLogToDocuments {
@@ -32,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self redirectLogToDocuments];
+    //[self redirectLogToDocuments];
     
     NSError *error = nil;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"password" ofType:@"txt"];
@@ -70,7 +70,6 @@
     tweakBuilder = [[AMTweakBuilder alloc] init];
     tweakBuilder.mainViewController = self;
     logger = [[AMLogger alloc] init];
-    deviceManager = [[AMDeviceManager alloc] init];
 
 
     connectionHandler = [[AMConnectionHandler alloc]
@@ -78,55 +77,18 @@
                                                       port:2222
                                                   username:@"root"
                                                   password:password];
+    
+    deviceManager = [[AMDeviceManager alloc] initWithConnectionHandler:connectionHandler fileManger:fileManager];
 
     if (connectionHandler.session.isConnected) {
         logger.connectionHandler = connectionHandler;
         
-        if (![deviceManager toolsInstalled]) {
+        if ([deviceManager toolsInstalled]) {
+            NSLog(@"Dolosoft::DolosoftTools already installed on iOS device at /var/root/DolosoftTools");
+        } else {
             [deviceManager installTools];
         }
-        
-        
-        NSString *response = [connectionHandler.session.channel
-                              execute:@"if [ ! -d /var/root/DolosoftTools ]; then echo '/var/root/DolosoftTools does not exist'; fi"
-                              error:nil];
-        
-        
-        /* TODO: move this to AMFileManger class */
-        if ([response isEqualToString:@"/var/root/DolosoftTools does not exist\n"]) {
-            NSLog(@"/var/root/DolosoftTools does not exist on iOS device. Uploading them now.");
-            [connectionHandler.session.channel
-             execute:@"mkdir /var/root/DolosoftTools"
-             error:nil];
-            
-            BOOL success_userapps = [connectionHandler.session.channel
-                                     uploadFile:[NSString stringWithFormat:@"%@/DolosoftTools/userapps.sh", [fileManager mainDirectoryPath]]
-                                     to:@"/var/root/DolosoftTools/"];
-            if (success_userapps) {
-                NSLog(@"Uploaded %@ to /var/root/DolosoftTools/userapps.sh on iOS device",
-                      [NSString stringWithFormat:@"%@/DolosoftTools/userapps.sh", [fileManager mainDirectoryPath]]);
-                [connectionHandler.session.channel
-                 execute:@"chmod +x /var/root/DolosoftTools/userapps.sh"
-                 error:nil];
-            } else {
-                NSLog(@"Failed to upload %@ to /var/root/DolosoftTools/userapps.sh on iOS device",
-                      [NSString stringWithFormat:@"%@/DolosoftTools/userapps.sh", [fileManager mainDirectoryPath]]);
-            }
-            
-            BOOL success_userappsextended = [connectionHandler.session.channel
-                                             uploadFile:[NSString stringWithFormat:@"%@/DolosoftTools/userappsextended.sh", [fileManager mainDirectoryPath]]
-                                             to:@"/var/root/DolosoftTools/"];
-            if (success_userappsextended) {
-                NSLog(@"Uploaded %@ to /var/root/DolosoftTools/userappsextended.sh on iOS device",
-                      [NSString stringWithFormat:@"%@/DolosoftTools/userappsextended.sh", [fileManager mainDirectoryPath]]);
-                [connectionHandler.session.channel
-                 execute:@"chmod +x /var/root/DolosoftTools/userappsextended.sh"
-                 error:nil];
-            } else {
-                NSLog(@"Failed to upload %@ to /var/root/DolosoftTools/userappsextended.sh on iOS device",
-                      [NSString stringWithFormat:@"%@/DolosoftTools/userappsextended.sh", [fileManager mainDirectoryPath]]);
-            }
-        }
+
         /* end of TODO */
 
 
@@ -136,6 +98,7 @@
         [appsTableView setAction:@selector(tableViewClicked:)];
         [classesTableView setAction:@selector(tableViewClicked:)];
         [methodsTableView setAction:@selector(tableViewClicked:)];
+        
 //        appsTableView.focusRingType = NSFocusRingTypeNone;
 //        classesTableView.focusRingType = NSFocusRingTypeNone;
 //        methodsTableView.focusRingType = NSFocusRingTypeNone;
@@ -488,7 +451,7 @@
     while ([task isRunning]) {}
     [NSThread sleepForTimeInterval:4.0f];
     
-    command = [NSString stringWithFormat:@"mv \"%@/%@.ipa\" \"%@\"; unzip %@.ipa; mv Payload/*.app/%@ .; rm -r Payload; rm %@.ipa",
+    command = [NSString stringWithFormat:@"mv \"%@/%@.ipa\" \"%@\"; unzip %@.ipa; mv Payload/*.app/%@ .; rm -r Payload;",
                          fileManager.fridaDirectoryPath,
                          app.displayName,
                          fileManager.decryptedBinariesDirectoryPath,
@@ -508,9 +471,7 @@
 /* TODO: Move these last two methods into their own class, doesnt belong in a viewcontroller */
 /* TODO: Remove parameter for function and just use connectionHandler.session.channel instead!! */
 - (NSArray *)getUserAppsForSession:(NMSSHSession *)session {
-    //    this will only work for iOS 10, need to update command for other iOSs
     //    make sure to have glib installed via Cydia
-    //    find /var/containers/Bundle/Application/* -iname *.app
 
     NSError *error = nil;
     NSString *response;
