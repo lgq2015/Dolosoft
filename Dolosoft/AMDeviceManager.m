@@ -8,6 +8,8 @@
 
 #import "AMDeviceManager.h"
 
+#define TEST_MODE NO
+
 @implementation AMDeviceManager
 - (instancetype)init {
     self = [super init];
@@ -21,6 +23,68 @@
         fileManager = manager;
     }
     return self;
+}
+
+- (NSArray *)getUserApps {
+    //    make sure to have glib installed via Cydia
+    
+    NSError *error = nil;
+    NSString *response;
+    if (TEST_MODE) {
+        response = @"Piq\nPiq\ncom.andermoran.piqme\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app/Piq\nChrome\nChrome\ncom.google.chrome.ios\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app/Chrome";
+    } else {
+        response = [connectionHandler.session.channel execute:@"DolosoftTools/userapps.sh" error:&error];
+    }
+    
+    NSArray *lines = [response componentsSeparatedByString: @"\n"];
+    
+    NSMutableArray *apps = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i+4 < [lines count]; i+=5) {
+        AMApp *app = [[AMApp alloc] initWithDisplayName:lines[i]
+                                         executableName:lines[i+1]
+                                       bundleIdentifier:lines[i+2]
+                                              pathToDir:lines[i+3]
+                                       pathToExecutable:lines[i+4]];
+        
+        if ([app.displayName isEqualToString:@"(null)"]) {
+            app.displayName = app.executableName;
+        }
+        [apps addObject:app];
+    }
+    
+    NSArray *sortedArray;
+    sortedArray = [apps sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSString *first = [(AMApp *)a displayName];
+        NSString *second = [(AMApp *)b displayName];
+        return [first compare:second];
+    }];
+    NSLog(@"Got user's apps' info");
+    return sortedArray;
+}
+
+- (void)addUserAppsDocumentsDirectory:(AMAppManager *)appManager {
+    NSError *error = nil;
+    NSString *response;
+    if (TEST_MODE) {
+        response = @"/var/mobile/Containers/Data/Application/D885F73F-B14A-4CB7-9AD7-B53498ED2B19\ncom.andermoran.piqme\n/var/mobile/Containers/Data/Application/37B44BA7-53D4-455A-B740-210690543215\ncom.google.chrome.ios\n";
+    } else {
+        response = [connectionHandler.session.channel execute:@"DolosoftTools/userappsextended.sh" error:&error];
+    }
+    
+    NSArray *lines = [response componentsSeparatedByString: @"\n"];
+    
+    for (int i = 0; i+1 < [lines count]; i+=2) {
+        NSString *documentDir = lines[i];
+        //        NSLog(@"documentDir = %@", documentDir);
+        NSString *bundleIdentifier = lines[i+1];
+        //        NSLog(@"bundleIdentifier = %@", bundleIdentifier);
+        AMApp *app = [appManager appWithBundleIdentifier:bundleIdentifier];
+        //        NSLog(@"app = %@", app);
+        if (app) {
+            app.pathToAppStorageDir = documentDir;
+        }
+    }
 }
 
 - (BOOL)toolsInstalled {
