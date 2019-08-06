@@ -550,7 +550,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.andermoran.AMiOSReverser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andermoran.Dolosoft;
 				PRODUCT_NAME = Dolosoft;
 			};
 			name = Debug;
@@ -578,7 +578,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/External",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.andermoran.AMiOSReverser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andermoran.Dolosoft;
 				PRODUCT_NAME = Dolosoft;
 			};
 			name = Release;
