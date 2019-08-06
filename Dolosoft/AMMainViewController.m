@@ -30,38 +30,43 @@
     // Right now it's either one or the other
 }
 
+- (NSString *)input: (NSString *)prompt defaultValue: (NSString *)defaultValue {
+    // https://stackoverflow.com/questions/7387341/how-to-create-and-get-return-value-from-cocoa-dialog
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:prompt];
+    [alert addButtonWithTitle:@"Ok"];
+
+    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 200, 24)];
+    [input setStringValue:defaultValue];
+    [alert setAccessoryView:input];
+    NSInteger button = [alert runModal];
+    if (button == NSAlertFirstButtonReturn) {
+        [input validateEditing];
+        return [input stringValue];
+    } else {
+        return nil;
+    }
+}
+
+// NSAlert+SynchronousSheet.h (in case i need this later)
 - (void)viewDidLoad {
     [super viewDidLoad];
     //[self redirectLogToDocuments];
-    
-    NSError *error = nil;
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"password" ofType:@"txt"];
-    NSString *password = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
     
     self.view.layer.backgroundColor = [NSColor colorWithCalibratedRed:71.0f/255.0f
                                                                 green:69.0f/255.0f
                                                                  blue:68.0f/255.0f
                                                                 alpha:1].CGColor;
+    
+//    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *password = [defaults objectForKey:@"password"];
+    
     if (!password) {
-        NSLog(@"%@", error);
-        
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"Exit"];
-        [alert setMessageText:@"password.txt does not exist"];
-        
-        NSModalResponse response = [alert runModal];
-        if (response == NSAlertFirstButtonReturn) {
-            [NSApp terminate:self];
-        }
-    } else if ([password length] == 0) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"Exit"];
-        [alert setMessageText:@"password.txt is empty. Please put the root password for your iOS device in password.txt"];
-        
-        NSModalResponse response = [alert runModal];
-        if (response == NSAlertFirstButtonReturn) {
-            [NSApp terminate:self];
-        }
+        password = [self input:@"Enter iOS device root password" defaultValue:@""];
+        [defaults setObject:password forKey:@"password"];
+        [defaults synchronize];
     }
     
     appManager = [[AMAppManager alloc] init];
@@ -80,6 +85,18 @@
                                                       port:port
                                                   username:username
                                                   password:password];
+    
+    
+    while (!connectionHandler.session.isConnected) {
+        password = [self input:@"Incorrect iOS device root password. Please try again" defaultValue:@""];
+        [defaults setObject:password forKey:@"password"];
+        [defaults synchronize];
+        connectionHandler = [[AMConnectionHandler alloc]
+                             initWithHost:hostName
+                             port:port
+                             username:username
+                             password:password];
+    }
     
     deviceManager = [[AMDeviceManager alloc] initWithConnectionHandler:connectionHandler fileManger:fileManager];
 

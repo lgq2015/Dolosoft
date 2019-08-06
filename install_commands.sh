@@ -1,1 +1,1 @@
-brew install usbmuxd
+brew install libimobiledevice

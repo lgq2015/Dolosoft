@@ -22,8 +22,6 @@
 		0CA40BCC207ED1A900789BEB /* AMClassDumpParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA40BCB207ED1A900789BEB /* AMClassDumpParser.m */; };
 		0CA40BD1207EE38800789BEB /* AMAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA40BD0207EE38800789BEB /* AMAppManager.m */; };
 		0CEFBF102096468C00B41490 /* AMTweakBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */; };
-		4152167E22F08C850096DCFB /* password.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4152167D22F08C850096DCFB /* password.txt */; };
-		417202A922F238F40051B167 /* NSAlert+SynchronousSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 417202A822F238F40051B167 /* NSAlert+SynchronousSheet.m */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
 		C6A7D673F72EBDD58DAB5303 /* libPods-Dolosoft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25455E4E0D1EFD2E5E3F99FD /* libPods-Dolosoft.a */; };
 /* End PBXBuildFile section */
@@ -81,9 +79,6 @@
 		0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTweakBuilder.m; sourceTree = "<group>"; };
 		125AF07CF68C9185FFA0F6A9 /* Pods-AMiOSReverser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AMiOSReverser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AMiOSReverser/Pods-AMiOSReverser.debug.xcconfig"; sourceTree = "<group>"; };
 		25455E4E0D1EFD2E5E3F99FD /* libPods-Dolosoft.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dolosoft.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4152167D22F08C850096DCFB /* password.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = password.txt; sourceTree = "<group>"; };
-		417202A722F238F40051B167 /* NSAlert+SynchronousSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAlert+SynchronousSheet.h"; sourceTree = "<group>"; };
-		417202A822F238F40051B167 /* NSAlert+SynchronousSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAlert+SynchronousSheet.m"; sourceTree = "<group>"; };
 		41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceManager.h; sourceTree = "<group>"; };
 		41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceManager.m; sourceTree = "<group>"; };
 		767BB33F96D38DB4F3041426 /* Pods-re_proj.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-re_proj.release.xcconfig"; path = "Pods/Target Support Files/Pods-re_proj/Pods-re_proj.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,13 +163,10 @@
 				0CA40BC8207EBAFE00789BEB /* AMObjcClass.m */,
 				0C95DE4B207D1F9900639022 /* AMConnectionHandler.h */,
 				0C95DE4C207D1FB300639022 /* AMConnectionHandler.m */,
-				417202A722F238F40051B167 /* NSAlert+SynchronousSheet.h */,
-				417202A822F238F40051B167 /* NSAlert+SynchronousSheet.m */,
 				0C16DFAF207C1A0100AA0952 /* Assets.xcassets */,
 				0C16DFB1207C1A0100AA0952 /* Main.storyboard */,
 				0C16DFB4207C1A0100AA0952 /* Info.plist */,
 				0C16DFB5207C1A0100AA0952 /* main.m */,
-				4152167D22F08C850096DCFB /* password.txt */,
 			);
 			path = Dolosoft;
 			sourceTree = "<group>";
@@ -318,7 +310,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4152167E22F08C850096DCFB /* password.txt in Resources */,
 				0C16DFB0207C1A0100AA0952 /* Assets.xcassets in Resources */,
 				0C16DFB3207C1A0100AA0952 /* Main.storyboard in Resources */,
 			);
@@ -371,7 +362,6 @@
 				0C95DE50207D29F400639022 /* AMFileManager.m in Sources */,
 				0CA40BCC207ED1A900789BEB /* AMClassDumpParser.m in Sources */,
 				0C95DE4D207D1FB300639022 /* AMConnectionHandler.m in Sources */,
-				417202A922F238F40051B167 /* NSAlert+SynchronousSheet.m in Sources */,
 				0CA40BC9207EBAFE00789BEB /* AMObjcClass.m in Sources */,
 				0C16DFAE207C1A0100AA0952 /* AMMainViewController.m in Sources */,
 				0CA40BD1207EE38800789BEB /* AMAppManager.m in Sources */,

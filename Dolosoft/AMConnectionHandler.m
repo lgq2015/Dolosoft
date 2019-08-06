@@ -27,7 +27,7 @@
         NSLog(@"Dolosoft::Error starting iproxy, make sure iproxy exists at /usr/local/bin/iproxy - %@", [error localizedDescription]);
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"Exit"];
-        [alert setMessageText:[NSString stringWithFormat:@"Error starting iproxy, make sure iproxy exists at /usr/local/bin/iproxy - %@\nIf you haven't already, run \"brew install usbmuxd\" on your Mac.", [error localizedDescription]]];
+        [alert setMessageText:[NSString stringWithFormat:@"Error starting iproxy, make sure iproxy exists at /usr/local/bin/iproxy - %@\nIf you haven't already, run \"brew install libimobiledevice\" on your Mac.", [error localizedDescription]]];
         [alert runModal];
         exit(-1);
     } else {
