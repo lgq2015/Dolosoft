@@ -8,7 +8,7 @@
 
 #import "AMDeviceManager.h"
 
-#define TEST_MODE YES
+#define TEST_MODE NO
 
 @implementation AMDeviceManager
 - (instancetype)init {
@@ -61,7 +61,7 @@
     while ([task isRunning]) {}
     [NSThread sleepForTimeInterval:4.0f];
     
-    command = [NSString stringWithFormat:@"mv \"%@/%@.ipa\" \"%@\"; unzip %@.ipa; mv Payload/*.app/%@ .; rm -r Payload; rm %@.ipa",
+    command = [NSString stringWithFormat:@"mv \"%@/%@.ipa\" \"%@\"; unzip \"%@.ipa\"; mv Payload/*.app/%@ .; rm -r Payload; rm \"%@.ipa\"",
                fileManager.fridaDirectoryPath,
                app.displayName,
                fileManager.decryptedBinariesDirectoryPath,
@@ -90,7 +90,6 @@
     }
     
     NSArray *lines = [response componentsSeparatedByString: @"\n"];
-    
     NSMutableArray *apps = [[NSMutableArray alloc] init];
     
     for (int i = 0; i+4 < [lines count]; i+=5) {
