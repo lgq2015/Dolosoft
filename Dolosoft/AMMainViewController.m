@@ -30,24 +30,6 @@
     // Right now it's either one or the other
 }
 
-- (NSString *)input: (NSString *)prompt defaultValue: (NSString *)defaultValue {
-    // https://stackoverflow.com/questions/7387341/how-to-create-and-get-return-value-from-cocoa-dialog
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:prompt];
-    [alert addButtonWithTitle:@"Ok"];
-
-    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 200, 24)];
-    [input setStringValue:defaultValue];
-    [alert setAccessoryView:input];
-    NSInteger button = [alert runModal];
-    if (button == NSAlertFirstButtonReturn) {
-        [input validateEditing];
-        return [input stringValue];
-    } else {
-        return nil;
-    }
-}
-
 // NSAlert+SynchronousSheet.h (in case i need this later)
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -64,17 +46,17 @@
     NSString *password = [defaults objectForKey:@"password"];
     
     if (!password) {
-        password = [self input:@"Enter iOS device root password" defaultValue:@""];
+        password = [self getUserInput:@"Enter iOS device root password" defaultValue:@""];
         [defaults setObject:password forKey:@"password"];
         [defaults synchronize];
     }
     
-    appManager = [[AMAppManager alloc] init];
-    appManager.mainViewController = self;
     fileManager = [[AMFileManager alloc] init];
-    tweakBuilder = [[AMTweakBuilder alloc] init];
+    appManager = [[AMAppManager alloc] initWithFileManager:fileManager];
+    appManager.mainViewController = self;
+    tweakBuilder = [[AMTweakBuilder alloc] initWithFileManager:fileManager];
     tweakBuilder.mainViewController = self;
-    logger = [[AMLogger alloc] init];
+    logger = [[AMLogger alloc] initWithFileManager:fileManager];
     
     
     NSString *hostName = @"localhost";
@@ -86,9 +68,8 @@
                                                   username:username
                                                   password:password];
     
-    
     while (!connectionHandler.session.isConnected) {
-        password = [self input:@"Incorrect iOS device root password. Please try again" defaultValue:@""];
+        password = [self getUserInput:@"Incorrect iOS device root password. Please try again" defaultValue:@""];
         [defaults setObject:password forKey:@"password"];
         [defaults synchronize];
         connectionHandler = [[AMConnectionHandler alloc]
@@ -122,15 +103,11 @@
 
         terminalTextView.editable = NO;
         terminalTextView.drawsBackground = NO;
-
         terminalTextView.backgroundColor = [NSColor colorWithCalibratedRed:45.0f/255.0f
                                                                      green:51.0f/255.0f
                                                                       blue:63.0f/255.0f
                                                                      alpha:1];
-
         terminalTextView.font = [NSFont fontWithName:@"Monaco" size:12];
-        
-        
         
         logTextView.editable = NO;
         logTextView.font = [NSFont fontWithName:@"Monaco" size:12];
@@ -438,6 +415,24 @@
         return selectedClass.methodsList[rowIndex].callSyntax;
     } else {
         return @"THIS SHOULD NEVER RETURN";
+    }
+}
+
+- (NSString *)getUserInput:(NSString *)prompt defaultValue:(NSString *)defaultValue {
+    // https://stackoverflow.com/questions/7387341/how-to-create-and-get-return-value-from-cocoa-dialog
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:prompt];
+    [alert addButtonWithTitle:@"Ok"];
+    
+    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 200, 24)];
+    [input setStringValue:defaultValue];
+    [alert setAccessoryView:input];
+    NSInteger button = [alert runModal];
+    if (button == NSAlertFirstButtonReturn) {
+        [input validateEditing];
+        return [input stringValue];
+    } else {
+        return nil;
     }
 }
 

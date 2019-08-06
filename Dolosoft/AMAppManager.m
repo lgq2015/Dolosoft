@@ -9,10 +9,10 @@
 #import "AMAppManager.h"
 
 @implementation AMAppManager
-- (instancetype)init {
+- (instancetype)initWithFileManager:(AMFileManager *)fm {
     self = [super init];
     if (self) {
-        fileManager = [[AMFileManager alloc] init];
+        fileManager = fm;
     }
     return self;
 }

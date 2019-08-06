@@ -18,6 +18,7 @@
 }
 @property(retain,nonatomic) AMMainViewController *mainViewController;
 @property(retain,nonatomic) NSArray<AMApp *> *appList;
+- (instancetype)initWithFileManager:(AMFileManager *)fm;
 - (void)initializeClassListForApp:(AMApp *)app;
 - (void)dumpHeadersForApp:(AMApp *)app;
 - (AMApp *)appWithDisplayName:(NSString *)displayName;

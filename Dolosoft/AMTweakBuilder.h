@@ -15,6 +15,7 @@
     AMFileManager *fileManager;
 }
 @property(retain,nonatomic) AMMainViewController *mainViewController;
+- (instancetype)initWithFileManager:(AMFileManager *)fm;
 - (void)removeTheosProjectForApp:(AMApp *)app;
 - (void)createTheosProjectForApp:(AMApp *)app;
 - (void)makeDoTheosForApp:(AMApp *)app;

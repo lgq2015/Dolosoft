@@ -15,6 +15,6 @@
     AMFileManager *fileManager;
 }
 @property (retain, nonatomic) AMConnectionHandler *connectionHandler;
-- (instancetype)init;
+- (instancetype)initWithFileManager:(AMFileManager *)fm;
 - (NSString *)logForApp:(AMApp *)app;
 @end
