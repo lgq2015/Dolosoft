@@ -9,7 +9,7 @@
 #import "AMConnectionHandler.h"
 
 @implementation AMConnectionHandler
-- (instancetype)initWithHost:(NSString *)host port:(int)port username:(NSString *)username password:(NSString *)password {
+- (instancetype)initWithHost:(NSString *)host port:(NSInteger)port username:(NSString *)username password:(NSString *)password {
     self = [super init];
     if (self) {
         [self initializeProxy];
@@ -21,33 +21,32 @@
     return self;
 }
 - (void)initializeProxy {
-    //  Starts iproxy (make sure it is installed before hand)
-    /* TODO: Do this with NSTask, its cleander */
-    FILE *fp;
-    fp = popen("/usr/local/bin/iproxy", "r");
-    if (!fp) {
-        NSLog(@"Unable to open /usr/local/bin/iproxy");
-        exit(1);
+    NSError *error = nil;
+    [NSTask launchedTaskWithExecutableURL:[NSURL fileURLWithPath:@"/usr/local/bin/iproxy"] arguments:@[ @"2222", @"22" ] error:&error terminationHandler:^(NSTask *t){}];
+    if (error) {
+        NSLog(@"Dolosoft::Error starting iproxy, make sure iproxy exists at /usr/local/bin/iproxy - %@", [error localizedDescription]);
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Exit"];
+        [alert setMessageText:[NSString stringWithFormat:@"Error starting iproxy, make sure iproxy exists at /usr/local/bin/iproxy - %@\nIf you haven't already, run \"brew install usbmuxd\" on your Mac.", [error localizedDescription]]];
+        [alert runModal];
+        exit(-1);
+    } else {
+        [NSThread sleepForTimeInterval:0.01f]; // Need this because iproxy starts but isn't immediately ready to connect, this sleep gives it time
     }
-    
-    const char *proxyCommand = "/usr/local/bin/iproxy 2222 22";
-    system(proxyCommand);
-    NSLog(@"iproxy started");
 }
 
 - (NMSSHSession *)initializeSessionWithHost:(NSString *)host port:(NSInteger)port username:(NSString *)username password:(NSString *)password {
-    _session = [NMSSHSession connectToHost:[NSString stringWithFormat:@"%@:%d", host, port]
+    NMSSHSession *session = [NMSSHSession connectToHost:[NSString stringWithFormat:@"%@:%ld", host, (long)port]
                                                          withUsername:username];
-    if (_session.isConnected) {
-        [_session authenticateByPassword:password];
-        
-        if (_session.isAuthorized) {
+    if (session.isConnected) {
+        [session authenticateByPassword:password];
+        if (session.isAuthorized) {
             NSLog(@"Authentication succeeded");
         } else {
             NSLog(@"Authentication failed");
             return nil;
         }
     }
-    return _session;
+    return session;
 }
 @end

@@ -125,7 +125,10 @@
         NSLog(@"Dolosoft::%@", [connectionHandler.session.lastError localizedDescription]);
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"Exit"];
-        [alert setMessageText:[NSString stringWithFormat:@"Unable to connect to %@@%@ at port %ld", username, hostName, (long)port]];
+        [alert setMessageText:[NSString stringWithFormat:@"Unable to connect to %@@%@ at port %ld\nMake sure device is connected via USB.",
+                               username,
+                               hostName,
+                               (long)port]];
         [alert runModal];
     }
 }
@@ -326,7 +329,7 @@
         AMObjcMethod *objcMethod = selectedClass.methodsList[index];
         [tweakCode appendString:[tweakBuilder formatMethodForTweak:objcMethod]];
     }];
-
+    
     [tweakCode appendString:@"\n%end"];
     
     NSLog(@"%@", tweakCode);
