@@ -12,7 +12,7 @@
     
 }
 @property(retain,nonatomic) NMSSHSession *session;
-- (instancetype)initWithHost:(NSString *)host port:(int)port username:(NSString *)username password:(NSString *)password;
+- (instancetype)initWithHost:(NSString *)host port:(NSInteger)port username:(NSString *)username password:(NSString *)password;
 - (void)initializeProxy;
 - (NMSSHSession *)initializeSessionWithHost:(NSString *)host port:(int)port username:(NSString *)username password:(NSString *)password;
 @end

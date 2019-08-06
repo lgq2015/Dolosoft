@@ -35,7 +35,7 @@
     NSLog(@"iproxy started");
 }
 
-- (NMSSHSession *)initializeSessionWithHost:(NSString *)host port:(int)port username:(NSString *)username password:(NSString *)password {
+- (NMSSHSession *)initializeSessionWithHost:(NSString *)host port:(NSInteger)port username:(NSString *)username password:(NSString *)password {
     _session = [NMSSHSession connectToHost:[NSString stringWithFormat:@"%@:%d", host, port]
                                                          withUsername:username];
     if (_session.isConnected) {

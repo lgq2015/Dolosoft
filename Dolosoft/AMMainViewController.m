@@ -26,6 +26,8 @@
     dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:targetName];
     NSString *pathForLog = [NSString stringWithFormat:@"%@/liveTerminalLog.txt", [dirPath path]];
     freopen([pathForLog cStringUsingEncoding:NSASCIIStringEncoding],"a+",stderr);
+    // TODO: Make it redirect to file AND Xcode console
+    // Right now it's either one or the other
 }
 
 - (void)viewDidLoad {
@@ -68,11 +70,15 @@
     tweakBuilder = [[AMTweakBuilder alloc] init];
     tweakBuilder.mainViewController = self;
     logger = [[AMLogger alloc] init];
-
+    
+    
+    NSString *hostName = @"localhost";
+    NSString *username = @"root";
+    NSInteger port = 2222;
     connectionHandler = [[AMConnectionHandler alloc]
-                                              initWithHost:@"localhost"
-                                                      port:2222
-                                                  username:@"root"
+                                              initWithHost:hostName
+                                                      port:port
+                                                  username:username
                                                   password:password];
     
     deviceManager = [[AMDeviceManager alloc] initWithConnectionHandler:connectionHandler fileManger:fileManager];
@@ -115,7 +121,12 @@
 
         [self updateTerminalDaemon];
     } else {
-        NSLog(@"Unable to establish connection.");
+        NSLog(@"Dolosoft::Unable to establish connection.");
+        NSLog(@"Dolosoft::%@", [connectionHandler.session.lastError localizedDescription]);
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Exit"];
+        [alert setMessageText:[NSString stringWithFormat:@"Unable to connect to %@@%@ at port %ld", username, hostName, (long)port]];
+        [alert runModal];
     }
 }
 
