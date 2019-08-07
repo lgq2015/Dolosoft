@@ -296,6 +296,7 @@
     [createTweakProgressBar setUsesThreadedAnimation:YES];
     [createTweakProgressBar startAnimation:nil];
     
+    // Collect all the methods to we want
     NSMutableArray<AMObjcMethod *> *methods = [[NSMutableArray alloc] init];
     [methodsTableView.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
         AMObjcMethod *objcMethod = selectedClass.methodsList[index];

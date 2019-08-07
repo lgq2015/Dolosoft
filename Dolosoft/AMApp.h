@@ -10,7 +10,7 @@
 #import "AMObjcClass.h"
 #import "AMFileManager.h"
 
-@class AMObjcClass;
+@class AMObjcClass, AMFileManager;
 
 @interface AMApp : NSObject
 @property(retain,nonatomic) NSString *displayName; // What appears on your iOS device's screen
@@ -24,6 +24,6 @@
 @property(retain,nonatomic) NSString *tweakDirPath; // path to the dolosoft_appname tweak directory on mac
 @property(retain,nonatomic) NSString *pathToAppStorageDir; // path to the documents directory for the app
 @property(retain,nonatomic) NSArray<AMObjcClass *> *classList;
-- (id)initWithDisplayName:(NSString *)displayName executableName:(NSString *)executableName bundleIdentifier:(NSString *)bundleIdentifier pathToDir:(NSString *)pathToDir pathToExecutable:(NSString *)pathToExecutable;
+- (id)initWithDisplayName:(NSString *)displayName executableName:(NSString *)executableName bundleIdentifier:(NSString *)bundleIdentifier pathToDir:(NSString *)pathToDir pathToExecutable:(NSString *)pathToExecutable fileManager:(AMFileManager *)fileManager;
 - (AMObjcClass *)classWithName:(NSString *)name;
 @end

@@ -10,10 +10,9 @@
 #define LOG(fmt, ...) NSLog(fmt, ##__VA_ARGS__)
 
 @implementation AMApp
-- (id)initWithDisplayName:(NSString *)displayName executableName:(NSString *)executableName bundleIdentifier:(NSString *)bundleIdentifier pathToDir:(NSString *)pathToDir pathToExecutable:(NSString *)pathToExecutable {
+- (id)initWithDisplayName:(NSString *)displayName executableName:(NSString *)executableName bundleIdentifier:(NSString *)bundleIdentifier pathToDir:(NSString *)pathToDir pathToExecutable:(NSString *)pathToExecutable fileManager:(AMFileManager *)fileManager {
     self = [super init];
     if (self) {
-        AMFileManager *fileManager = [[AMFileManager alloc] init];
         self.displayName = displayName;
         self.displayNameLowercaseNoSpace = [[displayName stringByReplacingOccurrencesOfString:@" " withString:@""] lowercaseString];
         self.executableName = executableName;
@@ -23,8 +22,9 @@
         self.headerPath = [NSString stringWithFormat:@"%@/%@ headers",
                            [fileManager headersDirectoryPath],
                            displayName];
-        
-        self.tweakDirPath = [NSString stringWithFormat:@"%@/dolosoft%@", [fileManager tweaksDirectoryPath], self.displayNameLowercaseNoSpace];
+        self.tweakDirPath = [NSString stringWithFormat:@"%@/dolosoft%@",
+                             [fileManager tweaksDirectoryPath],
+                             self.displayNameLowercaseNoSpace];
         self.tweakFilePath = [NSString stringWithFormat:@"%@/Tweak.x", self.tweakDirPath];
     }
     return self;

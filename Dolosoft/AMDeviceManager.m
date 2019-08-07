@@ -95,10 +95,11 @@
     
     for (int i = 0; i+4 < [lines count]; i+=5) {
         AMApp *app = [[AMApp alloc] initWithDisplayName:lines[i]
-                                         executableName:lines[i+1]
-                                       bundleIdentifier:lines[i+2]
-                                              pathToDir:lines[i+3]
-                                       pathToExecutable:lines[i+4]];
+                                          executableName:lines[i+1]
+                                        bundleIdentifier:lines[i+2]
+                                               pathToDir:lines[i+3]
+                                        pathToExecutable:lines[i+4]
+                                            fileManager:fileManager];
         
         if ([app.displayName isEqualToString:@"(null)"]) {
             app.displayName = app.executableName;
