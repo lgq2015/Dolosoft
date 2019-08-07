@@ -189,7 +189,7 @@
 }
 
 - (IBAction)installTweakButtonClicked:(id)sender {
-    if ([fileManager fileExistsAtPath:[NSString stringWithFormat:@"%@/amiosreversertemptweak", [fileManager tweaksDirectoryPath]] isDirectory:nil]) {
+    if ([fileManager fileExistsAtPath:selectedApp.tweakDirPath isDirectory:nil]) {
         [tweakBuilder makeDoTheosForApp:[appManager appWithDisplayName:selectedApp.displayName]];
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
@@ -200,8 +200,8 @@
 }
 
 - (IBAction)editTweakButtonClicked:(id)sender {
-    if (![[NSWorkspace sharedWorkspace] openFile:[selectedApp tweakPath]]) {
-        [[NSWorkspace sharedWorkspace] openFile:[selectedApp tweakPath] withApplication:@"Xcode"];
+    if (![[NSWorkspace sharedWorkspace] openFile:[selectedApp tweakFilePath]]) {
+        [[NSWorkspace sharedWorkspace] openFile:[selectedApp tweakFilePath] withApplication:@"Xcode"];
     }
 }
 
@@ -287,7 +287,8 @@
 
 - (IBAction)removeTweakButtonClicked:(id)sender {
     NSError *error = nil;
-    NSString *command = @"printf \"Y\" | apt-get remove com.amiosreverser.amiosreverser-temp-tweak";
+    NSString *command = [NSString stringWithFormat:@"printf \"Y\" | apt-get remove com.dolosoft.dolosoft-%@",
+                         selectedApp.displayNameLowercaseNoSpace];
     [connectionHandler.session.channel execute:command error:&error];
 }
 
@@ -337,7 +338,7 @@
     */
     
     NSError *error = nil;
-    [tweakCode writeToFile:selectedApp.tweakPath
+    [tweakCode writeToFile:selectedApp.tweakFilePath
                 atomically:YES
                   encoding:NSUTF8StringEncoding
                      error:&error];

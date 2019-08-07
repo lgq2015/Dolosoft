@@ -18,9 +18,7 @@
 }
 
 - (void)removeTheosProjectForApp:(AMApp *)app {
-    NSString *theosProjectPath = [NSString stringWithFormat:@"%@/amiosreversertemptweak",
-                                  [fileManager tweaksDirectoryPath]];
-    [fileManager removeItemAtPath:theosProjectPath error:nil];
+    [fileManager removeItemAtPath:app.tweakDirPath error:nil];
 }
 
 - (void)writeTheosCodeForApp:(AMApp *)app {
@@ -58,9 +56,9 @@
     // Creating the tweak
     NSString *command = [NSString stringWithFormat:@"printf \"%d\\n%@\\n%@\\n%@\\n%@\\n%@\\n\" | $THEOS/bin/nic.pl ",
                          numberForCreateTweak,
-                         @"amiosreverser-temp-tweak",
-                         @"com.amiosreverser.amiosreverser-temp-tweak",
-                         @"AMiOSReverser",
+                         [NSString stringWithFormat:@"dolosoft-%@", app.displayNameLowercaseNoSpace],
+                         [NSString stringWithFormat:@"com.dolosoft.dolosoft-%@", app.displayNameLowercaseNoSpace],
+                         @"Dolosoft",
                          app.bundleIdentifier,
                          app.displayName
                          ];
@@ -90,7 +88,7 @@
 }
 
 - (void)makeDoTheosForApp:(AMApp *)app {
-    NSString *currentDir = [NSString stringWithFormat:@"%@/amiosreversertemptweak", [fileManager tweaksDirectoryPath]];
+    NSString *currentDir = app.tweakDirPath;
     /* for this to work properly you need to be able to run
      "make do" without theos requesting your password for
      your mobile device.
@@ -102,7 +100,7 @@
         echo "export THEOS_DEVICE_IP=localhost" >> ~/.profile
         echo "export THEOS_DEVICE_PORT=2222" >> ~/.profile
      */
-    NSString *command = [NSString stringWithFormat:@"cd %@/amiosreversertemptweak; make do", [fileManager tweaksDirectoryPath]];
+    NSString *command = [NSString stringWithFormat:@"cd %@; make do", app.tweakDirPath];
     NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath:@"/bin/bash"];
     [task setCurrentDirectoryPath:currentDir]; // leaving this here so I know I tried this. Does not work bc NSTask treats alias/symlink as the original dir which has a space which theos hates :))))

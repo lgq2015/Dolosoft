@@ -15,6 +15,7 @@
     if (self) {
         AMFileManager *fileManager = [[AMFileManager alloc] init];
         self.displayName = displayName;
+        self.displayNameLowercaseNoSpace = [[displayName stringByReplacingOccurrencesOfString:@" " withString:@""] lowercaseString];
         self.executableName = executableName;
         self.bundleIdentifier = bundleIdentifier;
         self.pathToDir = pathToDir;
@@ -22,9 +23,9 @@
         self.headerPath = [NSString stringWithFormat:@"%@/%@ headers",
                            [fileManager headersDirectoryPath],
                            displayName];
-        self.tweakPath = [NSString stringWithFormat:@"%@/%@",
-                          [fileManager tweaksDirectoryPath],
-                          @"amiosreversertemptweak/Tweak.x"];
+        
+        self.tweakDirPath = [NSString stringWithFormat:@"%@/dolosoft%@", [fileManager tweaksDirectoryPath], self.displayNameLowercaseNoSpace];
+        self.tweakFilePath = [NSString stringWithFormat:@"%@/Tweak.x", self.tweakDirPath];
     }
     return self;
 }

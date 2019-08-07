@@ -61,6 +61,7 @@
     while ([task isRunning]) {}
     [NSThread sleepForTimeInterval:4.0f];
     
+    //TODO: Do all of this using objective-c, this command line stuff is hacky
     command = [NSString stringWithFormat:@"mv \"%@/%@.ipa\" \"%@\"; unzip \"%@.ipa\"; mv Payload/*.app/%@ .; rm -r Payload; rm \"%@.ipa\"",
                fileManager.fridaDirectoryPath,
                app.displayName,
