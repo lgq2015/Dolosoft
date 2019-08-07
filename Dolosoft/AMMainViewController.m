@@ -295,56 +295,15 @@
 - (IBAction)createTweakButtonClicked:(id)sender {
     [createTweakProgressBar setUsesThreadedAnimation:YES];
     [createTweakProgressBar startAnimation:nil];
-
-    [tweakBuilder createTheosProjectForApp:[appManager appWithDisplayName:selectedApp.displayName]];
     
-    NSMutableString *tweakCode = [[NSMutableString alloc] init];
-    
-    [tweakCode appendString:@"NSArray *paths;\
-    \nNSString *documentsDirectory;\
-    \nNSString *documentTXTPath;\
-    \n%ctor {\
-    \n\tpaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);\
-    \n\tdocumentsDirectory = [paths objectAtIndex:0];\
-    \n\tdocumentTXTPath = [documentsDirectory stringByAppendingPathComponent:@\"AMLog.txt\"];\
-    \n\t[[NSFileManager defaultManager] createFileAtPath:documentTXTPath contents:nil attributes:nil];\
-    \n}"];
-    
-    
-    [tweakCode appendString: @"\n\nvoid AMLog(NSString *str) {\
-        \n\tstr = [NSString stringWithFormat:@\"%@\\n\\n\", str];\
-        \n\tNSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:documentTXTPath];\
-        \n\t[myHandle seekToEndOfFile];\
-        \n\t[myHandle writeData:[str dataUsingEncoding:NSUTF8StringEncoding]];\
-    \n}"];
-    [tweakCode appendString:@"\n\ntypedef id CDUnknownBlockType;\n"];
-    [tweakCode appendFormat:@"\n%%hook %@", selectedClass.className];
-    
+    NSMutableArray<AMObjcMethod *> *methods = [[NSMutableArray alloc] init];
     [methodsTableView.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
         AMObjcMethod *objcMethod = selectedClass.methodsList[index];
-        [tweakCode appendString:[tweakBuilder formatMethodForTweak:objcMethod]];
+        [methods addObject:objcMethod];
     }];
-    
-    [tweakCode appendString:@"\n%end"];
-    
-    NSLog(@"%@", tweakCode);
-    
-    /*
-     EXAMPLE HOOK FORMAT
-     id returnedObj = %orig;
-     NSString *log = [NSString stringWithFormat:@"(%@)[initWithCoder:%@]", returnedObj, arg1];
-     AMLog(log);
-     return returnedObj;
-    */
-    
-    NSError *error = nil;
-    [tweakCode writeToFile:selectedApp.tweakFilePath
-                atomically:YES
-                  encoding:NSUTF8StringEncoding
-                     error:&error];
-    if (error) {
-        NSLog(@"[ERROR] %@", error);
-    }
+
+    [tweakBuilder createTheosProjectForApp:selectedApp];
+    [tweakBuilder writeTweakCodeForApp:selectedApp forObjcClass:selectedClass withMethods:methods];
 
     [createTweakProgressBar stopAnimation:nil];
 }
@@ -357,7 +316,6 @@
         && NSView.focusView == appsTableView) {
         [analyzeAppButton performClick:self];
     }
-    [super keyDown:event];
 }
 
 /*  Used to handle user clicking on class name but now
