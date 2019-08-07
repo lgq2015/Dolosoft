@@ -17,6 +17,9 @@
 
 @implementation AMMainViewController
 - (void)redirectLogToDocuments {
+    #ifdef DEBUG
+        return;
+    #endif
     // https://stackoverflow.com/questions/7271528/how-to-nslog-into-a-file
     NSString *targetName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Target name"];
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -25,23 +28,24 @@
                                         inDomains:NSUserDomainMask];
     dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:targetName];
     NSString *pathForLog = [NSString stringWithFormat:@"%@/liveTerminalLog.txt", [dirPath path]];
-    freopen([pathForLog cStringUsingEncoding:NSASCIIStringEncoding],"a+",stderr);
-    // TODO: Make it redirect to file AND Xcode console
-    // Right now it's either one or the other
+    freopen([pathForLog cStringUsingEncoding:NSASCIIStringEncoding], "a+", stderr);
 }
 
 // NSAlert+SynchronousSheet.h (in case i need this later)
+/*  TODO: Figure out how to make the initial UI load, so that I can look at the terminal feed.
+    Once all the app data has been collected, then load the rest
+ */
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self redirectLogToDocuments];
+    [self redirectLogToDocuments];
     
     self.view.layer.backgroundColor = [NSColor colorWithCalibratedRed:71.0f/255.0f
                                                                 green:69.0f/255.0f
                                                                  blue:68.0f/255.0f
                                                                 alpha:1].CGColor;
-    
-//    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+    /* leaving these here in case I need to reset the defaults */
+    //    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+    //    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *password = [defaults objectForKey:@"password"];
     
@@ -63,10 +67,10 @@
     NSString *username = @"root";
     NSInteger port = 2222;
     connectionHandler = [[AMConnectionHandler alloc]
-                                              initWithHost:hostName
-                                                      port:port
-                                                  username:username
-                                                  password:password];
+                         initWithHost:hostName
+                         port:port
+                         username:username
+                         password:password];
     
     while (!connectionHandler.session.isConnected) {
         password = [self getUserInput:@"Incorrect iOS device root password. Please try again" defaultValue:@""];
@@ -80,7 +84,7 @@
     }
     
     deviceManager = [[AMDeviceManager alloc] initWithConnectionHandler:connectionHandler fileManger:fileManager];
-
+    
     if (connectionHandler.session.isConnected) {
         logger.connectionHandler = connectionHandler;
         
@@ -89,30 +93,25 @@
         } else {
             [deviceManager installTools];
         }
-
+        
         appManager.appList = [deviceManager getUserApps];
         [deviceManager addUserAppsDocumentsDirectory:appManager];
-
+        
         [appsTableView setAction:@selector(tableViewClicked:)];
         [classesTableView setAction:@selector(tableViewClicked:)];
         [methodsTableView setAction:@selector(tableViewClicked:)];
         
-//        appsTableView.focusRingType = NSFocusRingTypeNone;
-//        classesTableView.focusRingType = NSFocusRingTypeNone;
-//        methodsTableView.focusRingType = NSFocusRingTypeNone;
-
+        //        appsTableView.focusRingType = NSFocusRingTypeNone;
+        //        classesTableView.focusRingType = NSFocusRingTypeNone;
+        //        methodsTableView.focusRingType = NSFocusRingTypeNone;
+        
         terminalTextView.editable = NO;
-        terminalTextView.drawsBackground = NO;
-        terminalTextView.backgroundColor = [NSColor colorWithCalibratedRed:45.0f/255.0f
-                                                                     green:51.0f/255.0f
-                                                                      blue:63.0f/255.0f
-                                                                     alpha:1];
         terminalTextView.font = [NSFont fontWithName:@"Monaco" size:12];
         
         logTextView.editable = NO;
         logTextView.font = [NSFont fontWithName:@"Monaco" size:12];
-
-
+        
+        
         [self updateTerminalDaemon];
     } else {
         NSLog(@"Dolosoft::Unable to establish connection.");
@@ -125,6 +124,7 @@
                                (long)port]];
         [alert runModal];
     }
+
 }
 
 - (void)updateTerminalDaemon {
@@ -153,9 +153,6 @@
     [[NSWorkspace sharedWorkspace] openFile:loadTerminalPath withApplication:@"Terminal"];
 }
 
-// TODO: pipe the output from the native Xcode terminal into terminalTextView window
-//       so that the user can see errors when building w theos :)
-
 - (IBAction)respringButtonClicked:(id)sender {
     NSError *error = nil;
     [connectionHandler.session.channel execute:@"killall -9 SpringBoard" error:&error];
@@ -167,7 +164,7 @@
 }
 - (IBAction)stringsButtonClicked:(id)sender {
     /* strings /path/to/executable */
-    /* need to do this */
+    /* need todo this */
 }
 
 - (IBAction)clearLogButtonClicked:(id)sender {
@@ -328,8 +325,6 @@
     and in case I need this method to implement said TODO
  */
 - (void)tableViewClicked:(id)sender {
-    /* TODO: Allow a user to select multiple cells by just clicking on them normally
-     and a cell's background color will change if selected */
     NSTableView *tableView = sender;
     tableView.lockFocus; // Need this code so we know how to handle the user pressing the return key
 }
@@ -340,8 +335,7 @@
         if (tableView == classesTableView) {
             selectedClass = [selectedApp classWithName:selectedApp.classList[tableView.selectedRow].className];
             [methodsTableView reloadData];
-        }
-         else if (tableView == appsTableView) {
+        } else if (tableView == appsTableView) {
              selectedApp = [appManager appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
              selectedClass = nil;
              [classesTableView reloadData];
