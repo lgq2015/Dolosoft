@@ -1,5 +1,5 @@
 PODS:
-  - NMSSH (2.2.8)
+  - NMSSH (2.3.1)
   - RegExCategories (1.0)
 
 DEPENDENCIES:
@@ -12,7 +12,7 @@ SPEC REPOS:
     - RegExCategories
 
 SPEC CHECKSUMS:
-  NMSSH: b722885a07485a2c03ffa3ea56a7b0308dbdc37c
+  NMSSH: cd689ae535a1581a6dd9fd4600ff71247df510a6
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
 
 PODFILE CHECKSUM: 73192c442c659a1fc0a4c99a48e38b7a2bd7d848

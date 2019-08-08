@@ -35,34 +35,35 @@
 /*  TODO: Figure out how to make the initial UI load, so that I can look at the terminal feed.
     Once all the app data has been collected, then load the rest
  */
+// https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self redirectLogToDocuments];
+    //[self redirectLogToDocuments];
     
     self.view.layer.backgroundColor = [NSColor colorWithCalibratedRed:71.0f/255.0f
                                                                 green:69.0f/255.0f
                                                                  blue:68.0f/255.0f
                                                                 alpha:1].CGColor;
-    /* leaving these here in case I need to reset the defaults */
-    //    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-    //    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+/* leaving these here in case I need to reset the defaults */
+//        NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+//        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *password = [defaults objectForKey:@"password"];
-    
+
     if (!password) {
-        password = [self getUserInput:@"Enter iOS device root password" defaultValue:@""];
+        password = [self getSecureUserInput:@"Enter iOS device root password" defaultValue:@""];
         [defaults setObject:password forKey:@"password"];
         [defaults synchronize];
     }
-    
+
     fileManager = [[AMFileManager alloc] init];
     appManager = [[AMAppManager alloc] initWithFileManager:fileManager];
     appManager.mainViewController = self;
     tweakBuilder = [[AMTweakBuilder alloc] initWithFileManager:fileManager];
     tweakBuilder.mainViewController = self;
     logger = [[AMLogger alloc] initWithFileManager:fileManager];
-    
-    
+
+
     NSString *hostName = @"localhost";
     NSString *username = @"root";
     NSInteger port = 2222;
@@ -71,9 +72,9 @@
                          port:port
                          username:username
                          password:password];
-    
+
     while (!connectionHandler.session.isConnected) {
-        password = [self getUserInput:@"Incorrect iOS device root password. Please try again" defaultValue:@""];
+        password = [self getSecureUserInput:@"Incorrect iOS device root password. Please try again" defaultValue:@""];
         [defaults setObject:password forKey:@"password"];
         [defaults synchronize];
         connectionHandler = [[AMConnectionHandler alloc]
@@ -82,36 +83,36 @@
                              username:username
                              password:password];
     }
-    
+
     deviceManager = [[AMDeviceManager alloc] initWithConnectionHandler:connectionHandler fileManger:fileManager];
-    
+
     if (connectionHandler.session.isConnected) {
         logger.connectionHandler = connectionHandler;
-        
+
         if ([deviceManager toolsInstalled]) {
             NSLog(@"Dolosoft::DolosoftTools already installed on iOS device at /var/root/DolosoftTools");
         } else {
             [deviceManager installTools];
         }
-        
+
         appManager.appList = [deviceManager getUserApps];
         [deviceManager addUserAppsDocumentsDirectory:appManager];
-        
+
         [appsTableView setAction:@selector(tableViewClicked:)];
         [classesTableView setAction:@selector(tableViewClicked:)];
         [methodsTableView setAction:@selector(tableViewClicked:)];
-        
+
         //        appsTableView.focusRingType = NSFocusRingTypeNone;
         //        classesTableView.focusRingType = NSFocusRingTypeNone;
         //        methodsTableView.focusRingType = NSFocusRingTypeNone;
-        
+
         terminalTextView.editable = NO;
         terminalTextView.font = [NSFont fontWithName:@"Monaco" size:12];
-        
+
         logTextView.editable = NO;
         logTextView.font = [NSFont fontWithName:@"Monaco" size:12];
-        
-        
+
+
         [self updateTerminalDaemon];
     } else {
         NSLog(@"Dolosoft::Unable to establish connection.");
@@ -124,7 +125,7 @@
                                (long)port]];
         [alert runModal];
     }
-
+    
 }
 
 - (void)updateTerminalDaemon {
@@ -179,9 +180,9 @@
 
 - (IBAction)getLogButtonClicked:(id)sender {
     /* TODO: Make the log live update */
-//    NSTimer *timer;
-//    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
-//                                             target:self selector:@selector(getAppLog) userInfo:nil repeats:YES];
+    //    NSTimer *timer;
+    //    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+    //                                             target:self selector:@selector(getAppLog) userInfo:nil repeats:YES];
     [self getAppLog];
 }
 
@@ -206,7 +207,7 @@
     // lifesaver: https://stackoverflow.com/questions/16283652/understanding-dispatch-async?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
     
     selectedClass = nil; // This is because I need to clear the methods table view after a new app selected
-
+    
     if (appsTableView.selectedRow == -1) {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"Ok"];
@@ -215,29 +216,29 @@
         [alert runModal];
         return;
     }
-
+    
     selectedApp = [appManager
                    appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
     NSLog(@"selectedApp = %@", [selectedApp displayName]);
-
+    
     /* this line below is used for interdevice communication between macOS and iOS so that cycript can launch with the executableName for the -p argument */
     [selectedApp.executableName writeToFile:[NSString stringWithFormat:@"%@/selectedApp.txt",
                                              [fileManager mainDirectoryPath]]
                                  atomically:YES
                                    encoding:NSUTF8StringEncoding
                                       error:nil];
-
+    
     /*  had to remove this because it broke the program whenever I selected a class in one app and then switched to another.
-        problem is when the index selected is higher than the maximum number of classes in the new app
+     problem is when the index selected is higher than the maximum number of classes in the new app
      */
-//    NSAlert *alert = [[NSAlert alloc] init];
-//    [alert addButtonWithTitle:@"Continue"];
-//    [alert setMessageText:@"Before preceding..."];
-//    [alert setInformativeText:[NSString stringWithFormat:@"Please open %@ on your iOS device", selectedApp.displayName]];
-//    [alert setAlertStyle:NSAlertStyleCritical];
-//    [alert runModalSheet];
-
-
+    //    NSAlert *alert = [[NSAlert alloc] init];
+    //    [alert addButtonWithTitle:@"Continue"];
+    //    [alert setMessageText:@"Before preceding..."];
+    //    [alert setInformativeText:[NSString stringWithFormat:@"Please open %@ on your iOS device", selectedApp.displayName]];
+    //    [alert setAlertStyle:NSAlertStyleCritical];
+    //    [alert runModalSheet];
+    
+    
     [classesTableView reloadData];
     [methodsTableView reloadData];
     
@@ -252,7 +253,7 @@
             });
             [deviceManager decryptAppAndDownload:selectedApp];
         }
-
+        
         if (![fileManager fileExistsAtPath:[fileManager pathOfHeaderForApp:
                                             selectedApp]]) {
             NSLog(@"headerPath = %@", selectedApp.headerPath);
@@ -263,7 +264,7 @@
             });
             [appManager dumpHeadersForApp:selectedApp];
         }
-
+        
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [analyzeAppProgressLabel setStringValue:@"Parsing headers"];
             [analyzeAppProgressLabel display];
@@ -271,7 +272,7 @@
         
         //NSLog(@"LABEL = %@", [analyzeAppProgressLabel di]);
         [appManager initializeClassListForApp:selectedApp];
-
+        
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [analyzeAppProgressLabel setStringValue:@"Analysis finished"];
             [classesTableView reloadData];
@@ -299,10 +300,10 @@
         AMObjcMethod *objcMethod = selectedClass.methodsList[index];
         [methods addObject:objcMethod];
     }];
-
+    
     [tweakBuilder createTheosProjectForApp:selectedApp];
     [tweakBuilder writeTweakCodeForApp:selectedApp forObjcClass:selectedClass withMethods:methods];
-
+    
     [createTweakProgressBar stopAnimation:nil];
 }
 
@@ -317,12 +318,12 @@
 }
 
 /*  Used to handle user clicking on class name but now
-    I just use tableViewSelectionDidChange:notification
-    because it handles the user changing the class by
-    using the arrow keys as well
+ I just use tableViewSelectionDidChange:notification
+ because it handles the user changing the class by
+ using the arrow keys as well
  
-    Leaving here for now because of the TODO inside of it
-    and in case I need this method to implement said TODO
+ Leaving here for now because of the TODO inside of it
+ and in case I need this method to implement said TODO
  */
 - (void)tableViewClicked:(id)sender {
     NSTableView *tableView = sender;
@@ -336,11 +337,11 @@
             selectedClass = [selectedApp classWithName:selectedApp.classList[tableView.selectedRow].className];
             [methodsTableView reloadData];
         } else if (tableView == appsTableView) {
-             selectedApp = [appManager appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
-             selectedClass = nil;
-             [classesTableView reloadData];
-             [methodsTableView reloadData];
-         }
+            selectedApp = [appManager appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
+            selectedClass = nil;
+            [classesTableView reloadData];
+            [methodsTableView reloadData];
+        }
     }
 }
 
@@ -372,13 +373,13 @@
     }
 }
 
-- (NSString *)getUserInput:(NSString *)prompt defaultValue:(NSString *)defaultValue {
+- (NSString *)getSecureUserInput:(NSString *)prompt defaultValue:(NSString *)defaultValue {
     // https://stackoverflow.com/questions/7387341/how-to-create-and-get-return-value-from-cocoa-dialog
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:prompt];
     [alert addButtonWithTitle:@"Ok"];
     
-    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 200, 24)];
+    NSSecureTextField *input = [[NSSecureTextField alloc] initWithFrame:NSMakeRect(0, 0, 200, 24)];
     [input setStringValue:defaultValue];
     [alert setAccessoryView:input];
     NSInteger button = [alert runModal];
