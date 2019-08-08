@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <RegExCategories/RegExCategories.h>
 #import "AMObjcClass.h"
-#import "AMMainViewController.h"
 
 @class AMMainViewController;
 

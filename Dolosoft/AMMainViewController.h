@@ -17,6 +17,9 @@
 #import "AMTweakBuilder.h"
 #import "AMLogger.h"
 #import "AMDeviceManager.h"
+#import "AMDevice.h"
+#include <libimobiledevice/libimobiledevice.h>
+#include <libimobiledevice/lockdown.h>
 //#import "NSAlert+SynchronousSheet.h"
 
 

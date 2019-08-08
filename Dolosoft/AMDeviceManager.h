@@ -10,6 +10,7 @@
 #import "AMConnectionHandler.h"
 #import "AMFileManager.h"
 #import "AMAppManager.h"
+#import "XMLReader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
