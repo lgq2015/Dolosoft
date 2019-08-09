@@ -1155,33 +1155,34 @@
         <!--Dolosoft-->
         <scene sceneID="bEw-bQ-6aV">
             <objects>
-                <viewController title="Dolosoft" storyboardIdentifier="InitialLoadingViewController" id="2Mk-6F-anA" customClass="InitialLoadingViewController" sceneMemberID="viewController">
+                <viewController title="Dolosoft" storyboardIdentifier="InitialViewController" id="2Mk-6F-anA" customClass="InitialViewController" sceneMemberID="viewController">
                     <view key="view" id="RIi-le-soG">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="154"/>
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="105"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kfz-eA-85s">
-                                <rect key="frame" x="179" y="68" width="125" height="17"/>
+                                <rect key="frame" x="18" y="44" width="295" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Waiting for device..." id="ltU-kB-Pzi">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Waiting for device..." id="ltU-kB-Pzi">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="nQd-jp-N0D">
-                                <rect key="frame" x="148" y="68" width="16" height="16"/>
+                                <rect key="frame" x="83" y="44" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="statusTextField" destination="Kfz-eA-85s" id="fAC-8A-KAf"/>
                         <outlet property="waitingIndicator" destination="nQd-jp-N0D" id="Xbk-64-4ox"/>
                     </connections>
                 </viewController>
                 <customObject id="bQK-PT-uex" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="1647"/>
+            <point key="canvasLocation" x="43" y="1617.5"/>
         </scene>
     </scenes>
 </document>

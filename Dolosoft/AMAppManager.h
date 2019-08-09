@@ -9,14 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "AMApp.h"
 #import "AMFileManager.h"
-#import "AMMainViewController.h"
 
-@class AMMainViewController, AMFileManager, AMApp;
+@class AMFileManager, AMApp;
 
 @interface AMAppManager : NSObject {
     AMFileManager *fileManager;
 }
-@property(retain,nonatomic) AMMainViewController *mainViewController;
 @property(retain,nonatomic) NSArray<AMApp *> *appList;
 - (instancetype)initWithFileManager:(AMFileManager *)fm;
 - (void)initializeClassListForApp:(AMApp *)app;

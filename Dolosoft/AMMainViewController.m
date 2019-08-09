@@ -19,7 +19,7 @@
 // add the search paths for headers and libs
 
 @implementation AMMainViewController
-- (void)redirectLogToDocuments {
+- (void)redirectLogToDocuments { // TODO: Move this method to AMMananger
     #ifdef DEBUG
         return;
     #endif
@@ -38,95 +38,30 @@
 // https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self redirectLogToDocuments];
+    [self redirectLogToDocuments];
 
     self.view.layer.backgroundColor = [NSColor colorWithCalibratedRed:71.0f/255.0f
                                                                 green:69.0f/255.0f
                                                                  blue:68.0f/255.0f
                                                                 alpha:1].CGColor;
-/* leaving these here in case I need to reset the defaults */
-//        NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-//        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *password = [defaults objectForKey:@"password"];
 
-    if (!password) {
-        password = [self getSecureUserInput:@"Enter iOS device root password" defaultValue:@""];
-        [defaults setObject:password forKey:@"password"];
-        [defaults synchronize];
-    }
+    [appsTableView setAction:@selector(tableViewClicked:)];
+    [classesTableView setAction:@selector(tableViewClicked:)];
+    [methodsTableView setAction:@selector(tableViewClicked:)];
 
-    fileManager = [[AMFileManager alloc] init];
-    appManager = [[AMAppManager alloc] initWithFileManager:fileManager];
-    appManager.mainViewController = self;
-    tweakBuilder = [[AMTweakBuilder alloc] initWithFileManager:fileManager];
-    tweakBuilder.mainViewController = self;
-    logger = [[AMLogger alloc] initWithFileManager:fileManager];
+    //        appsTableView.focusRingType = NSFocusRingTypeNone;
+    //        classesTableView.focusRingType = NSFocusRingTypeNone;
+    //        methodsTableView.focusRingType = NSFocusRingTypeNone;
 
+    terminalTextView.editable = NO;
+    terminalTextView.font = [NSFont fontWithName:@"Monaco" size:12];
 
-    NSString *hostName = @"localhost";
-    NSString *username = @"root";
-    NSInteger port = 2222;
-    connectionHandler = [[AMConnectionHandler alloc]
-                         initWithHost:hostName
-                         port:port
-                         username:username
-                         password:password];
-
-    while (!connectionHandler.session.isConnected) {
-        password = [self getSecureUserInput:@"Incorrect iOS device root password. Please try again" defaultValue:@""];
-        [defaults setObject:password forKey:@"password"];
-        [defaults synchronize];
-        connectionHandler = [[AMConnectionHandler alloc]
-                             initWithHost:hostName
-                             port:port
-                             username:username
-                             password:password];
-    }
-
-    deviceManager = [[AMDeviceManager alloc] initWithConnectionHandler:connectionHandler fileManger:fileManager];
-
-    if (connectionHandler.session.isConnected) {
-        logger.connectionHandler = connectionHandler;
-
-        if ([deviceManager toolsInstalled]) {
-            NSLog(@"Dolosoft::DolosoftTools already installed on iOS device at /var/root/DolosoftTools");
-        } else {
-            [deviceManager installTools];
-        }
-
-        appManager.appList = [deviceManager getUserApps];
-        [deviceManager addUserAppsDocumentsDirectory:appManager];
-
-        [appsTableView setAction:@selector(tableViewClicked:)];
-        [classesTableView setAction:@selector(tableViewClicked:)];
-        [methodsTableView setAction:@selector(tableViewClicked:)];
-
-        //        appsTableView.focusRingType = NSFocusRingTypeNone;
-        //        classesTableView.focusRingType = NSFocusRingTypeNone;
-        //        methodsTableView.focusRingType = NSFocusRingTypeNone;
-
-        terminalTextView.editable = NO;
-        terminalTextView.font = [NSFont fontWithName:@"Monaco" size:12];
-
-        logTextView.editable = NO;
-        logTextView.font = [NSFont fontWithName:@"Monaco" size:12];
-        
-        [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@", _device.DeviceName]];
-
-        [self updateTerminalDaemon];
-    } else {
-        NSLog(@"Dolosoft::Unable to establish connection.");
-        NSLog(@"Dolosoft::%@", [connectionHandler.session.lastError localizedDescription]);
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"Exit"];
-        [alert setMessageText:[NSString stringWithFormat:@"Unable to connect to %@@%@ at port %ld\nMake sure device is connected via USB.",
-                               username,
-                               hostName,
-                               (long)port]];
-        [alert runModal];
-    }
+    logTextView.editable = NO;
+    logTextView.font = [NSFont fontWithName:@"Monaco" size:12];
     
+    [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@", _manager.device.DeviceName]];
+
+    [self updateTerminalDaemon]; // TODO: redo this code using performSelectorInBackground
 }
 
 - (void)updateTerminalDaemon {
@@ -137,7 +72,7 @@
 }
 
 - (void)updateTerminal:(NSTimer *)timer {
-    NSString *logPath = [NSString stringWithFormat:@"%@/liveTerminalLog.txt", [fileManager mainDirectoryPath]];
+    NSString *logPath = [NSString stringWithFormat:@"%@/liveTerminalLog.txt", [_manager.fileManager mainDirectoryPath]];
     NSString* content = [NSString stringWithContentsOfFile:logPath
                                                   encoding:NSUTF8StringEncoding
                                                      error:NULL];
@@ -147,22 +82,22 @@
 }
 
 - (IBAction)cycriptButtonClicked:(id)sender {
-    NSString *loadCycriptPath = [NSString stringWithFormat:@"%@/loadCycript.sh", [fileManager mainDirectoryPath]];
+    NSString *loadCycriptPath = [NSString stringWithFormat:@"%@/loadCycript.sh", [_manager.fileManager mainDirectoryPath]];
     [[NSWorkspace sharedWorkspace] openFile:loadCycriptPath withApplication:@"Terminal"];
 }
 - (IBAction)SSHSessionButtonClicked:(id)sender {
-    NSString *loadTerminalPath = [NSString stringWithFormat:@"%@/loadSSH.sh", [fileManager mainDirectoryPath]];
+    NSString *loadTerminalPath = [NSString stringWithFormat:@"%@/loadSSH.sh", [_manager.fileManager mainDirectoryPath]];
     [[NSWorkspace sharedWorkspace] openFile:loadTerminalPath withApplication:@"Terminal"];
 }
 
 - (IBAction)respringButtonClicked:(id)sender {
     NSError *error = nil;
-    [connectionHandler.session.channel execute:@"killall -9 SpringBoard" error:&error];
+    [_manager.connectionHandler.session.channel execute:@"killall -9 SpringBoard" error:&error];
 }
 - (IBAction)killAppButtonClicked:(id)sender {
     NSError *error = nil;
     NSString *command = [NSString stringWithFormat:@"killall -9 \"%@\"", selectedApp.executableName];
-    [connectionHandler.session.channel execute:command error:&error];
+    [_manager.connectionHandler.session.channel execute:command error:&error];
 }
 - (IBAction)stringsButtonClicked:(id)sender {
     /* strings /path/to/executable */
@@ -174,9 +109,9 @@
 }
 
 - (void)getAppLog {
-    NSString *logPath = [NSString stringWithFormat:@"%@/AMLog.txt", [fileManager mainDirectoryPath]];
-    [fileManager removeItemAtPath:logPath error:nil];
-    [logTextView setString:[logger logForApp:selectedApp]];
+    NSString *logPath = [NSString stringWithFormat:@"%@/AMLog.txt", [_manager.fileManager mainDirectoryPath]];
+    [_manager.fileManager removeItemAtPath:logPath error:nil];
+    [logTextView setString:[_manager.logger logForApp:selectedApp]];
 }
 
 - (IBAction)getLogButtonClicked:(id)sender {
@@ -188,8 +123,8 @@
 }
 
 - (IBAction)installTweakButtonClicked:(id)sender {
-    if ([fileManager fileExistsAtPath:selectedApp.tweakDirPath isDirectory:nil]) {
-        [tweakBuilder makeDoTheosForApp:[appManager appWithDisplayName:selectedApp.displayName]];
+    if ([_manager.fileManager fileExistsAtPath:selectedApp.tweakDirPath isDirectory:nil]) {
+        [_manager.tweakBuilder makeDoTheosForApp:[_manager.appManager appWithDisplayName:selectedApp.displayName]];
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"Ok"];
@@ -218,13 +153,13 @@
         return;
     }
     
-    selectedApp = [appManager
-                   appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
+    selectedApp = [_manager.appManager
+                   appWithDisplayName:_manager.appManager.appList[appsTableView.selectedRow].displayName];
     NSLog(@"selectedApp = %@", [selectedApp displayName]);
     
     /* this line below is used for interdevice communication between macOS and iOS so that cycript can launch with the executableName for the -p argument */
     [selectedApp.executableName writeToFile:[NSString stringWithFormat:@"%@/selectedApp.txt",
-                                             [fileManager mainDirectoryPath]]
+                                             [_manager.fileManager mainDirectoryPath]]
                                  atomically:YES
                                    encoding:NSUTF8StringEncoding
                                       error:nil];
@@ -245,17 +180,17 @@
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         /* check to see if we have decrypted file or headers */
-        if (![fileManager fileExistsAtPath:[fileManager pathOfDecryptedBinaryForApp:selectedApp]] &&
-            ![fileManager fileExistsAtPath:[fileManager pathOfHeaderForApp:selectedApp]]) {
+        if (![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfDecryptedBinaryForApp:selectedApp]] &&
+            ![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfHeaderForApp:selectedApp]]) {
             NSLog(@"AM::App has not been decrypted and/or downloaded. Decrypting and downloading now.");
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [analyzeAppProgressLabel setStringValue:@"Decrypting app"];
                 [analyzeAppProgressLabel display];
             });
-            [deviceManager decryptAppAndDownload:selectedApp];
+            [_manager.deviceManager decryptAppAndDownload:selectedApp];
         }
         
-        if (![fileManager fileExistsAtPath:[fileManager pathOfHeaderForApp:
+        if (![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfHeaderForApp:
                                             selectedApp]]) {
             NSLog(@"headerPath = %@", selectedApp.headerPath);
             NSLog(@"AM::Headers have not been dumped. Dumping now.");
@@ -263,7 +198,7 @@
                 [analyzeAppProgressLabel setStringValue:@"Dumping headers"];
                 [analyzeAppProgressLabel display];
             });
-            [appManager dumpHeadersForApp:selectedApp];
+            [_manager.appManager dumpHeadersForApp:selectedApp];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
@@ -272,7 +207,7 @@
         });
         
         //NSLog(@"LABEL = %@", [analyzeAppProgressLabel di]);
-        [appManager initializeClassListForApp:selectedApp];
+        [_manager.appManager initializeClassListForApp:selectedApp];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [analyzeAppProgressLabel setStringValue:@"Analysis finished"];
@@ -288,7 +223,7 @@
     NSError *error = nil;
     NSString *command = [NSString stringWithFormat:@"printf \"Y\" | apt-get remove com.dolosoft.dolosoft-%@",
                          selectedApp.displayNameLowercaseNoSpace];
-    [connectionHandler.session.channel execute:command error:&error];
+    [_manager.connectionHandler.session.channel execute:command error:&error];
 }
 
 - (IBAction)createTweakButtonClicked:(id)sender {
@@ -302,8 +237,8 @@
         [methods addObject:objcMethod];
     }];
     
-    [tweakBuilder createTheosProjectForApp:selectedApp];
-    [tweakBuilder writeTweakCodeForApp:selectedApp forObjcClass:selectedClass withMethods:methods];
+    [_manager.tweakBuilder createTheosProjectForApp:selectedApp];
+    [_manager.tweakBuilder writeTweakCodeForApp:selectedApp forObjcClass:selectedClass withMethods:methods];
     
     [createTweakProgressBar stopAnimation:nil];
 }
@@ -338,7 +273,7 @@
             selectedClass = [selectedApp classWithName:selectedApp.classList[tableView.selectedRow].className];
             [methodsTableView reloadData];
         } else if (tableView == appsTableView) {
-            selectedApp = [appManager appWithDisplayName:appManager.appList[appsTableView.selectedRow].displayName];
+            selectedApp = [_manager.appManager appWithDisplayName:_manager.appManager.appList[appsTableView.selectedRow].displayName];
             selectedClass = nil;
             [classesTableView reloadData];
             [methodsTableView reloadData];
@@ -348,7 +283,7 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     if (tableView == appsTableView) {
-        return [appManager.appList count];
+        return [_manager.appManager.appList count];
     } else if (tableView == classesTableView) {
         return [selectedApp.classList count];
     } else if (tableView == methodsTableView) {
@@ -363,7 +298,7 @@
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex {
     NSString *identifier = [tableColumn identifier];
     if ([identifier isEqualToString:@"apps"]) {
-        AMApp *app = [appManager.appList objectAtIndex:rowIndex];
+        AMApp *app = [_manager.appManager.appList objectAtIndex:rowIndex];
         return app.displayName;
     } else if ([identifier isEqualToString:@"classes"]) {
         return selectedApp.classList[rowIndex].className;

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
+#include <libimobiledevice/libimobiledevice.h>
+#include <libimobiledevice/lockdown.h>
 #import "AMDeviceManager.h"
 
 NS_ASSUME_NONNULL_BEGIN

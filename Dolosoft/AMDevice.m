@@ -70,9 +70,9 @@
     ret = idevice_new(&device, udid);
     if (ret != IDEVICE_E_SUCCESS) {
         if (udid) {
-            printf("No device found with udid %s, is it plugged in?\n", udid);
+//            printf("No device found with udid %s, is it plugged in?\n", udid);
         } else {
-            printf("No device found, is it plugged in?\n");
+//            printf("No device found, is it plugged in?\n");
         }
         return nil;
     }

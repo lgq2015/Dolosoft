@@ -16,7 +16,7 @@
     return self;
 }
 
-- (instancetype)initWithConnectionHandler:(AMConnectionHandler *)handler fileManger:(AMFileManager *)manager{
+- (instancetype)initWithConnectionHandler:(AMConnectionHandler *)handler fileManager:(AMFileManager *)manager{
     self = [super init];
     if (self) {
         connectionHandler = handler;

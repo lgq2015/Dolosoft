@@ -18,24 +18,15 @@
 #import "AMLogger.h"
 #import "AMDeviceManager.h"
 #import "AMDevice.h"
-#import "InitialLoadingViewController.h"
-#include <libimobiledevice/libimobiledevice.h>
-#include <libimobiledevice/lockdown.h>
-//#import "NSAlert+SynchronousSheet.h"
+#import "InitialViewController.h"
+#import "AMManager.h"
 
 
-@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager, AMDevice;
+@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager, AMDevice, AMManager;
 
 @interface AMMainViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource> {
-    AMAppManager *appManager;
-    AMFileManager *fileManager;
-    AMConnectionHandler *connectionHandler;
-    AMApp *selectedApp;
-    AMObjcClass *selectedClass;
-    AMTweakBuilder *tweakBuilder;
-    AMLogger *logger;
-    AMDeviceManager *deviceManager;
-    
+    AMApp *selectedApp; // TODO: move this into another class it doesnt belong as a VC ivar
+    AMObjcClass *selectedClass; // TODO: move this into another class it doesnt belong as a VC ivar
     IBOutlet NSTextField *connectedToLabel;
     IBOutlet NSButton *analyzeAppButton;
     IBOutlet NSTextField *analyzeAppProgressLabel;
@@ -47,6 +38,6 @@
     IBOutlet NSTableView *methodsTableView;
     IBOutlet NSTextView *terminalTextView;
 }
-@property(retain, nonatomic) AMDevice *device;
+@property(retain, nonatomic) AMManager *manager;;
 @end
 
