@@ -35,9 +35,6 @@
 }
 
 // NSAlert+SynchronousSheet.h (in case i need this later)
-/*  TODO: Figure out how to make the initial UI load, so that I can look at the terminal feed.
-    Once all the app data has been collected, then load the rest
- */
 // https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
 - (void)viewDidLoad {
     [super viewDidLoad];

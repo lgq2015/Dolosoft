@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "WaitingForDeviceViewController.h"
+#import "InitialLoadingViewController.h"
 #import "AMDevice.h"
 
 @interface AppDelegate ()
@@ -25,7 +25,7 @@
         viewController.device = device;
         [viewController presentViewControllerAsModalWindow:viewController];
     } else { // if no device is connected
-        WaitingForDeviceViewController *viewController = [storyBoard instantiateControllerWithIdentifier:@"WaitingForDeviceViewController"]; // instantiate your window controller
+        InitialLoadingViewController *viewController = [storyBoard instantiateControllerWithIdentifier:@"InitialLoadingViewController"]; // instantiate your window controller
         [viewController presentViewControllerAsModalWindow:viewController];
     }
 }

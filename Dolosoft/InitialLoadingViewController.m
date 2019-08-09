@@ -1,15 +1,15 @@
 //
-//  WaitingForDeviceViewController.m
+//  InitialLoadingViewController.m
 //  Dolosoft
 //
 //  Created by Moran, Ander on 8/8/19.
 //  Copyright © 2019 Ander Moran. All rights reserved.
 //
 
-#import "WaitingForDeviceViewController.h"
+#import "InitialLoadingViewController.h"
 
 
-@implementation WaitingForDeviceViewController
+@implementation InitialLoadingViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"LOADED");

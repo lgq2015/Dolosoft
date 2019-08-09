@@ -1,5 +1,5 @@
 //
-//  WaitingForDeviceViewController.h
+//  InitialLoadingViewController.h
 //  Dolosoft
 //
 //  Created by Moran, Ander on 8/8/19.
@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class AMDevice;
 
-@interface WaitingForDeviceViewController : NSViewController
+@interface InitialLoadingViewController : NSViewController
 @property (strong) IBOutlet NSProgressIndicator *waitingIndicator;
 @property (retain, nonatomic) AMDevice *device;
 @end

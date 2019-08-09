@@ -1155,7 +1155,7 @@
         <!--Dolosoft-->
         <scene sceneID="bEw-bQ-6aV">
             <objects>
-                <viewController title="Dolosoft" storyboardIdentifier="WaitingForDeviceViewController" id="2Mk-6F-anA" customClass="WaitingForDeviceViewController" sceneMemberID="viewController">
+                <viewController title="Dolosoft" storyboardIdentifier="InitialLoadingViewController" id="2Mk-6F-anA" customClass="InitialLoadingViewController" sceneMemberID="viewController">
                     <view key="view" id="RIi-le-soG">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="154"/>
                         <autoresizingMask key="autoresizingMask"/>
