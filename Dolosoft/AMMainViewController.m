@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //[self redirectLogToDocuments];
-    
+
     self.view.layer.backgroundColor = [NSColor colorWithCalibratedRed:71.0f/255.0f
                                                                 green:69.0f/255.0f
                                                                  blue:68.0f/255.0f

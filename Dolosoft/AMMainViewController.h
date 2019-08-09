@@ -18,6 +18,7 @@
 #import "AMLogger.h"
 #import "AMDeviceManager.h"
 #import "AMDevice.h"
+#import "WaitingForDeviceViewController.h"
 #include <libimobiledevice/libimobiledevice.h>
 #include <libimobiledevice/lockdown.h>
 //#import "NSAlert+SynchronousSheet.h"

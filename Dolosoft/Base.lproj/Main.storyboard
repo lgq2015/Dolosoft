@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -687,7 +687,7 @@
                     <window key="window" title="Dolosoft" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="609" y="381" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
@@ -701,10 +701,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--iOS Reverser-->
+        <!--Dolosoft-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController title="iOS Reverser" id="XfG-lQ-9wD" customClass="AMMainViewController" sceneMemberID="viewController">
+                <viewController title="Dolosoft" storyboardIdentifier="AMMainViewController" id="XfG-lQ-9wD" customClass="AMMainViewController" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1440" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1141,6 +1141,37 @@
                 <userDefaultsController representsSharedInstance="YES" id="qYq-uk-C7m"/>
             </objects>
             <point key="canvasLocation" x="68" y="952"/>
+        </scene>
+        <!--Dolosoft-->
+        <scene sceneID="bEw-bQ-6aV">
+            <objects>
+                <viewController title="Dolosoft" storyboardIdentifier="WaitingForDeviceViewController" id="2Mk-6F-anA" customClass="WaitingForDeviceViewController" sceneMemberID="viewController">
+                    <view key="view" id="RIi-le-soG">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="154"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kfz-eA-85s">
+                                <rect key="frame" x="179" y="68" width="125" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Waiting for device..." id="ltU-kB-Pzi">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="nQd-jp-N0D">
+                                <rect key="frame" x="148" y="68" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="waitingIndicator" destination="nQd-jp-N0D" id="Xbk-64-4ox"/>
+                    </connections>
+                </viewController>
+                <customObject id="bQK-PT-uex" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="1647"/>
         </scene>
     </scenes>
 </document>

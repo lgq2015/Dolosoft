@@ -23,11 +23,12 @@
 		0CA40BD1207EE38800789BEB /* AMAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA40BD0207EE38800789BEB /* AMAppManager.m */; };
 		0CEFBF102096468C00B41490 /* AMTweakBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
+		41F5192A22FDBA2A00200C2A /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F7E41722FC70D800F3D402 /* libimobiledevice.dylib */; };
 		41F7E3EC22FC5FC900F3D402 /* libPods-Dolosoft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F50362FEBA69F0277DD9CC /* libPods-Dolosoft.a */; };
-		41F7E41822FC70D800F3D402 /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F7E41722FC70D800F3D402 /* libimobiledevice.dylib */; };
 		41F7E41A22FC70ED00F3D402 /* libplist.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F7E41922FC70ED00F3D402 /* libplist.dylib */; };
 		41F7E41D22FC823800F3D402 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7E41C22FC823800F3D402 /* XMLReader.m */; };
 		41F7E42022FC8A4600F3D402 /* AMDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7E41F22FC8A4600F3D402 /* AMDevice.m */; };
+		41F7E42322FCC1D500F3D402 /* WaitingForDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7E42222FCC1D500F3D402 /* WaitingForDeviceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,8 @@
 		41F7E41C22FC823800F3D402 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		41F7E41E22FC8A4600F3D402 /* AMDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDevice.h; sourceTree = "<group>"; };
 		41F7E41F22FC8A4600F3D402 /* AMDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDevice.m; sourceTree = "<group>"; };
+		41F7E42122FCC1D500F3D402 /* WaitingForDeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitingForDeviceViewController.h; sourceTree = "<group>"; };
+		41F7E42222FCC1D500F3D402 /* WaitingForDeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaitingForDeviceViewController.m; sourceTree = "<group>"; };
 		B9A865B57785B05EFE0A587A /* Pods-Dolosoft.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dolosoft.debug.xcconfig"; path = "Target Support Files/Pods-Dolosoft/Pods-Dolosoft.debug.xcconfig"; sourceTree = "<group>"; };
 		BA96C1E77BABAD1A8A1919A6 /* Pods-Dolosoft.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dolosoft.release.xcconfig"; path = "Target Support Files/Pods-Dolosoft/Pods-Dolosoft.release.xcconfig"; sourceTree = "<group>"; };
 		C6F50362FEBA69F0277DD9CC /* libPods-Dolosoft.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dolosoft.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,10 +99,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41F5192A22FDBA2A00200C2A /* libimobiledevice.dylib in Frameworks */,
 				41F7E41A22FC70ED00F3D402 /* libplist.dylib in Frameworks */,
 				41F7E3EC22FC5FC900F3D402 /* libPods-Dolosoft.a in Frameworks */,
 				0C9CD9CD2231A18E0020A723 /* CoreFoundation.framework in Frameworks */,
-				41F7E41822FC70D800F3D402 /* libimobiledevice.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +149,8 @@
 			children = (
 				0C16DFA9207C1A0100AA0952 /* AppDelegate.h */,
 				0C16DFAA207C1A0100AA0952 /* AppDelegate.m */,
+				41F7E42122FCC1D500F3D402 /* WaitingForDeviceViewController.h */,
+				41F7E42222FCC1D500F3D402 /* WaitingForDeviceViewController.m */,
 				0C16DFAC207C1A0100AA0952 /* AMMainViewController.h */,
 				0C16DFAD207C1A0100AA0952 /* AMMainViewController.m */,
 				41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */,
@@ -373,6 +378,7 @@
 				0CA40BC9207EBAFE00789BEB /* AMObjcClass.m in Sources */,
 				41F7E41D22FC823800F3D402 /* XMLReader.m in Sources */,
 				41F7E42022FC8A4600F3D402 /* AMDevice.m in Sources */,
+				41F7E42322FCC1D500F3D402 /* WaitingForDeviceViewController.m in Sources */,
 				0C16DFAE207C1A0100AA0952 /* AMMainViewController.m in Sources */,
 				0CA40BD1207EE38800789BEB /* AMAppManager.m in Sources */,
 				0C101C7720975F0A000792B2 /* AMLogger.m in Sources */,

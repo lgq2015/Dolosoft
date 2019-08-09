@@ -8,7 +8,7 @@
 
 #import "AMDeviceManager.h"
 
-#define TEST_MODE YES
+#define TEST_MODE NO
 
 @implementation AMDeviceManager
 - (instancetype)init {

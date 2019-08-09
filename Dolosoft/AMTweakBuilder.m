@@ -76,6 +76,7 @@
 }
 
 - (void)createTheosProjectForApp:(AMApp *)app {
+    NSLog(@"YOLO");
     [self removeTheosProjectForApp:app];
     // TODO: Not related to this part but just wanted to remind myself to terminate all NSTasks when done using them!
     // Use NSTasks terminate method
