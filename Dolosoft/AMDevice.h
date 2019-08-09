@@ -14,11 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class AMDeviceManager;
 
+// Honestly wanted to name this class something like AMiOSDevice but that goes against camel case and it bothers me so here we are with AMDevice sorry for the ambiguity
 @interface AMDevice : NSObject
 - (instancetype)init;
 - (void)printInfo;
 + (NSDictionary *)getDeviceInfo;
-@property(retain, nonatomic) NSDictionary *deviceInfoPlist;
+@property(retain, nonatomic) NSDictionary *deviceInfoPlist; /* just to clairfy, this isn't some info.plist file which are commonly found on iOS devices.
+                                                             this is literally a plist that contains information about the device
+                                                            */
 
 // https://en.wikipedia.org/wiki/Property_list
 /* property names start with capitals because that's how the keys are spelled in the plist and it makes it easier :) */

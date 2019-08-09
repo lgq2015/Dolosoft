@@ -1123,6 +1123,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y0C-bK-tWa">
+                                <rect key="frame" x="975" y="12" width="447" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Connected to nothing at the moment" id="nri-eJ-6Hn">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -1131,6 +1140,7 @@
                         <outlet property="analyzeAppProgressLabel" destination="Q6U-Sh-nvE" id="eax-O2-YUs"/>
                         <outlet property="appsTableView" destination="PXO-FE-7yW" id="Cox-bN-ROw"/>
                         <outlet property="classesTableView" destination="HYu-1r-hmT" id="qne-74-gWM"/>
+                        <outlet property="connectedToLabel" destination="y0C-bK-tWa" id="2zY-ny-oaH"/>
                         <outlet property="createTweakProgressBar" destination="2IN-ez-KZW" id="yoD-Sm-ofm"/>
                         <outlet property="logTextView" destination="oQ6-yY-0Jo" id="WOV-No-65E"/>
                         <outlet property="methodsTableView" destination="aeX-or-eQF" id="FjQ-Se-AhH"/>

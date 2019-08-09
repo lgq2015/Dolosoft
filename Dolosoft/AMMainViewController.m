@@ -14,6 +14,9 @@
  defaults (from the package Cephei by HASHBANG productions)
  
 */
+// https://medium.com/@airejie/setting-up-xcode-for-c-projects-17531c3c3941
+// for getting libimobiledevice to import
+// add the search paths for headers and libs
 
 @implementation AMMainViewController
 - (void)redirectLogToDocuments {
@@ -111,7 +114,8 @@
 
         logTextView.editable = NO;
         logTextView.font = [NSFont fontWithName:@"Monaco" size:12];
-
+        
+        [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@", _device.DeviceName]];
 
         [self updateTerminalDaemon];
     } else {

@@ -22,11 +22,16 @@
     if (!_deviceInfoPlist) {
         return nil;
     }
+
     unsigned int numberOfProperties = 0;
     objc_property_t *propertyArray = class_copyPropertyList([self class], &numberOfProperties);
     for (NSUInteger i = 0; i < numberOfProperties; i++) {
         objc_property_t property = propertyArray[i];
         NSString *name = [[NSString alloc] initWithUTF8String:property_getName(property)];
+        if ([name isEqualToString:@"deviceInfoPlist"]) {
+            // do nothing here because this is not a key in the p[list, this is my own property
+            continue;
+        }
         [self setValue:[_deviceInfoPlist objectForKey:name] forKey:name];
     }
     return self;

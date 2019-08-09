@@ -24,7 +24,7 @@
 //#import "NSAlert+SynchronousSheet.h"
 
 
-@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager;
+@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager, AMDevice;
 
 @interface AMMainViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource> {
     AMAppManager *appManager;
@@ -36,6 +36,7 @@
     AMLogger *logger;
     AMDeviceManager *deviceManager;
     
+    IBOutlet NSTextField *connectedToLabel;
     IBOutlet NSButton *analyzeAppButton;
     IBOutlet NSTextField *analyzeAppProgressLabel;
     IBOutlet NSProgressIndicator *analyzeAppProgressBar;
@@ -46,5 +47,6 @@
     IBOutlet NSTableView *methodsTableView;
     IBOutlet NSTextView *terminalTextView;
 }
+@property(retain, nonatomic) AMDevice *device;
 @end
 

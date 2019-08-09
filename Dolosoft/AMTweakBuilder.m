@@ -44,11 +44,6 @@
     [tweakCode appendString:@"\n\ntypedef id CDUnknownBlockType;\n"];
     [tweakCode appendFormat:@"\n%%hook %@", objcClass.className];
     
-    //    [methodsTableView.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
-    //        AMObjcMethod *objcMethod = selectedClass.methodsList[index];
-    //        [tweakCode appendString:[tweakBuilder formatMethodForTweak:objcMethod]];
-    //    }];
-    
     for (AMObjcMethod *method in methods) {
         [tweakCode appendString:[self formatMethodForTweak:method]];
     }
