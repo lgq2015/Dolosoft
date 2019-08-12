@@ -11,6 +11,8 @@
 @implementation AMManager
 - (instancetype)init {
     self = [super init];
+    group = dispatch_group_create();
+    background_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     _device = [[AMDevice alloc] init];
     // https://stackoverflow.com/questions/26689699/initializing-another-window-using-storyboard-for-os-x
     storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil]; // get a reference to the storyboard
@@ -46,69 +48,87 @@
 - (void)start {
     // Ok idk why this is in a thread and why i have 2 checks for if the device connected. Need to reformat
     [self setup];
-    _mainViewController = [storyBoard instantiateControllerWithIdentifier:@"AMMainViewController"]; // instantiate your window controller
-    _mainViewController.manager = self; // TODO: I hate the way this is structured, so restructure
-    [self dismissVC:_initialViewController];
-    [self presentVCAsModal:_mainViewController];
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        _mainViewController = [storyBoard instantiateControllerWithIdentifier:@"AMMainViewController"]; // instantiate your window controller
+        _mainViewController.manager = self; // TODO: I hate the way this is structured, so restructure
+        [self dismissVC:_initialViewController];
+        [self presentVCAsModal:_mainViewController];
+    });
 }
 
 - (void)setup {
     /* leaving these here in case I need to reset the defaults */
 //    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
 //    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *password = [defaults objectForKey:@"password"];
-    
-    if (!password) {
-        password = [AMManager getSecureUserInput:@"Enter iOS device root password" defaultValue:@""];
-        [defaults setObject:password forKey:@"password"];
-        [defaults synchronize];
-    }
-    
-    _fileManager = [[AMFileManager alloc] init];
-    _appManager = [[AMAppManager alloc] initWithFileManager:_fileManager];
-    _tweakBuilder = [[AMTweakBuilder alloc] initWithFileManager:_fileManager];
-    _logger = [[AMLogger alloc] initWithFileManager:_fileManager];
-    
-    NSString *hostName = @"localhost";
-    NSString *username = @"root";
-    NSInteger port = 2222;
-    
-    _connectionHandler = [[AMConnectionHandler alloc]
-                          initWithHost:hostName
-                          port:port
-                          username:username
-                          password:password];
-    
-    while (!_connectionHandler.session.isConnected) { // we keep trying until we get the right password
-        password = [AMManager getSecureUserInput:@"Incorrect iOS device root password. Please try again" defaultValue:@""];
-        [defaults setObject:password forKey:@"password"];
-        [defaults synchronize];
-        _connectionHandler = [[AMConnectionHandler alloc] initWithHost:hostName
-                                                                  port:port
-                                                              username:username
-                                                              password:password];
-    }
-    
-    _deviceManager = [[AMDeviceManager alloc] initWithConnectionHandler:_connectionHandler fileManager:_fileManager];
-    
-    if (_connectionHandler.session.isConnected) { // TODO: Reformat this as this if statement is redundant
-        _logger.connectionHandler = _connectionHandler;
+    dispatch_group_async(group, background_queue, ^{
+        dispatch_sync(dispatch_get_main_queue(), ^(void){
+            [_initialViewController setStatus:@"Attempting to connect to device via SSH"];
+        });
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *password = [defaults objectForKey:@"password"];
         
-        if ([_deviceManager toolsInstalled]) {
-            NSLog(@"Dolosoft::DolosoftTools already installed on iOS device at /var/root/DolosoftTools");
-        } else {
-            NSLog(@"Dolosoft::Installing DolosoftTools on iOS device");
-            [_deviceManager installTools];
+        if (!password) {
+            password = [AMManager getSecureUserInput:@"Enter iOS device root password" defaultValue:@""];
+            [defaults setObject:password forKey:@"password"];
+            [defaults synchronize];
         }
         
-        _appManager.appList = [_deviceManager getUserApps];
-        [_deviceManager addUserAppsDocumentsDirectory:_appManager];
+        _fileManager = [[AMFileManager alloc] init];
+        _appManager = [[AMAppManager alloc] initWithFileManager:_fileManager];
+        _tweakBuilder = [[AMTweakBuilder alloc] initWithFileManager:_fileManager];
+        _logger = [[AMLogger alloc] initWithFileManager:_fileManager];
         
-    } else {
-        NSLog(@"Dolosoft::Unable to establish connection.");
-    }
+        NSString *hostName = @"localhost";
+        NSString *username = @"root";
+        NSInteger port = 2222;
+
+        _connectionHandler = [[AMConnectionHandler alloc]
+                              initWithHost:hostName
+                              port:port
+                              username:username
+                              password:password];
+
+        while (!_connectionHandler.session.isConnected) { // we keep trying until we get the right password
+            password = [AMManager getSecureUserInput:@"Incorrect iOS device root password. Please try again" defaultValue:@""];
+            [defaults setObject:password forKey:@"password"];
+            [defaults synchronize];
+            _connectionHandler = [[AMConnectionHandler alloc] initWithHost:hostName
+                                                                      port:port
+                                                                  username:username
+                                                                  password:password];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [_initialViewController setStatus:@"Preparing device"];
+        });
+        
+        _deviceManager = [[AMDeviceManager alloc] initWithConnectionHandler:_connectionHandler fileManager:_fileManager];
+
+        if (_connectionHandler.session.isConnected) { // TODO: Reformat this as this if statement is redundant
+            _logger.connectionHandler = _connectionHandler;
+
+            if ([_deviceManager toolsInstalled]) {
+                NSLog(@"Dolosoft::DolosoftTools already installed on iOS device at /var/root/DolosoftTools");
+            } else {
+                NSLog(@"Dolosoft::Installing DolosoftTools on iOS device");
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [_initialViewController setStatus:@"Installing DolosoftTools to iOS device"];
+                });
+                [_deviceManager installTools];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [_initialViewController setStatus:@"Running userapps.sh"];
+            });
+            _appManager.appList = [_deviceManager getUserApps];
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [_initialViewController setStatus:@"Running userappsextended.sh"];
+            });
+            [_deviceManager addUserAppsDocumentsDirectory:_appManager];
+
+        } else {
+            NSLog(@"Dolosoft::Unable to establish connection.");
+        }
+    });
 }
 
 + (NSString *)getSecureUserInput:(NSString *)prompt defaultValue:(NSString *)defaultValue {

@@ -156,9 +156,6 @@
         [alert runModal];
         return;
     }
-    
-    selectedApp = [_manager.appManager
-                   appWithDisplayName:_manager.appManager.appList[appsTableView.selectedRow].displayName];
     NSLog(@"selectedApp = %@", [selectedApp displayName]);
     
     /* this line below is used for interdevice communication between macOS and iOS so that cycript can launch with the executableName for the -p argument */

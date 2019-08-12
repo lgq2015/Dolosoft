@@ -25,6 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AMManager : NSObject {
     NSStoryboard *storyBoard;
+    dispatch_group_t group;
+    dispatch_queue_t background_queue;
+
 }
 @property(retain, nonatomic) AMAppManager *appManager;
 @property(retain, nonatomic) AMFileManager *fileManager;
