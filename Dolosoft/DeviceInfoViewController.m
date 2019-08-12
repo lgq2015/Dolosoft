@@ -45,12 +45,13 @@
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     if ([tableColumn.identifier isEqualToString:@"dictKey"]) {
         return [_deviceInfo allKeys][row];
-
     } else {
+        if ([[[_deviceInfo allValues][row] className] isEqualToString:@"__NSCFNumber"]) { // bc default string formatter inserts commas into NSNumbers
+            return [[_deviceInfo allValues][row] stringValue];
+        }
         return [_deviceInfo allValues][row];
     }
-    return @"ADSDDADASD";
-
+    return @"";
 }
 
 @end
