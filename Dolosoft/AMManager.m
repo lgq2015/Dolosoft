@@ -15,6 +15,7 @@
     // https://stackoverflow.com/questions/26689699/initializing-another-window-using-storyboard-for-os-x
     storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil]; // get a reference to the storyboard
     _initialViewController = [storyBoard instantiateControllerWithIdentifier:@"InitialViewController"]; // instantiate your window controller
+    _deviceInfoViewController = [storyBoard instantiateControllerWithIdentifier:@"DeviceInfoViewController"]; // instantiate your window controller
     [_initialViewController presentViewControllerAsModalWindow:_initialViewController];
     [self performSelectorOnMainThread:@selector(checkForDevice) withObject:nil waitUntilDone:NO];
     return self;
@@ -34,21 +35,27 @@
     [_initialViewController deviceDidAttachWithName:_device.DeviceName];
 }
 
+- (void)dismissVC:(NSViewController *)viewController {
+    [viewController dismissViewController:viewController];
+}
+
+- (void)presentVCAsModal:(NSViewController *)viewController {
+    [viewController presentViewControllerAsModalWindow:viewController];
+}
+
 - (void)start {
     // Ok idk why this is in a thread and why i have 2 checks for if the device connected. Need to reformat
     [self setup];
     _mainViewController = [storyBoard instantiateControllerWithIdentifier:@"AMMainViewController"]; // instantiate your window controller
     _mainViewController.manager = self; // TODO: I hate the way this is structured, so restructure
-    [_initialViewController dismissSelfAndPresentMainVC:_mainViewController];
-    [_mainViewController.view.window orderFront:nil];
+    [self dismissVC:_initialViewController];
+    [self presentVCAsModal:_mainViewController];
 }
-
-
 
 - (void)setup {
     /* leaving these here in case I need to reset the defaults */
-    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+//    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *password = [defaults objectForKey:@"password"];
@@ -63,7 +70,7 @@
     _appManager = [[AMAppManager alloc] initWithFileManager:_fileManager];
     _tweakBuilder = [[AMTweakBuilder alloc] initWithFileManager:_fileManager];
     _logger = [[AMLogger alloc] initWithFileManager:_fileManager];
-
+    
     NSString *hostName = @"localhost";
     NSString *username = @"root";
     NSInteger port = 2222;
@@ -92,6 +99,7 @@
         if ([_deviceManager toolsInstalled]) {
             NSLog(@"Dolosoft::DolosoftTools already installed on iOS device at /var/root/DolosoftTools");
         } else {
+            NSLog(@"Dolosoft::Installing DolosoftTools on iOS device");
             [_deviceManager installTools];
         }
         

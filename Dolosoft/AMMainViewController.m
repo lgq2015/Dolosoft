@@ -33,6 +33,10 @@
     NSString *pathForLog = [NSString stringWithFormat:@"%@/liveTerminalLog.txt", [dirPath path]];
     freopen([pathForLog cStringUsingEncoding:NSASCIIStringEncoding], "a+", stderr);
 }
+- (IBAction)deviceInfoButtonClicked:(id)sender {
+    _manager.deviceInfoViewController.deviceInfo = _manager.device.deviceInfo;
+    [self presentViewControllerAsSheet:_manager.deviceInfoViewController];
+}
 
 // NSAlert+SynchronousSheet.h (in case i need this later)
 // https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
@@ -295,15 +299,15 @@
 
 // TODO: Color code the methods! It's hard to search
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex {
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     NSString *identifier = [tableColumn identifier];
     if ([identifier isEqualToString:@"apps"]) {
-        AMApp *app = [_manager.appManager.appList objectAtIndex:rowIndex];
+        AMApp *app = [_manager.appManager.appList objectAtIndex:row];
         return app.displayName;
     } else if ([identifier isEqualToString:@"classes"]) {
-        return selectedApp.classList[rowIndex].className;
+        return selectedApp.classList[row].className;
     } else if ([identifier isEqualToString:@"methods"]) {
-        return selectedClass.methodsList[rowIndex].callSyntax;
+        return selectedClass.methodsList[row].callSyntax;
     } else {
         return @"THIS SHOULD NEVER RETURN";
     }

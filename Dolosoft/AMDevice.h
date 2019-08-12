@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init;
 - (void)printInfo;
 + (NSDictionary *)getDeviceInfo;
-@property(retain, nonatomic) NSDictionary *deviceInfoPlist; /* just to clairfy, this isn't some info.plist file which are commonly found on iOS devices.
+@property(retain, nonatomic) NSDictionary *deviceInfo; /* just to clairfy, this isn't some info.plist file which are commonly found on iOS devices.
                                                              this is literally a plist that contains information about the device
                                                             */
 

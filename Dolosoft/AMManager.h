@@ -16,8 +16,9 @@
 #import "AMDevice.h"
 #import "AMMainViewController.h"
 #import "InitialViewController.h"
+#import "DeviceInfoViewController.h"
 
-@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager, AMDevice, InitialViewController;
+@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager, AMDevice, InitialViewController, DeviceInfoViewController;
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -34,10 +35,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(retain, nonatomic) AMDevice *device;
 @property(retain, nonatomic) AMMainViewController *mainViewController;
 @property(retain, nonatomic) InitialViewController *initialViewController;
+@property(retain, nonatomic) DeviceInfoViewController *deviceInfoViewController;
 - (instancetype)init;
 - (void)setup; // TODO: rename this or restructure
 - (void)checkForDevice;
 - (void)deviceDidAttach;
+- (void)presentVCAsModal:(NSViewController *)viewController;
 + (NSString *)getSecureUserInput:(NSString *)prompt defaultValue:(NSString *)defaultValue;
 @end
 

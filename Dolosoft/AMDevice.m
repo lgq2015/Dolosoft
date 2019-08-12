@@ -18,8 +18,8 @@
         warning: objc runtime magic incoming!
         this loops through all of AMDevice's properties and assigns the value to each property from the deviceInfoPlist dictionary
      */
-    self.deviceInfoPlist = [AMDevice getDeviceInfo];
-    if (!_deviceInfoPlist) {
+    _deviceInfo = [AMDevice getDeviceInfo];
+    if (!_deviceInfo) {
         return nil;
     }
 
@@ -28,11 +28,11 @@
     for (NSUInteger i = 0; i < numberOfProperties; i++) {
         objc_property_t property = propertyArray[i];
         NSString *name = [[NSString alloc] initWithUTF8String:property_getName(property)];
-        if ([name isEqualToString:@"deviceInfoPlist"]) {
+        if ([name isEqualToString:@"deviceInfo"]) {
             // do nothing here because this is not a key in the p[list, this is my own property
             continue;
         }
-        [self setValue:[_deviceInfoPlist objectForKey:name] forKey:name];
+        [self setValue:[_deviceInfo objectForKey:name] forKey:name];
     }
     return self;
 }
