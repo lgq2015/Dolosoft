@@ -24,35 +24,31 @@
     while (!_device) {
         _device = [[AMDevice alloc] init];
     }
-    [self deviceDidConnect];
+    [self deviceDidAttach];
+    [self start];
 }
 
-- (void)deviceDidConnect {
+- (void)deviceDidAttach {
+    // https://stackoverflow.com/questions/10034045/ui-does-not-update-when-main-thread-is-blocked-in-cocoa-app
+    NSLog(@"deviceDidAttach");
     [_initialViewController deviceDidAttachWithName:_device.DeviceName];
 }
 
 - (void)start {
     // Ok idk why this is in a thread and why i have 2 checks for if the device connected. Need to reformat
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            while (!_device) {
-                _device = [[AMDevice alloc] init];
-            }
-            [self setup];
-            _mainViewController = [storyBoard instantiateControllerWithIdentifier:@"AMMainViewController"]; // instantiate your window controller
-            _mainViewController.manager = self; // TODO: I hate the way this is structured, so restructure
-            [_initialViewController dismissSelfAndPresentMainVC:_mainViewController];
-            [_mainViewController.view.window orderFront:nil];
-        });
-    });
+    [self setup];
+    _mainViewController = [storyBoard instantiateControllerWithIdentifier:@"AMMainViewController"]; // instantiate your window controller
+    _mainViewController.manager = self; // TODO: I hate the way this is structured, so restructure
+    [_initialViewController dismissSelfAndPresentMainVC:_mainViewController];
+    [_mainViewController.view.window orderFront:nil];
 }
 
 
 
 - (void)setup {
     /* leaving these here in case I need to reset the defaults */
-    //        NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-    //        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *password = [defaults objectForKey:@"password"];
@@ -67,10 +63,11 @@
     _appManager = [[AMAppManager alloc] initWithFileManager:_fileManager];
     _tweakBuilder = [[AMTweakBuilder alloc] initWithFileManager:_fileManager];
     _logger = [[AMLogger alloc] initWithFileManager:_fileManager];
-    
+
     NSString *hostName = @"localhost";
     NSString *username = @"root";
     NSInteger port = 2222;
+    
     _connectionHandler = [[AMConnectionHandler alloc]
                           initWithHost:hostName
                           port:port

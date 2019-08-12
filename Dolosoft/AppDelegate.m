@@ -13,7 +13,8 @@
 //TODO: change this method name
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     AMManager *manager = [[AMManager alloc] init];
-    [manager start];
+//    [NSThread sleepForTimeInterval:10.0f];
+//     [manager start];
 }
 
 

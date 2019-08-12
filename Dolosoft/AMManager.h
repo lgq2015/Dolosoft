@@ -34,12 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(retain, nonatomic) AMDevice *device;
 @property(retain, nonatomic) AMMainViewController *mainViewController;
 @property(retain, nonatomic) InitialViewController *initialViewController;
-
 - (instancetype)init;
 - (void)setup; // TODO: rename this or restructure
-- (void)start;
-- (void)deviceDidConnect;
 - (void)checkForDevice;
+- (void)deviceDidAttach;
 + (NSString *)getSecureUserInput:(NSString *)prompt defaultValue:(NSString *)defaultValue;
 @end
 
