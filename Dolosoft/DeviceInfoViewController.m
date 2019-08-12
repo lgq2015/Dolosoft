@@ -16,24 +16,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
-    NSLog(@"%@", _deviceInfo);
-    [deviceInfoTableView reloadData];
 }
 
-- (void)viewWillAppear {
-    [super viewWillAppear];
-    [deviceInfoTableView reloadData];
-    // Do view setup here.
-}
-
-- (void)viewDidAppear {
-    [super viewDidAppear];
-    [deviceInfoTableView reloadData];
-    // Do view setup here.
-}
-
-//- (void)tableViewSelectionDidChange:(NSNotification *)notification {
-//}
 - (IBAction)dismissButtonPressed:(id)sender {
     [self dismissController:self];
 }
@@ -51,7 +35,7 @@
         }
         return [_deviceInfo allValues][row];
     }
-    return @"";
+    return @"(null)";
 }
 
 @end
