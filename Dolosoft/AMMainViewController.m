@@ -296,12 +296,21 @@
 
 // TODO: Color code the methods! It's hard to search
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     NSString *identifier = [tableColumn identifier];
     if ([identifier isEqualToString:@"apps"]) {
         AMApp *app = [_manager.appManager.appList objectAtIndex:row];
-        return app.displayName;
-    } else if ([identifier isEqualToString:@"classes"]) {
+        NSTableCellView *cell = [tableView makeViewWithIdentifier:@"appNameCell" owner:self];
+        cell.textField.stringValue = app.displayName;
+        cell.imageView.image = app.icon;
+        return cell;
+    }
+    return nil;
+}
+
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    NSString *identifier = [tableColumn identifier];
+    if ([identifier isEqualToString:@"classes"]) {
         return selectedApp.classList[row].className;
     } else if ([identifier isEqualToString:@"methods"]) {
         return selectedClass.methodsList[row].callSyntax;

@@ -99,8 +99,8 @@
                                        bundleIdentifier:appInfo[@"bundle-identifier"]
                                               pathToBundleDir:appInfo[@"path"]
                                        pathToStorageDir:appInfo[@"storage-path"]
+                                               iconData:appInfo[@"icon"]
                                             fileManager:fileManager];
-        NSLog(@"%@", app.pathToAppStorageDir);
         [userApps addObject:app];
     }
     
@@ -110,7 +110,7 @@
         NSString *second = [(AMApp *)b displayName];
         return [first compare:second];
     }];
-    NSLog(@"Got user's apps' info");
+    NSLog(@"Dolosoft::Got user's apps' info");
     return sortedArray;
 }
 @end

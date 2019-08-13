@@ -7,6 +7,7 @@
 //
 
 #include <Foundation/Foundation.h>
+#include <AppKit/AppKit.h>
 #import "AMObjcClass.h"
 #import "AMFileManager.h"
 
@@ -23,8 +24,8 @@
 @property(retain,nonatomic) NSString *tweakFilePath; // path to the Tweak.x or Tweak.xm on mac
 @property(retain,nonatomic) NSString *tweakDirPath; // path to the dolosoft_appname tweak directory on mac
 @property(retain,nonatomic) NSString *pathToAppStorageDir; // path to the documents directory for the app
+@property(retain,nonatomic) NSImage *icon; // app's icon
 @property(retain,nonatomic) NSArray<AMObjcClass *> *classList;
-- (id)initWithDisplayName:(NSString *)displayName executableName:(NSString *)executableName bundleIdentifier:(NSString *)bundleIdentifier pathToDir:(NSString *)pathToDir pathToExecutable:(NSString *)pathToExecutable fileManager:(AMFileManager *)fileManager;
-- (id)initWithDisplayName:(NSString *)displayName executableName:(NSString *)executableName bundleIdentifier:(NSString *)bundleIdentifier pathToBundleDir:(NSString *)pathToBundleDir pathToStorageDir:(NSString *)pathToStorageDir fileManager:(AMFileManager *)fileManager;
+- (id)initWithDisplayName:(NSString *)displayName executableName:(NSString *)executableName bundleIdentifier:(NSString *)bundleIdentifier pathToBundleDir:(NSString *)pathToBundleDir pathToStorageDir:(NSString *)pathToStorageDir iconData:(NSData *)iconData fileManager:(AMFileManager *)fileManager;
 - (AMObjcClass *)classWithName:(NSString *)name;
 @end
