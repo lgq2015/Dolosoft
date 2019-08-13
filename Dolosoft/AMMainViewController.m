@@ -303,6 +303,11 @@
         NSTableCellView *cell = [tableView makeViewWithIdentifier:@"appNameCell" owner:self];
         cell.textField.stringValue = app.displayName;
         cell.imageView.image = app.icon;
+        
+        [cell.textField setFont:[NSFont fontWithName:@"ArialMT" size:5]];
+        if (!cell.imageView.image) {
+            cell.imageView.image = [[NSImage alloc] initWithContentsOfFile:@"/Users/moranander00/Library/Application Support/Dolosoft/icon_default.png"];
+        }
         return cell;
     }
     return nil;
