@@ -141,7 +141,7 @@
      The instructions are in this post: https://www.reddit.com/r/jailbreak/comments/47wc05/tutorial_setting_up_the_latest_version_of_theos/
      - on your Mac run:
         ssh-keygen -t rsa -b 2048
-        ssh-copy-id root@localhost -p 2222
+        ssh-copy-id mobile@localhost -p 2222
      - make sure to run:
         echo "export THEOS_DEVICE_IP=localhost" >> ~/.profile
         echo "export THEOS_DEVICE_PORT=2222" >> ~/.profile

@@ -25,6 +25,10 @@
     [_statusTextField setStringValue:status];
 }
 
+- (IBAction)retryButtonClicked:(id)sender {
+    NSLog(@"clicked");
+}
+
 - (void)dismissSelfAndPresentMainVC:(AMMainViewController *)mainViewController {
     [mainViewController presentViewControllerAsModalWindow:mainViewController];
     [self dismissViewController:self];

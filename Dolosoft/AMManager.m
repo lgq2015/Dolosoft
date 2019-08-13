@@ -58,17 +58,16 @@
 
 - (void)setup {
     /* leaving these here in case I need to reset the defaults */
-//    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     dispatch_group_async(group, background_queue, ^{
         dispatch_sync(dispatch_get_main_queue(), ^(void){
             [_initialViewController setStatus:@"Attempting to connect to device via SSH"];
         });
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *password = [defaults objectForKey:@"password"];
-        
         if (!password) {
-            password = [AMManager getSecureUserInput:@"Enter iOS device root password" defaultValue:@""];
+            password = [AMManager getSecureUserInput:@"Enter iOS device password for mobile user" defaultValue:@""];
             [defaults setObject:password forKey:@"password"];
             [defaults synchronize];
         }
@@ -79,7 +78,7 @@
         _logger = [[AMLogger alloc] initWithFileManager:_fileManager];
         
         NSString *hostName = @"localhost";
-        NSString *username = @"root";
+        NSString *username = @"mobile";
         NSInteger port = 2222;
 
         _connectionHandler = [[AMConnectionHandler alloc]
@@ -89,7 +88,7 @@
                               password:password];
 
         while (!_connectionHandler.session.isConnected) { // we keep trying until we get the right password
-            password = [AMManager getSecureUserInput:@"Incorrect iOS device root password. Please try again" defaultValue:@""];
+            password = [AMManager getSecureUserInput:@"Incorrect iOS device mobile password. Please try again" defaultValue:@""];
             [defaults setObject:password forKey:@"password"];
             [defaults synchronize];
             _connectionHandler = [[AMConnectionHandler alloc] initWithHost:hostName
@@ -108,11 +107,11 @@
             _logger.connectionHandler = _connectionHandler;
 
             if ([_deviceManager toolsInstalled]) {
-                NSLog(@"Dolosoft::DolosoftTools already installed on iOS device at /var/root/DolosoftTools");
+                NSLog(@"Dolosoft::tools already installed on iOS device at /var/mobile/Dolosoft/tools");
             } else {
-                NSLog(@"Dolosoft::Installing DolosoftTools on iOS device");
+                NSLog(@"Dolosoft::Installing tools on iOS device");
                 dispatch_async(dispatch_get_main_queue(), ^(void){
-                    [_initialViewController setStatus:@"Installing DolosoftTools to iOS device"];
+                    [_initialViewController setStatus:@"Installing tools to iOS device"];
                 });
                 [_deviceManager installTools];
             }
@@ -123,10 +122,15 @@
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [_initialViewController setStatus:@"Running userappsextended.sh"];
             });
+            
             [_deviceManager addUserAppsDocumentsDirectory:_appManager];
-
+            
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [_initialViewController setStatus:@"Setup complete"];
+            });
+            NSLog(@"Dolosoft::Completed AMManager setup");
         } else {
-            NSLog(@"Dolosoft::Unable to establish connection.");
+            NSLog(@"Dolosoft::Unable to establish connection");
         }
     });
 }
