@@ -58,16 +58,17 @@
 
 - (void)setup {
     /* leaving these here in case I need to reset the defaults */
-    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
+//    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     dispatch_group_async(group, background_queue, ^{
         dispatch_sync(dispatch_get_main_queue(), ^(void){
             [_initialViewController setStatus:@"Attempting to connect to device via SSH"];
         });
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *password = [defaults objectForKey:@"password"];
+
         if (!password) {
-            password = [AMManager getSecureUserInput:@"Enter iOS device password for mobile user" defaultValue:@""];
+            password = [AMManager getSecureUserInput:@"Enter iOS device mobile password" defaultValue:@""];
             [defaults setObject:password forKey:@"password"];
             [defaults synchronize];
         }
@@ -106,24 +107,12 @@
         if (_connectionHandler.session.isConnected) { // TODO: Reformat this as this if statement is redundant
             _logger.connectionHandler = _connectionHandler;
 
-            if ([_deviceManager toolsInstalled]) {
-                NSLog(@"Dolosoft::tools already installed on iOS device at /var/mobile/Dolosoft/tools");
-            } else {
-                NSLog(@"Dolosoft::Installing tools on iOS device");
-                dispatch_async(dispatch_get_main_queue(), ^(void){
-                    [_initialViewController setStatus:@"Installing tools to iOS device"];
-                });
-                [_deviceManager installTools];
-            }
+            // should put some check here to see if getinstalledappsinfo is installed on iOS device
+            
             dispatch_async(dispatch_get_main_queue(), ^(void){
-                [_initialViewController setStatus:@"Running userapps.sh"];
+                [_initialViewController setStatus:@"Getting list of installed apps"];
             });
             _appManager.appList = [_deviceManager getUserApps];
-            dispatch_async(dispatch_get_main_queue(), ^(void){
-                [_initialViewController setStatus:@"Running userappsextended.sh"];
-            });
-            
-            [_deviceManager addUserAppsDocumentsDirectory:_appManager];
             
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [_initialViewController setStatus:@"Setup complete"];

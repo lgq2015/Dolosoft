@@ -80,111 +80,37 @@
 }
 
 - (NSArray *)getUserApps {
-    //    make sure to have glib installed via Cydia
+    NSMutableArray<AMApp *> *userApps = [[NSMutableArray alloc] init];
     
-    NSError *error = nil;
-    NSString *response;
-    if (TEST_MODE) {
-        response = @"Piq\nPiq\ncom.andermoran.piqme\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app\n/var/containers/Bundle/Application/88777CE8-DA4E-4E2D-A002-477D870418A2/Piq.app/Piq\nChrome\nChrome\ncom.google.chrome.ios\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app\n/var/containers/Bundle/Application/30E66BC2-7998-4CC6-9565-4F05D982A546/stable.app/Chrome";
-    } else {
-        response = [connectionHandler.session.channel execute:@"/var/mobile/Dolosoft/tools/userapps.sh" error:&error];
-    }
+    [connectionHandler.session.channel execute:@"getinstalledappsinfo" error:nil]; // make sure this package is installed on iOS device
     
-    NSArray *lines = [response componentsSeparatedByString: @"\n"];
-    NSMutableArray *apps = [[NSMutableArray alloc] init];
+    NSString *dest = [NSString stringWithFormat:@"%@/installed_apps.plist", [fileManager mainDirectoryPath]];
+    [connectionHandler.session.channel downloadFile:@"/var/mobile/Documents/Dolosoft/installed_apps.plist" to:dest];
+    NSArray<NSDictionary *> *installedAppsPlist = [NSArray arrayWithContentsOfFile:dest];
     
-    for (int i = 0; i+4 < [lines count]; i+=5) {
-        AMApp *app = [[AMApp alloc] initWithDisplayName:lines[i]
-                                          executableName:lines[i+1]
-                                        bundleIdentifier:lines[i+2]
-                                               pathToDir:lines[i+3]
-                                        pathToExecutable:lines[i+4]
-                                            fileManager:fileManager];
-        
-        if ([app.displayName isEqualToString:@"(null)"]) {
-            app.displayName = app.executableName;
+    for (NSDictionary *appInfo in installedAppsPlist) {
+        NSString *displayName = appInfo[@"display-name"];
+        // This is here because some apps (like Compass on iOS 12) do not have a display name
+        if (!displayName) {
+            displayName = appInfo[@"executable-name"];
         }
-        [apps addObject:app];
+        AMApp *app = [[AMApp alloc] initWithDisplayName:displayName
+                                         executableName:appInfo[@"executable-name"]
+                                       bundleIdentifier:appInfo[@"bundle-identifier"]
+                                              pathToBundleDir:appInfo[@"path"]
+                                       pathToStorageDir:appInfo[@"storage-path"]
+                                            fileManager:fileManager];
+        NSLog(@"%@", app.pathToAppStorageDir);
+        [userApps addObject:app];
     }
     
     NSArray *sortedArray;
-    sortedArray = [apps sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+    sortedArray = [userApps sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
         NSString *first = [(AMApp *)a displayName];
         NSString *second = [(AMApp *)b displayName];
         return [first compare:second];
     }];
     NSLog(@"Got user's apps' info");
     return sortedArray;
-}
-
-- (void)addUserAppsDocumentsDirectory:(AMAppManager *)appManager {
-    NSError *error = nil;
-    NSString *response;
-    if (TEST_MODE) {
-        response = @"/var/mobile/Containers/Data/Application/D885F73F-B14A-4CB7-9AD7-B53498ED2B19\ncom.andermoran.piqme\n/var/mobile/Containers/Data/Application/37B44BA7-53D4-455A-B740-210690543215\ncom.google.chrome.ios\n";
-    } else {
-        response = [connectionHandler.session.channel execute:@"/var/mobile/Dolosoft/tools/userappsextended.sh" error:&error];
-    }
-    
-    NSArray *lines = [response componentsSeparatedByString: @"\n"];
-    
-    for (int i = 0; i+1 < [lines count]; i+=2) {
-        NSString *documentDir = lines[i];
-        //        NSLog(@"documentDir = %@", documentDir);
-        NSString *bundleIdentifier = lines[i+1];
-        //        NSLog(@"bundleIdentifier = %@", bundleIdentifier);
-        AMApp *app = [appManager appWithBundleIdentifier:bundleIdentifier];
-        //        NSLog(@"app = %@", app);
-        if (app) {
-            app.pathToAppStorageDir = documentDir;
-        }
-    }
-}
-
-- (BOOL)toolsInstalled {
-    NSString *response = [connectionHandler.session.channel
-                          execute:@"if [ -d /var/mobile/Dolosoft/tools ]; then echo '/var/mobile/Dolosoft/tools exists'; fi"
-                          error:nil];
-    
-    if ([response isEqualToString:@"/var/mobile/Dolosoft/tools exists\n"]) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-- (void)installTools {
-    NSLog(@"/var/mobile/Dolosoft/tools does not exist on iOS device. Uploading them now.");
-    [connectionHandler.session.channel
-     execute:@"mkdir /var/mobile/Dolosoft; mkdir /var/mobile/Dolosoft/tools"
-     error:nil];
-    
-    BOOL success_userapps = [connectionHandler.session.channel
-                             uploadFile:[NSString stringWithFormat:@"%@/DolosoftTools/userapps.sh", [fileManager mainDirectoryPath]]
-                             to:@"/var/mobile/Dolosoft/tools/"];
-    if (success_userapps) {
-        NSLog(@"Uploaded %@ to /var/mobile/Dolosoft/tools/userapps.sh on iOS device",
-              [NSString stringWithFormat:@"%@/DolosoftTools/userapps.sh", [fileManager mainDirectoryPath]]);
-        [connectionHandler.session.channel
-         execute:@"chmod +x /var/mobile/Dolosoft/tools/userapps.sh"
-         error:nil];
-    } else {
-        NSLog(@"Failed to upload %@ to /var/mobile/Dolosoft/tools/userapps.sh on iOS device",
-              [NSString stringWithFormat:@"%@/DolosoftTools/userapps.sh", [fileManager mainDirectoryPath]]);
-    }
-    
-    BOOL success_userappsextended = [connectionHandler.session.channel
-                                     uploadFile:[NSString stringWithFormat:@"%@/DolosoftTools/userappsextended.sh", [fileManager mainDirectoryPath]]
-                                     to:@"/var/mobile/Dolosoft/tools/"];
-    if (success_userappsextended) {
-        NSLog(@"Uploaded %@ to /var/mobile/Dolosoft/tools/userappsextended.sh on iOS device",
-              [NSString stringWithFormat:@"%@/DolosoftTools/userappsextended.sh", [fileManager mainDirectoryPath]]);
-        [connectionHandler.session.channel
-         execute:@"chmod +x /var/mobile/Dolosoft/tools/userappsextended.sh"
-         error:nil];
-    } else {
-        NSLog(@"Failed to upload %@ to /var/mobile/Dolosoft/tools/userappsextended.sh on iOS device",
-              [NSString stringWithFormat:@"%@/DolosoftTools/userappsextended.sh", [fileManager mainDirectoryPath]]);
-    }
 }
 @end

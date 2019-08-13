@@ -25,5 +25,6 @@
 @property(retain,nonatomic) NSString *pathToAppStorageDir; // path to the documents directory for the app
 @property(retain,nonatomic) NSArray<AMObjcClass *> *classList;
 - (id)initWithDisplayName:(NSString *)displayName executableName:(NSString *)executableName bundleIdentifier:(NSString *)bundleIdentifier pathToDir:(NSString *)pathToDir pathToExecutable:(NSString *)pathToExecutable fileManager:(AMFileManager *)fileManager;
+- (id)initWithDisplayName:(NSString *)displayName executableName:(NSString *)executableName bundleIdentifier:(NSString *)bundleIdentifier pathToBundleDir:(NSString *)pathToBundleDir pathToStorageDir:(NSString *)pathToStorageDir fileManager:(AMFileManager *)fileManager;
 - (AMObjcClass *)classWithName:(NSString *)name;
 @end

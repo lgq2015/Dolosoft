@@ -22,9 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 - (instancetype)initWithConnectionHandler:(AMConnectionHandler *)handler fileManager:(AMFileManager *)manager;
 - (NSArray *)getUserApps;
-- (void)addUserAppsDocumentsDirectory:(AMAppManager *)appManager;
-- (BOOL)toolsInstalled;
-- (void)installTools;
 - (void)decryptAppAndDownload:(AMApp *)app;
 @end
 
