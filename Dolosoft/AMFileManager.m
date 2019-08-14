@@ -19,7 +19,7 @@
         [self createDecryptedDirectory];
         [self createHeadersDirectory];
         [self createTweaksDirectory];
-        self.fridaDirectoryPath = [NSString stringWithFormat:@"%@/frida-ios-dump", self.mainDirectoryPath];
+        _fridaDirectoryPath = [NSString stringWithFormat:@"%@/frida-ios-dump", self.mainDirectoryPath];
     }
     return self;
 }

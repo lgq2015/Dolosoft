@@ -124,13 +124,6 @@
     // This waits for the task to finish before returning
     // TODO: See if I can replace with with NSTask's waitUntilExit method
     while ([task isRunning]) {}
-    /* this part is to fix builds with Xcode 10
-     https://github.com/theos/theos/issues/346
-     */
-//    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:[NSString stringWithFormat:@"%@/amiosreversertemptweak/Makefile", [fileManager tweaksDirectoryPath]]];
-//    [fileHandle seekToEndOfFile];
-//    [fileHandle writeData:[@"amiosreversertemptweak_CFLAGS = -std=c++11 -stdlib=libc++\namiosreversertemptweak_LDFLAGS = -stdlib=libc++" dataUsingEncoding:NSUTF8StringEncoding]];
-//    [fileHandle closeFile];
 }
 
 - (void)makeDoTheosForApp:(AMApp *)app {

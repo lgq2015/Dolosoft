@@ -10,9 +10,6 @@
 #import "AMConnectionHandler.h"
 #import "AMFileManager.h"
 #import "AMAppManager.h"
-#import "XMLReader.h"
-
-NS_ASSUME_NONNULL_BEGIN
 
 @class AMAppManager;
 
@@ -24,5 +21,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray *)getUserApps;
 - (void)decryptAppAndDownload:(AMApp *)app;
 @end
-
-NS_ASSUME_NONNULL_END

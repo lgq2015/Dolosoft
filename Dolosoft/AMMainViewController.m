@@ -53,10 +53,6 @@
     [classesTableView setAction:@selector(tableViewClicked:)];
     [methodsTableView setAction:@selector(tableViewClicked:)];
 
-    //        appsTableView.focusRingType = NSFocusRingTypeNone;
-    //        classesTableView.focusRingType = NSFocusRingTypeNone;
-    //        methodsTableView.focusRingType = NSFocusRingTypeNone;
-
     terminalTextView.editable = NO;
     terminalTextView.font = [NSFont fontWithName:@"Monaco" size:12];
 
@@ -331,27 +327,7 @@
     }
 }
 
-- (NSString *)getSecureUserInput:(NSString *)prompt defaultValue:(NSString *)defaultValue {
-    // https://stackoverflow.com/questions/7387341/how-to-create-and-get-return-value-from-cocoa-dialog
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:prompt];
-    [alert addButtonWithTitle:@"Ok"];
-    
-    NSSecureTextField *input = [[NSSecureTextField alloc] initWithFrame:NSMakeRect(0, 0, 200, 24)];
-    [input setStringValue:defaultValue];
-    [alert setAccessoryView:input];
-    NSInteger button = [alert runModal];
-    if (button == NSAlertFirstButtonReturn) {
-        [input validateEditing];
-        return [input stringValue];
-    } else {
-        return nil;
-    }
-}
-
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
-    
-    // Update the view, if already loaded.
 }
 @end
