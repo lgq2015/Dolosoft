@@ -18,6 +18,7 @@
     storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil]; // get a reference to the storyboard
     _initialViewController = [storyBoard instantiateControllerWithIdentifier:@"InitialViewController"]; // instantiate your window controller
     _deviceInfoViewController = [storyBoard instantiateControllerWithIdentifier:@"DeviceInfoViewController"]; // instantiate your window controller
+    _stringsViewController = [storyBoard instantiateControllerWithIdentifier:@"StringsViewController"]; // instantiate your window controller
     [_initialViewController presentViewControllerAsModalWindow:_initialViewController];
     [self performSelectorOnMainThread:@selector(checkForDevice) withObject:nil waitUntilDone:NO];
     return self;

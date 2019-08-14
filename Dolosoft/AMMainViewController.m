@@ -100,8 +100,15 @@
     [_manager.connectionHandler.session.channel execute:command error:&error];
 }
 - (IBAction)stringsButtonClicked:(id)sender {
-    /* strings /path/to/executable */
-    /* need todo this */
+    NSError *error;
+    [NSTask launchedTaskWithExecutableURL:[NSURL fileURLWithPath:@"/bin/bash"]
+                                arguments:@[ @"-c", [NSString stringWithFormat:@"strings \"%@\" > %@", [_manager.fileManager pathOfDecryptedBinaryForApp:selectedApp], _manager.fileManager.stringsOutputPath] ]
+                                    error:&error
+                       terminationHandler:^(NSTask *t){}];
+    _manager.stringsViewController.strings = [[NSString stringWithContentsOfFile:_manager.fileManager.stringsOutputPath
+                                                                        encoding:NSUTF8StringEncoding
+                                                                           error:nil] componentsSeparatedByString:@"\n"];
+    [self presentViewControllerAsSheet:_manager.stringsViewController];
 }
 
 - (IBAction)clearLogButtonClicked:(id)sender {

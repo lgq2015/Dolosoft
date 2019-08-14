@@ -22,7 +22,10 @@
 }
 - (void)initializeProxy {
     NSError *error = nil;
-    [NSTask launchedTaskWithExecutableURL:[NSURL fileURLWithPath:@"/usr/local/bin/iproxy"] arguments:@[ @"2222", @"22" ] error:&error terminationHandler:^(NSTask *t){}];
+    [NSTask launchedTaskWithExecutableURL:[NSURL fileURLWithPath:@"/usr/local/bin/iproxy"]
+                                arguments:@[ @"2222", @"22" ]
+                                    error:&error
+                       terminationHandler:^(NSTask *t){}];
     if (error) {
         NSLog(@"Dolosoft::Error starting iproxy, make sure iproxy exists at /usr/local/bin/iproxy - %@", [error localizedDescription]);
         NSAlert *alert = [[NSAlert alloc] init];

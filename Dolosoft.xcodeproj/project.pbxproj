@@ -26,6 +26,7 @@
 		41F5192A22FDBA2A00200C2A /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F7E41722FC70D800F3D402 /* libimobiledevice.dylib */; };
 		41F5192D22FDF95400200C2A /* AMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5192C22FDF95400200C2A /* AMManager.m */; };
 		41F519722301CD0000200C2A /* DeviceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F519712301CD0000200C2A /* DeviceInfoViewController.m */; };
+		41F76A7623046E4A00722AD6 /* StringsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F76A7523046E4A00722AD6 /* StringsViewController.m */; };
 		41F7E3EC22FC5FC900F3D402 /* libPods-Dolosoft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F50362FEBA69F0277DD9CC /* libPods-Dolosoft.a */; };
 		41F7E41A22FC70ED00F3D402 /* libplist.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F7E41922FC70ED00F3D402 /* libplist.dylib */; };
 		41F7E42022FC8A4600F3D402 /* AMDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7E41F22FC8A4600F3D402 /* AMDevice.m */; };
@@ -86,6 +87,8 @@
 		41F5192C22FDF95400200C2A /* AMManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMManager.m; sourceTree = "<group>"; };
 		41F519702301CD0000200C2A /* DeviceInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceInfoViewController.h; sourceTree = "<group>"; };
 		41F519712301CD0000200C2A /* DeviceInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoViewController.m; sourceTree = "<group>"; };
+		41F76A7423046E4A00722AD6 /* StringsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringsViewController.h; sourceTree = "<group>"; };
+		41F76A7523046E4A00722AD6 /* StringsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringsViewController.m; sourceTree = "<group>"; };
 		41F7E41722FC70D800F3D402 /* libimobiledevice.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libimobiledevice.dylib; path = ../../../../usr/local/lib/libimobiledevice.dylib; sourceTree = "<group>"; };
 		41F7E41922FC70ED00F3D402 /* libplist.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libplist.dylib; path = ../../../../usr/local/lib/libplist.dylib; sourceTree = "<group>"; };
 		41F7E41E22FC8A4600F3D402 /* AMDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDevice.h; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 				41F7E42222FCC1D500F3D402 /* InitialViewController.m */,
 				41F519702301CD0000200C2A /* DeviceInfoViewController.h */,
 				41F519712301CD0000200C2A /* DeviceInfoViewController.m */,
+				41F76A7423046E4A00722AD6 /* StringsViewController.h */,
+				41F76A7523046E4A00722AD6 /* StringsViewController.m */,
 				41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */,
 				41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */,
 				41F7E41E22FC8A4600F3D402 /* AMDevice.h */,
@@ -386,6 +391,7 @@
 				41F7E42322FCC1D500F3D402 /* InitialViewController.m in Sources */,
 				0C16DFAE207C1A0100AA0952 /* AMMainViewController.m in Sources */,
 				0CA40BD1207EE38800789BEB /* AMAppManager.m in Sources */,
+				41F76A7623046E4A00722AD6 /* StringsViewController.m in Sources */,
 				0C101C7720975F0A000792B2 /* AMLogger.m in Sources */,
 				41F5192D22FDF95400200C2A /* AMManager.m in Sources */,
 				0CA40BC6207EB96300789BEB /* AMObjcMethod.m in Sources */,
