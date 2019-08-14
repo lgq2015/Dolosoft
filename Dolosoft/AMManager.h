@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)checkForDevice;
 - (void)deviceDidAttach;
 - (void)presentVCAsModal:(NSViewController *)viewController;
-+ (NSString *)getSecureUserInput:(NSString *)prompt defaultValue:(NSString *)defaultValue;
++ (NSString *)getSecureUserInput:(NSString *)prompt;
 @end
 
 NS_ASSUME_NONNULL_END

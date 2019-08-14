@@ -65,10 +65,16 @@
             [_initialViewController setStatus:@"Attempting to connect to device via SSH"];
         });
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *password = [defaults objectForKey:@"password"];
-
+        static NSString *password;
+        password = [defaults objectForKey:@"password"];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^(void){
+            [_initialViewController setStatus:@"Prompting for mobile password"];
+        });
         if (!password) {
-            password = [AMManager getSecureUserInput:@"Enter iOS device mobile password" defaultValue:@""];
+            dispatch_sync(dispatch_get_main_queue(), ^(void){
+                password = [AMManager getSecureUserInput:@"Enter iOS device mobile password"];
+            });
             [defaults setObject:password forKey:@"password"];
             [defaults synchronize];
         }
@@ -89,7 +95,12 @@
                               password:password];
 
         while (!_connectionHandler.session.isConnected) { // we keep trying until we get the right password
-            password = [AMManager getSecureUserInput:@"Incorrect iOS device mobile password. Please try again" defaultValue:@""];
+            dispatch_sync(dispatch_get_main_queue(), ^(void){
+                [_initialViewController setStatus:@"Prompting for mobile password"];
+            });
+            dispatch_sync(dispatch_get_main_queue(), ^(void){
+                password = [AMManager getSecureUserInput:@"Incorrect iOS device mobile password. Please try again"];
+            });
             [defaults setObject:password forKey:@"password"];
             [defaults synchronize];
             _connectionHandler = [[AMConnectionHandler alloc] initWithHost:hostName
@@ -124,14 +135,13 @@
     });
 }
 
-+ (NSString *)getSecureUserInput:(NSString *)prompt defaultValue:(NSString *)defaultValue {
++ (NSString *)getSecureUserInput:(NSString *)prompt {
     // https://stackoverflow.com/questions/7387341/how-to-create-and-get-return-value-from-cocoa-dialog
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:prompt];
     [alert addButtonWithTitle:@"Ok"];
     
     NSSecureTextField *input = [[NSSecureTextField alloc] initWithFrame:NSMakeRect(0, 0, 200, 24)];
-    [input setStringValue:defaultValue];
     [alert setAccessoryView:input];
     NSInteger button = [alert runModal];
     if (button == NSAlertFirstButtonReturn) {
