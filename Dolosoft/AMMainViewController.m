@@ -295,27 +295,34 @@
 }
 
 // TODO: Color code the methods! It's hard to search
-
-- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSString *identifier = [tableColumn identifier];
-    if ([identifier isEqualToString:@"apps"]) {
-        AMApp *app = [_manager.appManager.appList objectAtIndex:row];
-        NSTableCellView *cell = [tableView makeViewWithIdentifier:@"appNameCell" owner:self];
-        cell.textField.stringValue = app.displayName;
-        cell.imageView.image = app.icon;
-        
-        [cell.textField setFont:[NSFont fontWithName:@"ArialMT" size:5]];
-        if (!cell.imageView.image) {
-            cell.imageView.image = [[NSImage alloc] initWithContentsOfFile:@"/Users/moranander00/Library/Application Support/Dolosoft/icon_default.png"];
-        }
-        return cell;
-    }
-    return nil;
-}
+/* removing this for now as it is causing issues with the methodsTableView and classesTableView */
+//- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+//    NSString *identifier = [tableColumn identifier];
+//    if ([identifier isEqualToString:@"apps"]) {
+//        AMApp *app = [_manager.appManager.appList objectAtIndex:row];
+//        NSTableCellView *cell = [tableView makeViewWithIdentifier:@"appNameCell" owner:self];
+//        cell.textField.stringValue = app.displayName;
+//        cell.imageView.image = app.icon;
+//        cell.imageView.wantsLayer = YES;
+//        cell.imageView.canDrawSubviewsIntoLayer = YES;
+//        cell.imageView.layer.cornerRadius = 5;
+//        cell.imageView.layer.masksToBounds = YES;
+//
+//        [cell.textField setFont:[NSFont fontWithName:@"ArialMT" size:5]];
+//        if (!cell.imageView.image) {
+//            cell.imageView.image = [[NSImage alloc] initWithContentsOfFile:@"/Users/moranander00/Library/Application Support/Dolosoft/icon_default.png"];
+//        }
+//        return cell;
+//    }
+//    return nil;
+//}
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     NSString *identifier = [tableColumn identifier];
-    if ([identifier isEqualToString:@"classes"]) {
+    if ([identifier isEqualToString:@"apps"]) {
+        AMApp *app = [_manager.appManager.appList objectAtIndex:row];
+        return app.displayName;
+    } else if ([identifier isEqualToString:@"classes"]) {
         return selectedApp.classList[row].className;
     } else if ([identifier isEqualToString:@"methods"]) {
         return selectedClass.methodsList[row].callSyntax;

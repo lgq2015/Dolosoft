@@ -26,6 +26,7 @@
 		41F5192A22FDBA2A00200C2A /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F7E41722FC70D800F3D402 /* libimobiledevice.dylib */; };
 		41F5192D22FDF95400200C2A /* AMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5192C22FDF95400200C2A /* AMManager.m */; };
 		41F519722301CD0000200C2A /* DeviceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F519712301CD0000200C2A /* DeviceInfoViewController.m */; };
+		41F76A73230458AF00722AD6 /* AppsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F76A72230458AF00722AD6 /* AppsTableViewDelegate.m */; };
 		41F7E3EC22FC5FC900F3D402 /* libPods-Dolosoft.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F50362FEBA69F0277DD9CC /* libPods-Dolosoft.a */; };
 		41F7E41A22FC70ED00F3D402 /* libplist.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F7E41922FC70ED00F3D402 /* libplist.dylib */; };
 		41F7E41D22FC823800F3D402 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F7E41C22FC823800F3D402 /* XMLReader.m */; };
@@ -87,6 +88,8 @@
 		41F5192C22FDF95400200C2A /* AMManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMManager.m; sourceTree = "<group>"; };
 		41F519702301CD0000200C2A /* DeviceInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceInfoViewController.h; sourceTree = "<group>"; };
 		41F519712301CD0000200C2A /* DeviceInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoViewController.m; sourceTree = "<group>"; };
+		41F76A71230458AF00722AD6 /* AppsTableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppsTableViewDelegate.h; sourceTree = "<group>"; };
+		41F76A72230458AF00722AD6 /* AppsTableViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppsTableViewDelegate.m; sourceTree = "<group>"; };
 		41F7E41722FC70D800F3D402 /* libimobiledevice.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libimobiledevice.dylib; path = ../../../../usr/local/lib/libimobiledevice.dylib; sourceTree = "<group>"; };
 		41F7E41922FC70ED00F3D402 /* libplist.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libplist.dylib; path = ../../../../usr/local/lib/libplist.dylib; sourceTree = "<group>"; };
 		41F7E41B22FC823800F3D402 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				41F5192C22FDF95400200C2A /* AMManager.m */,
 				0C16DFAC207C1A0100AA0952 /* AMMainViewController.h */,
 				0C16DFAD207C1A0100AA0952 /* AMMainViewController.m */,
+				41F76A71230458AF00722AD6 /* AppsTableViewDelegate.h */,
+				41F76A72230458AF00722AD6 /* AppsTableViewDelegate.m */,
 				41F7E42122FCC1D500F3D402 /* InitialViewController.h */,
 				41F7E42222FCC1D500F3D402 /* InitialViewController.m */,
 				41F519702301CD0000200C2A /* DeviceInfoViewController.h */,
@@ -398,6 +403,7 @@
 				0CA40BC3207EB7A500789BEB /* AMApp.m in Sources */,
 				0C16DFB6207C1A0100AA0952 /* main.m in Sources */,
 				0C16DFAB207C1A0100AA0952 /* AppDelegate.m in Sources */,
+				41F76A73230458AF00722AD6 /* AppsTableViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
