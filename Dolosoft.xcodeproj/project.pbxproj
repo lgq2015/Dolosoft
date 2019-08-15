@@ -23,6 +23,7 @@
 		0CA40BD1207EE38800789BEB /* AMAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA40BD0207EE38800789BEB /* AMAppManager.m */; };
 		0CEFBF102096468C00B41490 /* AMTweakBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
+		41EBB1AC2305CBDD00088422 /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 41EBB1AB2305CBDD00088422 /* icons.iconset */; };
 		41F5192A22FDBA2A00200C2A /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F7E41722FC70D800F3D402 /* libimobiledevice.dylib */; };
 		41F5192D22FDF95400200C2A /* AMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5192C22FDF95400200C2A /* AMManager.m */; };
 		41F519722301CD0000200C2A /* DeviceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F519712301CD0000200C2A /* DeviceInfoViewController.m */; };
@@ -83,6 +84,7 @@
 		0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTweakBuilder.m; sourceTree = "<group>"; };
 		41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceManager.h; sourceTree = "<group>"; };
 		41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceManager.m; sourceTree = "<group>"; };
+		41EBB1AB2305CBDD00088422 /* icons.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icons.iconset; sourceTree = "<group>"; };
 		41F5192B22FDF95300200C2A /* AMManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMManager.h; sourceTree = "<group>"; };
 		41F5192C22FDF95400200C2A /* AMManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMManager.m; sourceTree = "<group>"; };
 		41F519702301CD0000200C2A /* DeviceInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceInfoViewController.h; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		0C16DF9D207C1A0100AA0952 = {
 			isa = PBXGroup;
 			children = (
+				41EBB1AB2305CBDD00088422 /* icons.iconset */,
 				0C16DFA8207C1A0100AA0952 /* Dolosoft */,
 				0C9CD9CA2231959F0020A723 /* External */,
 				0C16DFA7207C1A0100AA0952 /* Products */,
@@ -331,6 +334,7 @@
 			files = (
 				0C16DFB0207C1A0100AA0952 /* Assets.xcassets in Resources */,
 				0C16DFB3207C1A0100AA0952 /* Main.storyboard in Resources */,
+				41EBB1AC2305CBDD00088422 /* icons.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
