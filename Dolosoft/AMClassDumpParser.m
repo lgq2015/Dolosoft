@@ -60,7 +60,7 @@
     sortedMethodList = [methodList sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
         NSString *first = [(AMObjcMethod *)a methodName];
         NSString *second = [(AMObjcMethod *)b methodName];
-        return [first compare:second];
+        return [first caseInsensitiveCompare:second];
     }];
     
     return [sortedMethodList copy];
