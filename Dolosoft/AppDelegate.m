@@ -12,6 +12,9 @@
 
 //TODO: change this method name
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    if (TEST_MODE) {
+        NSLog(@"[note] TEST_MODE enabled");
+    }
     AMManager *manager = [[AMManager alloc] init];
 //    [NSThread sleepForTimeInterval:10.0f];
 //     [manager start];
