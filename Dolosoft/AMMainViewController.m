@@ -59,7 +59,7 @@
     logTextView.editable = NO;
     logTextView.font = [NSFont fontWithName:@"Monaco" size:12];
     
-    [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@", _manager.device.DeviceName]];
+    [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@ on iOS %@", _manager.device.DeviceName, _manager.device.ProductVersion]];
 
     [self updateTerminalDaemon]; // TODO: redo this code using performSelectorInBackground
 }
