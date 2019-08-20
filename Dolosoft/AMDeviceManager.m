@@ -111,7 +111,7 @@
     sortedArray = [userApps sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
         NSString *first = [(AMApp *)a displayName];
         NSString *second = [(AMApp *)b displayName];
-        return [first compare:second];
+        return [first caseInsensitiveCompare:second];
     }];
     NSLog(@"Got user's apps' info");
     return sortedArray;
