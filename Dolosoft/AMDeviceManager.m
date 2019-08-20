@@ -113,7 +113,7 @@
         NSString *second = [(AMApp *)b displayName];
         return [first compare:second];
     }];
-    NSLog(@"Dolosoft::Got user's apps' info");
+    NSLog(@"Got user's apps' info");
     return sortedArray;
 }
 @end

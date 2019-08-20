@@ -1143,6 +1143,15 @@
                                     <action selector="deviceInfoButtonClicked:" target="XfG-lQ-9wD" id="MsW-J2-034"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wd1-Hf-ktd">
+                                <rect key="frame" x="165" y="43" width="244" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Target app: (null)" id="hS7-wS-Lpg">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -1155,6 +1164,7 @@
                         <outlet property="createTweakProgressBar" destination="2IN-ez-KZW" id="yoD-Sm-ofm"/>
                         <outlet property="logTextView" destination="oQ6-yY-0Jo" id="WOV-No-65E"/>
                         <outlet property="methodsTableView" destination="aeX-or-eQF" id="FjQ-Se-AhH"/>
+                        <outlet property="targetAppLabel" destination="wd1-Hf-ktd" id="pOv-sS-MYs"/>
                         <outlet property="terminalTextView" destination="UsN-yH-7xC" id="wJn-2G-4Eh"/>
                     </connections>
                 </viewController>

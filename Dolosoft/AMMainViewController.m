@@ -278,6 +278,7 @@
             [methodsTableView reloadData];
         } else if (tableView == appsTableView) {
             selectedApp = [_manager.appManager appWithDisplayName:_manager.appManager.appList[appsTableView.selectedRow].displayName];
+            [targetAppLabel setStringValue:[NSString stringWithFormat:@"Target app: %@", selectedApp.displayName]];
             selectedClass = nil;
             [classesTableView reloadData];
             [methodsTableView reloadData];

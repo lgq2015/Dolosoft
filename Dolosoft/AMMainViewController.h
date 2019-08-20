@@ -37,6 +37,7 @@
     IBOutlet NSTableView *appsTableView;
     IBOutlet NSTableView *methodsTableView;
     IBOutlet NSTextView *terminalTextView;
+    IBOutlet NSTextField *targetAppLabel;
 }
 @property(retain, nonatomic) AMManager *manager;;
 @end
