@@ -16,13 +16,10 @@
     }
     return self;
 }
-- (NSString *)logForApp:(AMApp *)app {
+- (NSString *)retrieveLogForApp:(AMApp *)app {
     NSString *source = [NSString stringWithFormat:@"%@/Documents/AMLog.txt", app.pathToAppStorageDir];
     NSString *dest = [NSString stringWithFormat:@"%@/AMLog.txt", [fileManager mainDirectoryPath]];
-//    
-//    NSLog(@"AM::Getting log");
-//    NSLog(@"source = %@", source);
-//    NSLog(@"dest = %@", dest);
+
     [_connectionHandler.session.channel downloadFile:source to:dest];
     NSString *logContent = [NSString stringWithContentsOfFile:dest encoding:NSUTF8StringEncoding error:nil];
     if (!logContent) {
@@ -30,5 +27,12 @@
     } else {
         return logContent;
     }
+}
+
+- (void)removeLogForApp:(AMApp *)app {
+    NSString *logFilePathOnDevice = [NSString stringWithFormat:@"%@/Documents/AMLog.txt", app.pathToAppStorageDir];
+    NSString *command = [NSString stringWithFormat:@"rm %@", logFilePathOnDevice];
+    [_connectionHandler.session.channel execute:command error:nil];
+    NSLog(@"Removed AMLog.txt from %@'s Documents directory", app.displayName);
 }
 @end

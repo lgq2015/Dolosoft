@@ -123,12 +123,13 @@
 
 - (IBAction)clearLogButtonClicked:(id)sender {
     [logTextView setString:@""];
+    [_manager.logger removeLogForApp:selectedApp];
 }
 
 - (void)getAppLog {
     NSString *logPath = [NSString stringWithFormat:@"%@/AMLog.txt", [_manager.fileManager mainDirectoryPath]];
     [_manager.fileManager removeItemAtPath:logPath error:nil];
-    [logTextView setString:[_manager.logger logForApp:selectedApp]];
+    [logTextView setString:[_manager.logger retrieveLogForApp:selectedApp]];
 }
 
 - (IBAction)getLogButtonClicked:(id)sender {

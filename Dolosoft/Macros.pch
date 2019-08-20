@@ -13,7 +13,7 @@
 
 
 
-#define TEST_MODE YES
+#define TEST_MODE NO
 #define DLog(fmt, ...) NSLog((@"%s @ %d: " fmt), __FILE__, __LINE__, ##__VA_ARGS__);
 #define AlertLog(fmt, ...)  { NSAlert *debugAlert = [[NSAlert alloc] init]; [debugAlert setMessageText:[NSString stringWithFormat:@"%s\n [Line %d] ", __FILE__, __LINE__]]; [debugAlert setInformativeText:[NSString stringWithFormat:fmt, ##__VA_ARGS__]]; [debugAlert addButtonWithTitle:@"Dismiss"]; [debugAlert runModal]; }
 
