@@ -8,8 +8,6 @@
 
 #import "AMDeviceManager.h"
 
-#define TEST_MODE NO
-
 @implementation AMDeviceManager
 - (instancetype)init {
     self = [super init];
@@ -82,12 +80,17 @@
 - (NSArray *)getUserApps {
     NSMutableArray<AMApp *> *userApps = [[NSMutableArray alloc] init];
     
-    [connectionHandler.session.channel execute:@"getinstalledappsinfo" error:nil]; // make sure this package is installed on iOS device
-    
-    NSString *dest = [NSString stringWithFormat:@"%@/installed_apps.plist", [fileManager mainDirectoryPath]];
-    [connectionHandler.session.channel downloadFile:@"/var/mobile/Documents/Dolosoft/installed_apps.plist" to:dest];
-    NSArray<NSDictionary *> *installedAppsPlist = [NSArray arrayWithContentsOfFile:dest];
-    
+    NSString *dest;
+    NSArray<NSDictionary *> *installedAppsPlist;
+    if (!TEST_MODE) {
+        [connectionHandler.session.channel execute:@"getinstalledappsinfo" error:nil]; // TODO: make sure this package is installed on iOS device
+        dest = [NSString stringWithFormat:@"%@/installed_apps.plist", [fileManager mainDirectoryPath]];
+        [connectionHandler.session.channel downloadFile:@"/var/mobile/Documents/Dolosoft/installed_apps.plist" to:dest];
+        installedAppsPlist = [NSArray arrayWithContentsOfFile:dest];
+    } else {
+        installedAppsPlist = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/installed_apps_debug.plist", [fileManager mainDirectoryPath]]];
+    }
+
     for (NSDictionary *appInfo in installedAppsPlist) {
         NSString *displayName = appInfo[@"display-name"];
         // This is here because some apps (like Compass on iOS 12) do not have a display name

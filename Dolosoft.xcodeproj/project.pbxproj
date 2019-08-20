@@ -82,6 +82,7 @@
 		0CA40BD0207EE38800789BEB /* AMAppManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMAppManager.m; sourceTree = "<group>"; };
 		0CEFBF0E2096468C00B41490 /* AMTweakBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMTweakBuilder.h; sourceTree = "<group>"; };
 		0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTweakBuilder.m; sourceTree = "<group>"; };
+		4117A6C5230C30FC00871C3B /* Macros.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.pch; sourceTree = "<group>"; };
 		41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceManager.h; sourceTree = "<group>"; };
 		41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceManager.m; sourceTree = "<group>"; };
 		41EBB1AB2305CBDD00088422 /* icons.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icons.iconset; sourceTree = "<group>"; };
@@ -156,6 +157,7 @@
 		0C16DFA8207C1A0100AA0952 /* Dolosoft */ = {
 			isa = PBXGroup;
 			children = (
+				4117A6C5230C30FC00871C3B /* Macros.pch */,
 				0C16DFA9207C1A0100AA0952 /* AppDelegate.h */,
 				0C16DFAA207C1A0100AA0952 /* AppDelegate.m */,
 				41F5192B22FDF95300200C2A /* AMManager.h */,
@@ -559,6 +561,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = V9H9RJKQ77;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/External/\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Dolosoft/Macros.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -591,6 +595,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = V9H9RJKQ77;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/External/\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Dolosoft/Macros.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",

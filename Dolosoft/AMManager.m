@@ -47,7 +47,6 @@
 }
 
 - (void)start {
-    // Ok idk why this is in a thread and why i have 2 checks for if the device connected. Need to reformat
     [self setup];
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         _mainViewController = [storyBoard instantiateControllerWithIdentifier:@"AMMainViewController"]; // instantiate your window controller
@@ -55,6 +54,8 @@
         [self dismissVC:_initialViewController];
         [self presentVCAsModal:_mainViewController];
     });
+    
+    
 }
 
 - (void)setup {
@@ -72,14 +73,15 @@
         dispatch_sync(dispatch_get_main_queue(), ^(void){
             [_initialViewController setStatus:@"Prompting for mobile password"];
         });
-        if (!password) {
+
+        if (!password && !TEST_MODE) {
             dispatch_sync(dispatch_get_main_queue(), ^(void){
                 password = [AMManager getSecureUserInput:@"Enter iOS device mobile password"];
             });
             [defaults setObject:password forKey:@"password"];
             [defaults synchronize];
         }
-        
+
         _fileManager = [[AMFileManager alloc] init];
         _appManager = [[AMAppManager alloc] initWithFileManager:_fileManager];
         _tweakBuilder = [[AMTweakBuilder alloc] initWithFileManager:_fileManager];
@@ -95,32 +97,38 @@
                               username:username
                               password:password];
 
-        while (!_connectionHandler.session.isConnected) { // we keep trying until we get the right password
-            dispatch_sync(dispatch_get_main_queue(), ^(void){
-                [_initialViewController setStatus:@"Prompting for mobile password"];
-            });
-            dispatch_sync(dispatch_get_main_queue(), ^(void){
-                password = [AMManager getSecureUserInput:@"Incorrect iOS device mobile password. Please try again"];
-            });
-            [defaults setObject:password forKey:@"password"];
-            [defaults synchronize];
-            _connectionHandler = [[AMConnectionHandler alloc] initWithHost:hostName
-                                                                      port:port
-                                                                  username:username
-                                                                  password:password];
+        // if test mode than skip connection bc dont have device
+        if (!TEST_MODE) {
+            while (!_connectionHandler.session.isConnected) { // we keep trying until we get the right password
+                dispatch_sync(dispatch_get_main_queue(), ^(void){
+                    [_initialViewController setStatus:@"Prompting for mobile password"];
+                });
+                dispatch_sync(dispatch_get_main_queue(), ^(void){
+                    password = [AMManager getSecureUserInput:@"Incorrect iOS device mobile password. Please try again"];
+                });
+                [defaults setObject:password forKey:@"password"];
+                [defaults synchronize];
+                _connectionHandler = [[AMConnectionHandler alloc] initWithHost:hostName
+                                                                          port:port
+                                                                      username:username
+                                                                      password:password];
+            }
         }
-        
+
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [_initialViewController setStatus:@"Preparing device"];
         });
-        
+
         _deviceManager = [[AMDeviceManager alloc] initWithConnectionHandler:_connectionHandler fileManager:_fileManager];
 
+        if (TEST_MODE) {
+            _appManager.appList = [_deviceManager getUserApps];
+            return;
+        }
         if (_connectionHandler.session.isConnected) { // TODO: Reformat this as this if statement is redundant
             _logger.connectionHandler = _connectionHandler;
 
-            // should put some check here to see if getinstalledappsinfo is installed on iOS device
-            
+            // should put some check here to see if getinstalledappsinfo is installed on iOS device;
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [_initialViewController setStatus:@"Getting list of installed apps"];
             });
