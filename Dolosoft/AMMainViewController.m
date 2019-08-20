@@ -110,6 +110,8 @@
                                                                            error:nil] componentsSeparatedByString:@"\n"];
     [self presentViewControllerAsSheet:_manager.stringsViewController];
 }
+- (IBAction)clearAppCacheButtonClicked:(id)sender {
+}
 
 - (IBAction)clearLogButtonClicked:(id)sender {
     [logTextView setString:@""];

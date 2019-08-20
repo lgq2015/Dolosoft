@@ -980,17 +980,6 @@
                                     <action selector="respringButtonClicked:" target="XfG-lQ-9wD" id="S7h-3d-jqe"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kc6-Ac-7gd">
-                                <rect key="frame" x="836" y="2" width="125" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <buttonCell key="cell" type="push" title="Strings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RK1-1O-Alt">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <connections>
-                                        <action selector="stringsButtonClicked:" target="XfG-lQ-9wD" id="wfh-Dp-rZu"/>
-                                    </connections>
-                                </buttonCell>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vfa-24-QQ8">
                                 <rect key="frame" x="701" y="32" width="135" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -1044,7 +1033,7 @@
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XUd-H2-AV3">
-                                <rect key="frame" x="836" y="32" width="125" height="32"/>
+                                <rect key="frame" x="424" y="2" width="144" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <buttonCell key="cell" type="push" title="Kill app" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eF0-5S-g0w">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1152,6 +1141,28 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f6D-bE-Rl6">
+                                <rect key="frame" x="566" y="2" width="135" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Clear app cache" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2fj-xt-YNX">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="clearAppCacheButtonClicked:" target="XfG-lQ-9wD" id="9GD-oz-xJr"/>
+                                    </connections>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kc6-Ac-7gd">
+                                <rect key="frame" x="701" y="3" width="135" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="push" title="App strings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RK1-1O-Alt">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="stringsButtonClicked:" target="XfG-lQ-9wD" id="wfh-Dp-rZu"/>
+                                    </connections>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -1160,6 +1171,7 @@
                         <outlet property="analyzeAppProgressLabel" destination="Q6U-Sh-nvE" id="eax-O2-YUs"/>
                         <outlet property="appsTableView" destination="PXO-FE-7yW" id="Cox-bN-ROw"/>
                         <outlet property="classesTableView" destination="HYu-1r-hmT" id="qne-74-gWM"/>
+                        <outlet property="clearAppCacheButton" destination="f6D-bE-Rl6" id="YrM-Dg-Chh"/>
                         <outlet property="connectedToLabel" destination="y0C-bK-tWa" id="2zY-ny-oaH"/>
                         <outlet property="createTweakProgressBar" destination="2IN-ez-KZW" id="yoD-Sm-ofm"/>
                         <outlet property="logTextView" destination="oQ6-yY-0Jo" id="WOV-No-65E"/>
