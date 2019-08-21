@@ -119,6 +119,11 @@
     [self presentViewControllerAsSheet:_manager.stringsViewController];
 }
 - (IBAction)clearAppCacheButtonClicked:(id)sender {
+    
+    NSString *cachePath = [NSString stringWithFormat:@"%@/Library/Caches", selectedApp.pathToAppStorageDir];
+    NSString *command = [NSString stringWithFormat:@"rm -r %@", cachePath];
+    [_manager.connectionHandler.session.channel execute:command error:nil];
+    NSLog(@"Cleared %@'s cache", selectedApp.displayName);
 }
 
 - (IBAction)clearLogButtonClicked:(id)sender {
