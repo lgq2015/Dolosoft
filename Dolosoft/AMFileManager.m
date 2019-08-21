@@ -19,6 +19,7 @@
         [self createDecryptedDirectory];
         [self createHeadersDirectory];
         [self createTweaksDirectory];
+        [self createFridaDirectory];
         _fridaDirectoryPath = [NSString stringWithFormat:@"%@/frida-ios-dump", self.mainDirectoryPath];
         _stringsOutputPath = [NSString stringWithFormat:@"%@/strings_output.txt", self.mainDirectoryPath];
     }
@@ -72,6 +73,15 @@
         }
     }
     _mainDirectoryPath = [dirPath path];
+}
+
+- (void)createFridaDirectory {
+    NSError *error;
+    NSTask *task = [[NSTask alloc] init];
+    task.executableURL = [NSURL fileURLWithPath:@"/usr/bin/git"];
+    task.arguments = @[ @"clone", @"https://github.com/AloneMonkey/frida-ios-dump.git" ];
+    task.currentDirectoryURL = [NSURL fileURLWithPath:_mainDirectoryPath];
+    [task launchAndReturnError:&error];
 }
 
 - (void)createDecryptedDirectory {

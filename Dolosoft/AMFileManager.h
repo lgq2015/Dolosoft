@@ -24,6 +24,7 @@
 - (void)createHeadersDirectory;
 - (void)createTweaksDirectory;
 - (void)createApplicationSupportSymbolicLink;
+- (void)createFridaDirectory;
 + (NSArray *)filesInDirectory:(NSString*)directoryPath;
 - (NSString *)pathOfDecryptedBinaryForApp:(AMApp *)app;
 - (NSString *)pathOfHeaderForApp:(AMApp *)app;
