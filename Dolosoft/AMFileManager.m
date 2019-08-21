@@ -79,7 +79,7 @@
     NSError *error;
     NSTask *task = [[NSTask alloc] init];
     task.executableURL = [NSURL fileURLWithPath:@"/usr/bin/git"];
-    task.arguments = @[ @"clone", @"https://github.com/AloneMonkey/frida-ios-dump.git" ];
+    task.arguments = @[ @"clone", @"https://github.com/andermoran/frida-ios-dump" ];
     task.currentDirectoryURL = [NSURL fileURLWithPath:_mainDirectoryPath];
     [task launchAndReturnError:&error];
 }

@@ -46,32 +46,26 @@
      */
     
     /* for iOS 12 */
-    NSString *command = [NSString stringWithFormat:@"./dump.py %@", app.bundleIdentifier];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    static NSString *rootUserPassword; // this is the iOS device's root password
+    rootUserPassword = [defaults objectForKey:@"rootUserPassword"];
+    
+    if (!rootUserPassword) {
+        dispatch_sync(dispatch_get_main_queue(), ^(void){
+            rootUserPassword = [AMManager getSecureUserInput:@"Enter iOS device root password. This is REQUIRED by frida do decrypt the app. Everything else is done as the mobile user."];
+        });
+        [defaults setObject:rootUserPassword forKey:@"rootUserPassword"];
+        [defaults synchronize];
+    }
+    
+    NSError *error;
+    NSString *command = [NSString stringWithFormat:@"./dump.py %@ -b --user root --password %@ --host localhost --port 2222 --output-path \"%@\"", app.bundleIdentifier, rootUserPassword, fileManager.decryptedBinariesDirectoryPath];
     NSTask *task = [[NSTask alloc] init];
-    [task setLaunchPath:@"/bin/bash"];
-    [task setCurrentDirectoryPath:fileManager.fridaDirectoryPath];
-    [task setArguments:@[ @"-c", command ]];
-    [task launch];
-    
-    // This waits for the task to finish before returning
-    // We need to make sure the .ipa is zipped up before proceeding
-    // The NSTask will complete before the file is fully outputted
-    while ([task isRunning]) {}
-    [NSThread sleepForTimeInterval:4.0f];
-    
-    //TODO: Do all of this using objective-c, this command line stuff is hacky
-    command = [NSString stringWithFormat:@"mv \"%@/%@.ipa\" \"%@\"; unzip \"%@.ipa\"; mv Payload/*.app/%@ .; rm -r Payload; rm \"%@.ipa\"",
-               fileManager.fridaDirectoryPath,
-               app.displayName,
-               fileManager.decryptedBinariesDirectoryPath,
-               app.displayName,
-               app.executableName,
-               app.displayName];
-    task = [[NSTask alloc] init];
-    [task setLaunchPath:@"/bin/bash"];
-    [task setCurrentDirectoryPath:fileManager.decryptedBinariesDirectoryPath];
-    [task setArguments:@[ @"-c", command ]];
-    [task launch];
+    task.executableURL = [NSURL fileURLWithPath:@"/bin/bash"];
+    task.arguments = @[ @"-c", command ];
+    task.currentDirectoryURL = [NSURL fileURLWithPath:fileManager.fridaDirectoryPath];
+    [task launchAndReturnError:&error];
+//    NSLog(@"Error decrypt: %@",  [error localizedDescription]);
     
     // This waits for the task to finish before returning
     while ([task isRunning]) {}
@@ -82,13 +76,14 @@
     
     NSString *dest;
     NSArray<NSDictionary *> *installedAppsPlist;
-    if (!TEST_MODE) {
+    if (TEST_MODE) {
+        installedAppsPlist = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/installed_apps_debug.plist", [fileManager mainDirectoryPath]]];
+    } else {
         [connectionHandler.session.channel execute:@"getinstalledappsinfo" error:nil]; // TODO: make sure this package is installed on iOS device
+        NSLog(@"HEREEE");
         dest = [NSString stringWithFormat:@"%@/installed_apps.plist", [fileManager mainDirectoryPath]];
         [connectionHandler.session.channel downloadFile:@"/var/mobile/Documents/Dolosoft/installed_apps.plist" to:dest];
         installedAppsPlist = [NSArray arrayWithContentsOfFile:dest];
-    } else {
-        installedAppsPlist = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/installed_apps_debug.plist", [fileManager mainDirectoryPath]]];
     }
 
     for (NSDictionary *appInfo in installedAppsPlist) {

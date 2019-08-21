@@ -10,6 +10,7 @@
 #import "AMConnectionHandler.h"
 #import "AMFileManager.h"
 #import "AMAppManager.h"
+#import "AMManager.h"
 
 @class AMAppManager;
 

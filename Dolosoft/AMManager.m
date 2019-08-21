@@ -48,14 +48,13 @@
 
 - (void)start {
     [self setup];
+    /* dispatch_group_notify makes the following code wait for the setup to finish */
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         _mainViewController = [storyBoard instantiateControllerWithIdentifier:@"AMMainViewController"]; // instantiate your window controller
         _mainViewController.manager = self; // TODO: I hate the way this is structured, so restructure
         [self dismissVC:_initialViewController];
         [self presentVCAsModal:_mainViewController];
     });
-    
-    
 }
 
 - (void)setup {
@@ -63,22 +62,21 @@
 //    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
 //    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:domainName];
     dispatch_group_async(group, background_queue, ^{
-        dispatch_sync(dispatch_get_main_queue(), ^(void){
+        dispatch_async(dispatch_get_main_queue(), ^(void){
             [_initialViewController setStatus:@"Attempting to connect to device via SSH"];
         });
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        static NSString *password;
-        password = [defaults objectForKey:@"password"];
-        
-        dispatch_sync(dispatch_get_main_queue(), ^(void){
-            [_initialViewController setStatus:@"Prompting for mobile password"];
-        });
+        static NSString *mobileUserPassword;
+        mobileUserPassword = [defaults objectForKey:@"mobileUserPassword"];
 
-        if (!password && !TEST_MODE) {
+        if (!mobileUserPassword && !TEST_MODE) {
             dispatch_sync(dispatch_get_main_queue(), ^(void){
-                password = [AMManager getSecureUserInput:@"Enter iOS device mobile password"];
+                [_initialViewController setStatus:@"Prompting for mobile mobileUserPassword"];
             });
-            [defaults setObject:password forKey:@"password"];
+            dispatch_sync(dispatch_get_main_queue(), ^(void){
+                mobileUserPassword = [AMManager getSecureUserInput:@"Enter iOS device mobile password"];
+            });
+            [defaults setObject:mobileUserPassword forKey:@"mobileUserPassword"];
             [defaults synchronize];
         }
 
@@ -95,23 +93,23 @@
                               initWithHost:hostName
                               port:port
                               username:username
-                              password:password];
+                              password:mobileUserPassword];
 
         // if test mode than skip connection bc dont have device
         if (!TEST_MODE) {
-            while (!_connectionHandler.session.isConnected) { // we keep trying until we get the right password
+            while (!_connectionHandler.session.isConnected) { // we keep trying until we get the right mobileUserPassword
                 dispatch_sync(dispatch_get_main_queue(), ^(void){
                     [_initialViewController setStatus:@"Prompting for mobile password"];
                 });
                 dispatch_sync(dispatch_get_main_queue(), ^(void){
-                    password = [AMManager getSecureUserInput:@"Incorrect iOS device mobile password. Please try again"];
+                    mobileUserPassword = [AMManager getSecureUserInput:@"Incorrect iOS device mobile mobileUserPassword. Please try again"];
                 });
-                [defaults setObject:password forKey:@"password"];
+                [defaults setObject:mobileUserPassword forKey:@"mobileUserPassword"];
                 [defaults synchronize];
                 _connectionHandler = [[AMConnectionHandler alloc] initWithHost:hostName
                                                                           port:port
                                                                       username:username
-                                                                      password:password];
+                                                                      password:mobileUserPassword];
             }
         }
 
@@ -137,9 +135,8 @@
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [_initialViewController setStatus:@"Setup complete"];
             });
-            NSLog(@"Dolosoft::Completed AMManager setup");
         } else {
-            NSLog(@"Dolosoft::Unable to establish connection");
+            NSLog(@"Unable to establish connection with iOS device");
         }
     });
 }
