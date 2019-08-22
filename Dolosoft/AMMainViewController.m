@@ -95,7 +95,8 @@
 }
 - (IBAction)SSHSessionButtonClicked:(id)sender {
     NSString *loadTerminalPath = [NSString stringWithFormat:@"%@/loadSSH.sh", [_manager.fileManager mainDirectoryPath]];
-    [[NSWorkspace sharedWorkspace] openFile:loadTerminalPath withApplication:@"Terminal"];
+    // TODO: fix this code
+    [[NSWorkspace sharedWorkspace] openFile:@"Resources/loadSSH.sh" withApplication:@"Terminal"];
 }
 
 - (IBAction)respringButtonClicked:(id)sender {
@@ -241,7 +242,13 @@
 
 - (IBAction)removeTweakButtonClicked:(id)sender {
     NSError *error = nil;
-    NSString *command = [NSString stringWithFormat:@"printf \"Y\" | apt-get remove com.dolosoft.dolosoft-%@",
+    /* this command works but it requires root. I am leaving this here in case I revert to using root
+       but the new solution does not require root so it is preferred */
+//    NSString *command = [NSString stringWithFormat:@"printf \"Y\" | apt-get remove com.dolosoft.dolosoft-%@",
+//                         selectedApp.displayNameLowercaseNoSpace];
+//    [_manager.connectionHandler.session.channel execute:command error:&error];
+    
+    NSString *command = [NSString stringWithFormat:@"removetweak com.dolosoft.dolosoft-%@",
                          selectedApp.displayNameLowercaseNoSpace];
     [_manager.connectionHandler.session.channel execute:command error:&error];
 }
