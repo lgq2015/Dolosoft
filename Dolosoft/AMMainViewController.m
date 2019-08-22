@@ -19,20 +19,6 @@
 // add the search paths for headers and libs
 
 @implementation AMMainViewController
-- (void)redirectLogToDocuments { // TODO: Move this method to AMMananger
-    #ifdef DEBUG
-        return;
-    #endif
-    // https://stackoverflow.com/questions/7271528/how-to-nslog-into-a-file
-    NSString *targetName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Target name"];
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSURL *dirPath = nil;
-    NSArray* appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
-                                        inDomains:NSUserDomainMask];
-    dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:targetName];
-    NSString *pathForLog = [NSString stringWithFormat:@"%@/liveTerminalLog.txt", [dirPath path]];
-    freopen([pathForLog cStringUsingEncoding:NSASCIIStringEncoding], "a+", stderr);
-}
 - (IBAction)deviceInfoButtonClicked:(id)sender {
     _manager.deviceInfoViewController.deviceInfo = _manager.device.deviceInfo;
     [self presentViewControllerAsSheet:_manager.deviceInfoViewController];
@@ -42,7 +28,6 @@
 // https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self redirectLogToDocuments];
 
     self.view.layer.backgroundColor = [NSColor colorWithCalibratedRed:71.0f/255.0f
                                                                 green:69.0f/255.0f
@@ -53,32 +38,15 @@
     [classesTableView setAction:@selector(tableViewClicked:)];
     [methodsTableView setAction:@selector(tableViewClicked:)];
 
-    terminalTextView.editable = NO;
+//    terminalTextView.editable = NO;
     terminalTextView.font = [NSFont fontWithName:@"Monaco" size:12];
 
     logTextView.editable = NO;
     logTextView.font = [NSFont fontWithName:@"Monaco" size:12];
     
-    [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@ on iOS %@", _manager.device.DeviceName, _manager.device.ProductVersion]];
-
-    [self updateTerminalDaemon]; // TODO: redo this code using performSelectorInBackground
-}
-
-- (void)updateTerminalDaemon {
-    //NSTimer calling check: every 1 second.
-    NSTimer *timer;
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
-                                             target:self selector:@selector(updateTerminal:) userInfo:nil repeats:YES];
-}
-
-- (void)updateTerminal:(NSTimer *)timer {
-    NSString *logPath = [NSString stringWithFormat:@"%@/liveTerminalLog.txt", [_manager.fileManager mainDirectoryPath]];
-    NSString* content = [NSString stringWithContentsOfFile:logPath
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-    if (![content isEqualToString:[[terminalTextView textStorage] string]]) {
-        [terminalTextView setString:content];
-    }
+    [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@ on iOS %@",
+                                      _manager.device.DeviceName,
+                                      _manager.device.ProductVersion]];
 }
 
 - (IBAction)cycriptButtonClicked:(id)sender {
@@ -188,17 +156,6 @@
                                  atomically:YES
                                    encoding:NSUTF8StringEncoding
                                       error:nil];
-    
-    /*  had to remove this because it broke the program whenever I selected a class in one app and then switched to another.
-     problem is when the index selected is higher than the maximum number of classes in the new app
-     */
-    //    NSAlert *alert = [[NSAlert alloc] init];
-    //    [alert addButtonWithTitle:@"Continue"];
-    //    [alert setMessageText:@"Before preceding..."];
-    //    [alert setInformativeText:[NSString stringWithFormat:@"Please open %@ on your iOS device", selectedApp.displayName]];
-    //    [alert setAlertStyle:NSAlertStyleCritical];
-    //    [alert runModalSheet];
-    
     
     [classesTableView reloadData];
     [methodsTableView reloadData];
