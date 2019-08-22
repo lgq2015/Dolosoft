@@ -39,6 +39,6 @@
     IBOutlet NSTextView *terminalTextView;
     IBOutlet NSTextField *targetAppLabel;
 }
-@property(retain, nonatomic) AMManager *manager;;
+@property(retain, nonatomic) AMManager *manager;
 @end
 

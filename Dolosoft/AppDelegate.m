@@ -10,14 +10,25 @@
 
 @implementation AppDelegate
 
-//TODO: change this method name
+BOOL showTerminalInXCode = true;
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    if (!showTerminalInXCode) {
+        // https://stackoverflow.com/questions/7271528/how-to-nslog-into-a-file
+        NSString *targetName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Target name"];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        NSURL *dirPath = nil;
+        NSArray* appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
+                                            inDomains:NSUserDomainMask];
+        dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:targetName];
+        NSString *pathForLog = [NSString stringWithFormat:@"%@/liveTerminalLog.txt", [dirPath path]];
+        freopen([pathForLog cStringUsingEncoding:NSASCIIStringEncoding], "a+", stderr);
+    }
+
     if (TEST_MODE) {
         NSLog(@"[note] TEST_MODE enabled");
     }
     AMManager *manager = [[AMManager alloc] init];
-//    [NSThread sleepForTimeInterval:10.0f];
-//     [manager start];
 }
 
 
