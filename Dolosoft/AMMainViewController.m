@@ -94,9 +94,13 @@
 //    [[NSWorkspace sharedWorkspace] openFile:loadCycriptPath withApplication:@"Terminal"];
 }
 - (IBAction)SSHSessionButtonClicked:(id)sender {
-    NSString *loadTerminalPath = [NSString stringWithFormat:@"%@/loadSSH.sh", [_manager.fileManager mainDirectoryPath]];
+//    NSString *loadTerminalPath = [NSString stringWithFormat:@"%@/loadSSH.sh", [_manager.fileManager mainDirectoryPath]];
     // TODO: fix this code
-    [[NSWorkspace sharedWorkspace] openFile:@"Resources/loadSSH.sh" withApplication:@"Terminal"];
+    NSBundle *main = [NSBundle mainBundle];
+    NSString *loadSSHPath = [main pathForResource:@"loadSSH" ofType:@"sh"];
+//    NSString *loadSSHPath = [NSString stringWithFormat:@"%@/Contents/Resources/loadSSH.sh", [NSBundle mainBundle]];
+//    NSLog(@"%@", loadSSHPath);
+    [[NSWorkspace sharedWorkspace] openFile:loadSSHPath withApplication:@"Terminal"];
 }
 
 - (IBAction)respringButtonClicked:(id)sender {
