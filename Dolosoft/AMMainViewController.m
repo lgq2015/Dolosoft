@@ -19,11 +19,6 @@
 // add the search paths for headers and libs
 
 @implementation AMMainViewController
-- (IBAction)deviceInfoButtonClicked:(id)sender {
-    _manager.deviceInfoViewController.deviceInfo = _manager.device.deviceInfo;
-    [self presentViewControllerAsSheet:_manager.deviceInfoViewController];
-}
-
 // NSAlert+SynchronousSheet.h (in case i need this later)
 // https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
 - (void)viewDidLoad {
@@ -47,6 +42,28 @@
     [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@ on iOS %@",
                                       _manager.device.DeviceName,
                                       _manager.device.ProductVersion]];
+    [self tempMethodName];
+}
+// I WAS WORKING ON FIXING THE TERMINAL UPDATES
+- (void)tempMethodName {
+    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(tempMethodName) userInfo:nil repeats:YES];
+}
+
+- (void)tempMethodName1 {
+    // NSLog(@"In the loop!");
+    NSString *logPath = [NSString stringWithFormat:@"%@/liveTerminalLog.txt", [_manager.fileManager mainDirectoryPath]];
+    NSString* content = [NSString stringWithContentsOfFile:logPath
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [terminalTextView setString:content];
+    });
+}
+
+- (IBAction)deviceInfoButtonClicked:(id)sender {
+    _manager.deviceInfoViewController.deviceInfo = _manager.device.deviceInfo;
+    [self presentViewControllerAsSheet:_manager.deviceInfoViewController];
 }
 
 - (IBAction)cycriptButtonClicked:(id)sender {
@@ -62,12 +79,8 @@
 //    [[NSWorkspace sharedWorkspace] openFile:loadCycriptPath withApplication:@"Terminal"];
 }
 - (IBAction)SSHSessionButtonClicked:(id)sender {
-//    NSString *loadTerminalPath = [NSString stringWithFormat:@"%@/loadSSH.sh", [_manager.fileManager mainDirectoryPath]];
-    // TODO: fix this code
     NSBundle *main = [NSBundle mainBundle];
     NSString *loadSSHPath = [main pathForResource:@"loadSSH" ofType:@"sh"];
-//    NSString *loadSSHPath = [NSString stringWithFormat:@"%@/Contents/Resources/loadSSH.sh", [NSBundle mainBundle]];
-//    NSLog(@"%@", loadSSHPath);
     [[NSWorkspace sharedWorkspace] openFile:loadSSHPath withApplication:@"Terminal"];
 }
 
@@ -92,7 +105,6 @@
     [self presentViewControllerAsSheet:_manager.stringsViewController];
 }
 - (IBAction)clearAppCacheButtonClicked:(id)sender {
-    
     NSString *cachePath = [NSString stringWithFormat:@"%@/Library/Caches", selectedApp.pathToAppStorageDir];
     NSString *command = [NSString stringWithFormat:@"rm -r %@", cachePath];
     [_manager.connectionHandler.session.channel execute:command error:nil];
