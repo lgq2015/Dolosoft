@@ -173,9 +173,8 @@
     [methodsTableView reloadData];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        /* check to see if we have decrypted file or headers */
-        if (![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfDecryptedBinaryForApp:selectedApp]] &&
-            ![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfHeaderForApp:selectedApp]]) {
+        /* check to see if we have decrypted file */
+        if (![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfDecryptedBinaryForApp:selectedApp]]) {
             NSLog(@"AM::App has not been decrypted and/or downloaded. Decrypting and downloading now.");
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [analyzeAppProgressLabel setStringValue:@"Decrypting app"];
@@ -184,6 +183,7 @@
             [_manager.deviceManager decryptAppAndDownload:selectedApp];
         }
         
+        /* check to see if we have headers */
         if (![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfHeaderForApp:
                                             selectedApp]]) {
             NSLog(@"headerPath = %@", selectedApp.headerPath);
@@ -196,11 +196,10 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            [analyzeAppProgressLabel setStringValue:@"Parsing headers"];
+            [analyzeAppProgressLabel setStringValue:@"Prasing Objective-C data from headers"];
             [analyzeAppProgressLabel display];
         });
         
-        //NSLog(@"LABEL = %@", [analyzeAppProgressLabel di]);
         [_manager.appManager initializeClassListForApp:selectedApp];
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
