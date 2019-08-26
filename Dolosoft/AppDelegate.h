@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import "AMManager.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate> {
+    AMManager *manager;
+}
 @end
 

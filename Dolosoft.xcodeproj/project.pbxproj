@@ -96,8 +96,6 @@
 		41F519712301CD0000200C2A /* DeviceInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoViewController.m; sourceTree = "<group>"; };
 		41F76A7423046E4A00722AD6 /* StringsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringsViewController.h; sourceTree = "<group>"; };
 		41F76A7523046E4A00722AD6 /* StringsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringsViewController.m; sourceTree = "<group>"; };
-		41F7E41722FC70D800F3D402 /* libimobiledevice.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libimobiledevice.dylib; path = ../../../../usr/local/lib/libimobiledevice.dylib; sourceTree = "<group>"; };
-		41F7E41922FC70ED00F3D402 /* libplist.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libplist.dylib; path = ../../../../usr/local/lib/libplist.dylib; sourceTree = "<group>"; };
 		41F7E41E22FC8A4600F3D402 /* AMDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDevice.h; sourceTree = "<group>"; };
 		41F7E41F22FC8A4600F3D402 /* AMDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDevice.m; sourceTree = "<group>"; };
 		41F7E42122FCC1D500F3D402 /* InitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
@@ -226,10 +224,8 @@
 			children = (
 				4104AE8623145E4900D3C42C /* libplist.a */,
 				4104AE8323145DED00D3C42C /* libimobiledevice.a */,
-				41F7E41922FC70ED00F3D402 /* libplist.dylib */,
-				41F7E41722FC70D800F3D402 /* libimobiledevice.dylib */,
-				0C791EF8222F272D00D04DBE /* CoreFoundation.framework */,
 				C6F50362FEBA69F0277DD9CC /* libPods-Dolosoft.a */,
+				0C791EF8222F272D00D04DBE /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

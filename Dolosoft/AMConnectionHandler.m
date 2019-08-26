@@ -22,7 +22,7 @@
 }
 - (void)initializeProxy {
     NSError *error = nil;
-    [NSTask launchedTaskWithExecutableURL:[NSURL fileURLWithPath:@"/usr/local/bin/iproxy"]
+    _iproxyTask = [NSTask launchedTaskWithExecutableURL:[NSURL fileURLWithPath:@"/usr/local/bin/iproxy"]
                                 arguments:@[ @"2222", @"22" ]
                                     error:&error
                        terminationHandler:^(NSTask *t){}];

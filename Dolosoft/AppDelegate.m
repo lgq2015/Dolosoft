@@ -28,11 +28,12 @@ BOOL showTerminalInXCode = true;
     if (TEST_MODE) {
         NSLog(@"[note] TEST_MODE enabled");
     }
-    AMManager *manager = [[AMManager alloc] init];
+    manager = [[AMManager alloc] init];
 }
 
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+    [manager.connectionHandler.iproxyTask terminate];
 }
 @end

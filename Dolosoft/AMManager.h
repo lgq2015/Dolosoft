@@ -41,7 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(retain, nonatomic) DeviceInfoViewController *deviceInfoViewController;
 @property(retain, nonatomic) StringsViewController *stringsViewController;
 - (instancetype)init;
-- (void)setup; // TODO: rename this or restructure
+- (void)start;
+- (void)setup;
 - (void)checkForDevice;
 - (void)deviceDidAttach;
 - (void)presentVCAsModal:(NSViewController *)viewController;
