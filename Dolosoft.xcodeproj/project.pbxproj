@@ -22,8 +22,8 @@
 		0CA40BCC207ED1A900789BEB /* AMClassDumpParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA40BCB207ED1A900789BEB /* AMClassDumpParser.m */; };
 		0CA40BD1207EE38800789BEB /* AMAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA40BD0207EE38800789BEB /* AMAppManager.m */; };
 		0CEFBF102096468C00B41490 /* AMTweakBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */; };
-		4104AE8523145E0D00D3C42C /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4104AE8323145DED00D3C42C /* libimobiledevice.a */; };
-		4104AE8723145E4900D3C42C /* libplist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4104AE8623145E4900D3C42C /* libplist.a */; };
+		4104AE89231489FE00D3C42C /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4104AE88231489FE00D3C42C /* libimobiledevice.dylib */; };
+		4104AE8B23148A1B00D3C42C /* libplist.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4104AE8A23148A1B00D3C42C /* libplist.dylib */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
 		41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */ = {isa = PBXBuildFile; fileRef = 41BE935F230DF3E000C9CEAF /* loadSSH.sh */; };
 		41EBB1AC2305CBDD00088422 /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 41EBB1AB2305CBDD00088422 /* icons.iconset */; };
@@ -85,6 +85,8 @@
 		0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMTweakBuilder.m; sourceTree = "<group>"; };
 		4104AE8323145DED00D3C42C /* libimobiledevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libimobiledevice.a; path = ../../../../usr/local/lib/libimobiledevice.a; sourceTree = "<group>"; };
 		4104AE8623145E4900D3C42C /* libplist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplist.a; path = ../../../../usr/local/Cellar/libplist/2.0.0_1/lib/libplist.a; sourceTree = "<group>"; };
+		4104AE88231489FE00D3C42C /* libimobiledevice.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libimobiledevice.dylib; path = ../../../../usr/local/lib/libimobiledevice.dylib; sourceTree = "<group>"; };
+		4104AE8A23148A1B00D3C42C /* libplist.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libplist.dylib; path = ../../../../usr/local/Cellar/libplist/2.0.0_1/lib/libplist.dylib; sourceTree = "<group>"; };
 		4117A6C5230C30FC00871C3B /* Macros.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.pch; sourceTree = "<group>"; };
 		41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceManager.h; sourceTree = "<group>"; };
 		41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceManager.m; sourceTree = "<group>"; };
@@ -110,10 +112,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4104AE8723145E4900D3C42C /* libplist.a in Frameworks */,
-				4104AE8523145E0D00D3C42C /* libimobiledevice.a in Frameworks */,
 				41F7E3EC22FC5FC900F3D402 /* libPods-Dolosoft.a in Frameworks */,
+				4104AE8B23148A1B00D3C42C /* libplist.dylib in Frameworks */,
 				0C9CD9CD2231A18E0020A723 /* CoreFoundation.framework in Frameworks */,
+				4104AE89231489FE00D3C42C /* libimobiledevice.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +224,8 @@
 		7B6CFCB687472DC898D536A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4104AE8A23148A1B00D3C42C /* libplist.dylib */,
+				4104AE88231489FE00D3C42C /* libimobiledevice.dylib */,
 				4104AE8623145E4900D3C42C /* libplist.a */,
 				4104AE8323145DED00D3C42C /* libimobiledevice.a */,
 				C6F50362FEBA69F0277DD9CC /* libPods-Dolosoft.a */,
