@@ -201,12 +201,27 @@
         });
         
         [_manager.appManager initializeClassListForApp:selectedApp];
+        NSLog(@"list = %@", selectedApp.classList);
         
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            [analyzeAppProgressLabel setStringValue:@"Analysis finished"];
-            [classesTableView reloadData];
-            [methodsTableView reloadData];
-        });
+        if ([selectedApp.classList count] != 0) {
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [analyzeAppProgressLabel setStringValue:@"Analysis finished"];
+                [classesTableView reloadData];
+                [methodsTableView reloadData];
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [analyzeAppProgressLabel setStringValue:@"Analysis failed"];
+                [classesTableView reloadData];
+                [methodsTableView reloadData];
+                NSLog(@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", selectedApp);
+                NSAlert *alert = [[NSAlert alloc] init];
+                [alert addButtonWithTitle:@"Dismiss"];
+                [alert setMessageText:@"Error"];
+                [alert setInformativeText:[NSString stringWithFormat:@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", selectedApp.displayName]];
+                [alert runModal];
+            });
+        }
         
     });
     
