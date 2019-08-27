@@ -24,6 +24,7 @@
 		0CEFBF102096468C00B41490 /* AMTweakBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */; };
 		4104AE89231489FE00D3C42C /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4104AE88231489FE00D3C42C /* libimobiledevice.dylib */; };
 		4104AE8B23148A1B00D3C42C /* libplist.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4104AE8A23148A1B00D3C42C /* libplist.dylib */; };
+		4104AE8D231582E800D3C42C /* iproxy in Resources */ = {isa = PBXBuildFile; fileRef = 4104AE8C231582E700D3C42C /* iproxy */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
 		41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */ = {isa = PBXBuildFile; fileRef = 41BE935F230DF3E000C9CEAF /* loadSSH.sh */; };
 		41EBB1AC2305CBDD00088422 /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 41EBB1AB2305CBDD00088422 /* icons.iconset */; };
@@ -87,6 +88,7 @@
 		4104AE8623145E4900D3C42C /* libplist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplist.a; path = ../../../../usr/local/Cellar/libplist/2.0.0_1/lib/libplist.a; sourceTree = "<group>"; };
 		4104AE88231489FE00D3C42C /* libimobiledevice.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libimobiledevice.dylib; path = ../../../../usr/local/lib/libimobiledevice.dylib; sourceTree = "<group>"; };
 		4104AE8A23148A1B00D3C42C /* libplist.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libplist.dylib; path = ../../../../usr/local/Cellar/libplist/2.0.0_1/lib/libplist.dylib; sourceTree = "<group>"; };
+		4104AE8C231582E700D3C42C /* iproxy */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = iproxy; sourceTree = "<group>"; };
 		4117A6C5230C30FC00871C3B /* Macros.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.pch; sourceTree = "<group>"; };
 		41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceManager.h; sourceTree = "<group>"; };
 		41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceManager.m; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		0C9CD9CA2231959F0020A723 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4104AE8C231582E700D3C42C /* iproxy */,
 				41BE935F230DF3E000C9CEAF /* loadSSH.sh */,
 			);
 			path = Resources;
@@ -341,6 +344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4104AE8D231582E800D3C42C /* iproxy in Resources */,
 				0C16DFB0207C1A0100AA0952 /* Assets.xcassets in Resources */,
 				41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */,
 				0C16DFB3207C1A0100AA0952 /* Main.storyboard in Resources */,
