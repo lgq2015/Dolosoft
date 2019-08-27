@@ -17,8 +17,6 @@
 
 - (void)deviceDidAttachWithName:(NSString *)name {
     [_statusTextField setStringValue:[NSString stringWithFormat:@"%@ detected", name]];
-//    [_waitingIndicator stopAnimation:nil];
-//    [_waitingIndicator setHidden:YES];
 }
 
 - (void)setStatus:(NSString *)status {

@@ -50,7 +50,7 @@
     [self setup];
     /* dispatch_group_notify makes the following code wait for the setup to finish */
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        _mainViewController = [storyBoard instantiateControllerWithIdentifier:@"AMMainViewController"]; // instantiate your window controller
+        _mainViewController = [storyBoard instantiateControllerWithIdentifier:@"AMMainViewController"];
         _mainViewController.manager = self; // TODO: I hate the way this is structured, so restructure
         [self dismissVC:_initialViewController];
         [self presentVCAsModal:_mainViewController];
@@ -102,7 +102,7 @@
                     [_initialViewController setStatus:@"Prompting for mobile password"];
                 });
                 dispatch_sync(dispatch_get_main_queue(), ^(void){
-                    mobileUserPassword = [AMManager getSecureUserInput:@"Incorrect iOS device mobile mobileUserPassword. Please try again"];
+                    mobileUserPassword = [AMManager getSecureUserInput:@"Incorrect iOS device mobile password. Please try again"];
                 });
                 [defaults setObject:mobileUserPassword forKey:@"mobileUserPassword"];
                 [defaults synchronize];
@@ -123,35 +123,32 @@
             _appManager.appList = [_deviceManager getUserApps];
             return;
         }
-        if (_connectionHandler.session.isConnected) { // TODO: Reformat this as this if statement is redundant
-            _logger.connectionHandler = _connectionHandler;
-
-            // should put some check here to see if getinstalledappsinfo is installed on iOS device;
-            dispatch_async(dispatch_get_main_queue(), ^(void){
-                [_initialViewController setStatus:@"Checking if Dolosoft tools are installed on iOS device"];
-            });
-            if (!TEST_MODE) {
-                if (![self toolInstalled:@"getinstalledappsinfo"]) {
-                    dispatch_sync(dispatch_get_main_queue(), ^(void){
-                        NSAlert *alert = [[NSAlert alloc] init];
-                        [alert addButtonWithTitle:@"Quit"];
-                        [alert setMessageText:@"Error"];
-                        [alert setInformativeText:@"getinstalledappsinfo is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install getinstalledappsinfo"];
-                        [alert runModal];
-                    });
-                    [NSApp terminate:nil];
-                }
-                
-                if (![self toolInstalled:@"removetweak"]) {
-                    dispatch_sync(dispatch_get_main_queue(), ^(void){
-                        NSAlert *alert = [[NSAlert alloc] init];
-                        [alert addButtonWithTitle:@"Quit"];
-                        [alert setMessageText:@"Error"];
-                        [alert setInformativeText:@"removetweak is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install removetweak"];
-                        [alert runModal];
-                    });
-                    [NSApp terminate:nil];
-                }
+        
+        _logger.connectionHandler = _connectionHandler;
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [_initialViewController setStatus:@"Checking if Dolosoft tools are installed on iOS device"];
+        });
+        if (!TEST_MODE) {
+            if (![self toolInstalled:@"getinstalledappsinfo"]) {
+                dispatch_sync(dispatch_get_main_queue(), ^(void){
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    [alert addButtonWithTitle:@"Quit"];
+                    [alert setMessageText:@"Error"];
+                    [alert setInformativeText:@"getinstalledappsinfo is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install getinstalledappsinfo"];
+                    [alert runModal];
+                });
+                [NSApp terminate:nil];
+            }
+            
+            if (![self toolInstalled:@"removetweak"]) {
+                dispatch_sync(dispatch_get_main_queue(), ^(void){
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    [alert addButtonWithTitle:@"Quit"];
+                    [alert setMessageText:@"Error"];
+                    [alert setInformativeText:@"removetweak is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install removetweak"];
+                    [alert runModal];
+                });
+                [NSApp terminate:nil];
             }
 
             dispatch_async(dispatch_get_main_queue(), ^(void){
