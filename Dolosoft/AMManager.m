@@ -136,7 +136,7 @@
                         NSAlert *alert = [[NSAlert alloc] init];
                         [alert addButtonWithTitle:@"Quit"];
                         [alert setMessageText:@"Error"];
-                        [alert setInformativeText:@"getinstalledappsinfo is not installed on the iOS device. Please install and try again"];
+                        [alert setInformativeText:@"getinstalledappsinfo is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install getinstalledappsinfo"];
                         [alert runModal];
                     });
                     [NSApp terminate:nil];
@@ -147,7 +147,7 @@
                         NSAlert *alert = [[NSAlert alloc] init];
                         [alert addButtonWithTitle:@"Quit"];
                         [alert setMessageText:@"Error"];
-                        [alert setInformativeText:@"removetweak is not installed on the iOS device. Please install and try again"];
+                        [alert setInformativeText:@"removetweak is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install removetweak"];
                         [alert runModal];
                     });
                     [NSApp terminate:nil];
