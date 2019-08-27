@@ -179,6 +179,7 @@
     NSAlert *alert = [[NSAlert alloc] init];
     [alert setMessageText:prompt];
     [alert addButtonWithTitle:@"Ok"];
+    [alert addButtonWithTitle:@"Quit"];
     
     NSSecureTextField *input = [[NSSecureTextField alloc] initWithFrame:NSMakeRect(0, 0, 200, 24)];
     [alert setAccessoryView:input];
@@ -187,6 +188,7 @@
         [input validateEditing];
         return [input stringValue];
     } else {
+        [NSApp terminate:nil];
         return nil;
     }
 }

@@ -16,7 +16,7 @@
 }
 
 - (void)deviceDidAttachWithName:(NSString *)name {
-    [_statusTextField setStringValue:[NSString stringWithFormat:@"%@ detected", name]];
+    [_deviceDetectedTextField setStringValue:[NSString stringWithFormat:@"%@ detected", name]];
 }
 
 - (void)setStatus:(NSString *)status {
