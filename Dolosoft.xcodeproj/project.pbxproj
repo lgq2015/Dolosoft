@@ -587,6 +587,7 @@
 					/usr/local/lib,
 					/usr/local/Cellar/libplist/2.0.0_1/lib,
 					"$(PROJECT_DIR)/Libraries",
+					"$(PROJECT_DIR)/Resources",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.andermoran.Dolosoft;
@@ -622,6 +623,7 @@
 					/usr/local/lib,
 					/usr/local/Cellar/libplist/2.0.0_1/lib,
 					"$(PROJECT_DIR)/Libraries",
+					"$(PROJECT_DIR)/Resources",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.andermoran.Dolosoft;

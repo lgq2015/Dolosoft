@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setup;
 - (void)checkForDevice;
 - (void)deviceDidAttach;
+- (BOOL)toolInstalled:(NSString *)toolName;
 - (void)presentVCAsModal:(NSViewController *)viewController;
 + (NSString *)getSecureUserInput:(NSString *)prompt;
 @end

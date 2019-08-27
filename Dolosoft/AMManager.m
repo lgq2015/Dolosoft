@@ -128,6 +128,34 @@
 
             // should put some check here to see if getinstalledappsinfo is installed on iOS device;
             dispatch_async(dispatch_get_main_queue(), ^(void){
+                [_initialViewController setStatus:@"Checking if Dolosoft tools are installed on iOS device"];
+            });
+            
+            if (![self toolInstalled:@"getinstalledappsinfo"]) {
+                dispatch_sync(dispatch_get_main_queue(), ^(void){
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    [alert addButtonWithTitle:@"Quit"];
+                    [alert setMessageText:@"Error"];
+                    [alert setInformativeText:@"getinstalledappsinfo is not installed on the iOS device. Please install and try again"];
+                    [alert runModal];
+                });
+                [NSApp terminate:nil];
+            }
+            
+            if (![self toolInstalled:@"removetweak"]) {
+                dispatch_sync(dispatch_get_main_queue(), ^(void){
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    [alert addButtonWithTitle:@"Quit"];
+                    [alert setMessageText:@"Error"];
+                    [alert setInformativeText:@"removetweak is not installed on the iOS device. Please install and try again"];
+                    [alert runModal];
+                });
+                [NSApp terminate:nil];
+            }
+            
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^(void){
                 [_initialViewController setStatus:@"Getting list of installed apps"];
             });
             _appManager.appList = [_deviceManager getUserApps];
@@ -139,6 +167,15 @@
             NSLog(@"Unable to establish connection with iOS device");
         }
     });
+}
+
+- (BOOL)toolInstalled:(NSString *)toolName {
+    NSString *command = [NSString stringWithFormat:@"if test -f /usr/bin/%@; then printf '%@ is installed'; fi", toolName, toolName];
+    NSString *response = [_connectionHandler.session.channel execute:command error:nil];
+    if (![response isEqualToString:[NSString stringWithFormat:@"%@ is installed", toolName]]) {
+        return NO;
+    }
+    return YES;
 }
 
 + (NSString *)getSecureUserInput:(NSString *)prompt {

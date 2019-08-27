@@ -1196,24 +1196,24 @@
             <objects>
                 <viewController title="Dolosoft" storyboardIdentifier="InitialViewController" id="2Mk-6F-anA" customClass="InitialViewController" sceneMemberID="viewController">
                     <view key="view" id="RIi-le-soG">
-                        <rect key="frame" x="0.0" y="0.0" width="322" height="152"/>
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="169"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kfz-eA-85s">
-                                <rect key="frame" x="14" y="101" width="295" height="17"/>
+                                <rect key="frame" x="14" y="46" width="295" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Waiting for device..." id="ltU-kB-Pzi">
+                                <textFieldCell key="cell" alignment="center" title="Waiting for device..." id="ltU-kB-Pzi">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="nQd-jp-N0D">
-                                <rect key="frame" x="153" y="77" width="16" height="16"/>
+                                <rect key="frame" x="153" y="117" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </progressIndicator>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hzq-cP-ht4">
-                                <rect key="frame" x="125" y="29" width="73" height="32"/>
+                                <rect key="frame" x="125" y="10" width="73" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Retry" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dVT-ri-0hz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1232,7 +1232,7 @@
                 </viewController>
                 <customObject id="bQK-PT-uex" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-209" y="1512"/>
+            <point key="canvasLocation" x="-209" y="1520.5"/>
         </scene>
         <!--Strings View Controller-->
         <scene sceneID="BOE-CF-MOb">
