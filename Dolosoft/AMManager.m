@@ -130,31 +130,30 @@
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [_initialViewController setStatus:@"Checking if Dolosoft tools are installed on iOS device"];
             });
-            
-            if (![self toolInstalled:@"getinstalledappsinfo"]) {
-                dispatch_sync(dispatch_get_main_queue(), ^(void){
-                    NSAlert *alert = [[NSAlert alloc] init];
-                    [alert addButtonWithTitle:@"Quit"];
-                    [alert setMessageText:@"Error"];
-                    [alert setInformativeText:@"getinstalledappsinfo is not installed on the iOS device. Please install and try again"];
-                    [alert runModal];
-                });
-                [NSApp terminate:nil];
+            if (!TEST_MODE) {
+                if (![self toolInstalled:@"getinstalledappsinfo"]) {
+                    dispatch_sync(dispatch_get_main_queue(), ^(void){
+                        NSAlert *alert = [[NSAlert alloc] init];
+                        [alert addButtonWithTitle:@"Quit"];
+                        [alert setMessageText:@"Error"];
+                        [alert setInformativeText:@"getinstalledappsinfo is not installed on the iOS device. Please install and try again"];
+                        [alert runModal];
+                    });
+                    [NSApp terminate:nil];
+                }
+                
+                if (![self toolInstalled:@"removetweak"]) {
+                    dispatch_sync(dispatch_get_main_queue(), ^(void){
+                        NSAlert *alert = [[NSAlert alloc] init];
+                        [alert addButtonWithTitle:@"Quit"];
+                        [alert setMessageText:@"Error"];
+                        [alert setInformativeText:@"removetweak is not installed on the iOS device. Please install and try again"];
+                        [alert runModal];
+                    });
+                    [NSApp terminate:nil];
+                }
             }
-            
-            if (![self toolInstalled:@"removetweak"]) {
-                dispatch_sync(dispatch_get_main_queue(), ^(void){
-                    NSAlert *alert = [[NSAlert alloc] init];
-                    [alert addButtonWithTitle:@"Quit"];
-                    [alert setMessageText:@"Error"];
-                    [alert setInformativeText:@"removetweak is not installed on the iOS device. Please install and try again"];
-                    [alert runModal];
-                });
-                [NSApp terminate:nil];
-            }
-            
-            
-            
+
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [_initialViewController setStatus:@"Getting list of installed apps"];
             });
