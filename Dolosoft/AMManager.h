@@ -42,8 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(retain, nonatomic) DeviceInfoViewController *deviceInfoViewController;
 @property(retain, nonatomic) StringsViewController *stringsViewController;
 @property(retain, nonatomic) AppsViewController *appsViewController;
-@property(retain, nonatomic) AMApp *selectedApp;
-@property(retain, nonatomic) AMObjcClass *selectedClass;
+@property(retain, nonatomic, nullable) AMApp *selectedApp;
+@property(retain, nonatomic, nullable) AMObjcClass *selectedClass;
 - (instancetype)init;
 - (void)start;
 - (void)setup;

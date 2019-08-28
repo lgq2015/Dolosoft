@@ -1360,20 +1360,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="723" height="508"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39k-6K-lXJ">
-                                <rect key="frame" x="209" y="13" width="114" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Analyze app" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mbj-3i-lFd">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="analyzeAppButtonClicked:" target="2bj-Dl-kGq" id="z0k-Hn-FuK"/>
-                                </connections>
-                            </button>
                             <scrollView wantsLayer="YES" fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTU-Sc-4z4">
                                 <rect key="frame" x="20" y="51" width="683" height="437"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="bAq-0q-Yhk">
                                     <rect key="frame" x="1" y="1" width="681" height="435"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1401,10 +1390,22 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39k-6K-lXJ">
+                                <rect key="frame" x="305" y="13" width="114" height="32"/>
+                                <buttonCell key="cell" type="push" title="Analyze app" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mbj-3i-lFd">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="analyzeAppButtonClicked:" target="2bj-Dl-kGq" id="z0k-Hn-FuK"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="39k-6K-lXJ" firstAttribute="centerX" secondItem="LwE-v2-cv1" secondAttribute="centerX" id="X7O-o3-U2Z"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="analyzeAppButton" destination="39k-6K-lXJ" id="0TG-5L-r02"/>
                         <outlet property="appsCollectionView" destination="C5N-kF-R0j" id="sCs-Lq-u2G"/>
                     </connections>
                 </viewController>

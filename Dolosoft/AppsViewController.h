@@ -19,8 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 }
 - (IBAction)analyzeAppButtonClicked:(id)sender;
 @property (retain, nonatomic) AMManager *manager;
-@property (strong) IBOutlet NSButton *analyzeAppButton;
-
 @end
 
 NS_ASSUME_NONNULL_END

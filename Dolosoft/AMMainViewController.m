@@ -179,7 +179,6 @@
         });
         
         [_manager.appManager initializeClassListForApp:_manager.selectedApp];
-        NSLog(@"list = %@", _manager.selectedApp.classList);
         
         if ([_manager.selectedApp.classList count] != 0) {
             dispatch_async(dispatch_get_main_queue(), ^(void){
@@ -190,6 +189,8 @@
         } else {
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [analyzeAppProgressLabel setStringValue:@"Analysis failed"];
+                [_targetAppLabel setStringValue:@"Target app: (null)"];
+                _manager.selectedApp = nil;
                 [classesTableView reloadData];
                 [methodsTableView reloadData];
                 NSLog(@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", _manager.selectedApp);
