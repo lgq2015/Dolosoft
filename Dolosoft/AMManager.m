@@ -26,7 +26,7 @@
 }
 
 - (void)checkForDevice {
-    while (!_device) {
+    while (!_device && !TEST_MODE) {
         _device = [[AMDevice alloc] init];
     }
     [self deviceDidAttach];
