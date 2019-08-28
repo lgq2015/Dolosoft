@@ -17,8 +17,10 @@
 - (void)setSelected:(BOOL)selected {
     if (selected) {
         self.view.layer.backgroundColor = [NSColor selectedContentBackgroundColor].CGColor;
+        self.appNameLabel.textColor = [NSColor selectedMenuItemTextColor];
     } else {
         self.view.layer.backgroundColor = [NSColor clearColor].CGColor;
+        self.appNameLabel.textColor = [NSColor labelColor];
     }
 }
 
