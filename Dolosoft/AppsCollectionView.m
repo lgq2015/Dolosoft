@@ -17,7 +17,19 @@
     // https://stackoverflow.com/questions/4668847/nstableview-delete-key
     unichar key = [[event charactersIgnoringModifiers] characterAtIndex:0];
     if (key == NSEnterCharacter || key == NSCarriageReturnCharacter) {
-        // Add code here to simulate clicking the "Analyze app" button
+        [NSApplication.sharedApplication sendAction:@selector(analyzeAppButtonClicked:)
+                                                 to:_manager.appsViewController
+                                               from:self];
+    }
+}
+
+- (void)mouseDown:(NSEvent *)theEvent {
+    // https://stackoverflow.com/questions/14574334/double-click-in-nscollectionview
+    [super mouseDown:theEvent];
+    if (theEvent.clickCount > 1) { // we assume if the user clicks more than once it's a double click
+        [NSApplication.sharedApplication sendAction:@selector(analyzeAppButtonClicked:)
+                                                 to:_manager.appsViewController
+                                               from:self];
     }
 }
 @end
