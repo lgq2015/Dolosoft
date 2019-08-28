@@ -3,4 +3,6 @@
 
 # Ignore Mac system files
 .DS_store
-Dolosoft.xcworkspace/xcuserdata/moranander00.xcuserdatad/UserInterfaceState.xcuserstate
+
+# Ignore unnecessary Xcode files
+*.xcuserstate
