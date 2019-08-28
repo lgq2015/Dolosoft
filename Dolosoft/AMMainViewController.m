@@ -23,18 +23,6 @@
 // https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.view.layer.backgroundColor = [NSColor colorWithCalibratedRed:71.0f/255.0f
-                                                                green:69.0f/255.0f
-                                                                 blue:68.0f/255.0f
-                                                                alpha:1].CGColor;
-
-    terminalTextView.editable = NO;
-    terminalTextView.font = [NSFont fontWithName:@"Monaco" size:12];
-
-    logTextView.editable = NO;
-    logTextView.font = [NSFont fontWithName:@"Monaco" size:12];
-    
     [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@ on iOS %@",
                                       _manager.device.DeviceName,
                                       _manager.device.ProductVersion]];
