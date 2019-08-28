@@ -29,11 +29,7 @@
                                                                  blue:68.0f/255.0f
                                                                 alpha:1].CGColor;
 
-    [appsTableView setAction:@selector(tableViewClicked:)];
-    [classesTableView setAction:@selector(tableViewClicked:)];
-    [methodsTableView setAction:@selector(tableViewClicked:)];
-
-//    terminalTextView.editable = NO;
+    terminalTextView.editable = NO;
     terminalTextView.font = [NSFont fontWithName:@"Monaco" size:12];
 
     logTextView.editable = NO;
@@ -59,6 +55,10 @@
     dispatch_async(dispatch_get_main_queue(), ^(void){
         [terminalTextView setString:content];
     });
+}
+- (IBAction)selectAppButtonClicked:(id)sender {
+    _manager.appsViewController.manager = _manager;
+    [self presentViewControllerAsSheet:_manager.appsViewController];
 }
 
 - (IBAction)deviceInfoButtonClicked:(id)sender {
@@ -90,13 +90,13 @@
 }
 - (IBAction)killAppButtonClicked:(id)sender {
     NSError *error = nil;
-    NSString *command = [NSString stringWithFormat:@"killall -9 \"%@\"", selectedApp.executableName];
+    NSString *command = [NSString stringWithFormat:@"killall -9 \"%@\"", _manager.selectedApp.executableName];
     [_manager.connectionHandler.session.channel execute:command error:&error];
 }
 - (IBAction)stringsButtonClicked:(id)sender {
     NSError *error;
     [NSTask launchedTaskWithExecutableURL:[NSURL fileURLWithPath:@"/bin/bash"]
-                                arguments:@[ @"-c", [NSString stringWithFormat:@"strings \"%@\" > %@", [_manager.fileManager pathOfDecryptedBinaryForApp:selectedApp], _manager.fileManager.stringsOutputPath] ]
+                                arguments:@[ @"-c", [NSString stringWithFormat:@"strings \"%@\" > %@", [_manager.fileManager pathOfDecryptedBinaryForApp:_manager.selectedApp], _manager.fileManager.stringsOutputPath] ]
                                     error:&error
                        terminationHandler:^(NSTask *t){}];
     _manager.stringsViewController.strings = [[NSString stringWithContentsOfFile:_manager.fileManager.stringsOutputPath
@@ -105,21 +105,21 @@
     [self presentViewControllerAsSheet:_manager.stringsViewController];
 }
 - (IBAction)clearAppCacheButtonClicked:(id)sender {
-    NSString *cachePath = [NSString stringWithFormat:@"%@/Library/Caches", selectedApp.pathToAppStorageDir];
+    NSString *cachePath = [NSString stringWithFormat:@"%@/Library/Caches", _manager.selectedApp.pathToAppStorageDir];
     NSString *command = [NSString stringWithFormat:@"rm -r %@", cachePath];
     [_manager.connectionHandler.session.channel execute:command error:nil];
-    NSLog(@"Cleared %@'s cache", selectedApp.displayName);
+    NSLog(@"Cleared %@'s cache", _manager.selectedApp.displayName);
 }
 
 - (IBAction)clearLogButtonClicked:(id)sender {
     [logTextView setString:@""];
-    [_manager.logger removeLogForApp:selectedApp];
+    [_manager.logger removeLogForApp:_manager.selectedApp];
 }
 
 - (void)getAppLog {
     NSString *logPath = [NSString stringWithFormat:@"%@/AMLog.txt", [_manager.fileManager mainDirectoryPath]];
     [_manager.fileManager removeItemAtPath:logPath error:nil];
-    [logTextView setString:[_manager.logger retrieveLogForApp:selectedApp]];
+    [logTextView setString:[_manager.logger retrieveLogForApp:_manager.selectedApp]];
 }
 
 - (IBAction)getLogButtonClicked:(id)sender {
@@ -131,8 +131,8 @@
 }
 
 - (IBAction)installTweakButtonClicked:(id)sender {
-    if ([_manager.fileManager fileExistsAtPath:selectedApp.tweakDirPath isDirectory:nil]) {
-        [_manager.tweakBuilder makeDoTheosForApp:[_manager.appManager appWithDisplayName:selectedApp.displayName]];
+    if ([_manager.fileManager fileExistsAtPath:_manager.selectedApp.tweakDirPath isDirectory:nil]) {
+        [_manager.tweakBuilder makeDoTheosForApp:[_manager.appManager appWithDisplayName:_manager.selectedApp.displayName]];
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"Ok"];
@@ -142,68 +142,58 @@
 }
 
 - (IBAction)editTweakButtonClicked:(id)sender {
-    if (![[NSWorkspace sharedWorkspace] openFile:[selectedApp tweakFilePath]]) {
-        [[NSWorkspace sharedWorkspace] openFile:[selectedApp tweakFilePath] withApplication:@"Xcode"];
+    if (![[NSWorkspace sharedWorkspace] openFile:[_manager.selectedApp tweakFilePath]]) {
+        [[NSWorkspace sharedWorkspace] openFile:[_manager.selectedApp tweakFilePath] withApplication:@"Xcode"];
     }
 }
 
-- (IBAction)analyzeAppButtonClicked:(id)sender {
+- (void)analyzeApp {
     // lifesaver: https://stackoverflow.com/questions/16283652/understanding-dispatch-async?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
     
-    selectedClass = nil; // This is because I need to clear the methods table view after a new app selected
-    
-    if (appsTableView.selectedRow == -1) {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"Ok"];
-        [alert setMessageText:@"Error"];
-        [alert setInformativeText:@"No app selected"];
-        [alert runModal];
-        return;
-    }
-    NSLog(@"selectedApp = %@", [selectedApp displayName]);
+    NSLog(@"_manager.selectedApp = %@", [_manager.selectedApp displayName]);
     
     /* this line below is used for interdevice communication between macOS and iOS so that cycript can launch with the executableName for the -p argument */
-    [selectedApp.executableName writeToFile:[NSString stringWithFormat:@"%@/selectedApp.txt",
-                                             [_manager.fileManager mainDirectoryPath]]
-                                 atomically:YES
-                                   encoding:NSUTF8StringEncoding
-                                      error:nil];
+    [_manager.selectedApp.executableName writeToFile:[NSString stringWithFormat:@"%@/_manager.selectedApp.txt",
+                                                      [_manager.fileManager mainDirectoryPath]]
+                                          atomically:YES
+                                            encoding:NSUTF8StringEncoding
+                                               error:nil];
     
     [classesTableView reloadData];
     [methodsTableView reloadData];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         /* check to see if we have decrypted file */
-        if (![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfDecryptedBinaryForApp:selectedApp]]) {
+        if (![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfDecryptedBinaryForApp:_manager.selectedApp]]) {
             NSLog(@"AM::App has not been decrypted and/or downloaded. Decrypting and downloading now.");
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [analyzeAppProgressLabel setStringValue:@"Decrypting app"];
                 [analyzeAppProgressLabel display];
             });
-            [_manager.deviceManager decryptAppAndDownload:selectedApp];
+            [_manager.deviceManager decryptAppAndDownload:_manager.selectedApp];
         }
         
         /* check to see if we have headers */
         if (![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfHeaderForApp:
-                                            selectedApp]]) {
-            NSLog(@"headerPath = %@", selectedApp.headerPath);
+                                                     _manager.selectedApp]]) {
+            NSLog(@"headerPath = %@", _manager.selectedApp.headerPath);
             NSLog(@"AM::Headers have not been dumped. Dumping now.");
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [analyzeAppProgressLabel setStringValue:@"Dumping headers"];
                 [analyzeAppProgressLabel display];
             });
-            [_manager.appManager dumpHeadersForApp:selectedApp];
+            [_manager.appManager dumpHeadersForApp:_manager.selectedApp];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
-            [analyzeAppProgressLabel setStringValue:@"Prasing Objective-C data from headers"];
+            [analyzeAppProgressLabel setStringValue:@"Parsing Objective-C data from headers"];
             [analyzeAppProgressLabel display];
         });
         
-        [_manager.appManager initializeClassListForApp:selectedApp];
-        NSLog(@"list = %@", selectedApp.classList);
+        [_manager.appManager initializeClassListForApp:_manager.selectedApp];
+        NSLog(@"list = %@", _manager.selectedApp.classList);
         
-        if ([selectedApp.classList count] != 0) {
+        if ([_manager.selectedApp.classList count] != 0) {
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [analyzeAppProgressLabel setStringValue:@"Analysis finished"];
                 [classesTableView reloadData];
@@ -214,11 +204,11 @@
                 [analyzeAppProgressLabel setStringValue:@"Analysis failed"];
                 [classesTableView reloadData];
                 [methodsTableView reloadData];
-                NSLog(@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", selectedApp);
+                NSLog(@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", _manager.selectedApp);
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert addButtonWithTitle:@"Dismiss"];
                 [alert setMessageText:@"Error"];
-                [alert setInformativeText:[NSString stringWithFormat:@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", selectedApp.displayName]];
+                [alert setInformativeText:[NSString stringWithFormat:@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", _manager.selectedApp.displayName]];
                 [alert runModal];
             });
         }
@@ -232,11 +222,11 @@
     /* this command works but it requires root. I am leaving this here in case I revert to using root
        but the new solution does not require root so it is preferred */
 //    NSString *command = [NSString stringWithFormat:@"printf \"Y\" | apt-get remove com.dolosoft.dolosoft-%@",
-//                         selectedApp.displayNameLowercaseNoSpace];
+//                         _manager.selectedApp.displayNameLowercaseNoSpace];
 //    [_manager.connectionHandler.session.channel execute:command error:&error];
     
     NSString *command = [NSString stringWithFormat:@"removetweak com.dolosoft.dolosoft-%@",
-                         selectedApp.displayNameLowercaseNoSpace];
+                         _manager.selectedApp.displayNameLowercaseNoSpace];
     [_manager.connectionHandler.session.channel execute:command error:&error];
 }
 
@@ -247,62 +237,31 @@
     // Collect all the methods to we want
     NSMutableArray<AMObjcMethod *> *methods = [[NSMutableArray alloc] init];
     [methodsTableView.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
-        AMObjcMethod *objcMethod = selectedClass.methodsList[index];
+        AMObjcMethod *objcMethod = _manager.selectedClass.methodsList[index];
         [methods addObject:objcMethod];
     }];
     
-    [_manager.tweakBuilder createTheosProjectForApp:selectedApp];
-    [_manager.tweakBuilder writeTweakCodeForApp:selectedApp forObjcClass:selectedClass withMethods:methods];
+    [_manager.tweakBuilder createTheosProjectForApp:_manager.selectedApp];
+    [_manager.tweakBuilder writeTweakCodeForApp:_manager.selectedApp forObjcClass:_manager.selectedClass withMethods:methods];
     
     [createTweakProgressBar stopAnimation:nil];
-}
-
-- (void)keyDown:(NSEvent *)event {
-    // https://stackoverflow.com/questions/4668847/nstableview-delete-key
-    
-    unichar key = [[event charactersIgnoringModifiers] characterAtIndex:0];
-    if ((key == NSEnterCharacter || key == NSCarriageReturnCharacter)
-        && NSView.focusView == appsTableView) {
-        [analyzeAppButton performClick:self];
-    }
-}
-
-/*  Used to handle user clicking on class name but now
- I just use tableViewSelectionDidChange:notification
- because it handles the user changing the class by
- using the arrow keys as well
- 
- Leaving here for now because of the TODO inside of it
- and in case I need this method to implement said TODO
- */
-- (void)tableViewClicked:(id)sender {
-    NSTableView *tableView = sender;
-    tableView.lockFocus; // Need this code so we know how to handle the user pressing the return key
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
     NSTableView *tableView = notification.object;
     if (tableView.selectedRow != -1) {
         if (tableView == classesTableView) {
-            selectedClass = [selectedApp classWithName:selectedApp.classList[tableView.selectedRow].className];
-            [methodsTableView reloadData];
-        } else if (tableView == appsTableView) {
-            selectedApp = [_manager.appManager appWithDisplayName:_manager.appManager.appList[appsTableView.selectedRow].displayName];
-            [targetAppLabel setStringValue:[NSString stringWithFormat:@"Target app: %@", selectedApp.displayName]];
-            selectedClass = nil;
-            [classesTableView reloadData];
+            _manager.selectedClass = [_manager.selectedApp classWithName:_manager.selectedApp.classList[tableView.selectedRow].className];
             [methodsTableView reloadData];
         }
     }
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    if (tableView == appsTableView) {
-        return [_manager.appManager.appList count];
-    } else if (tableView == classesTableView) {
-        return [selectedApp.classList count];
+    if (tableView == classesTableView) {
+        return [_manager.selectedApp.classList count];
     } else if (tableView == methodsTableView) {
-        return [selectedClass.methodsList count];
+        return [_manager.selectedClass.methodsList count];
     } else {
         return 0;
     }
@@ -337,9 +296,9 @@
         AMApp *app = [_manager.appManager.appList objectAtIndex:row];
         return app.displayName;
     } else if ([identifier isEqualToString:@"classes"]) {
-        return selectedApp.classList[row].className;
+        return _manager.selectedApp.classList[row].className;
     } else if ([identifier isEqualToString:@"methods"]) {
-        return selectedClass.methodsList[row].callSyntax;
+        return _manager.selectedClass.methodsList[row].callSyntax;
     } else {
         return @"THIS SHOULD NEVER RETURN";
     }

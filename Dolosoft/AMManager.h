@@ -18,8 +18,9 @@
 #import "InitialViewController.h"
 #import "DeviceInfoViewController.h"
 #import "StringsViewController.h"
+#import "AppsViewController.h"
 
-@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager, AMDevice, InitialViewController, DeviceInfoViewController, StringsViewController;
+@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager, AMDevice, InitialViewController, DeviceInfoViewController, StringsViewController, AppsViewController;
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -40,6 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(retain, nonatomic) InitialViewController *initialViewController;
 @property(retain, nonatomic) DeviceInfoViewController *deviceInfoViewController;
 @property(retain, nonatomic) StringsViewController *stringsViewController;
+@property(retain, nonatomic) AppsViewController *appsViewController;
+@property(retain, nonatomic) AMApp *selectedApp;
+@property(retain, nonatomic) AMObjcClass *selectedClass;
 - (instancetype)init;
 - (void)start;
 - (void)setup;

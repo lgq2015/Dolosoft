@@ -15,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class AMDevice, AMMainViewController;
 
-@interface InitialViewController : NSViewController
+@interface InitialViewController : NSViewController {
+    
+}
 @property (strong) IBOutlet NSTextField *deviceDetectedTextField;
 @property (strong) IBOutlet NSTextField *statusTextField;
 @property (strong) IBOutlet NSProgressIndicator *waitingIndicator;

@@ -16,9 +16,10 @@
     _device = [[AMDevice alloc] init];
     // https://stackoverflow.com/questions/26689699/initializing-another-window-using-storyboard-for-os-x
     storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil]; // get a reference to the storyboard
-    _initialViewController = [storyBoard instantiateControllerWithIdentifier:@"InitialViewController"]; // instantiate your window controller
-    _deviceInfoViewController = [storyBoard instantiateControllerWithIdentifier:@"DeviceInfoViewController"]; // instantiate your window controller
-    _stringsViewController = [storyBoard instantiateControllerWithIdentifier:@"StringsViewController"]; // instantiate your window controller
+    _initialViewController = [storyBoard instantiateControllerWithIdentifier:@"InitialViewController"];
+    _deviceInfoViewController = [storyBoard instantiateControllerWithIdentifier:@"DeviceInfoViewController"];
+    _stringsViewController = [storyBoard instantiateControllerWithIdentifier:@"StringsViewController"];
+    _appsViewController = [storyBoard instantiateControllerWithIdentifier:@"AppsViewController"];
     [_initialViewController presentViewControllerAsModalWindow:_initialViewController];
     [self performSelectorOnMainThread:@selector(checkForDevice) withObject:nil waitUntilDone:NO];
     return self;
