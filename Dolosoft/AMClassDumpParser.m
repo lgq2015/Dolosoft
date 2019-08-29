@@ -33,7 +33,6 @@
         NSArray *matches = [methods[i] matchesWithDetails:RX(@"[+-] \\([A-z0-9_ ]+\\)([A-z0-9:.]+)?(?=\\(||;)|\\)[A-z0-9 _]+ ([A-z_0-9:]+)")]; // this is for methodName, need to rename this variable. too vague
         
         NSMutableString *methodName = [[NSMutableString alloc] init];
-        
         for (int j = 0; j < [matches count]; j++) {
             RxMatch *match = matches[j];
             //NSLog(@"count = %ld", match.groups.count);
