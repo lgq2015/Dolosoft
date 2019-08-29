@@ -24,9 +24,14 @@
         self.headerPath = [NSString stringWithFormat:@"%@/%@ headers",
                            [fileManager headersDirectoryPath],
                            displayName];
-        self.tweakDirPath = [NSString stringWithFormat:@"%@/dolosoft%@",
-                             [fileManager tweaksDirectoryPath],
-                             self.displayNameLowercaseNoSpace];
+        // We do this to remove any accents from the app name like "Pokémon"
+        // https://stackoverflow.com/questions/10932405/nsstring-easy-way-to-remove-utf-8-accents-from-a-string
+        NSMutableString *tweakDirPath = [NSMutableString stringWithFormat:@"%@/dolosoft%@",
+                                         [fileManager tweaksDirectoryPath],
+                                         self.displayNameLowercaseNoSpace];
+        CFStringTransform((__bridge CFMutableStringRef)tweakDirPath, NULL, kCFStringTransformStripCombiningMarks, NO);
+        
+        self.tweakDirPath = [NSString stringWithString:tweakDirPath];
         self.tweakFilePath = [NSString stringWithFormat:@"%@/Tweak.x", self.tweakDirPath];
     }
     return self;

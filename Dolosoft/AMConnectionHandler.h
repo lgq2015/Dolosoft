@@ -14,6 +14,9 @@
 }
 @property(retain,nonatomic) NMSSHSession *session;
 @property(retain,nonatomic) NSTask *iproxyTask;
+@property(retain,nonatomic) NSString *username;
+@property(retain,nonatomic) NSString *hostName;
+@property(nonatomic) NSInteger port;
 - (instancetype)initWithHost:(NSString *)host port:(NSInteger)port username:(NSString *)username password:(NSString *)password;
 - (void)initializeProxy;
 - (NMSSHSession *)initializeSessionWithHost:(NSString *)host port:(NSInteger)port username:(NSString *)username password:(NSString *)password;
