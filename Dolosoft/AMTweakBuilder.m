@@ -7,6 +7,7 @@
 //
 
 #import "AMTweakBuilder.h"
+#define IS_OBJECT(T) _Generic( (T), id: YES, default: NO) // https://stackoverflow.com/questions/14056674/objective-c-macro-to-detect-if-variable-is-primitive
 
 @implementation AMTweakBuilder
 - (instancetype)initWithFileManager:(AMFileManager *)fm {
@@ -180,8 +181,11 @@
         specifier = [self formatSpecifierForObjectType:method.returnType];
         if ([method.returnType isEqualToString:@"_Bool"])  {
             [formattedMethod appendFormat:@"\n\tNSString *log = [NSString stringWithFormat:@\"(%@)[", specifier];
-        } else {
+        } else if ([method.returnType isEqualToString:@"id"] || [method.returnType isEqualToString:@"CDUnknownBlockType"]) {
             [formattedMethod appendFormat:@"\n\tNSString *log = [NSString stringWithFormat:@\"(<%%p>%@)[", specifier];
+        } else {
+            // If the method returns a primitive
+            [formattedMethod appendFormat:@"\n\tNSString *log = [NSString stringWithFormat:@\"(%@)[", specifier];
         }
     } else if ([method.returnType isEqualToString:@"void"]) {
         [formattedMethod appendString:@"\n\tNSString *log = [NSString stringWithFormat:@\"(void)["];
@@ -210,8 +214,11 @@
     if (![method.returnType isEqualToString:@"void"])  {
         if ([method.returnType isEqualToString:@"_Bool"])  {
             [formattedMethod appendString:@"];\", returnedObj ? \"YES\" : \"NO\""];
-        } else {
+        } else if ([method.returnType isEqualToString:@"id"] || [method.returnType isEqualToString:@"CDUnknownBlockType"]) {
             [formattedMethod appendString:@"];\", returnedObj, returnedObj"];
+        } else {
+            // If the method returns a primitive
+            [formattedMethod appendString:@"];\", returnedObj"];
         }
     } else if ([method.returnType isEqualToString:@"void"]) {
         [formattedMethod appendString:@"];\""];
