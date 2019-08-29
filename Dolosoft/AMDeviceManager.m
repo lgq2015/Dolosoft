@@ -59,7 +59,8 @@
     }
     
     NSError *error;
-    NSString *command = [NSString stringWithFormat:@"./dump.py %@ -b --user root --password %@ --host localhost --port 2222 --output-path \"%@\"", app.bundleIdentifier, rootUserPassword, fileManager.decryptedBinariesDirectoryPath];
+    NSString *command = [NSString stringWithFormat:@"./dump.py %@ -b --user root --password %@ --host %@ --port %ld --output-path \"%@\"", app.bundleIdentifier, rootUserPassword,
+                         _manager.connectionHandler.hostName, _manager.connectionHandler.port, fileManager.decryptedBinariesDirectoryPath];
     NSTask *task = [[NSTask alloc] init];
     task.executableURL = [NSURL fileURLWithPath:@"/bin/bash"];
     task.arguments = @[ @"-c", command ];

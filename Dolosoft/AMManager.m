@@ -86,6 +86,7 @@
         _tweakBuilder = [[AMTweakBuilder alloc] initWithFileManager:_fileManager];
         _logger = [[AMLogger alloc] initWithFileManager:_fileManager];
         
+        // TODO: Give user the option to connect via localhost or private ip address
         NSString *hostName = @"localhost";
         NSString *username = @"mobile";
         NSInteger port = 2222;
@@ -119,6 +120,7 @@
         });
 
         _deviceManager = [[AMDeviceManager alloc] initWithConnectionHandler:_connectionHandler fileManager:_fileManager];
+        _deviceManager.manager = self;
 
         if (TEST_MODE) {
             _appManager.appList = [_deviceManager getUserApps];

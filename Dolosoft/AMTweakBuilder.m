@@ -71,7 +71,6 @@
 }
 
 - (void)createTheosProjectForApp:(AMApp *)app {
-    NSLog(@"YOLO");
     [self removeTheosProjectForApp:app];
     // TODO: Not related to this part but just wanted to remind myself to terminate all NSTasks when done using them!
     // Use NSTasks terminate method
@@ -218,7 +217,6 @@
         [formattedMethod appendString:@"];\""];
     }
     
-    NSLog(@"ARR = %@", argsThatAreBoolean);
     for (int i = 1; i < methodArguments.count; i++) {
         // Using i-1 since this loop starts at index 1
         if ([argsThatAreBoolean containsObject:[NSNumber numberWithInteger:i-1]]) {

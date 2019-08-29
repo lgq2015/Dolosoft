@@ -133,6 +133,12 @@
         [alert runModal];
     }
 }
+- (IBAction)openHeaderFileButtonClicked:(id)sender {
+    NSString *pathToSelectedClassHeader = [NSString stringWithFormat:@"%@/%@.h", _manager.selectedApp.headerPath, _manager.selectedClass];
+    if (![[NSWorkspace sharedWorkspace] openFile:pathToSelectedClassHeader]) {
+        [[NSWorkspace sharedWorkspace] openFile:pathToSelectedClassHeader withApplication:@"Xcode"];
+    }
+}
 
 - (IBAction)editTweakButtonClicked:(id)sender {
     if (![[NSWorkspace sharedWorkspace] openFile:[_manager.selectedApp tweakFilePath]]) {
@@ -146,7 +152,7 @@
     NSLog(@"_manager.selectedApp = %@", [_manager.selectedApp displayName]);
     
     /* this line below is used for interdevice communication between macOS and iOS so that cycript can launch with the executableName for the -p argument */
-    [_manager.selectedApp.executableName writeToFile:[NSString stringWithFormat:@"%@/_manager.selectedApp.txt",
+    [_manager.selectedApp.executableName writeToFile:[NSString stringWithFormat:@"%@/selectedApp.txt",
                                                       [_manager.fileManager mainDirectoryPath]]
                                           atomically:YES
                                             encoding:NSUTF8StringEncoding

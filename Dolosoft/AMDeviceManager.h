@@ -12,12 +12,13 @@
 #import "AMAppManager.h"
 #import "AMManager.h"
 
-@class AMAppManager;
+@class AMAppManager, AMManager;
 
 @interface AMDeviceManager : NSObject {
     AMConnectionHandler *connectionHandler;
     AMFileManager *fileManager;
 }
+@property(retain,nonatomic) AMManager *manager;
 - (instancetype)initWithConnectionHandler:(AMConnectionHandler *)handler fileManager:(AMFileManager *)manager;
 - (NSArray *)getUserApps;
 - (void)decryptAppAndDownload:(AMApp *)app;

@@ -1141,6 +1141,17 @@
                                 <rect key="frame" x="33" y="-1" width="100" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </progressIndicator>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v0x-pt-gUs">
+                                <rect key="frame" x="684" y="4" width="141" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="push" title="Open header file" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xgg-eT-eoa">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openHeaderFileButtonClicked:" target="XfG-lQ-9wD" id="sxF-mK-Kqg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="UsN-yH-7xC" firstAttribute="top" secondItem="qcI-32-ezk" secondAttribute="bottom" constant="9" id="BXv-Je-Ksq"/>

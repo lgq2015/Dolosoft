@@ -13,6 +13,9 @@
     self = [super init];
     if (self) {
         [self initializeProxy];
+        _hostName = host;
+        _username = username;
+        _port = port;
         _session = [self initializeSessionWithHost:host
                                               port:port
                                           username:username
