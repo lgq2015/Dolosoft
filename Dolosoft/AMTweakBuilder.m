@@ -163,6 +163,8 @@
         stringFormatSpecifier = @"%llu";
     } else if ([objectType isEqualToString:@"_Bool"]) {
         stringFormatSpecifier = @"%s";
+    } else if ([objectType isEqualToString:@"id *"]) {
+        stringFormatSpecifier = @"%p";
     } else {
         
     }
