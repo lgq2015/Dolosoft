@@ -46,9 +46,8 @@
 
             }
         }
-
         NSArray *argumentTypes = [methods[i] matches:RX(@"(?<=:\\()[A-z0-9\\._ *]+(?=\\))")];
-        
+
         objcMethod.callSyntax = methods[i];
         objcMethod.methodName = methodName;
         objcMethod.returnType = returnType;

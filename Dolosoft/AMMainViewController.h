@@ -25,7 +25,6 @@
 @class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager, AMDevice, AMManager;
 
 @interface AMMainViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource> {
-    AMObjcClass *selectedClass; // TODO: move this into another class it doesnt belong as a VC ivar
     IBOutlet NSTextField *connectedToLabel;
     IBOutlet NSTextField *analyzeAppProgressLabel;
     IBOutlet NSProgressIndicator *analyzeAppProgressBar;

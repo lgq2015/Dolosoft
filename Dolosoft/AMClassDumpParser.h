@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 #import <RegExCategories/RegExCategories.h>
 #import "AMObjcClass.h"
 

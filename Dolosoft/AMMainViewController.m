@@ -27,6 +27,11 @@
                                       _manager.device.DeviceName,
                                       _manager.device.ProductVersion]];
     [self tempMethodName];
+    
+    if (TEST_MODE) {
+        _manager.selectedApp = [_manager.appManager appWithDisplayName:@"Chrome"];
+        [self analyzeApp];
+    }
 }
 // I WAS WORKING ON FIXING THE TERMINAL UPDATES
 - (void)tempMethodName {
@@ -185,6 +190,10 @@
                 [analyzeAppProgressLabel setStringValue:@"Analysis finished"];
                 [classesTableView reloadData];
                 [methodsTableView reloadData];
+                if (TEST_MODE) {
+                    _manager.selectedClass = [_manager.selectedApp classWithName:@"JsPasswordManager"];
+                    [methodsTableView reloadData];
+                }
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^(void){
@@ -279,14 +288,26 @@
 //    return nil;
 //}
 
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+    NSString *identifier = [tableColumn identifier];
+    if ([identifier isEqualToString:@"methods"]) {
+        NSTableCellView *cell = [tableView makeViewWithIdentifier:@"methodCell" owner:self];
+        cell.textField.stringValue = _manager.selectedClass.methodsList[row].callSyntax;
+        return cell;
+    } else {
+        NSTableCellView *cell = [tableView makeViewWithIdentifier:@"classCell" owner:self];
+        cell.textField.stringValue = _manager.selectedApp.classList[row].className;
+        return cell;
+    }
+    return nil;
+}
+
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     NSString *identifier = [tableColumn identifier];
-    if ([identifier isEqualToString:@"apps"]) {
-        AMApp *app = [_manager.appManager.appList objectAtIndex:row];
-        return app.displayName;
-    } else if ([identifier isEqualToString:@"classes"]) {
+    if ([identifier isEqualToString:@"classes"]) {
         return _manager.selectedApp.classList[row].className;
     } else if ([identifier isEqualToString:@"methods"]) {
+        [methodsTableView sizeToFit];
         return _manager.selectedClass.methodsList[row].callSyntax;
     } else {
         return @"THIS SHOULD NEVER RETURN";
