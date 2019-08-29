@@ -27,7 +27,7 @@
                                                                 error:nil];
         AMObjcClass *objcClass = [[AMObjcClass alloc] initWithClassDump:CDHeaderOutput];
 
-        if (objcClass && ![objcClass.className isEqualToString:@".cxx_destruct"]) {
+        if (objcClass) {
             [classList addObject:objcClass];
         }
     }

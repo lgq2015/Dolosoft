@@ -52,7 +52,9 @@
         objcMethod.returnType = returnType;
         objcMethod.argumentTypes = argumentTypes;
         objcMethod.masterClass = AMClass;
-        [methodList addObject:objcMethod];
+        if (![objcMethod.methodName isEqualToString:@".cxx_destruct"]) {
+            [methodList addObject:objcMethod];
+        }
     }
     NSArray *sortedMethodList;
     sortedMethodList = [methodList sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
