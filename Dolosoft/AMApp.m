@@ -10,7 +10,7 @@
 #define LOG(fmt, ...) NSLog(fmt, ##__VA_ARGS__)
 
 @implementation AMApp
-- (id)initWithDisplayName:(NSString *)displayName executableName:(NSString *)executableName bundleIdentifier:(NSString *)bundleIdentifier pathToBundleDir:(NSString *)pathToBundleDir pathToStorageDir:(NSString *)pathToStorageDir iconData:(NSData *)iconData fileManager:(AMFileManager *)fileManager {
+- (id)initWithDisplayName:(NSString *)displayName executableName:(NSString *)executableName bundleIdentifier:(NSString *)bundleIdentifier pathToBundleDir:(NSString *)pathToBundleDir pathToStorageDir:(NSString *)pathToStorageDir iconData:(NSData *)iconData fileManager:(AMFileManager *)fileManager version:(NSString *)version {
     self = [super init];
     if (self) {
         self.displayName = displayName;
@@ -24,6 +24,7 @@
         self.pathToDir = pathToBundleDir;
         self.pathToAppStorageDir = pathToStorageDir;
         self.icon = [[NSImage alloc] initWithData:iconData];
+        self.version = version;
         self.pathToExecutable = [NSString stringWithFormat:@"%@/%@", pathToBundleDir, executableName];
         self.headerPath = [NSString stringWithFormat:@"%@/%@ headers",
                            [fileManager headersDirectoryPath],

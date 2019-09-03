@@ -33,7 +33,7 @@
     }
     _manager.selectedApp = [apps objectAtIndex:[appsCollectionView.selectionIndexes firstIndex]];
     _manager.selectedClass = nil; // This is because I need to clear the methods table view after a new app selected
-    [_manager.mainViewController.targetAppLabel setStringValue:[NSString stringWithFormat:@"Target app: %@", _manager.selectedApp.displayName]];
+    [_manager.mainViewController.targetAppLabel setStringValue:[NSString stringWithFormat:@"Target app: %@ (%@)", _manager.selectedApp.displayName, _manager.selectedApp.version]];
     [self dismissController:self];
     [_manager.mainViewController analyzeApp];
 }

@@ -98,7 +98,8 @@
                                               pathToBundleDir:appInfo[@"path"]
                                        pathToStorageDir:appInfo[@"storage-path"]
                                                iconData:appInfo[@"icon"]
-                                            fileManager:fileManager];
+                                            fileManager:fileManager
+                                                version:appInfo[@"version"]];
         [userApps addObject:app];
     }
     
