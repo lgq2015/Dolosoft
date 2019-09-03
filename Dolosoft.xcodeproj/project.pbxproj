@@ -32,6 +32,7 @@
 		41130D3D2316FDEC0045B659 /* icon_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 41130D3C2316FDEC0045B659 /* icon_default.png */; };
 		4144D043231760FC008CAF8E /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4144D042231760FB008CAF8E /* libimobiledevice.a */; };
 		4144D04523176106008CAF8E /* libplist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4144D04423176106008CAF8E /* libplist.a */; };
+		417588582318767A0029840B /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 417588572318767A0029840B /* PreferencesViewController.m */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
 		41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */ = {isa = PBXBuildFile; fileRef = 41BE935F230DF3E000C9CEAF /* loadSSH.sh */; };
 		41EBB1AC2305CBDD00088422 /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 41EBB1AB2305CBDD00088422 /* icons.iconset */; };
@@ -105,6 +106,8 @@
 		4117A6C5230C30FC00871C3B /* Macros.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.pch; sourceTree = "<group>"; };
 		4144D042231760FB008CAF8E /* libimobiledevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libimobiledevice.a; path = Libraries/libimobiledevice.a; sourceTree = "<group>"; };
 		4144D04423176106008CAF8E /* libplist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplist.a; path = Libraries/libplist.a; sourceTree = "<group>"; };
+		417588562318767A0029840B /* PreferencesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
+		417588572318767A0029840B /* PreferencesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
 		41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceManager.h; sourceTree = "<group>"; };
 		41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceManager.m; sourceTree = "<group>"; };
 		41BE935F230DF3E000C9CEAF /* loadSSH.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = loadSSH.sh; path = Resources/loadSSH.sh; sourceTree = SOURCE_ROOT; };
@@ -189,6 +192,8 @@
 				41F5192C22FDF95400200C2A /* AMManager.m */,
 				0C16DFAC207C1A0100AA0952 /* AMMainViewController.h */,
 				0C16DFAD207C1A0100AA0952 /* AMMainViewController.m */,
+				417588562318767A0029840B /* PreferencesViewController.h */,
+				417588572318767A0029840B /* PreferencesViewController.m */,
 				41130D392316D8170045B659 /* AppsViewController.h */,
 				41130D3A2316D8170045B659 /* AppsViewController.m */,
 				41130D312316D1220045B659 /* AppsCollectionView.h */,
@@ -444,6 +449,7 @@
 				41130D3B2316D8170045B659 /* AppsViewController.m in Sources */,
 				41F7E42022FC8A4600F3D402 /* AMDevice.m in Sources */,
 				41F7E42322FCC1D500F3D402 /* InitialViewController.m in Sources */,
+				417588582318767A0029840B /* PreferencesViewController.m in Sources */,
 				0C16DFAE207C1A0100AA0952 /* AMMainViewController.m in Sources */,
 				0CA40BD1207EE38800789BEB /* AMAppManager.m in Sources */,
 				41F76A7623046E4A00722AD6 /* StringsViewController.m in Sources */,

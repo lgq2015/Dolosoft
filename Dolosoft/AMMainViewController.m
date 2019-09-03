@@ -22,6 +22,7 @@
 // NSAlert+SynchronousSheet.h (in case i need this later)
 // https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
 - (void)viewDidLoad {
+//    self.view.appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
     [super viewDidLoad];
     [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@ on iOS %@",
                                       _manager.device.DeviceName,
@@ -33,6 +34,7 @@
         [self analyzeApp];
     }
 }
+
 // I WAS WORKING ON FIXING THE TERMINAL UPDATES
 - (void)tempMethodName {
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(tempMethodName) userInfo:nil repeats:YES];
