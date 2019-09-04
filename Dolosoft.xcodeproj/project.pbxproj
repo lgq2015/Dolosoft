@@ -23,16 +23,16 @@
 		0CA40BD1207EE38800789BEB /* AMAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA40BD0207EE38800789BEB /* AMAppManager.m */; };
 		0CEFBF102096468C00B41490 /* AMTweakBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFBF0F2096468C00B41490 /* AMTweakBuilder.m */; };
 		4104AE8D231582E800D3C42C /* iproxy in Resources */ = {isa = PBXBuildFile; fileRef = 4104AE8C231582E700D3C42C /* iproxy */; };
-		4104AE902315891C00D3C42C /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4104AE8F2315891C00D3C42C /* libimobiledevice.a */; };
-		4104AE922315891E00D3C42C /* libplist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4104AE912315891E00D3C42C /* libplist.a */; };
 		41130D332316D1220045B659 /* AppsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41130D322316D1220045B659 /* AppsCollectionView.m */; };
 		41130D372316D20D0045B659 /* AppsCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 41130D352316D20D0045B659 /* AppsCollectionViewItem.m */; };
 		41130D382316D20D0045B659 /* AppsCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41130D362316D20D0045B659 /* AppsCollectionViewItem.xib */; };
 		41130D3B2316D8170045B659 /* AppsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41130D3A2316D8170045B659 /* AppsViewController.m */; };
 		41130D3D2316FDEC0045B659 /* icon_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 41130D3C2316FDEC0045B659 /* icon_default.png */; };
-		4144D043231760FC008CAF8E /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4144D042231760FB008CAF8E /* libimobiledevice.a */; };
-		4144D04523176106008CAF8E /* libplist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4144D04423176106008CAF8E /* libplist.a */; };
 		417588582318767A0029840B /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 417588572318767A0029840B /* PreferencesViewController.m */; };
+		41AE9BA823201D8E00B5A5D0 /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BA323201C6D00B5A5D0 /* libimobiledevice.a */; };
+		41AE9BA923201D9100B5A5D0 /* libplist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BA423201C6D00B5A5D0 /* libplist.a */; };
+		41AE9BC523201FCA00B5A5D0 /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BC423201FCA00B5A5D0 /* libimobiledevice.dylib */; };
+		41AE9BC7232020DB00B5A5D0 /* libimobiledevice.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BC6232020DB00B5A5D0 /* libimobiledevice.6.dylib */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
 		41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */ = {isa = PBXBuildFile; fileRef = 41BE935F230DF3E000C9CEAF /* loadSSH.sh */; };
 		41EBB1AC2305CBDD00088422 /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 41EBB1AB2305CBDD00088422 /* icons.iconset */; };
@@ -104,10 +104,35 @@
 		41130D3A2316D8170045B659 /* AppsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppsViewController.m; sourceTree = "<group>"; };
 		41130D3C2316FDEC0045B659 /* icon_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_default.png; sourceTree = "<group>"; };
 		4117A6C5230C30FC00871C3B /* Macros.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.pch; sourceTree = "<group>"; };
-		4144D042231760FB008CAF8E /* libimobiledevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libimobiledevice.a; path = Libraries/libimobiledevice.a; sourceTree = "<group>"; };
-		4144D04423176106008CAF8E /* libplist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplist.a; path = Libraries/libplist.a; sourceTree = "<group>"; };
 		417588562318767A0029840B /* PreferencesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
 		417588572318767A0029840B /* PreferencesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
+		41AE9BA323201C6D00B5A5D0 /* libimobiledevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libimobiledevice.a; sourceTree = "<group>"; };
+		41AE9BA423201C6D00B5A5D0 /* libplist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libplist.a; sourceTree = "<group>"; };
+		41AE9BAB23201DE500B5A5D0 /* installation_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = installation_proxy.h; sourceTree = "<group>"; };
+		41AE9BAC23201DE500B5A5D0 /* notification_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notification_proxy.h; sourceTree = "<group>"; };
+		41AE9BAD23201DE500B5A5D0 /* restore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = restore.h; sourceTree = "<group>"; };
+		41AE9BAE23201DE500B5A5D0 /* mobilebackup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobilebackup.h; sourceTree = "<group>"; };
+		41AE9BAF23201DE500B5A5D0 /* misagent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misagent.h; sourceTree = "<group>"; };
+		41AE9BB023201DE500B5A5D0 /* property_list_service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property_list_service.h; sourceTree = "<group>"; };
+		41AE9BB123201DE500B5A5D0 /* service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = service.h; sourceTree = "<group>"; };
+		41AE9BB223201DE500B5A5D0 /* mobileactivation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobileactivation.h; sourceTree = "<group>"; };
+		41AE9BB323201DE500B5A5D0 /* screenshotr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = screenshotr.h; sourceTree = "<group>"; };
+		41AE9BB423201DE500B5A5D0 /* file_relay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_relay.h; sourceTree = "<group>"; };
+		41AE9BB523201DE500B5A5D0 /* heartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = heartbeat.h; sourceTree = "<group>"; };
+		41AE9BB623201DE500B5A5D0 /* mobilebackup2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobilebackup2.h; sourceTree = "<group>"; };
+		41AE9BB723201DE500B5A5D0 /* mobile_image_mounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobile_image_mounter.h; sourceTree = "<group>"; };
+		41AE9BB823201DE500B5A5D0 /* lockdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lockdown.h; sourceTree = "<group>"; };
+		41AE9BB923201DE500B5A5D0 /* syslog_relay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = syslog_relay.h; sourceTree = "<group>"; };
+		41AE9BBA23201DE500B5A5D0 /* webinspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webinspector.h; sourceTree = "<group>"; };
+		41AE9BBB23201DE500B5A5D0 /* libimobiledevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libimobiledevice.h; sourceTree = "<group>"; };
+		41AE9BBC23201DE500B5A5D0 /* debugserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debugserver.h; sourceTree = "<group>"; };
+		41AE9BBD23201DE500B5A5D0 /* sbservices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sbservices.h; sourceTree = "<group>"; };
+		41AE9BBE23201DE500B5A5D0 /* diagnostics_relay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diagnostics_relay.h; sourceTree = "<group>"; };
+		41AE9BBF23201DE500B5A5D0 /* afc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afc.h; sourceTree = "<group>"; };
+		41AE9BC023201DE500B5A5D0 /* mobilesync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mobilesync.h; sourceTree = "<group>"; };
+		41AE9BC123201DE500B5A5D0 /* house_arrest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = house_arrest.h; sourceTree = "<group>"; };
+		41AE9BC423201FCA00B5A5D0 /* libimobiledevice.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libimobiledevice.dylib; sourceTree = "<group>"; };
+		41AE9BC6232020DB00B5A5D0 /* libimobiledevice.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libimobiledevice.6.dylib; sourceTree = "<group>"; };
 		41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceManager.h; sourceTree = "<group>"; };
 		41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceManager.m; sourceTree = "<group>"; };
 		41BE935F230DF3E000C9CEAF /* loadSSH.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = loadSSH.sh; path = Resources/loadSSH.sh; sourceTree = SOURCE_ROOT; };
@@ -132,12 +157,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41AE9BA923201D9100B5A5D0 /* libplist.a in Frameworks */,
 				41F7E3EC22FC5FC900F3D402 /* libPods-Dolosoft.a in Frameworks */,
 				0C9CD9CD2231A18E0020A723 /* CoreFoundation.framework in Frameworks */,
-				4144D04523176106008CAF8E /* libplist.a in Frameworks */,
-				4144D043231760FC008CAF8E /* libimobiledevice.a in Frameworks */,
-				4104AE902315891C00D3C42C /* libimobiledevice.a in Frameworks */,
-				4104AE922315891E00D3C42C /* libplist.a in Frameworks */,
+				41AE9BA823201D8E00B5A5D0 /* libimobiledevice.a in Frameworks */,
+				41AE9BC7232020DB00B5A5D0 /* libimobiledevice.6.dylib in Frameworks */,
+				41AE9BC523201FCA00B5A5D0 /* libimobiledevice.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,8 +189,8 @@
 				41EBB1AB2305CBDD00088422 /* icons.iconset */,
 				0C16DFA8207C1A0100AA0952 /* Dolosoft */,
 				0C9CD9CA2231959F0020A723 /* Resources */,
+				41AE9BA123201C6D00B5A5D0 /* Libraries */,
 				0C16DFA7207C1A0100AA0952 /* Products */,
-				4144D041231760B7008CAF8E /* Libraries */,
 				7B6CFCB687472DC898D536A4 /* Frameworks */,
 				11F8A508A0CD87AD94551199 /* Pods */,
 			);
@@ -255,13 +280,46 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		4144D041231760B7008CAF8E /* Libraries */ = {
+		41AE9BA123201C6D00B5A5D0 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				4144D042231760FB008CAF8E /* libimobiledevice.a */,
-				4144D04423176106008CAF8E /* libplist.a */,
+				41AE9BC6232020DB00B5A5D0 /* libimobiledevice.6.dylib */,
+				41AE9BC423201FCA00B5A5D0 /* libimobiledevice.dylib */,
+				41AE9BAA23201DE500B5A5D0 /* libimobiledevice */,
+				41AE9BA323201C6D00B5A5D0 /* libimobiledevice.a */,
+				41AE9BA423201C6D00B5A5D0 /* libplist.a */,
 			);
-			name = Libraries;
+			path = Libraries;
+			sourceTree = SOURCE_ROOT;
+		};
+		41AE9BAA23201DE500B5A5D0 /* libimobiledevice */ = {
+			isa = PBXGroup;
+			children = (
+				41AE9BAB23201DE500B5A5D0 /* installation_proxy.h */,
+				41AE9BAC23201DE500B5A5D0 /* notification_proxy.h */,
+				41AE9BAD23201DE500B5A5D0 /* restore.h */,
+				41AE9BAE23201DE500B5A5D0 /* mobilebackup.h */,
+				41AE9BAF23201DE500B5A5D0 /* misagent.h */,
+				41AE9BB023201DE500B5A5D0 /* property_list_service.h */,
+				41AE9BB123201DE500B5A5D0 /* service.h */,
+				41AE9BB223201DE500B5A5D0 /* mobileactivation.h */,
+				41AE9BB323201DE500B5A5D0 /* screenshotr.h */,
+				41AE9BB423201DE500B5A5D0 /* file_relay.h */,
+				41AE9BB523201DE500B5A5D0 /* heartbeat.h */,
+				41AE9BB623201DE500B5A5D0 /* mobilebackup2.h */,
+				41AE9BB723201DE500B5A5D0 /* mobile_image_mounter.h */,
+				41AE9BB823201DE500B5A5D0 /* lockdown.h */,
+				41AE9BB923201DE500B5A5D0 /* syslog_relay.h */,
+				41AE9BBA23201DE500B5A5D0 /* webinspector.h */,
+				41AE9BBB23201DE500B5A5D0 /* libimobiledevice.h */,
+				41AE9BBC23201DE500B5A5D0 /* debugserver.h */,
+				41AE9BBD23201DE500B5A5D0 /* sbservices.h */,
+				41AE9BBE23201DE500B5A5D0 /* diagnostics_relay.h */,
+				41AE9BBF23201DE500B5A5D0 /* afc.h */,
+				41AE9BC023201DE500B5A5D0 /* mobilesync.h */,
+				41AE9BC123201DE500B5A5D0 /* house_arrest.h */,
+			);
+			path = libimobiledevice;
 			sourceTree = "<group>";
 		};
 		7B6CFCB687472DC898D536A4 /* Frameworks */ = {
@@ -286,6 +344,7 @@
 				0C16DFA2207C1A0100AA0952 /* Sources */,
 				0C16DFA3207C1A0100AA0952 /* Frameworks */,
 				0C16DFA4207C1A0100AA0952 /* Resources */,
+				41AE9BC8232025D200B5A5D0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -430,6 +489,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		41AE9BC8232025D200B5A5D0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp Libraries/libimobiledevice.6.dylib /usr/local/lib/libimobiledevice.6.dylib\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -616,7 +692,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = V9H9RJKQ77;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Libraries",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Dolosoft/Macros.pch;
 				HEADER_SEARCH_PATHS = (
@@ -625,6 +704,7 @@
 					"\"${PODS_ROOT}/Headers/Public/NMSSH\"",
 					"\"${PODS_ROOT}/Headers/Public/RegExCategories\"",
 					"\"$(SRCROOT)/External/\"",
+					"$(PROJECT_DIR)/Libraries",
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = Dolosoft/Info.plist;
@@ -632,9 +712,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Libraries",
 					/usr/local/lib,
 					/usr/local/Cellar/libplist/2.0.0_1/lib,
-					"$(PROJECT_DIR)/Libraries",
 					"$(PROJECT_DIR)/Resources",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
@@ -652,7 +732,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = V9H9RJKQ77;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Libraries",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Dolosoft/Macros.pch;
 				HEADER_SEARCH_PATHS = (
@@ -661,6 +744,7 @@
 					"\"${PODS_ROOT}/Headers/Public/NMSSH\"",
 					"\"${PODS_ROOT}/Headers/Public/RegExCategories\"",
 					"\"$(SRCROOT)/External/\"",
+					"$(PROJECT_DIR)/Libraries",
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = Dolosoft/Info.plist;

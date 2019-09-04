@@ -10,9 +10,7 @@
 
 /*
  starting a list of things that must be installed on the iOS device:
- scp
- defaults (from the package Cephei by HASHBANG productions)
- 
+ scp 
 */
 // https://medium.com/@airejie/setting-up-xcode-for-c-projects-17531c3c3941
 // for getting libimobiledevice to import
@@ -22,6 +20,7 @@
 // NSAlert+SynchronousSheet.h (in case i need this later)
 // https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
 - (void)viewDidLoad {
+//    self.view.window = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
 //    self.view.appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
     [super viewDidLoad];
     [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@ on iOS %@",

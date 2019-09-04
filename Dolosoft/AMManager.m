@@ -8,6 +8,7 @@
 
 #import "AMManager.h"
 
+// TODO: rewrite class dump parser to mimic Flex's
 @implementation AMManager
 - (instancetype)init {
     self = [super init];
