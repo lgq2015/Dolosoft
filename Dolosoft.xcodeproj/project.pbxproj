@@ -344,7 +344,6 @@
 				0C16DFA2207C1A0100AA0952 /* Sources */,
 				0C16DFA3207C1A0100AA0952 /* Frameworks */,
 				0C16DFA4207C1A0100AA0952 /* Resources */,
-				41AE9BC8232025D200B5A5D0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -489,23 +488,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		41AE9BC8232025D200B5A5D0 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cp Libraries/libimobiledevice.6.dylib /usr/local/lib/libimobiledevice.6.dylib\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
