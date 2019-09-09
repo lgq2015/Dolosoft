@@ -1464,8 +1464,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39k-6K-lXJ">
-                                <rect key="frame" x="305" y="13" width="114" height="32"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39k-6K-lXJ">
+                                <rect key="frame" x="251" y="13" width="114" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Analyze app" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mbj-3i-lFd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1474,10 +1475,21 @@
                                     <action selector="analyzeAppButtonClicked:" target="2bj-Dl-kGq" id="z0k-Hn-FuK"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mbW-yt-rlh">
+                                <rect key="frame" x="389" y="13" width="82" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Rdz-bN-0OY">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelButtonClicked:" target="2bj-Dl-kGq" id="m9P-kA-4pX"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="39k-6K-lXJ" firstAttribute="centerX" secondItem="LwE-v2-cv1" secondAttribute="centerX" id="X7O-o3-U2Z"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="appsCollectionView" destination="C5N-kF-R0j" id="sCs-Lq-u2G"/>

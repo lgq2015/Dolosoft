@@ -70,5 +70,8 @@
 - (NSInteger)numberOfSectionsInCollectionView:(NSCollectionView *)collectionView {
     return 1;
 }
+- (IBAction)cancelButtonClicked:(id)sender {
+    [self dismissController:self];
+}
 
 @end

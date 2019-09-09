@@ -13,6 +13,8 @@
 BOOL showTerminalInXCode = true;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    // Use the line below to switch to light mode
+    // [NSApplication sharedApplication].appearance = [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua];
     if (!showTerminalInXCode) {
         // https://stackoverflow.com/questions/7271528/how-to-nslog-into-a-file
         NSString *targetName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Target name"];
