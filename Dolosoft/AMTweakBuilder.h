@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "AMApp.h"
+#import "AMManager.h"
 
-@class AMObjcMethod, AMMainViewController;
+
+@class AMObjcMethod, AMMainViewController, AMManager;
 
 @interface AMTweakBuilder : NSObject {
     AMFileManager *fileManager;
 }
+@property(retain, nonatomic) AMManager *manager;
 - (instancetype)initWithFileManager:(AMFileManager *)fm;
 - (void)removeTheosProjectForApp:(AMApp *)app;
 - (void)createTheosProjectForApp:(AMApp *)app;

@@ -52,6 +52,7 @@
     }
 }
 
+// https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
 + (NSDictionary *)getDeviceInfo {
     // https://github.com/libimobiledevice/libimobiledevice/blob/master/tools/ideviceinfo.c
     lockdownd_client_t client = NULL;

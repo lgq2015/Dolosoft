@@ -5,9 +5,8 @@
 //  Created by Moran, Ander on 8/9/19.
 //  Copyright © 2019 Ander Moran. All rights reserved.
 //
-
+#include <stdlib.h>
 #import "AMManager.h"
-
 // TODO: rewrite class dump parser to mimic Flex's
 @implementation AMManager
 - (instancetype)init {
@@ -21,8 +20,46 @@
     _deviceInfoViewController = [storyBoard instantiateControllerWithIdentifier:@"DeviceInfoViewController"];
     _stringsViewController = [storyBoard instantiateControllerWithIdentifier:@"StringsViewController"];
     _appsViewController = [storyBoard instantiateControllerWithIdentifier:@"AppsViewController"];
+    [self performSelectorInBackground:@selector(checkForDevice) withObject:self];
     [_initialViewController presentViewControllerAsModalWindow:_initialViewController];
-    [self performSelectorOnMainThread:@selector(checkForDevice) withObject:nil waitUntilDone:NO];
+    
+    // https://stackoverflow.com/questions/16391279/how-to-redirect-stdout-to-a-nstextview
+    _terminalPipe = [NSPipe pipe];
+    dup2([[_terminalPipe fileHandleForWriting] fileDescriptor], fileno(stderr));
+    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ,
+                                                      _terminalPipe.fileHandleForReading.fileDescriptor,
+                                                      0,
+                                                      dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
+    __weak typeof(self) weakSelf = self;
+    _terminalPipe.fileHandleForReading.readabilityHandler = ^(NSFileHandle *handle) {
+        void* data = malloc(4096);
+        ssize_t readResult = 0;
+        do {
+            errno = 0;
+            readResult = read(_terminalPipe.fileHandleForReading.fileDescriptor, data, 256);
+        } while (readResult == -1 && errno == EINTR);
+        
+        if (readResult > 0) {
+            NSString* stdOutString = [[NSString alloc] initWithBytesNoCopy:data length:readResult encoding:NSUTF8StringEncoding freeWhenDone:YES];
+//            printf("%s\n", [stdOutString UTF8String]);
+            NSAttributedString* stdOutAttributedString = [[NSAttributedString alloc]
+                                                          initWithString:stdOutString
+                                                          attributes:@{
+                                                                       NSForegroundColorAttributeName : [NSColor whiteColor],
+                                                                       NSFontAttributeName : [NSFont fontWithName:@"Monaco" size:12]
+                                                        }];
+            dispatch_sync(dispatch_get_main_queue(), ^(void){
+                if (weakSelf.mainViewController) {
+                    [weakSelf.mainViewController.terminalTextView.textStorage appendAttributedString:stdOutAttributedString];
+                    [weakSelf.mainViewController.terminalTextView scrollToEndOfDocument:nil];
+                }
+            });
+        } else {
+            free(data);
+        }
+    };
+    dispatch_resume(source);
+    
     return self;
 }
 
@@ -85,6 +122,7 @@
         _fileManager = [[AMFileManager alloc] init];
         _appManager = [[AMAppManager alloc] initWithFileManager:_fileManager];
         _tweakBuilder = [[AMTweakBuilder alloc] initWithFileManager:_fileManager];
+        _tweakBuilder.manager = self;
         _logger = [[AMLogger alloc] initWithFileManager:_fileManager];
         
         // TODO: Give user the option to connect via localhost or private ip address

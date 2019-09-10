@@ -18,15 +18,11 @@
 
 @implementation AMMainViewController
 // NSAlert+SynchronousSheet.h (in case i need this later)
-// https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
 - (void)viewDidLoad {
-//    self.view.window = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
-//    self.view.appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
     [super viewDidLoad];
     [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@ on iOS %@",
                                       _manager.device.DeviceName,
                                       _manager.device.ProductVersion]];
-    [self tempMethodName];
     
     if (TEST_MODE) {
         _manager.selectedApp = [_manager.appManager appWithDisplayName:@"Chrome"];
@@ -34,22 +30,6 @@
     }
 }
 
-// I WAS WORKING ON FIXING THE TERMINAL UPDATES
-- (void)tempMethodName {
-    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(tempMethodName) userInfo:nil repeats:YES];
-}
-
-- (void)tempMethodName1 {
-    // NSLog(@"In the loop!");
-    NSString *logPath = [NSString stringWithFormat:@"%@/liveTerminalLog.txt", [_manager.fileManager mainDirectoryPath]];
-    NSString* content = [NSString stringWithContentsOfFile:logPath
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-    
-    dispatch_async(dispatch_get_main_queue(), ^(void){
-        [terminalTextView setString:content];
-    });
-}
 - (IBAction)selectAppButtonClicked:(id)sender {
     _manager.appsViewController.manager = _manager;
     [self presentViewControllerAsSheet:_manager.appsViewController];
@@ -117,10 +97,6 @@
 }
 
 - (IBAction)getLogButtonClicked:(id)sender {
-    /* TODO: Make the log live update */
-    //    NSTimer *timer;
-    //    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
-    //                                             target:self selector:@selector(getAppLog) userInfo:nil repeats:YES];
     [self getAppLog];
 }
 
@@ -162,10 +138,10 @@
     [classesTableView reloadData];
     [methodsTableView reloadData];
     
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
         /* check to see if we have decrypted file */
         if (![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfDecryptedBinaryForApp:_manager.selectedApp]]) {
-            NSLog(@"AM::App has not been decrypted and/or downloaded. Decrypting and downloading now.");
+            NSLog(@"App has not been decrypted and/or downloaded. Decrypting and downloading now.");
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [analyzeAppProgressLabel setStringValue:@"Decrypting app"];
                 [analyzeAppProgressLabel display];
@@ -176,8 +152,8 @@
         /* check to see if we have headers */
         if (![_manager.fileManager fileExistsAtPath:[_manager.fileManager pathOfHeaderForApp:
                                                      _manager.selectedApp]]) {
-            NSLog(@"headerPath = %@", _manager.selectedApp.headerPath);
-            NSLog(@"AM::Headers have not been dumped. Dumping now.");
+//            NSLog(@"headerPath = %@", _manager.selectedApp.headerPath);
+            NSLog(@"Headers have not been dumped. Dumping now.");
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [analyzeAppProgressLabel setStringValue:@"Dumping headers"];
                 [analyzeAppProgressLabel display];

@@ -109,7 +109,7 @@
         NSString *second = [(AMApp *)b displayName];
         return [first caseInsensitiveCompare:second];
     }];
-    NSLog(@"Got user's apps' info");
+    TLog(@"Obtained user's apps' info");
     return sortedArray;
 }
 @end

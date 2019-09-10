@@ -32,8 +32,8 @@
     IBOutlet NSTextView *logTextView;
     IBOutlet NSTableView *classesTableView;
     IBOutlet NSTableView *methodsTableView;
-    IBOutlet NSTextView *terminalTextView;
 }
+@property (strong) IBOutlet NSTextView *terminalTextView;
 @property (strong) IBOutlet NSTextField *targetAppLabel;
 @property(retain, nonatomic) AMManager *manager;
 - (void)analyzeApp;
