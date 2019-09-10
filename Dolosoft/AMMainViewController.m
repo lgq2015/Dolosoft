@@ -20,6 +20,8 @@
 // NSAlert+SynchronousSheet.h (in case i need this later)
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSButtonCell *terminalButtonCell = [terminalButton cell];
+    terminalButtonCell.backgroundColor = [NSColor controlBackgroundColor];
     [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@ on iOS %@",
                                       _manager.device.DeviceName,
                                       _manager.device.ProductVersion]];
@@ -66,6 +68,26 @@
     NSError *error = nil;
     NSString *command = [NSString stringWithFormat:@"killall -9 \"%@\"", _manager.selectedApp.executableName];
     [_manager.connectionHandler.session.channel execute:command error:&error];
+}
+- (IBAction)iOSApplicationLogButtonClicked:(id)sender {
+    NSButtonCell *selectedCell = [iOSApplicationLogButton cell];
+    selectedCell.backgroundColor = [NSColor controlBackgroundColor];
+    NSButtonCell *deselectedCell = [terminalButton cell];
+    deselectedCell.backgroundColor = [NSColor clearColor];
+    [iOSApplicationLogButton setState:NSControlStateValueOn];
+    [terminalButton setState:NSControlStateValueOff];
+    logTextView.enclosingScrollView.hidden = NO;
+    _terminalTextView.enclosingScrollView.hidden = YES;
+}
+- (IBAction)terminalButtonClicked:(id)sender {
+    NSButtonCell *selectedCell = [terminalButton cell];
+    selectedCell.backgroundColor = [NSColor controlBackgroundColor];
+    NSButtonCell *deselectedCell = [iOSApplicationLogButton cell];
+    deselectedCell.backgroundColor = [NSColor clearColor];
+    [terminalButton setState:NSControlStateValueOn];
+    [iOSApplicationLogButton setState:NSControlStateValueOff];
+    _terminalTextView.enclosingScrollView.hidden = NO;
+    logTextView.enclosingScrollView.hidden = YES;
 }
 - (IBAction)stringsButtonClicked:(id)sender {
     NSError *error;

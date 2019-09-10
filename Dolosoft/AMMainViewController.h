@@ -32,6 +32,8 @@
     IBOutlet NSTextView *logTextView;
     IBOutlet NSTableView *classesTableView;
     IBOutlet NSTableView *methodsTableView;
+    IBOutlet NSButton *terminalButton;
+    IBOutlet NSButton *iOSApplicationLogButton;
 }
 @property (strong) IBOutlet NSTextView *terminalTextView;
 @property (strong) IBOutlet NSTextField *targetAppLabel;
