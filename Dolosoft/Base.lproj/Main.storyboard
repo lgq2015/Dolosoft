@@ -1032,18 +1032,18 @@
                                 </tableHeaderView>
                             </scrollView>
                             <scrollView hidden="YES" fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T5-ZV-6Rd">
-                                <rect key="frame" x="203" y="44" width="810" height="277"/>
+                                <rect key="frame" x="204" y="34" width="810" height="280"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="cCO-bw-JYe">
-                                    <rect key="frame" x="0.0" y="0.0" width="810" height="277"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="810" height="280"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="oQ6-yY-0Jo">
-                                            <rect key="frame" x="0.0" y="0.0" width="810" height="277"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="810" height="280"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="810" height="277"/>
+                                            <size key="minSize" width="810" height="280"/>
                                             <size key="maxSize" width="923" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -1054,12 +1054,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Sq8-oc-Fbl">
-                                    <rect key="frame" x="794" y="0.0" width="16" height="277"/>
+                                    <rect key="frame" x="794" y="0.0" width="16" height="280"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykl-nM-mJ2">
-                                <rect key="frame" x="203" y="43" width="810" height="280"/>
+                                <rect key="frame" x="204" y="34" width="810" height="280"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="Tta-3h-902">
                                     <rect key="frame" x="0.0" y="0.0" width="810" height="280"/>
@@ -1098,30 +1098,6 @@
                                 <rect key="frame" x="33" y="68" width="100" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </progressIndicator>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9fD-SA-rpE">
-                                <rect key="frame" x="203" y="321" width="68" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                                <buttonCell key="cell" type="bevel" title="Console" bezelStyle="rounded" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="weA-pu-ost">
-                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <connections>
-                                    <action selector="consoleButtonClicked:" target="XfG-lQ-9wD" id="jd0-ZY-gOO"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVZ-4h-e8D">
-                                <rect key="frame" x="279" y="321" width="142" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                                <buttonCell key="cell" type="bevel" title="iOS application log" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Gx9-mA-Ecw">
-                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <connections>
-                                        <action selector="iOSApplicationLogButtonClicked:" target="XfG-lQ-9wD" id="VQE-2r-tI8"/>
-                                    </connections>
-                                </buttonCell>
-                                <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y0C-bK-tWa">
                                 <rect key="frame" x="12" y="13" width="328" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -1295,6 +1271,30 @@
                                 <connections>
                                     <action selector="removeHookButtonClicked:" target="XfG-lQ-9wD" id="uuU-Z3-nuZ"/>
                                 </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9fD-SA-rpE">
+                                <rect key="frame" x="204" y="313" width="68" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                <buttonCell key="cell" type="bevel" title="Console" bezelStyle="rounded" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="weA-pu-ost">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="consoleButtonClicked:" target="XfG-lQ-9wD" id="jd0-ZY-gOO"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVZ-4h-e8D">
+                                <rect key="frame" x="271" y="313" width="142" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                <buttonCell key="cell" type="bevel" title="iOS application log" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Gx9-mA-Ecw">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="iOSApplicationLogButtonClicked:" target="XfG-lQ-9wD" id="VQE-2r-tI8"/>
+                                    </connections>
+                                </buttonCell>
+                                <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             </button>
                         </subviews>
                         <constraints>
