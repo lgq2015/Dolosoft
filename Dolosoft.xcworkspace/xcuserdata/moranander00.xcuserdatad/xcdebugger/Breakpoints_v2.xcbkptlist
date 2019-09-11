@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dolosoft/AMManager.m"
-            timestampString = "589925288.210979"
+            timestampString = "589926534.439633"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "80"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dolosoft/AMMainViewController.m"
-            timestampString = "589925288.211072"
+            timestampString = "589926534.439696"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "-analyzeApp"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dolosoft/AMMainViewController.m"
-            timestampString = "589925288.211713"
+            timestampString = "589926534.440082"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "-analyzeApp"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dolosoft/AMMainViewController.m"
-            timestampString = "589925288.212346"
+            timestampString = "589926534.44037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "-deviceInfoButtonClicked:"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dolosoft/AMMainViewController.m"
-            timestampString = "589925288.21279"
+            timestampString = "589926534.440647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "@implementation AMMainViewController"
             landmarkType = "3">
          </BreakpointContent>

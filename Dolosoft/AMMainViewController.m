@@ -20,6 +20,7 @@
 // NSAlert+SynchronousSheet.h (in case i need this later)
 - (void)viewDidLoad {
     [super viewDidLoad];
+    methodsTableView.doubleAction = @selector(hookMethodsButtonClicked:);
     NSButtonCell *consoleButtonCell = [consoleButton cell];
     consoleButtonCell.backgroundColor = [NSColor controlBackgroundColor];
     [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@ on iOS %@",
@@ -31,8 +32,20 @@
         [self analyzeApp];
     }
 }
+
+- (void)keyDown:(NSEvent *)event {
+    // https://stackoverflow.com/questions/4668847/nstableview-delete-key
+    
+    unichar key = [[event charactersIgnoringModifiers] characterAtIndex:0];
+    if ((key == NSEnterCharacter || key == NSCarriageReturnCharacter)
+        ) {
+        [self hookMethodsButtonClicked:nil];
+    }
+    [super keyDown:event];
+}
+
 - (IBAction)removeHookButtonClicked:(id)sender {
-    [selectedMethodsTableView.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
+     [selectedMethodsTableView.selectedRowIndexes enumerateIndexesWithOptions:NSEnumerationReverse usingBlock:^(NSUInteger index, BOOL *stop) {
         AMObjcMethod *objcMethod = _manager.hookedMethods[index];
         [_manager.hookedMethods removeObject:objcMethod];
     }];
