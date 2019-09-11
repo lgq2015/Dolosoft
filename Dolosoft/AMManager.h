@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(retain, nonatomic) AppsViewController *appsViewController;
 @property(retain, nonatomic, nullable) AMApp *selectedApp;
 @property(retain, nonatomic, nullable) AMObjcClass *selectedClass;
+@property(retain, nonatomic, nullable) NSMutableArray<AMObjcMethod *> *hookedMethods;
 @property(retain, nonatomic) NSPipe* consolePipe;
 - (instancetype)init;
 - (void)start;

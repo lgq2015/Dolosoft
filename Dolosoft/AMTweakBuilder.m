@@ -71,6 +71,66 @@
     }
 }
 
+- (void)writeTweakCodeForApp:(AMApp *)app forMethods:(NSArray<AMObjcMethod *> *)methods {
+    NSMutableString *tweakCode = [[NSMutableString alloc] init];
+    
+    [tweakCode appendString:@"NSArray *paths;\
+     \nNSString *documentsDirectory;\
+     \nNSString *documentTXTPath;\
+     \n%ctor {\
+     \n\tpaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);\
+     \n\tdocumentsDirectory = [paths objectAtIndex:0];\
+     \n\tdocumentTXTPath = [documentsDirectory stringByAppendingPathComponent:@\"AMLog.txt\"];\
+     \n\t[[NSFileManager defaultManager] createFileAtPath:documentTXTPath contents:nil attributes:nil];\
+     \n}"];
+    
+    
+    [tweakCode appendString: @"\n\nvoid AMLog(NSString *str) {\
+     \n\tstr = [NSString stringWithFormat:@\"%@\\n\\n\", str];\
+     \n\tNSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:documentTXTPath];\
+     \n\t[myHandle seekToEndOfFile];\
+     \n\t[myHandle writeData:[str dataUsingEncoding:NSUTF8StringEncoding]];\
+     \n}"];
+    [tweakCode appendString:@"\n\ntypedef id CDUnknownBlockType;\n"];
+    
+    NSMutableArray *hookedClasses = [[NSMutableArray alloc] init];
+    for (AMObjcMethod *objcMethod in methods) {
+        if (![hookedClasses containsObject:objcMethod.masterClass]) {
+            [hookedClasses addObject:objcMethod.masterClass];
+        }
+    }
+    
+    for (AMObjcClass *class in hookedClasses) {
+        [tweakCode appendFormat:@"\n%%hook %@", class.className];
+        
+        for (AMObjcMethod *method in methods) {
+            if (method.masterClass == class) {
+                [tweakCode appendString:[self formatMethodForTweak:method]];
+            }
+        }
+        
+        [tweakCode appendString:@"\n%end\n"];
+    }
+    NSLog(@"%@", tweakCode);
+    
+    /*
+     EXAMPLE HOOK FORMAT
+     id returnedObj = %orig;
+     NSString *log = [NSString stringWithFormat:@"(%@)[initWithCoder:%@]", returnedObj, arg1];
+     AMLog(log);
+     return returnedObj;
+     */
+    
+    NSError *error = nil;
+    [tweakCode writeToFile:app.tweakFilePath
+                atomically:YES
+                  encoding:NSUTF8StringEncoding
+                     error:&error];
+    if (error) {
+        NSLog(@"[ERROR] %@", error);
+    }
+}
+
 - (void)createTheosProjectForApp:(AMApp *)app {
     [self removeTheosProjectForApp:app];
     // TODO: Not related to this part but just wanted to remind myself to terminate all NSTasks when done using them!

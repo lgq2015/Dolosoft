@@ -31,6 +31,24 @@
         [self analyzeApp];
     }
 }
+- (IBAction)removeHookButtonClicked:(id)sender {
+    [selectedMethodsTableView.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
+        AMObjcMethod *objcMethod = _manager.hookedMethods[index];
+        [_manager.hookedMethods removeObject:objcMethod];
+    }];
+    [selectedMethodsTableView reloadData];
+    NSLog(@"%@", _manager.hookedMethods);
+}
+- (IBAction)hookMethodsButtonClicked:(id)sender {
+    [methodsTableView.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
+        AMObjcMethod *objcMethod = _manager.selectedClass.methodsList[index];
+        if (![_manager.hookedMethods containsObject:objcMethod]) {
+            [_manager.hookedMethods addObject:objcMethod];
+        }
+    }];
+    [selectedMethodsTableView reloadData];
+    NSLog(@"%@", _manager.hookedMethods);
+}
 
 - (IBAction)selectAppButtonClicked:(id)sender {
     _manager.appsViewController.manager = _manager;
@@ -245,8 +263,9 @@
     }];
     
     [_manager.tweakBuilder createTheosProjectForApp:_manager.selectedApp];
-    [_manager.tweakBuilder writeTweakCodeForApp:_manager.selectedApp forObjcClass:_manager.selectedClass withMethods:methods];
+//    [_manager.tweakBuilder writeTweakCodeForApp:_manager.selectedApp forObjcClass:_manager.selectedClass withMethods:methods];
     
+    [_manager.tweakBuilder writeTweakCodeForApp:_manager.selectedApp forMethods:_manager.hookedMethods];
     [createTweakProgressBar stopAnimation:nil];
 }
 
@@ -265,43 +284,35 @@
         return [_manager.selectedApp.classList count];
     } else if (tableView == methodsTableView) {
         return [_manager.selectedClass.methodsList count];
+    } else if (tableView == selectedMethodsTableView) {
+        return [_manager.hookedMethods count];
     } else {
         return 0;
     }
 }
 
 // TODO: Color code the methods! It's hard to search
-/* removing this for now as it is causing issues with the methodsTableView and classesTableView */
-//- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-//    NSString *identifier = [tableColumn identifier];
-//    if ([identifier isEqualToString:@"apps"]) {
-//        AMApp *app = [_manager.appManager.appList objectAtIndex:row];
-//        NSTableCellView *cell = [tableView makeViewWithIdentifier:@"appNameCell" owner:self];
-//        cell.textField.stringValue = app.displayName;
-//        cell.imageView.image = app.icon;
-//        cell.imageView.wantsLayer = YES;
-//        cell.imageView.canDrawSubviewsIntoLayer = YES;
-//        cell.imageView.layer.cornerRadius = 5;
-//        cell.imageView.layer.masksToBounds = YES;
-//
-//        [cell.textField setFont:[NSFont fontWithName:@"ArialMT" size:5]];
-//        if (!cell.imageView.image) {
-//            cell.imageView.image = [[NSImage alloc] initWithContentsOfFile:@"/Users/moranander00/Library/Application Support/Dolosoft/icon_default.png"];
-//        }
-//        return cell;
-//    }
-//    return nil;
-//}
-
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     NSString *identifier = [tableColumn identifier];
     if ([identifier isEqualToString:@"methods"]) {
         NSTableCellView *cell = [tableView makeViewWithIdentifier:@"methodCell" owner:self];
         cell.textField.stringValue = _manager.selectedClass.methodsList[row].callSyntax;
         return cell;
-    } else {
+    } else if ([identifier isEqualToString:@"classes"]) {
         NSTableCellView *cell = [tableView makeViewWithIdentifier:@"classCell" owner:self];
         cell.textField.stringValue = _manager.selectedApp.classList[row].className;
+        return cell;
+    } else if ([identifier isEqualToString:@"selectedMethodsClass"]) {
+        NSTableCellView *cell = [tableView makeViewWithIdentifier:@"selectedMethodsClassCell" owner:self];
+        cell.textField.stringValue = _manager.hookedMethods[row].masterClass.className;
+        return cell;
+    } else if ([identifier isEqualToString:@"selectedMethodsMethod"]) {
+        NSTableCellView *cell = [tableView makeViewWithIdentifier:@"selectedMethodsMethodCell" owner:self];
+        cell.textField.stringValue = _manager.hookedMethods[row].callSyntax;
+        return cell;
+    } else {
+        NSTableCellView *cell = [[NSTableCellView alloc] init];
+        cell.textField.stringValue = @"error";
         return cell;
     }
     return nil;
@@ -312,8 +323,9 @@
     if ([identifier isEqualToString:@"classes"]) {
         return _manager.selectedApp.classList[row].className;
     } else if ([identifier isEqualToString:@"methods"]) {
-        [methodsTableView sizeToFit];
         return _manager.selectedClass.methodsList[row].callSyntax;
+    } else if ([identifier isEqualToString:@"selectedMethodsClass"]) {
+        return _manager.selectedClass.methodsList[row].className;
     } else {
         return @"THIS SHOULD NEVER RETURN";
     }

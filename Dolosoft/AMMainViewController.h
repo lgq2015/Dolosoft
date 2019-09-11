@@ -32,6 +32,7 @@
     IBOutlet NSTextView *logTextView;
     IBOutlet NSTableView *classesTableView;
     IBOutlet NSTableView *methodsTableView;
+    IBOutlet NSTableView *selectedMethodsTableView;
     IBOutlet NSButton *consoleButton;
     IBOutlet NSButton *iOSApplicationLogButton;
 }

@@ -21,6 +21,7 @@
 - (void)removeTheosProjectForApp:(AMApp *)app;
 - (void)createTheosProjectForApp:(AMApp *)app;
 - (void)writeTweakCodeForApp:(AMApp *)app forObjcClass:(AMObjcClass *)objcClass withMethods:(NSArray<AMObjcMethod *> *)methods;
+- (void)writeTweakCodeForApp:(AMApp *)app forMethods:(NSArray<AMObjcMethod *> *)methods;
 - (void)makeDoTheosForApp:(AMApp *)app;
 - (NSString *)formatSpecifierForObjectType:(NSString *)objectType;
 - (NSString *)formatMethodForTweak:(AMObjcMethod *)method;
