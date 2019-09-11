@@ -311,24 +311,12 @@
         cell.textField.stringValue = _manager.hookedMethods[row].callSyntax;
         return cell;
     } else {
+        NSLog(@"error we should never be here!!!");
         NSTableCellView *cell = [[NSTableCellView alloc] init];
         cell.textField.stringValue = @"error";
         return cell;
     }
     return nil;
-}
-
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    NSString *identifier = [tableColumn identifier];
-    if ([identifier isEqualToString:@"classes"]) {
-        return _manager.selectedApp.classList[row].className;
-    } else if ([identifier isEqualToString:@"methods"]) {
-        return _manager.selectedClass.methodsList[row].callSyntax;
-    } else if ([identifier isEqualToString:@"selectedMethodsClass"]) {
-        return _manager.selectedClass.methodsList[row].className;
-    } else {
-        return @"THIS SHOULD NEVER RETURN";
-    }
 }
 
 - (void)setRepresentedObject:(id)representedObject {

@@ -11,16 +11,7 @@
 @implementation AMManager
 - (instancetype)init {
     self = [super init];
-    
     _hookedMethods = [[NSMutableArray alloc] init];
-//    AMObjcClass *tempClass = [[AMObjcClass alloc] init];
-//    tempClass.className = @"TestClass";
-//    AMObjcMethod *tempMethod = [[AMObjcMethod alloc] init];
-//    tempMethod.masterClass = tempClass;
-//    tempMethod.callSyntax = @"-(void)testMethod";
-//    [_selectedMethodsQueue addObject:tempMethod];
-    
-    
     group = dispatch_group_create();
     background_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
     _device = [[AMDevice alloc] init];
