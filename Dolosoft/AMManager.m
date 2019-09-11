@@ -7,6 +7,7 @@
 //
 #include <stdlib.h>
 #import "AMManager.h"
+#import "AMR_ANSIEscapeHelper.h"
 // TODO: rewrite class dump parser to mimic Flex's
 @implementation AMManager
 - (instancetype)init {
@@ -35,6 +36,7 @@
                                                       dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
     __weak typeof(self) weakSelf = self;
     _consolePipe.fileHandleForReading.readabilityHandler = ^(NSFileHandle *handle) {
+        AMR_ANSIEscapeHelper *ansiEscapeHelper = [[AMR_ANSIEscapeHelper alloc] init];
         void* data = malloc(4096);
         ssize_t readResult = 0;
         do {
@@ -44,16 +46,19 @@
         
         if (readResult > 0) {
             NSString* stdOutString = [[NSString alloc] initWithBytesNoCopy:data length:readResult encoding:NSUTF8StringEncoding freeWhenDone:YES];
-//            printf("%s\n", [stdOutString UTF8String]);
-            NSAttributedString* stdOutAttributedString = [[NSAttributedString alloc]
-                                                          initWithString:stdOutString
-                                                          attributes:@{
-                                                                       NSForegroundColorAttributeName : [NSColor whiteColor],
-                                                                       NSFontAttributeName : [NSFont fontWithName:@"Monaco" size:12]
-                                                        }];
+            
+//            NSAttributedString* stdOutAttributedString = [[NSAttributedString alloc]
+//                                                          initWithString:stdOutString
+//                                                          attributes:@{
+//                                                                       NSForegroundColorAttributeName : [NSColor whiteColor],
+//                                                                       NSFontAttributeName : [NSFont fontWithName:@"Monaco" size:12]
+//                                                        }];
+            NSAttributedString *attrStr = [ansiEscapeHelper
+                                           attributedStringWithANSIEscapedString:stdOutString];
+            
             dispatch_sync(dispatch_get_main_queue(), ^(void){
                 if (weakSelf.mainViewController) {
-                    [weakSelf.mainViewController.consoleTextView.textStorage appendAttributedString:stdOutAttributedString];
+                    [weakSelf.mainViewController.consoleTextView.textStorage appendAttributedString:attrStr];
                     [weakSelf.mainViewController.consoleTextView scrollToEndOfDocument:nil];
                 }
             });

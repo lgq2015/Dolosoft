@@ -52,6 +52,7 @@
     [selectedMethodsTableView reloadData];
     NSLog(@"%@", _manager.hookedMethods);
 }
+
 - (IBAction)hookMethodsButtonClicked:(id)sender {
     [methodsTableView.selectedRowIndexes enumerateIndexesUsingBlock:^(NSUInteger index, BOOL *stop) {
         AMObjcMethod *objcMethod = _manager.selectedClass.methodsList[index];

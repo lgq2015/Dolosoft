@@ -34,6 +34,7 @@
 		41AE9BA923201D9100B5A5D0 /* libplist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BA423201C6D00B5A5D0 /* libplist.a */; };
 		41AE9BC523201FCA00B5A5D0 /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BC423201FCA00B5A5D0 /* libimobiledevice.dylib */; };
 		41AE9BC7232020DB00B5A5D0 /* libimobiledevice.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BC6232020DB00B5A5D0 /* libimobiledevice.6.dylib */; };
+		41AF52882329923500E3B506 /* AMR_ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AF52872329923400E3B506 /* AMR_ANSIEscapeHelper.m */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
 		41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */ = {isa = PBXBuildFile; fileRef = 41BE935F230DF3E000C9CEAF /* loadSSH.sh */; };
 		41EBB1AC2305CBDD00088422 /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 41EBB1AB2305CBDD00088422 /* icons.iconset */; };
@@ -136,6 +137,8 @@
 		41AE9BC123201DE500B5A5D0 /* house_arrest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = house_arrest.h; sourceTree = "<group>"; };
 		41AE9BC423201FCA00B5A5D0 /* libimobiledevice.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libimobiledevice.dylib; sourceTree = "<group>"; };
 		41AE9BC6232020DB00B5A5D0 /* libimobiledevice.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libimobiledevice.6.dylib; sourceTree = "<group>"; };
+		41AF52862329923400E3B506 /* AMR_ANSIEscapeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMR_ANSIEscapeHelper.h; sourceTree = "<group>"; };
+		41AF52872329923400E3B506 /* AMR_ANSIEscapeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMR_ANSIEscapeHelper.m; sourceTree = "<group>"; };
 		41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceManager.h; sourceTree = "<group>"; };
 		41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceManager.m; sourceTree = "<group>"; };
 		41BE935F230DF3E000C9CEAF /* loadSSH.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = loadSSH.sh; path = Resources/loadSSH.sh; sourceTree = SOURCE_ROOT; };
@@ -259,6 +262,8 @@
 				0CA40BC8207EBAFE00789BEB /* AMObjcClass.m */,
 				0C95DE4B207D1F9900639022 /* AMConnectionHandler.h */,
 				0C95DE4C207D1FB300639022 /* AMConnectionHandler.m */,
+				41AF52862329923400E3B506 /* AMR_ANSIEscapeHelper.h */,
+				41AF52872329923400E3B506 /* AMR_ANSIEscapeHelper.m */,
 				0C16DFAF207C1A0100AA0952 /* Assets.xcassets */,
 				0C16DFB4207C1A0100AA0952 /* Info.plist */,
 				0C16DFB5207C1A0100AA0952 /* main.m */,
@@ -505,6 +510,7 @@
 				412C9E1323284D550017112B /* MenuButton.m in Sources */,
 				41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */,
 				41F519722301CD0000200C2A /* DeviceInfoViewController.m in Sources */,
+				41AF52882329923500E3B506 /* AMR_ANSIEscapeHelper.m in Sources */,
 				0C95DE50207D29F400639022 /* AMFileManager.m in Sources */,
 				0CA40BCC207ED1A900789BEB /* AMClassDumpParser.m in Sources */,
 				41130D372316D20D0045B659 /* AppsCollectionViewItem.m in Sources */,
