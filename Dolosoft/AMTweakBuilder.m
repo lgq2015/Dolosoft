@@ -127,7 +127,7 @@
 }
 
 - (void)makeDoTheosForApp:(AMApp *)app {
-    NSLog(@"fd = %d", _manager.terminalPipe.fileHandleForWriting.fileDescriptor);
+    NSLog(@"fd = %d", _manager.consolePipe.fileHandleForWriting.fileDescriptor);
     fflush(stderr);
     NSString *currentDir = app.tweakDirPath;
     /* for this to work properly you need to be able to run
@@ -146,7 +146,7 @@
     [task setLaunchPath:@"/bin/bash"];
     [task setCurrentDirectoryPath:currentDir]; // leaving this here so I know I tried this. Does not work bc NSTask treats alias/symlink as the original dir which has a space which theos hates :))))
     [task setArguments:@[ @"-l", @"-c", command ]];
-    [task setStandardOutput:_manager.terminalPipe.fileHandleForWriting];
+    [task setStandardOutput:_manager.consolePipe.fileHandleForWriting];
     [task launch];
     // This waits for the task to finish before returning
     while ([task isRunning]) {}

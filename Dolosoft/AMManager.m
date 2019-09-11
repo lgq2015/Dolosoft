@@ -24,19 +24,21 @@
     [_initialViewController presentViewControllerAsModalWindow:_initialViewController];
     
     // https://stackoverflow.com/questions/16391279/how-to-redirect-stdout-to-a-nstextview
-    _terminalPipe = [NSPipe pipe];
-    dup2([[_terminalPipe fileHandleForWriting] fileDescriptor], fileno(stderr));
+    // https://stackoverflow.com/questions/29548811/real-time-nstask-output-to-nstextview-with-swift
+    // I may use the second link later to make the console similar to how it is in Xcode
+    _consolePipe = [NSPipe pipe];
+    dup2([[_consolePipe fileHandleForWriting] fileDescriptor], fileno(stderr));
     dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ,
-                                                      _terminalPipe.fileHandleForReading.fileDescriptor,
+                                                      _consolePipe.fileHandleForReading.fileDescriptor,
                                                       0,
                                                       dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
     __weak typeof(self) weakSelf = self;
-    _terminalPipe.fileHandleForReading.readabilityHandler = ^(NSFileHandle *handle) {
+    _consolePipe.fileHandleForReading.readabilityHandler = ^(NSFileHandle *handle) {
         void* data = malloc(4096);
         ssize_t readResult = 0;
         do {
             errno = 0;
-            readResult = read(_terminalPipe.fileHandleForReading.fileDescriptor, data, 256);
+            readResult = read(_consolePipe.fileHandleForReading.fileDescriptor, data, 256);
         } while (readResult == -1 && errno == EINTR);
         
         if (readResult > 0) {
@@ -50,8 +52,8 @@
                                                         }];
             dispatch_sync(dispatch_get_main_queue(), ^(void){
                 if (weakSelf.mainViewController) {
-                    [weakSelf.mainViewController.terminalTextView.textStorage appendAttributedString:stdOutAttributedString];
-                    [weakSelf.mainViewController.terminalTextView scrollToEndOfDocument:nil];
+                    [weakSelf.mainViewController.consoleTextView.textStorage appendAttributedString:stdOutAttributedString];
+                    [weakSelf.mainViewController.consoleTextView scrollToEndOfDocument:nil];
                 }
             });
         } else {

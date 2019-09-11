@@ -32,10 +32,10 @@
     IBOutlet NSTextView *logTextView;
     IBOutlet NSTableView *classesTableView;
     IBOutlet NSTableView *methodsTableView;
-    IBOutlet NSButton *terminalButton;
+    IBOutlet NSButton *consoleButton;
     IBOutlet NSButton *iOSApplicationLogButton;
 }
-@property (strong) IBOutlet NSTextView *terminalTextView;
+@property (strong) IBOutlet NSTextView *consoleTextView;
 @property (strong) IBOutlet NSTextField *targetAppLabel;
 @property(retain, nonatomic) AMManager *manager;
 - (void)analyzeApp;

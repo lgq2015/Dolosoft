@@ -20,8 +20,8 @@
 // NSAlert+SynchronousSheet.h (in case i need this later)
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSButtonCell *terminalButtonCell = [terminalButton cell];
-    terminalButtonCell.backgroundColor = [NSColor controlBackgroundColor];
+    NSButtonCell *consoleButtonCell = [consoleButton cell];
+    consoleButtonCell.backgroundColor = [NSColor controlBackgroundColor];
     [connectedToLabel setStringValue:[NSString stringWithFormat:@"Connected to %@ on iOS %@",
                                       _manager.device.DeviceName,
                                       _manager.device.ProductVersion]];
@@ -72,21 +72,21 @@
 - (IBAction)iOSApplicationLogButtonClicked:(id)sender {
     NSButtonCell *selectedCell = [iOSApplicationLogButton cell];
     selectedCell.backgroundColor = [NSColor controlBackgroundColor];
-    NSButtonCell *deselectedCell = [terminalButton cell];
+    NSButtonCell *deselectedCell = [consoleButton cell];
     deselectedCell.backgroundColor = [NSColor clearColor];
     [iOSApplicationLogButton setState:NSControlStateValueOn];
-    [terminalButton setState:NSControlStateValueOff];
+    [consoleButton setState:NSControlStateValueOff];
     logTextView.enclosingScrollView.hidden = NO;
-    _terminalTextView.enclosingScrollView.hidden = YES;
+    _consoleTextView.enclosingScrollView.hidden = YES;
 }
-- (IBAction)terminalButtonClicked:(id)sender {
-    NSButtonCell *selectedCell = [terminalButton cell];
+- (IBAction)consoleButtonClicked:(id)sender {
+    NSButtonCell *selectedCell = [consoleButton cell];
     selectedCell.backgroundColor = [NSColor controlBackgroundColor];
     NSButtonCell *deselectedCell = [iOSApplicationLogButton cell];
     deselectedCell.backgroundColor = [NSColor clearColor];
-    [terminalButton setState:NSControlStateValueOn];
+    [consoleButton setState:NSControlStateValueOn];
     [iOSApplicationLogButton setState:NSControlStateValueOff];
-    _terminalTextView.enclosingScrollView.hidden = NO;
+    _consoleTextView.enclosingScrollView.hidden = NO;
     logTextView.enclosingScrollView.hidden = YES;
 }
 - (IBAction)stringsButtonClicked:(id)sender {

@@ -817,33 +817,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <scrollView hidden="YES" fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T5-ZV-6Rd">
-                                <rect key="frame" x="203" y="126" width="923" height="195"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="cCO-bw-JYe">
-                                    <rect key="frame" x="0.0" y="0.0" width="923" height="195"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="oQ6-yY-0Jo">
-                                            <rect key="frame" x="0.0" y="0.0" width="923" height="195"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="923" height="195"/>
-                                            <size key="maxSize" width="923" height="10000000"/>
-                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        </textView>
-                                    </subviews>
-                                </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="HOj-vJ-J9P">
-                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Sq8-oc-Fbl">
-                                    <rect key="frame" x="907" y="0.0" width="16" height="195"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CGH-Um-oy6">
                                 <rect key="frame" x="551" y="701" width="125" height="32"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -879,6 +852,33 @@
                                 <rect key="frame" x="33" y="94" width="100" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </progressIndicator>
+                            <scrollView hidden="YES" fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2T5-ZV-6Rd">
+                                <rect key="frame" x="203" y="44" width="923" height="277"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="cCO-bw-JYe">
+                                    <rect key="frame" x="0.0" y="0.0" width="923" height="277"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="oQ6-yY-0Jo">
+                                            <rect key="frame" x="0.0" y="0.0" width="923" height="277"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="923" height="277"/>
+                                            <size key="maxSize" width="923" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="HOj-vJ-J9P">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Sq8-oc-Fbl">
+                                    <rect key="frame" x="907" y="0.0" width="16" height="277"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                             <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykl-nM-mJ2">
                                 <rect key="frame" x="203" y="44" width="923" height="277"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -997,7 +997,7 @@
                                 </buttonCell>
                                 <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
-                                    <action selector="terminalButtonClicked:" target="XfG-lQ-9wD" id="jd0-ZY-gOO"/>
+                                    <action selector="consoleButtonClicked:" target="XfG-lQ-9wD" id="jd0-ZY-gOO"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gVZ-4h-e8D">
@@ -1177,13 +1177,13 @@
                         <outlet property="analyzeAppProgressLabel" destination="Q6U-Sh-nvE" id="eax-O2-YUs"/>
                         <outlet property="classesTableView" destination="HYu-1r-hmT" id="qne-74-gWM"/>
                         <outlet property="connectedToLabel" destination="y0C-bK-tWa" id="2zY-ny-oaH"/>
+                        <outlet property="consoleButton" destination="9fD-SA-rpE" id="Gyj-aN-i8Z"/>
+                        <outlet property="consoleTextView" destination="UsN-yH-7xC" id="20U-z3-pVw"/>
                         <outlet property="createTweakProgressBar" destination="2IN-ez-KZW" id="yoD-Sm-ofm"/>
                         <outlet property="iOSApplicationLogButton" destination="gVZ-4h-e8D" id="A0H-L1-qSW"/>
                         <outlet property="logTextView" destination="oQ6-yY-0Jo" id="WOV-No-65E"/>
                         <outlet property="methodsTableView" destination="aeX-or-eQF" id="FjQ-Se-AhH"/>
                         <outlet property="targetAppLabel" destination="wd1-Hf-ktd" id="IZD-fD-1X1"/>
-                        <outlet property="terminalButton" destination="9fD-SA-rpE" id="Gyj-aN-i8Z"/>
-                        <outlet property="terminalTextView" destination="UsN-yH-7xC" id="20U-z3-pVw"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
