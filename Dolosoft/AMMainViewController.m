@@ -155,6 +155,15 @@
 }
 
 - (IBAction)installTweakButtonClicked:(id)sender {
+    if (!_manager.selectedApp) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Ok"];
+        [alert setMessageText:@"Error"];
+        [alert setInformativeText:@"No app selected. Please select an app."];
+        [alert runModal];
+        return;
+    }
+    
     if ([_manager.fileManager fileExistsAtPath:_manager.selectedApp.tweakDirPath isDirectory:nil]) {
         [_manager.tweakBuilder makeDoTheosForApp:[_manager.appManager appWithDisplayName:_manager.selectedApp.displayName]];
     } else {
@@ -172,6 +181,14 @@
 }
 
 - (IBAction)editTweakButtonClicked:(id)sender {
+    if (!_manager.selectedApp) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Ok"];
+        [alert setMessageText:@"Error"];
+        [alert setInformativeText:@"No app selected. Please select an app."];
+        [alert runModal];
+        return;
+    }
     if (![[NSWorkspace sharedWorkspace] openFile:[_manager.selectedApp tweakFilePath]]) {
         [[NSWorkspace sharedWorkspace] openFile:[_manager.selectedApp tweakFilePath] withApplication:@"Xcode"];
     }
@@ -266,6 +283,14 @@
 }
 
 - (IBAction)createTweakButtonClicked:(id)sender {
+    if (!_manager.selectedApp) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Ok"];
+        [alert setMessageText:@"Error"];
+        [alert setInformativeText:@"No app selected. Please select an app."];
+        [alert runModal];
+        return;
+    }
     [createTweakProgressBar setUsesThreadedAnimation:YES];
     [createTweakProgressBar startAnimation:nil];
     
