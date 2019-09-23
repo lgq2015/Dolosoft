@@ -34,10 +34,15 @@
                           [NSWindow windowWithContentViewController:_initialViewController]];
     [self performSelectorInBackground:@selector(checkForDevice) withObject:self];
     [_windowController showWindow:self];
+    [self redirectOutput];
     
     // https://stackoverflow.com/questions/16391279/how-to-redirect-stdout-to-a-nstextview
     // https://stackoverflow.com/questions/29548811/real-time-nstask-output-to-nstextview-with-swift
     // I may use the second link later to make the console similar to how it is in Xcode
+    return self;
+}
+
+- (void)redirectOutput {
     _consolePipe = [NSPipe pipe];
     dup2([[_consolePipe fileHandleForWriting] fileDescriptor], fileno(stderr));
     dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ,
@@ -57,12 +62,12 @@
         if (readResult > 0) {
             NSString* stdOutString = [[NSString alloc] initWithBytesNoCopy:data length:readResult encoding:NSUTF8StringEncoding freeWhenDone:YES];
             
-//            NSAttributedString* stdOutAttributedString = [[NSAttributedString alloc]
-//                                                          initWithString:stdOutString
-//                                                          attributes:@{
-//                                                                       NSForegroundColorAttributeName : [NSColor whiteColor],
-//                                                                       NSFontAttributeName : [NSFont fontWithName:@"Monaco" size:12]
-//                                                        }];
+            //            NSAttributedString* stdOutAttributedString = [[NSAttributedString alloc]
+            //                                                          initWithString:stdOutString
+            //                                                          attributes:@{
+            //                                                                       NSForegroundColorAttributeName : [NSColor whiteColor],
+            //                                                                       NSFontAttributeName : [NSFont fontWithName:@"Monaco" size:12]
+            //                                                        }];
             NSAttributedString *attrStr = [ansiEscapeHelper
                                            attributedStringWithANSIEscapedString:stdOutString];
             
@@ -77,8 +82,7 @@
         }
     };
     dispatch_resume(source);
-    
-    return self;
+
 }
 
 - (void)checkForDevice {
