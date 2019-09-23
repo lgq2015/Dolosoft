@@ -953,7 +953,7 @@
                             </scrollView>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Al9-wD-jJt">
                                 <rect key="frame" x="1035" y="397" width="385" height="379"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="2OR-2H-nLZ">
                                     <rect key="frame" x="1" y="0.0" width="383" height="378"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1131,7 +1131,7 @@
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="weV-sU-vSQ" customClass="MenuButton">
                                 <rect key="frame" x="14" y="691" width="175" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Create tweak" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="FM8-ZZ-1bx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1142,7 +1142,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWC-4l-2Fr" customClass="MenuButton">
                                 <rect key="frame" x="14" y="632" width="175" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Edit tweak" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="eNT-PC-pW1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1153,7 +1153,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HfU-xC-MHJ" customClass="MenuButton">
                                 <rect key="frame" x="14" y="602" width="175" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Remove tweak" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="Iky-Cj-sg7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1164,7 +1164,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vqQ-Zf-TRg" customClass="MenuButton">
                                 <rect key="frame" x="14" y="662" width="175" height="31"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Install tweak" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="chV-yl-WxA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1175,7 +1175,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8f7-m3-9nW" customClass="MenuButton">
                                 <rect key="frame" x="14" y="339" width="175" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Cycript" bezelStyle="rounded" alignment="left" enabled="NO" imageScaling="proportionallyDown" inset="2" id="3qb-ys-IoQ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1186,7 +1186,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gmP-jr-rl8" customClass="MenuButton">
                                 <rect key="frame" x="14" y="470" width="175" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Respring" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="q7Q-XH-Mqn">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1197,7 +1197,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kc6-Ac-7gd" customClass="MenuButton">
                                 <rect key="frame" x="14" y="503" width="175" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="App strings" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="RK1-1O-Alt">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1208,7 +1208,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vfa-24-QQ8" customClass="MenuButton">
                                 <rect key="frame" x="14" y="536" width="175" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="SSH session" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="VjL-wN-l6n">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1219,7 +1219,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XUd-H2-AV3" customClass="MenuButton">
                                 <rect key="frame" x="14" y="437" width="175" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Kill app" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="eF0-5S-g0w">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1230,7 +1230,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hRo-f8-ayQ" customClass="MenuButton">
                                 <rect key="frame" x="14" y="372" width="175" height="31"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Device info" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="Fap-mq-1og">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1241,7 +1241,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f6D-bE-Rl6" customClass="MenuButton">
                                 <rect key="frame" x="14" y="569" width="175" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Clear app cache" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="2fj-xt-YNX">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1252,7 +1252,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X6G-F6-PBm" customClass="MenuButton">
                                 <rect key="frame" x="14" y="724" width="175" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Select app" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="aUj-kS-0xQ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1263,7 +1263,7 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v0x-pt-gUs" customClass="MenuButton">
                                 <rect key="frame" x="14" y="404" width="175" height="32"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Open header file" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="xgg-eT-eoa">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1329,7 +1329,7 @@
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kkb-bt-bvY" customClass="MenuButton">
                                 <rect key="frame" x="14" y="306" width="175" height="31"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Settings" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="VEI-nH-kGf">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>

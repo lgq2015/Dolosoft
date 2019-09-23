@@ -16,8 +16,8 @@
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
-    NSButtonCell *cell = self.cell;
-    cell.backgroundColor = [NSColor controlBackgroundColor];
+    NSButtonCell *buttonCell = self.cell;
+    buttonCell.backgroundColor = [NSColor controlBackgroundColor];
     return self;
 }
 @end
