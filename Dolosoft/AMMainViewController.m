@@ -218,6 +218,7 @@
     
     [classesTableView reloadData];
     [methodsTableView reloadData];
+    [selectedMethodsTableView reloadData];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(void){
         /* check to see if we have decrypted file */
