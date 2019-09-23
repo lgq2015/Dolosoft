@@ -12,6 +12,14 @@
 @implementation AMManager
 - (instancetype)init {
     self = [super init];
+    _fileManager = [[AMFileManager alloc] init];
+    if (![_fileManager libimobiledeviceInstalled]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Dismiss"];
+        [alert setMessageText:@"Missing library"];
+        [alert setInformativeText:@"I HIGHLY recommend installing libimobiledevice on your Mac! Try \"brew install libimobiledevice\". You should be able to run \"ideviceinfo\" with your iOS device plugged in and it should bring up device information. If you get an error, run the code here https://pastebin.com/PHNexvwM inside your terminal. After installing libimobiledevice, quit Dolosoft and try again."];
+        [alert runModal];
+    }
     _hookedMethods = [[NSMutableArray alloc] init];
     group = dispatch_group_create();
     background_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
@@ -112,6 +120,7 @@
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [_initialViewController setStatus:@"Attempting to connect to device via SSH"];
         });
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         static NSString *mobileUserPassword;
         mobileUserPassword = [defaults objectForKey:@"mobileUserPassword"];
@@ -127,7 +136,6 @@
             [defaults synchronize];
         }
 
-        _fileManager = [[AMFileManager alloc] init];
         _appManager = [[AMAppManager alloc] initWithFileManager:_fileManager];
         _tweakBuilder = [[AMTweakBuilder alloc] initWithFileManager:_fileManager];
         _tweakBuilder.manager = self;
@@ -183,7 +191,7 @@
                 dispatch_sync(dispatch_get_main_queue(), ^(void){
                     NSAlert *alert = [[NSAlert alloc] init];
                     [alert addButtonWithTitle:@"Quit"];
-                    [alert setMessageText:@"Error"];
+                    [alert setMessageText:@"Missing tool on iOS device"];
                     [alert setInformativeText:@"getinstalledappsinfo is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install getinstalledappsinfo"];
                     [alert runModal];
                 });
@@ -194,7 +202,7 @@
                 dispatch_sync(dispatch_get_main_queue(), ^(void){
                     NSAlert *alert = [[NSAlert alloc] init];
                     [alert addButtonWithTitle:@"Quit"];
-                    [alert setMessageText:@"Error"];
+                    [alert setMessageText:@"Missing tool on iOS device"];
                     [alert setInformativeText:@"removetweak is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install removetweak"];
                     [alert runModal];
                 });

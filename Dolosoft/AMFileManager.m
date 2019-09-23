@@ -26,6 +26,10 @@
     return self;
 }
 
+- (BOOL)libimobiledeviceInstalled {
+    return [self fileExistsAtPath:@"/usr/local/lib/libimobiledevice.dylib"];
+}
+
 - (void)createApplicationSupportSymbolicLink {
     /*
      Creates alias for "~/Library/Application Support" as "~/Library/Application Support"

@@ -70,8 +70,18 @@
 }
 
 - (IBAction)deviceInfoButtonClicked:(id)sender {
-    _manager.deviceInfoViewController.deviceInfo = _manager.device.deviceInfo;
-    [self presentViewControllerAsSheet:_manager.deviceInfoViewController];
+    if (_manager.device.deviceInfo) {
+        _manager.deviceInfoViewController.deviceInfo = _manager.device.deviceInfo;
+        [self presentViewControllerAsSheet:_manager.deviceInfoViewController];
+    } else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Dismiss"];
+        [alert setMessageText:@"Alert"];
+        [alert setInformativeText:@"Because you do not have libimobiledevice installed, device information is not available. I HIGHLY recommend installing libimobiledevice on your Mac! Try \"brew install libimobiledevice\". You should be able to run \"ideviceinfo\" with your iOS device plugged in and it should bring up device information. If you get an error, run the code here https://pastebin.com/PHNexvwM inside your terminal. After installing libimobiledevice, quit Dolosoft and try again."];
+        [alert setAlertStyle:NSAlertStyleWarning];
+        [alert beginSheetModalForWindow:self.view.window completionHandler:NULL];
+//         [alert beginSheetModalForWindow:[self.view window] modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
+    }
 }
 
 - (IBAction)cycriptButtonClicked:(id)sender {

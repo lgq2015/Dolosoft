@@ -25,6 +25,7 @@
 - (void)createTweaksDirectory;
 - (void)createApplicationSupportSymbolicLink;
 - (void)createFridaDirectory;
+- (BOOL)libimobiledeviceInstalled;
 + (NSArray *)filesInDirectory:(NSString*)directoryPath;
 - (NSString *)pathOfDecryptedBinaryForApp:(AMApp *)app;
 - (NSString *)pathOfHeaderForApp:(AMApp *)app;

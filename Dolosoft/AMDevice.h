@@ -10,16 +10,18 @@
 #import <objc/runtime.h>
 #include <libimobiledevice/lockdown.h>
 #import "AMDeviceManager.h"
+#import "AMManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class AMDeviceManager;
+@class AMDeviceManager, AMManager;
 
 // Honestly wanted to name this class something like AMiOSDevice but that goes against camel case and it bothers me so here we are with AMDevice sorry for the ambiguity
 @interface AMDevice : NSObject
 - (instancetype)init;
 - (void)printInfo;
-+ (NSDictionary *)getDeviceInfo;
+- (NSDictionary *)getDeviceInfo;
+@property(retain, nonatomic) AMManager *manager;
 @property(retain, nonatomic) NSDictionary *deviceInfo; /* just to clarify, this isn't some info.plist file which are commonly found on iOS devices.
                                                              this is literally a plist that contains information about the device
                                                             */

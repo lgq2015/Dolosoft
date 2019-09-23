@@ -30,10 +30,10 @@
 		41130D3D2316FDEC0045B659 /* icon_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 41130D3C2316FDEC0045B659 /* icon_default.png */; };
 		412C9E1323284D550017112B /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 412C9E1223284D550017112B /* MenuButton.m */; };
 		417588582318767A0029840B /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 417588572318767A0029840B /* PreferencesViewController.m */; };
-		41AE9BA823201D8E00B5A5D0 /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BA323201C6D00B5A5D0 /* libimobiledevice.a */; };
+		41AE9BA823201D8E00B5A5D0 /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BA323201C6D00B5A5D0 /* libimobiledevice.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		41AE9BA923201D9100B5A5D0 /* libplist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BA423201C6D00B5A5D0 /* libplist.a */; };
-		41AE9BC523201FCA00B5A5D0 /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BC423201FCA00B5A5D0 /* libimobiledevice.dylib */; };
-		41AE9BC7232020DB00B5A5D0 /* libimobiledevice.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BC6232020DB00B5A5D0 /* libimobiledevice.6.dylib */; };
+		41AE9BC523201FCA00B5A5D0 /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BC423201FCA00B5A5D0 /* libimobiledevice.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		41AE9BC7232020DB00B5A5D0 /* libimobiledevice.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BC6232020DB00B5A5D0 /* libimobiledevice.6.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		41AF52882329923500E3B506 /* AMR_ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AF52872329923400E3B506 /* AMR_ANSIEscapeHelper.m */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
 		41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */ = {isa = PBXBuildFile; fileRef = 41BE935F230DF3E000C9CEAF /* loadSSH.sh */; };
