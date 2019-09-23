@@ -10,8 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PreferencesViewController : NSViewController
-@property(nonatomic) BOOL darkThemeEnabled;
+@interface PreferencesViewController : NSViewController {
+    NSUserDefaults *defaults;
+    NSString *themeMode;
+}
+@property (strong) IBOutlet NSPopUpButton *themeButton;
 @end
 
 NS_ASSUME_NONNULL_END

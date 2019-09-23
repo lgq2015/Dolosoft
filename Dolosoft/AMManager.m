@@ -12,6 +12,7 @@
 @implementation AMManager
 - (instancetype)init {
     self = [super init];
+    [self loadPreferences];
     _fileManager = [[AMFileManager alloc] init];
     if (![_fileManager libimobiledeviceInstalled]) {
         NSAlert *alert = [[NSAlert alloc] init];
@@ -40,6 +41,16 @@
     // https://stackoverflow.com/questions/29548811/real-time-nstask-output-to-nstextview-with-swift
     // I may use the second link later to make the console similar to how it is in Xcode
     return self;
+}
+
+- (void)loadPreferences {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *themeMode = [defaults objectForKey:@"themeMode"];
+    if ([themeMode isEqualToString:@"Light"]) {
+        [NSApplication sharedApplication].appearance = [NSAppearance appearanceNamed:NSAppearanceNameAqua];
+    } else if ([themeMode isEqualToString:@"Dark"]) {
+        [NSApplication sharedApplication].appearance = [NSAppearance appearanceNamed:NSAppearanceNameDarkAqua];
+    }
 }
 
 - (void)redirectOutput {

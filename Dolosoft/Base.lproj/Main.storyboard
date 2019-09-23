@@ -684,28 +684,49 @@
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--Preferences View Controller-->
+        <!--Preferences-->
         <scene sceneID="b4d-OO-OkE">
             <objects>
-                <viewController id="w9s-ef-WGX" customClass="PreferencesViewController" sceneMemberID="viewController">
+                <viewController title="Preferences" id="w9s-ef-WGX" customClass="PreferencesViewController" sceneMemberID="viewController">
                     <view key="view" id="yVL-Em-gl9">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KgL-93-6pa">
-                                <rect key="frame" x="30" y="235" width="145" height="18"/>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2j-g6-w0t">
+                                <rect key="frame" x="18" y="247" width="77" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Dark theme enabled" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="pk1-fL-9jn">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Light" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="K4T-OX-Zom" id="ZwJ-5b-ZGN">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" autoenablesItems="NO" id="MtH-uf-Q6x">
+                                        <items>
+                                            <menuItem title="Light" id="K4T-OX-Zom"/>
+                                            <menuItem title="Dark" id="ZXt-KC-bUQ"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="themeButtonChanged:" target="w9s-ef-WGX" id="8c8-NP-ygP"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K3c-Rm-7Mu">
+                                <rect key="frame" x="98" y="252" width="46" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Theme" id="5oE-Q5-59z">
                                     <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="themeButton" destination="K2j-g6-w0t" id="w79-V9-QTs"/>
+                    </connections>
                 </viewController>
                 <customObject id="KbF-4f-x1q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-427" y="139"/>
+            <point key="canvasLocation" x="-480" y="333"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -1306,6 +1327,17 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kkb-bt-bvY" customClass="MenuButton">
+                                <rect key="frame" x="14" y="306" width="175" height="31"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="bevel" title="Settings" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="VEI-nH-kGf">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="w9s-ef-WGX" kind="modal" id="u8I-fw-MzM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Haz-Ef-kcy" firstAttribute="centerX" secondItem="aeX-or-eQF" secondAttribute="centerX" id="BdC-rr-NfM"/>
@@ -1630,7 +1662,10 @@ Gw
                 </viewController>
                 <customObject id="JxV-Od-SK0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1112" y="801"/>
+            <point key="canvasLocation" x="-1112.5" y="801"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="u8I-fw-MzM"/>
+    </inferredMetricsTieBreakers>
 </document>
