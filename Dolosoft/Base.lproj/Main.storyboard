@@ -22,7 +22,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="w9s-ef-WGX" kind="modal" id="zOz-dh-0hb"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -701,28 +705,25 @@
                 </viewController>
                 <customObject id="KbF-4f-x1q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-459" y="312"/>
+            <point key="canvasLocation" x="-427" y="139"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Dolosoft" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                <windowController storyboardIdentifier="windowController" id="B8D-0N-5wS" customClass="WindowController" sceneMemberID="viewController">
+                    <window key="window" title="Dolosoft" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingIdentifier="MainWindow" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="609" y="381" width="480" height="270"/>
+                        <rect key="contentRect" x="610" y="381" width="479" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
                     </window>
-                    <connections>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
-                    </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="100.5" y="238"/>
         </scene>
         <!--Dolosoft-->
         <scene sceneID="hIz-AP-VOD">
@@ -857,7 +858,7 @@
                                 </connections>
                             </button>
                             <progressIndicator hidden="YES" wantsLayer="YES" canDrawConcurrently="YES" fixedFrame="YES" minValue="100" maxValue="100" doubleValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="2IN-ez-KZW">
-                                <rect key="frame" x="33" y="94" width="100" height="20"/>
+                                <rect key="frame" x="45" y="195" width="100" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </progressIndicator>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9L-Pe-cIN">
@@ -1095,7 +1096,7 @@
                                 </textFieldCell>
                             </textField>
                             <progressIndicator hidden="YES" wantsLayer="YES" fixedFrame="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="VXZ-1d-uJt">
-                                <rect key="frame" x="33" y="68" width="100" height="20"/>
+                                <rect key="frame" x="33" y="221" width="100" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </progressIndicator>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y0C-bK-tWa">
@@ -1296,6 +1297,15 @@
                                 </buttonCell>
                                 <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80z-Jo-8Iu">
+                                <rect key="frame" x="12" y="62" width="180" height="76"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" alignment="left" id="b9b-h5-F2I">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Haz-Ef-kcy" firstAttribute="centerX" secondItem="aeX-or-eQF" secondAttribute="centerX" id="BdC-rr-NfM"/>
@@ -1308,7 +1318,7 @@
                     </view>
                     <connections>
                         <outlet property="analyzeAppProgressBar" destination="VXZ-1d-uJt" id="4aA-OS-wlE"/>
-                        <outlet property="analyzeAppProgressLabel" destination="Q6U-Sh-nvE" id="eax-O2-YUs"/>
+                        <outlet property="analyzeAppProgressLabel" destination="80z-Jo-8Iu" id="cCh-FI-WMV"/>
                         <outlet property="classesTableView" destination="HYu-1r-hmT" id="qne-74-gWM"/>
                         <outlet property="connectedToLabel" destination="y0C-bK-tWa" id="2zY-ny-oaH"/>
                         <outlet property="consoleButton" destination="9fD-SA-rpE" id="Gyj-aN-i8Z"/>
@@ -1323,6 +1333,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="qYq-uk-C7m"/>
+                <customObject id="Sbp-YV-EGX" customClass="AppDelegate"/>
             </objects>
             <point key="canvasLocation" x="68" y="952"/>
         </scene>
@@ -1377,7 +1388,7 @@
                 </viewController>
                 <customObject id="bQK-PT-uex" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-209" y="1538"/>
+            <point key="canvasLocation" x="-912" y="381"/>
         </scene>
         <!--Strings View Controller-->
         <scene sceneID="BOE-CF-MOb">
@@ -1546,7 +1557,7 @@
                 </viewController>
                 <customObject id="TDy-pt-AW3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1292.5" y="1341.5"/>
+            <point key="canvasLocation" x="1284" y="832"/>
         </scene>
         <!--Apps View Controller-->
         <scene sceneID="vW8-y9-gRo">
@@ -1619,7 +1630,7 @@ Gw
                 </viewController>
                 <customObject id="JxV-Od-SK0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1105.5" y="722"/>
+            <point key="canvasLocation" x="-1112" y="801"/>
         </scene>
     </scenes>
 </document>

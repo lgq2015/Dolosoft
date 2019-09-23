@@ -16,7 +16,7 @@
 }
 
 - (void)deviceDidAttachWithName:(NSString *)name {
-    [_deviceDetectedTextField setStringValue:[NSString stringWithFormat:@"%@ detected", name]];
+    [_deviceDetectedTextField performSelectorOnMainThread:@selector(setStringValue:) withObject:[NSString stringWithFormat:@"%@ detected", name] waitUntilDone:NO];
 }
 
 - (void)setStatus:(NSString *)status {
@@ -25,10 +25,5 @@
 
 - (IBAction)retryButtonClicked:(id)sender {
     NSLog(@"clicked");
-}
-
-- (void)dismissSelfAndPresentMainVC:(AMMainViewController *)mainViewController {
-    [mainViewController presentViewControllerAsModalWindow:mainViewController];
-    [self dismissViewController:self];
 }
 @end

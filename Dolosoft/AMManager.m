@@ -30,8 +30,10 @@
     _deviceInfoViewController = [storyBoard instantiateControllerWithIdentifier:@"DeviceInfoViewController"];
     _stringsViewController = [storyBoard instantiateControllerWithIdentifier:@"StringsViewController"];
     _appsViewController = [storyBoard instantiateControllerWithIdentifier:@"AppsViewController"];
+     _windowController = [[WindowController alloc] initWithWindow:
+                          [NSWindow windowWithContentViewController:_initialViewController]];
     [self performSelectorInBackground:@selector(checkForDevice) withObject:self];
-    [_initialViewController presentViewControllerAsModalWindow:_initialViewController];
+    [_windowController showWindow:self];
     
     // https://stackoverflow.com/questions/16391279/how-to-redirect-stdout-to-a-nstextview
     // https://stackoverflow.com/questions/29548811/real-time-nstask-output-to-nstextview-with-swift
@@ -107,8 +109,10 @@
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         _mainViewController = [storyBoard instantiateControllerWithIdentifier:@"AMMainViewController"];
         _mainViewController.manager = self; // TODO: I hate the way this is structured, so restructure
-        [self dismissVC:_initialViewController];
-        [self presentVCAsModal:_mainViewController];
+        [_windowController close];
+        _windowController = [[WindowController alloc] initWithWindow:
+                             [NSWindow windowWithContentViewController:_mainViewController]];
+        [_windowController showWindow:self];
     });
 }
 

@@ -19,8 +19,9 @@
 #import "DeviceInfoViewController.h"
 #import "StringsViewController.h"
 #import "AppsViewController.h"
+#import "WindowController.h"
 
-@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager, AMDevice, InitialViewController, DeviceInfoViewController, StringsViewController, AppsViewController;
+@class AMAppManager, AMClassDumpParser, AMTweakBuilder, AMFileManager, AMApp, AMLogger, AMObjcClass, AMDeviceManager, AMDevice, InitialViewController, DeviceInfoViewController, StringsViewController, AppsViewController, WindowController;
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -46,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(retain, nonatomic, nullable) AMObjcClass *selectedClass;
 @property(retain, nonatomic, nullable) NSMutableArray<AMObjcMethod *> *hookedMethods;
 @property(retain, nonatomic) NSPipe* consolePipe;
+@property(retain, nonatomic) WindowController* windowController;
 - (instancetype)init;
 - (void)start;
 - (void)setup;

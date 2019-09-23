@@ -9,11 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import "AMDevice.h"
 #import "AMDeviceManager.h"
-#import "AMMainViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class AMDevice, AMMainViewController;
+@class AMDevice;
 
 @interface InitialViewController : NSViewController {
     
@@ -21,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong) IBOutlet NSTextField *deviceDetectedTextField;
 @property (strong) IBOutlet NSTextField *statusTextField;
 @property (strong) IBOutlet NSProgressIndicator *waitingIndicator;
-- (void)dismissSelfAndPresentMainVC:(AMMainViewController *)mainViewController;
 - (void)deviceDidAttachWithName:(NSString *)name;
 - (void)setStatus:(NSString *)status;
 @end

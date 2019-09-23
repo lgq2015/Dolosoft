@@ -37,6 +37,7 @@
 		41AF52882329923500E3B506 /* AMR_ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AF52872329923400E3B506 /* AMR_ANSIEscapeHelper.m */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
 		41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */ = {isa = PBXBuildFile; fileRef = 41BE935F230DF3E000C9CEAF /* loadSSH.sh */; };
+		41E03BEE2339311500DB0834 /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E03BED2339311500DB0834 /* WindowController.m */; };
 		41EBB1AC2305CBDD00088422 /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 41EBB1AB2305CBDD00088422 /* icons.iconset */; };
 		41F5192D22FDF95400200C2A /* AMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5192C22FDF95400200C2A /* AMManager.m */; };
 		41F519722301CD0000200C2A /* DeviceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F519712301CD0000200C2A /* DeviceInfoViewController.m */; };
@@ -142,6 +143,8 @@
 		41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceManager.h; sourceTree = "<group>"; };
 		41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceManager.m; sourceTree = "<group>"; };
 		41BE935F230DF3E000C9CEAF /* loadSSH.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = loadSSH.sh; path = Resources/loadSSH.sh; sourceTree = SOURCE_ROOT; };
+		41E03BEC2339311500DB0834 /* WindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
+		41E03BED2339311500DB0834 /* WindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
 		41EBB1AB2305CBDD00088422 /* icons.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icons.iconset; sourceTree = "<group>"; };
 		41F5192B22FDF95300200C2A /* AMManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMManager.h; sourceTree = "<group>"; };
 		41F5192C22FDF95400200C2A /* AMManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMManager.m; sourceTree = "<group>"; };
@@ -221,6 +224,8 @@
 				0C16DFAA207C1A0100AA0952 /* AppDelegate.m */,
 				41F5192B22FDF95300200C2A /* AMManager.h */,
 				41F5192C22FDF95400200C2A /* AMManager.m */,
+				41E03BEC2339311500DB0834 /* WindowController.h */,
+				41E03BED2339311500DB0834 /* WindowController.m */,
 				0C16DFAC207C1A0100AA0952 /* AMMainViewController.h */,
 				0C16DFAD207C1A0100AA0952 /* AMMainViewController.m */,
 				412C9E1123284D550017112B /* MenuButton.h */,
@@ -506,6 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41E03BEE2339311500DB0834 /* WindowController.m in Sources */,
 				0CEFBF102096468C00B41490 /* AMTweakBuilder.m in Sources */,
 				412C9E1323284D550017112B /* MenuButton.m in Sources */,
 				41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */,
