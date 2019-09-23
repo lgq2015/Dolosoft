@@ -35,7 +35,7 @@
                           [NSWindow windowWithContentViewController:_initialViewController]];
     [self performSelectorInBackground:@selector(checkForDevice) withObject:self];
     [_windowController showWindow:self];
-    [self redirectOutput];
+    //[self redirectOutput];
     
     // https://stackoverflow.com/questions/16391279/how-to-redirect-stdout-to-a-nstextview
     // https://stackoverflow.com/questions/29548811/real-time-nstask-output-to-nstextview-with-swift
@@ -97,9 +97,11 @@
 }
 
 - (void)checkForDevice {
+    NSLog(@"HERE0");
     while (!_device && !TEST_MODE) {
         _device = [[AMDevice alloc] init];
     }
+    NSLog(@"HERE");
     [self deviceDidAttach];
     [self start];
 }

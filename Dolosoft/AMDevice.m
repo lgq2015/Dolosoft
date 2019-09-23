@@ -54,10 +54,6 @@
 
 // https://stackoverflow.com/questions/54083843/how-can-i-get-the-ecid-of-a-connected-device-using-libimobiledevice
 - (NSDictionary *)getDeviceInfo {
-    if (![_manager.fileManager libimobiledeviceInstalled]) {
-        return NULL;
-    }
-    
     // https://github.com/libimobiledevice/libimobiledevice/blob/master/tools/ideviceinfo.c
     lockdownd_client_t client = NULL;
     lockdownd_error_t ldret = LOCKDOWN_E_UNKNOWN_ERROR;
