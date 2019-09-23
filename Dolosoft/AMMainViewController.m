@@ -241,7 +241,7 @@
                 [analyzeAppProgressLabel display];
             });
             [_manager.appManager dumpHeadersForApp:_manager.selectedApp];
-        }
+        }   
         
         dispatch_async(dispatch_get_main_queue(), ^(void){
             [analyzeAppProgressLabel setStringValue:@"Parsing Objective-C data from headers"];
