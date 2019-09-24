@@ -187,8 +187,6 @@
 }
 
 - (void)makeDoTheosForApp:(AMApp *)app {
-    NSLog(@"fd = %d", _manager.consolePipe.fileHandleForWriting.fileDescriptor);
-    fflush(stderr);
     NSString *currentDir = app.tweakDirPath;
     /* for this to work properly you need to be able to run
      "make do" without theos requesting your password for

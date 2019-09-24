@@ -35,7 +35,7 @@
                           [NSWindow windowWithContentViewController:_initialViewController]];
     [self performSelectorInBackground:@selector(checkForDevice) withObject:self];
     [_windowController showWindow:self];
-    //[self redirectOutput];
+    [self redirectOutput];
     
     // https://stackoverflow.com/questions/16391279/how-to-redirect-stdout-to-a-nstextview
     // https://stackoverflow.com/questions/29548811/real-time-nstask-output-to-nstextview-with-swift
@@ -62,7 +62,7 @@
                                                       dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
     __weak typeof(self) weakSelf = self;
     _consolePipe.fileHandleForReading.readabilityHandler = ^(NSFileHandle *handle) {
-        AMR_ANSIEscapeHelper *ansiEscapeHelper = [[AMR_ANSIEscapeHelper alloc] init];
+//        AMR_ANSIEscapeHelper *ansiEscapeHelper = [[AMR_ANSIEscapeHelper alloc] init];
         void* data = malloc(4096);
         ssize_t readResult = 0;
         do {
@@ -73,18 +73,18 @@
         if (readResult > 0) {
             NSString* stdOutString = [[NSString alloc] initWithBytesNoCopy:data length:readResult encoding:NSUTF8StringEncoding freeWhenDone:YES];
             
-            //            NSAttributedString* stdOutAttributedString = [[NSAttributedString alloc]
-            //                                                          initWithString:stdOutString
-            //                                                          attributes:@{
-            //                                                                       NSForegroundColorAttributeName : [NSColor whiteColor],
-            //                                                                       NSFontAttributeName : [NSFont fontWithName:@"Monaco" size:12]
-            //                                                        }];
-            NSAttributedString *attrStr = [ansiEscapeHelper
-                                           attributedStringWithANSIEscapedString:stdOutString];
+                        NSAttributedString* stdOutAttributedString = [[NSAttributedString alloc]
+                                                                      initWithString:stdOutString
+                                                                      attributes:@{
+                                                                                   NSForegroundColorAttributeName : [NSColor whiteColor],
+                                                                                   NSFontAttributeName : [NSFont fontWithName:@"Monaco" size:12]
+                                                                    }];
+//            NSAttributedString *attrStr = [ansiEscapeHelper
+//                                           attributedStringWithANSIEscapedString:stdOutString];
             
             dispatch_sync(dispatch_get_main_queue(), ^(void){
                 if (weakSelf.mainViewController) {
-                    [weakSelf.mainViewController.consoleTextView.textStorage appendAttributedString:attrStr];
+                    [weakSelf.mainViewController.consoleTextView.textStorage appendAttributedString:stdOutAttributedString];
                     [weakSelf.mainViewController.consoleTextView scrollToEndOfDocument:nil];
                 }
             });
