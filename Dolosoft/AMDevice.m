@@ -83,6 +83,11 @@
                                lockdownd_client_new_with_handshake(device, &client, "ideviceinfo"))) {
         fprintf(stderr, "ERROR: Could not connect to lockdownd, error code %d\n", ldret);
         idevice_free(device);
+        NSException* exception = [NSException
+                                    exceptionWithName:@"IDeviceInfoError"
+                                    reason:[NSString stringWithFormat:@"ERROR: Could not connect to lockdownd, error code %d\n", ldret]
+                                    userInfo:nil];
+        @throw exception;
         return nil;
     }
     

@@ -30,10 +30,7 @@
 		41130D3D2316FDEC0045B659 /* icon_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 41130D3C2316FDEC0045B659 /* icon_default.png */; };
 		412C9E1323284D550017112B /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 412C9E1223284D550017112B /* MenuButton.m */; };
 		417588582318767A0029840B /* PreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 417588572318767A0029840B /* PreferencesViewController.m */; };
-		41AE9BA823201D8E00B5A5D0 /* libimobiledevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BA323201C6D00B5A5D0 /* libimobiledevice.a */; settings = {ATTRIBUTES = (Weak, ); }; };
-		41AE9BA923201D9100B5A5D0 /* libplist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BA423201C6D00B5A5D0 /* libplist.a */; };
-		41AE9BC523201FCA00B5A5D0 /* libimobiledevice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BC423201FCA00B5A5D0 /* libimobiledevice.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
-		41AE9BC7232020DB00B5A5D0 /* libimobiledevice.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41AE9BC6232020DB00B5A5D0 /* libimobiledevice.6.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		417FF84423FC8F4C0025E67B /* autofill_makedo.sh in Resources */ = {isa = PBXBuildFile; fileRef = 417FF84323FC8F4C0025E67B /* autofill_makedo.sh */; };
 		41AF52882329923500E3B506 /* AMR_ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AF52872329923400E3B506 /* AMR_ANSIEscapeHelper.m */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
 		41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */ = {isa = PBXBuildFile; fileRef = 41BE935F230DF3E000C9CEAF /* loadSSH.sh */; };
@@ -111,6 +108,7 @@
 		412C9E1223284D550017112B /* MenuButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
 		417588562318767A0029840B /* PreferencesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferencesViewController.h; sourceTree = "<group>"; };
 		417588572318767A0029840B /* PreferencesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreferencesViewController.m; sourceTree = "<group>"; };
+		417FF84323FC8F4C0025E67B /* autofill_makedo.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = autofill_makedo.sh; sourceTree = "<group>"; };
 		41AE9BA323201C6D00B5A5D0 /* libimobiledevice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libimobiledevice.a; sourceTree = "<group>"; };
 		41AE9BA423201C6D00B5A5D0 /* libplist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libplist.a; sourceTree = "<group>"; };
 		41AE9BAB23201DE500B5A5D0 /* installation_proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = installation_proxy.h; sourceTree = "<group>"; };
@@ -166,12 +164,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41AE9BA923201D9100B5A5D0 /* libplist.a in Frameworks */,
 				41F7E3EC22FC5FC900F3D402 /* libPods-Dolosoft.a in Frameworks */,
 				0C9CD9CD2231A18E0020A723 /* CoreFoundation.framework in Frameworks */,
-				41AE9BA823201D8E00B5A5D0 /* libimobiledevice.a in Frameworks */,
-				41AE9BC7232020DB00B5A5D0 /* libimobiledevice.6.dylib in Frameworks */,
-				41AE9BC523201FCA00B5A5D0 /* libimobiledevice.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +275,7 @@
 			children = (
 				4104AE8C231582E700D3C42C /* iproxy */,
 				41BE935F230DF3E000C9CEAF /* loadSSH.sh */,
+				417FF84323FC8F4C0025E67B /* autofill_makedo.sh */,
 				41130D3C2316FDEC0045B659 /* icon_default.png */,
 			);
 			path = Resources;
@@ -456,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4104AE8D231582E800D3C42C /* iproxy in Resources */,
+				417FF84423FC8F4C0025E67B /* autofill_makedo.sh in Resources */,
 				41130D382316D20D0045B659 /* AppsCollectionViewItem.xib in Resources */,
 				0C16DFB0207C1A0100AA0952 /* Assets.xcassets in Resources */,
 				41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */,
@@ -714,10 +710,23 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Libraries",
 					/usr/local/lib,
-					/usr/local/Cellar/libplist/2.0.0_1/lib,
 					"$(PROJECT_DIR)/Resources",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"NMSSH\"",
+					"-l\"RegExCategories\"",
+					"-l\"crypto\"",
+					"-l\"ssh2\"",
+					"-l\"ssl\"",
+					"-l\"z\"",
+					"-lplist",
+					"-framework",
+					"\"CFNetwork\"",
+					"-limobiledevice",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.andermoran.Dolosoft;
 				PRODUCT_NAME = Dolosoft;
 			};
@@ -753,11 +762,24 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					/usr/local/lib,
-					/usr/local/Cellar/libplist/2.0.0_1/lib,
 					"$(PROJECT_DIR)/Libraries",
 					"$(PROJECT_DIR)/Resources",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"NMSSH\"",
+					"-l\"RegExCategories\"",
+					"-l\"crypto\"",
+					"-l\"ssh2\"",
+					"-l\"ssl\"",
+					"-l\"z\"",
+					"-lplist",
+					"-framework",
+					"\"CFNetwork\"",
+					"-limobiledevice",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.andermoran.Dolosoft;
 				PRODUCT_NAME = Dolosoft;
 			};

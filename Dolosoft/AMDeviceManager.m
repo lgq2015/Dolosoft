@@ -72,7 +72,7 @@
     while ([task isRunning]) {}
 }
 
-- (NSArray *)getUserApps {
+- (NSArray *)getUserApps{
     NSMutableArray<AMApp *> *userApps = [[NSMutableArray alloc] init];
     
     NSString *dest;
@@ -80,7 +80,7 @@
     if (TEST_MODE) {
         installedAppsPlist = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/installed_apps_debug.plist", [fileManager mainDirectoryPath]]];
     } else {
-        [connectionHandler.session.channel execute:@"getinstalledappsinfo" error:nil]; // TODO: make sure this package is installed on iOS device
+        [connectionHandler.session.channel execute:@"getinstalledappsinfo" error:nil];
         dest = [NSString stringWithFormat:@"%@/installed_apps.plist", [fileManager mainDirectoryPath]];
         [connectionHandler.session.channel downloadFile:@"/var/mobile/Documents/Dolosoft/installed_apps.plist" to:dest];
         installedAppsPlist = [NSArray arrayWithContentsOfFile:dest];

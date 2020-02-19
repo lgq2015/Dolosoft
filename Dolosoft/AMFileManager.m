@@ -45,9 +45,7 @@
     if([self createSymbolicLinkAtPath:applicationSupportSymbolicLinkDirectory withDestinationPath:applicationSupportDirectory error:&error]) {
         NSLog(@"Dolosoft::Created Application-Support symlink at %@", applicationSupportSymbolicLinkDirectory);
     } else {
-        if ([self fileExistsAtPath:applicationSupportSymbolicLinkDirectory]) {
-            NSLog(@"Dolosoft::Application-Support symlink already exists");
-        } else {
+        if (![self fileExistsAtPath:applicationSupportSymbolicLinkDirectory]) {
             NSLog(@"Dolosoft::Error creating Application-Support symlink\n%@", error);
         }
     }

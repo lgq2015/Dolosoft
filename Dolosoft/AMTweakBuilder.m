@@ -194,12 +194,26 @@
      The instructions are in this post: https://www.reddit.com/r/jailbreak/comments/47wc05/tutorial_setting_up_the_latest_version_of_theos/
      - on your Mac run:
         ssh-keygen -t rsa -b 2048
-        ssh-copy-id mobile@localhost -p 2222
+        ssh-copy-id root@localhost -p 2222
      - make sure to run:
         echo "export THEOS_DEVICE_IP=localhost" >> ~/.profile
         echo "export THEOS_DEVICE_PORT=2222" >> ~/.profile
      */
-    NSString *command = [NSString stringWithFormat:@"cd %@; make do", app.tweakDirPath];
+    /* old code */
+//    NSString *command = [NSString stringWithFormat:@"cd %@; make do", app.tweakDirPath];
+//    NSTask *task = [[NSTask alloc] init];
+//    [task setLaunchPath:@"/bin/bash"];
+//    [task setCurrentDirectoryPath:currentDir]; // leaving this here so I know I tried this. Does not work bc NSTask treats alias/symlink as the original dir which has a space which theos hates :))))
+//    [task setArguments:@[ @"-l", @"-c", command ]];
+//    [task setStandardOutput:_manager.consolePipe.fileHandleForWriting];
+//    [task launch];
+//    // This waits for the task to finish before returning
+//    while ([task isRunning]) {}
+    /* if user has not stored their passwordon their local machine via https://www.reddit.com/r/jailbreak/comments/47wc05/tutorial_setting_up_the_latest_version_of_theos/ */
+    NSBundle *main = [NSBundle mainBundle];
+    NSString *scriptPath = [main pathForAuxiliaryExecutable:@"Resources/autofill_makedo.sh"];
+    
+    NSString *command = [NSString stringWithFormat:@"cd %@; %@ %@", app.tweakDirPath, scriptPath, [[NSUserDefaults standardUserDefaults] objectForKey:@"rootUserPassword"]];
     NSTask *task = [[NSTask alloc] init];
     [task setLaunchPath:@"/bin/bash"];
     [task setCurrentDirectoryPath:currentDir]; // leaving this here so I know I tried this. Does not work bc NSTask treats alias/symlink as the original dir which has a space which theos hates :))))

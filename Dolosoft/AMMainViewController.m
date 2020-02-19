@@ -174,14 +174,11 @@
         return;
     }
     
-    if ([_manager.fileManager fileExistsAtPath:_manager.selectedApp.tweakDirPath isDirectory:nil]) {
-        [_manager.tweakBuilder makeDoTheosForApp:[_manager.appManager appWithDisplayName:_manager.selectedApp.displayName]];
-    } else {
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert addButtonWithTitle:@"Ok"];
-        [alert setMessageText:@"No tweak to install. You must create a tweak before installing."];
-        [alert runModal];
+    if (![_manager.fileManager fileExistsAtPath:_manager.selectedApp.tweakDirPath isDirectory:nil]) {
+        NSLog(@"No tweak project found for %@. Creating one now.", _manager.selectedApp.displayName);
+        [self createTweakButtonClicked:nil];
     }
+    [_manager.tweakBuilder makeDoTheosForApp:[_manager.appManager appWithDisplayName:_manager.selectedApp.displayName]];
 }
 - (IBAction)openHeaderFileButtonClicked:(id)sender {
     NSString *pathToSelectedClassHeader = [NSString stringWithFormat:@"%@/%@.h", _manager.selectedApp.headerPath, _manager.selectedClass];
@@ -260,11 +257,10 @@
                     [methodsTableView reloadData];
                 }
             });
-        } else {
+        } else {            
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [analyzeAppProgressLabel setStringValue:@"Analysis failed"];
                 [_targetAppLabel setStringValue:@"Target app: (null)"];
-                _manager.selectedApp = nil;
                 [classesTableView reloadData];
                 [methodsTableView reloadData];
                 NSLog(@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", _manager.selectedApp);
@@ -273,6 +269,7 @@
                 [alert setMessageText:@"Error"];
                 [alert setInformativeText:[NSString stringWithFormat:@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", _manager.selectedApp.displayName]];
                 [alert runModal];
+                _manager.selectedApp = nil;
             });
         }
         
@@ -312,9 +309,7 @@
         [methods addObject:objcMethod];
     }];
     
-    [_manager.tweakBuilder createTheosProjectForApp:_manager.selectedApp];
-//    [_manager.tweakBuilder writeTweakCodeForApp:_manager.selectedApp forObjcClass:_manager.selectedClass withMethods:methods];
-    
+    [_manager.tweakBuilder createTheosProjectForApp:_manager.selectedApp];    
     [_manager.tweakBuilder writeTweakCodeForApp:_manager.selectedApp forMethods:_manager.hookedMethods];
     [createTweakProgressBar stopAnimation:nil];
 }

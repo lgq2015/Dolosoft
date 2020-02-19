@@ -18,8 +18,9 @@
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"Dismiss"];
         [alert setMessageText:@"Missing library"];
-        [alert setInformativeText:@"I HIGHLY recommend installing libimobiledevice on your Mac! Try \"brew install libimobiledevice\". You should be able to run \"ideviceinfo\" with your iOS device plugged in and it should bring up device information. If you get an error, run the code here https://pastebin.com/PHNexvwM inside your terminal. After installing libimobiledevice, quit Dolosoft and try again."];
+        [alert setInformativeText:[NSString stringWithFormat:@"Error: %@\nI HIGHLY recommend installing libimobiledevice on your Mac! Try \"brew install libimobiledevice\". You should be able to run \"ideviceinfo\" with your iOS device plugged in and it should bring up device information. If you get an error, run the code here https://pastebin.com/PHNexvwM inside your terminal. After installing libimobiledevice, quit Dolosoft and try again.", @"some error message"]];
         [alert runModal];
+        [NSApp terminate:nil];
     }
     _hookedMethods = [[NSMutableArray alloc] init];
     group = dispatch_group_create();
@@ -35,11 +36,6 @@
                           [NSWindow windowWithContentViewController:_initialViewController]];
     [self performSelectorInBackground:@selector(checkForDevice) withObject:self];
     [_windowController showWindow:self];
-    [self redirectOutput];
-    
-    // https://stackoverflow.com/questions/16391279/how-to-redirect-stdout-to-a-nstextview
-    // https://stackoverflow.com/questions/29548811/real-time-nstask-output-to-nstextview-with-swift
-    // I may use the second link later to make the console similar to how it is in Xcode
     return self;
 }
 
@@ -54,6 +50,9 @@
 }
 
 - (void)redirectOutput {
+    // https://stackoverflow.com/questions/16391279/how-to-redirect-stdout-to-a-nstextview
+    // https://stackoverflow.com/questions/29548811/real-time-nstask-output-to-nstextview-with-swift
+    // I may use the second link later to make the console similar to how it is in Xcode
     _consolePipe = [NSPipe pipe];
     dup2([[_consolePipe fileHandleForWriting] fileDescriptor], fileno(stderr));
     dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ,
@@ -69,19 +68,22 @@
             errno = 0;
             readResult = read(_consolePipe.fileHandleForReading.fileDescriptor, data, 256);
         } while (readResult == -1 && errno == EINTR);
-        
+
         if (readResult > 0) {
             NSString* stdOutString = [[NSString alloc] initWithBytesNoCopy:data length:readResult encoding:NSUTF8StringEncoding freeWhenDone:YES];
-            
+//            printf("string = %s\n", [stdOutString cString]);
+            for (int i = 0; i < [stdOutString length]; i++) {
+//                char a = [stdOutString cString][i];
+//                printf("char @ %c = %d\n", a, a);
+            }
+
                         NSAttributedString* stdOutAttributedString = [[NSAttributedString alloc]
                                                                       initWithString:stdOutString
                                                                       attributes:@{
                                                                                    NSForegroundColorAttributeName : [NSColor whiteColor],
                                                                                    NSFontAttributeName : [NSFont fontWithName:@"Monaco" size:12]
                                                                     }];
-//            NSAttributedString *attrStr = [ansiEscapeHelper
-//                                           attributedStringWithANSIEscapedString:stdOutString];
-            
+
             dispatch_sync(dispatch_get_main_queue(), ^(void){
                 if (weakSelf.mainViewController) {
                     [weakSelf.mainViewController.consoleTextView.textStorage appendAttributedString:stdOutAttributedString];
@@ -97,11 +99,17 @@
 }
 
 - (void)checkForDevice {
-    NSLog(@"HERE0");
     while (!_device && !TEST_MODE) {
-        _device = [[AMDevice alloc] init];
+        @try {
+            _device = [[AMDevice alloc] init];
+        } @catch (NSException *exception) {
+            if (!_device) {
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [self.initialViewController setStatus:[NSString stringWithFormat:@"%@\n%@", @"Waiting for device...", exception.reason]];
+                });
+            }
+        }
     }
-    NSLog(@"HERE");
     [self deviceDidAttach];
     [self start];
 }
@@ -130,6 +138,7 @@
         _windowController = [[WindowController alloc] initWithWindow:
                              [NSWindow windowWithContentViewController:_mainViewController]];
         [_windowController showWindow:self];
+        [self redirectOutput];
     });
 }
 
@@ -216,7 +225,9 @@
                     [alert setInformativeText:@"getinstalledappsinfo is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install getinstalledappsinfo"];
                     [alert runModal];
                 });
-                [NSApp terminate:nil];
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [NSApp terminate:nil];
+                });
             }
             
             if (![self toolInstalled:@"removetweak"]) {
@@ -227,7 +238,23 @@
                     [alert setInformativeText:@"removetweak is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install removetweak"];
                     [alert runModal];
                 });
-                [NSApp terminate:nil];
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [NSApp terminate:nil];
+                });
+            }
+            
+            if (![self toolInstalled:@"frida-server"]) {
+                dispatch_sync(dispatch_get_main_queue(), ^(void){
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    [alert addButtonWithTitle:@"Quit"];
+                    [alert setMessageText:@"Missing tool on iOS device"];
+                    [alert setInformativeText:@"frida-server is not installed on the iOS device. Learn how to install Frida on your iOS device at https://frida.re/docs/ios/#with-jailbreak"];
+                    [alert runModal];
+                });
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [NSApp terminate:nil];
+                });
+                
             }
 
             dispatch_async(dispatch_get_main_queue(), ^(void){
@@ -245,7 +272,7 @@
 }
 
 - (BOOL)toolInstalled:(NSString *)toolName {
-    NSString *command = [NSString stringWithFormat:@"if test -f /usr/bin/%@; then printf '%@ is installed'; fi", toolName, toolName];
+    NSString *command = [NSString stringWithFormat:@"if test -f /usr/bin/%@ -o -f /usr/sbin/%@; then printf '%@ is installed'; fi", toolName, toolName, toolName];
     NSString *response = [_connectionHandler.session.channel execute:command error:nil];
     if (![response isEqualToString:[NSString stringWithFormat:@"%@ is installed", toolName]]) {
         return NO;
