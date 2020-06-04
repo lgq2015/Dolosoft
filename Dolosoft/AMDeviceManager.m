@@ -45,7 +45,7 @@
      to:dest];
      */
     
-    /* for iOS 12 */
+    /* for iOS 12/13 */
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     static NSString *rootUserPassword; // this is the iOS device's root password
     rootUserPassword = [defaults objectForKey:@"rootUserPassword"];
@@ -61,6 +61,7 @@
     NSError *error;
     NSString *command = [NSString stringWithFormat:@"./dump.py %@ -b --user root --password %@ --host %@ --port %ld --output-path \"%@\"", app.bundleIdentifier, rootUserPassword,
                          _manager.connectionHandler.hostName, _manager.connectionHandler.port, fileManager.decryptedBinariesDirectoryPath];
+    NSLog(@"%@", command);
     NSTask *task = [[NSTask alloc] init];
     task.executableURL = [NSURL fileURLWithPath:@"/bin/bash"];
     task.arguments = @[ @"-c", command ];
@@ -80,7 +81,7 @@
     if (TEST_MODE) {
         installedAppsPlist = [NSArray arrayWithContentsOfFile:[NSString stringWithFormat:@"%@/installed_apps_debug.plist", [fileManager mainDirectoryPath]]];
     } else {
-        [connectionHandler.session.channel execute:@"getinstalledappsinfo" error:nil];
+        [connectionHandler.session.channel execute:@"installedapps" error:nil];
         dest = [NSString stringWithFormat:@"%@/installed_apps.plist", [fileManager mainDirectoryPath]];
         [connectionHandler.session.channel downloadFile:@"/var/mobile/Documents/Dolosoft/installed_apps.plist" to:dest];
         installedAppsPlist = [NSArray arrayWithContentsOfFile:dest];

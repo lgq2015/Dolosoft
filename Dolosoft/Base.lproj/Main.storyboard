@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -695,12 +696,12 @@
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2j-g6-w0t">
                                 <rect key="frame" x="18" y="247" width="77" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Light" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="K4T-OX-Zom" id="ZwJ-5b-ZGN">
+                                <popUpButtonCell key="cell" type="push" title="Light" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="K4T-OX-Zom" id="ZwJ-5b-ZGN">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" autoenablesItems="NO" id="MtH-uf-Q6x">
                                         <items>
-                                            <menuItem title="Light" id="K4T-OX-Zom"/>
+                                            <menuItem title="Light" state="on" id="K4T-OX-Zom"/>
                                             <menuItem title="Dark" id="ZXt-KC-bUQ"/>
                                         </items>
                                     </menu>
@@ -1107,15 +1108,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wd1-Hf-ktd">
-                                <rect key="frame" x="12" y="30" width="244" height="17"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Target app: (null)" id="hS7-wS-Lpg">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <progressIndicator hidden="YES" wantsLayer="YES" fixedFrame="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="VXZ-1d-uJt">
                                 <rect key="frame" x="33" y="221" width="100" height="20"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -1319,7 +1311,7 @@
                                 <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80z-Jo-8Iu">
-                                <rect key="frame" x="12" y="62" width="180" height="76"/>
+                                <rect key="frame" x="11" y="47" width="180" height="76"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" alignment="left" id="b9b-h5-F2I">
                                     <font key="font" metaFont="system"/>
@@ -1338,14 +1330,30 @@
                                     <segue destination="w9s-ef-WGX" kind="modal" id="u8I-fw-MzM"/>
                                 </connections>
                             </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LaB-Ps-HSb">
+                                <rect key="frame" x="1184" y="241" width="61" height="61"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="kGP-YV-aRp"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wd1-Hf-ktd">
+                                <rect key="frame" x="1092" y="196" width="244" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Target app: (null)" id="hS7-wS-Lpg">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="LaB-Ps-HSb" secondAttribute="trailing" constant="102" id="8UG-7W-Bpy"/>
+                            <constraint firstAttribute="trailing" secondItem="wd1-Hf-ktd" secondAttribute="trailing" constant="93" id="9Gn-0E-iHr"/>
                             <constraint firstItem="Haz-Ef-kcy" firstAttribute="centerX" secondItem="aeX-or-eQF" secondAttribute="centerX" id="BdC-rr-NfM"/>
                             <constraint firstItem="XRX-eh-Z93" firstAttribute="centerX" secondItem="mjf-73-eSz" secondAttribute="centerX" id="LCi-xx-Epe"/>
+                            <constraint firstItem="LaB-Ps-HSb" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="503" id="YpW-VV-2az"/>
                             <constraint firstItem="HYu-1r-hmT" firstAttribute="top" secondItem="KWd-DU-ws6" secondAttribute="bottom" constant="9" id="eqg-ZH-aGJ"/>
                             <constraint firstItem="KWd-DU-ws6" firstAttribute="centerX" secondItem="HYu-1r-hmT" secondAttribute="centerX" id="k1A-9e-Kbb"/>
                             <constraint firstItem="aeX-or-eQF" firstAttribute="top" secondItem="Haz-Ef-kcy" secondAttribute="bottom" constant="9" id="ozm-CE-foI"/>
                             <constraint firstItem="mjf-73-eSz" firstAttribute="top" secondItem="XRX-eh-Z93" secondAttribute="bottom" constant="9" id="w6a-P4-p2e"/>
+                            <constraint firstItem="wd1-Hf-ktd" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="633" id="z2c-D2-KAO"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1359,6 +1367,7 @@
                         <outlet property="iOSApplicationLogButton" destination="gVZ-4h-e8D" id="A0H-L1-qSW"/>
                         <outlet property="logTextView" destination="oQ6-yY-0Jo" id="WOV-No-65E"/>
                         <outlet property="methodsTableView" destination="aeX-or-eQF" id="FjQ-Se-AhH"/>
+                        <outlet property="selectedAppIconView" destination="LaB-Ps-HSb" id="0y9-J1-7DX"/>
                         <outlet property="selectedMethodsTableView" destination="mjf-73-eSz" id="apB-Hv-PCO"/>
                         <outlet property="targetAppLabel" destination="wd1-Hf-ktd" id="IZD-fD-1X1"/>
                     </connections>

@@ -34,7 +34,12 @@
     _manager.selectedApp = [apps objectAtIndex:[appsCollectionView.selectionIndexes firstIndex]];
     _manager.selectedClass = nil; // This is because I need to clear the methods table view after a new app selected
     [_manager.hookedMethods removeAllObjects];
-    [_manager.mainViewController.targetAppLabel setStringValue:[NSString stringWithFormat:@"Target app: %@ (%@)", _manager.selectedApp.displayName, _manager.selectedApp.version]];
+    [_manager.mainViewController.targetAppLabel setStringValue:[NSString stringWithFormat:@"%@ (%@)", _manager.selectedApp.displayName, _manager.selectedApp.version]];
+    _manager.mainViewController.selectedAppIconView.image = _manager.selectedApp.icon;
+    _manager.mainViewController.selectedAppIconView.wantsLayer = YES;
+    _manager.mainViewController.selectedAppIconView.canDrawSubviewsIntoLayer = YES;
+    _manager.mainViewController.selectedAppIconView.layer.cornerRadius = 20;
+    _manager.mainViewController.selectedAppIconView.layer.masksToBounds = YES;
     [self dismissController:self];
     [_manager.mainViewController analyzeApp];
 }

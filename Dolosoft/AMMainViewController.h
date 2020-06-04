@@ -36,6 +36,7 @@
     IBOutlet NSButton *iOSApplicationLogButton;
     IBOutlet NSTableView *selectedMethodsTableView;
 }
+@property (strong) IBOutlet NSImageView *selectedAppIconView;
 @property (strong) IBOutlet NSTextView *consoleTextView;
 @property (strong) IBOutlet NSTextField *targetAppLabel;
 @property(retain, nonatomic) AMManager *manager;

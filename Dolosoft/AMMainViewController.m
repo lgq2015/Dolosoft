@@ -263,14 +263,15 @@
                 [_targetAppLabel setStringValue:@"Target app: (null)"];
                 [classesTableView reloadData];
                 [methodsTableView reloadData];
-                NSLog(@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", _manager.selectedApp);
+                NSLog(@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", _manager.selectedApp.displayName);
                 NSAlert *alert = [[NSAlert alloc] init];
                 [alert addButtonWithTitle:@"Dismiss"];
                 [alert setMessageText:@"Error"];
                 [alert setInformativeText:[NSString stringWithFormat:@"Failed to analyze %@, make sure the app is open and in the foreground on your iOS device. Only apps installed via the App Store are supported as of now", _manager.selectedApp.displayName]];
                 [alert runModal];
-                _manager.selectedApp = nil;
             });
+            _manager.selectedApp = nil;
+            _manager.mainViewController.selectedAppIconView.image = nil;
         }
         
     });
@@ -291,6 +292,7 @@
 }
 
 - (IBAction)createTweakButtonClicked:(id)sender {
+    // TODO: ask user if they want to override existing tweak project if it exists
     if (!_manager.selectedApp) {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"Ok"];

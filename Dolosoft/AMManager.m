@@ -104,6 +104,10 @@
             _device = [[AMDevice alloc] init];
         } @catch (NSException *exception) {
             if (!_device) {
+                NSLog(@"[Exception caught] %@", exception.reason);
+                if ([exception.reason isEqualToString:@"ERROR: Could not connect to lockdownd, error code -5"]) {
+                    [self checkForDevice]; // sometimes have to repeat this is code is -5, idk why
+                }
                 dispatch_async(dispatch_get_main_queue(), ^(void){
                     [self.initialViewController setStatus:[NSString stringWithFormat:@"%@\n%@", @"Waiting for device...", exception.reason]];
                 });
@@ -217,12 +221,12 @@
             [_initialViewController setStatus:@"Checking if Dolosoft tools are installed on iOS device"];
         });
         if (!TEST_MODE) {
-            if (![self toolInstalled:@"getinstalledappsinfo"]) {
+            if (![self toolInstalled:@"installedapps"]) {
                 dispatch_sync(dispatch_get_main_queue(), ^(void){
                     NSAlert *alert = [[NSAlert alloc] init];
                     [alert addButtonWithTitle:@"Quit"];
                     [alert setMessageText:@"Missing tool on iOS device"];
-                    [alert setInformativeText:@"getinstalledappsinfo is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install getinstalledappsinfo"];
+                    [alert setInformativeText:@"installedapps is not installed on the iOS device. Add my repository https://andermoran.github.io/repo and then install installedapps"];
                     [alert runModal];
                 });
                 dispatch_async(dispatch_get_main_queue(), ^(void){

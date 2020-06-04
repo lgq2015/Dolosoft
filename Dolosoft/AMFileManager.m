@@ -78,12 +78,17 @@
 }
 
 - (void)createFridaDirectory {
-    NSError *error;
-    NSTask *task = [[NSTask alloc] init];
-    task.executableURL = [NSURL fileURLWithPath:@"/usr/bin/git"];
-    task.arguments = @[ @"clone", @"https://github.com/andermoran/frida-ios-dump" ];
-    task.currentDirectoryURL = [NSURL fileURLWithPath:_mainDirectoryPath];
-    [task launchAndReturnError:&error];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL isDir;
+    NSString *path = [_mainDirectoryPath stringByAppendingPathComponent:@"frida-ios-dump"];
+    if (![fm fileExistsAtPath:path isDirectory:&isDir]) {
+        NSError *error;
+        NSTask *task = [[NSTask alloc] init];
+        task.executableURL = [NSURL fileURLWithPath:@"/usr/bin/git"];
+        task.arguments = @[ @"clone", @"https://github.com/andermoran/frida-ios-dump" ];
+        task.currentDirectoryURL = [NSURL fileURLWithPath:_mainDirectoryPath];
+        [task launchAndReturnError:&error];
+    }
 }
 
 - (void)createDecryptedDirectory {
