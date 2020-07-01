@@ -31,7 +31,7 @@
 
 - (void)removeLogForApp:(AMApp *)app {
     NSString *logFilePathOnDevice = [NSString stringWithFormat:@"%@/Documents/AMLog.txt", app.pathToAppStorageDir];
-    NSString *command = [NSString stringWithFormat:@"rm %@", logFilePathOnDevice];
+    NSString *command = [NSString stringWithFormat:@"> %@", logFilePathOnDevice];
     [_connectionHandler.session.channel execute:command error:nil];
     NSLog(@"Removed AMLog.txt from %@'s Documents directory", app.displayName);
 }
