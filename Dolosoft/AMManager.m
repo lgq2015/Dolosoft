@@ -50,6 +50,7 @@
 }
 
 - (void)redirectOutput {
+    /*
     // https://stackoverflow.com/questions/16391279/how-to-redirect-stdout-to-a-nstextview
     // https://stackoverflow.com/questions/29548811/real-time-nstask-output-to-nstextview-with-swift
     // I may use the second link later to make the console similar to how it is in Xcode
@@ -95,7 +96,7 @@
         }
     };
     dispatch_resume(source);
-
+    */
 }
 
 - (void)checkForDevice {
@@ -247,6 +248,20 @@
                 });
             }
             
+            if (![self toolInstalled:@"flexdecrypt"]) {
+                dispatch_sync(dispatch_get_main_queue(), ^(void){
+                    NSAlert *alert = [[NSAlert alloc] init];
+                    [alert addButtonWithTitle:@"Quit"];
+                    [alert setMessageText:@"Missing tool on iOS device"];
+                    [alert setInformativeText:@"flexdecrypt is not installed on the iOS device. Learn how to install flexdecrypt on your iOS device at https://github.com/JohnCoates/flexdecrypt"];
+                    [alert runModal];
+                });
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [NSApp terminate:nil];
+                });
+            }
+            
+            /*
             if (![self toolInstalled:@"frida-server"]) {
                 dispatch_sync(dispatch_get_main_queue(), ^(void){
                     NSAlert *alert = [[NSAlert alloc] init];
@@ -258,8 +273,8 @@
                 dispatch_async(dispatch_get_main_queue(), ^(void){
                     [NSApp terminate:nil];
                 });
-                
             }
+             */
 
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [_initialViewController setStatus:@"Getting list of installed apps"];

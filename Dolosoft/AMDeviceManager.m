@@ -45,14 +45,15 @@
      to:dest];
      */
     
-    /* for iOS 12/13 */
+    /* for iOS 12/13 (using Frida) */
+    /*
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     static NSString *rootUserPassword; // this is the iOS device's root password
     rootUserPassword = [defaults objectForKey:@"rootUserPassword"];
     
     if (!rootUserPassword) {
         dispatch_sync(dispatch_get_main_queue(), ^(void){
-            rootUserPassword = [AMManager getSecureUserInput:@"Enter iOS device root password. This is REQUIRED by frida do decrypt the app. Everything else is done as the mobile user."];
+            rootUserPassword = [AMManager getSecureUserInput:@"Enter iOS device root password. This is REQUIRED by frida to decrypt the app. Everything else is done as the mobile user."];
         });
         [defaults setObject:rootUserPassword forKey:@"rootUserPassword"];
         [defaults synchronize];
@@ -71,6 +72,24 @@
     
     // This waits for the task to finish before returning
     while ([task isRunning]) {}
+    */
+    
+    /* for iOS 13 (and probably lower) (using flexdecrypt by John Coates) */
+    NSString *decryptCommand = [NSString stringWithFormat:
+    @"flexdecrypt \"%@\"", app.pathToExecutable];
+    
+    NSError *error = nil;
+    [connectionHandler.session.channel execute:decryptCommand error:&error];
+    if (error) {
+        NSLog(@"ERROR: %@", error);
+    }
+    
+    // Here we download the decrypted binary to our machine
+    NSString *source = [NSString stringWithFormat:@"/tmp/%@", app.executableName];
+    NSString *dest = [NSString stringWithFormat:@"%@/%@", fileManager.decryptedBinariesDirectoryPath,app.displayName];
+    NSLog(@"source: %@", source);
+    NSLog(@"dest: %@", dest);
+    [connectionHandler.session.channel downloadFile:source to:dest];
 }
 
 - (NSArray *)getUserApps{
@@ -96,7 +115,7 @@
         AMApp *app = [[AMApp alloc] initWithDisplayName:displayName
                                          executableName:appInfo[@"executable-name"]
                                        bundleIdentifier:appInfo[@"bundle-identifier"]
-                                              pathToBundleDir:appInfo[@"path"]
+                                        pathToBundleDir:appInfo[@"bundle-path"]
                                        pathToStorageDir:appInfo[@"storage-path"]
                                                iconData:appInfo[@"icon"]
                                             fileManager:fileManager

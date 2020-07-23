@@ -271,7 +271,9 @@
                 [alert runModal];
             });
             _manager.selectedApp = nil;
-            _manager.mainViewController.selectedAppIconView.image = nil;
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                _manager.mainViewController.selectedAppIconView.image = nil;
+            });
         }
         
     });
