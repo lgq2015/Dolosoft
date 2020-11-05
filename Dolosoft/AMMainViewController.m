@@ -85,16 +85,17 @@
 }
 
 - (IBAction)cycriptButtonClicked:(id)sender {
-    NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:@"Cycript functionality disabled"];
-    [alert setInformativeText:@"On the iOS 10.1 yalu mach_portal jailbreak, I had this code working but since cycript does not work on iOS 12, the functionality has been disabled. I may get this code working for iOS 11 jailbreaks but it is a lot trickier."];
-    [alert addButtonWithTitle:@"Ok"];
-    [alert runModal];
+//    NSAlert *alert = [[NSAlert alloc] init];
+//    [alert setMessageText:@"Cycript functionality disabled"];
+//    [alert setInformativeText:@"On the iOS 10.1 yalu mach_portal jailbreak, I had this code working but since cycript does not work on iOS 12, the functionality has been disabled. I may get this code working for iOS 11 jailbreaks but it is a lot trickier."];
+//    [alert addButtonWithTitle:@"Ok"];
+//    [alert runModal];
     
     /* I had this code working on iOS 10.1 yalu mach_portal jb.
        Keeping it here in case cycript is ever revived */
-//    NSString *loadCycriptPath = [NSString stringWithFormat:@"%@/loadCycript.sh", [_manager.fileManager mainDirectoryPath]];
-//    [[NSWorkspace sharedWorkspace] openFile:loadCycriptPath withApplication:@"Terminal"];
+    NSString *loadCycriptPath = [NSString stringWithFormat:@"%@/loadCycript.sh", [_manager.fileManager mainDirectoryPath]];
+    [[NSWorkspace sharedWorkspace] openFile:loadCycriptPath withApplication:@"Terminal"];
+    NSLog(@"WORKING -> %@", loadCycriptPath);
 }
 - (IBAction)SSHSessionButtonClicked:(id)sender {
     NSBundle *main = [NSBundle mainBundle];

@@ -1168,7 +1168,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8f7-m3-9nW" customClass="MenuButton">
                                 <rect key="frame" x="14" y="339" width="175" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="bevel" title="Cycript" bezelStyle="rounded" alignment="left" enabled="NO" imageScaling="proportionallyDown" inset="2" id="3qb-ys-IoQ">
+                                <buttonCell key="cell" type="bevel" title="Cycript" bezelStyle="rounded" alignment="left" imageScaling="proportionallyDown" inset="2" id="3qb-ys-IoQ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -1675,6 +1675,6 @@ Gw
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="u8I-fw-MzM"/>
+        <segue reference="zOz-dh-0hb"/>
     </inferredMetricsTieBreakers>
 </document>

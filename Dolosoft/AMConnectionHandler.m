@@ -60,6 +60,8 @@
             NSLog(@"Authentication failed");
             return nil;
         }
+    } else {
+        NSLog(@"NMSSH was unable to connect");
     }
     return session;
 }

@@ -19,7 +19,6 @@
 - (NSString *)retrieveLogForApp:(AMApp *)app {
     NSString *source = [NSString stringWithFormat:@"%@/Documents/AMLog.txt", app.pathToAppStorageDir];
     NSString *dest = [NSString stringWithFormat:@"%@/AMLog.txt", [fileManager mainDirectoryPath]];
-
     [_connectionHandler.session.channel downloadFile:source to:dest];
     NSString *logContent = [NSString stringWithContentsOfFile:dest encoding:NSUTF8StringEncoding error:nil];
     if (!logContent) {
