@@ -7,8 +7,7 @@ else
 	parent_path="/Users/$USER/Library/Application-Support/Dolosoft/"
 
 	selected_app=$(head -n 1 $parent_path/selectedApp.txt) # this is the executable name, not the display name
-	echo $selected_app
-	ssh -t root@localhost -p 2222 "bash -ic 'clear; cycript -p \"'$selected_app'\"'"
+	ssh -t root@localhost -p 2222 "bash -ic 'clear; echo Make sure the selected app is in the foreground; cycript -p \"'$selected_app'\"'"
 	 
 	# NOT SURE IF THE LINE BELOW IS STILL TRUE
 	# Added the escaped quotes for apps with spaces in their names
