@@ -80,11 +80,30 @@
         [alert setInformativeText:@"Because you do not have libimobiledevice installed, device information is not available. I HIGHLY recommend installing libimobiledevice on your Mac! Try \"brew install libimobiledevice\". You should be able to run \"ideviceinfo\" with your iOS device plugged in and it should bring up device information. If you get an error, run the code here https://pastebin.com/PHNexvwM inside your terminal. After installing libimobiledevice, quit Dolosoft and try again."];
         [alert setAlertStyle:NSAlertStyleWarning];
         [alert beginSheetModalForWindow:self.view.window completionHandler:NULL];
-//         [alert beginSheetModalForWindow:[self.view window] modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
+        /* Contents of pastebin in case in gets deleted:
+         brew update
+         brew uninstall --ignore-dependencies libimobiledevice
+         brew uninstall --ignore-dependencies usbmuxd
+         brew install --HEAD usbmuxd
+         brew unlink usbmuxd & brew link usbmuxd
+         brew install --HEAD libimobiledevice
+         brew link --overwrite libimobiledevice
+         brew install ideviceinstaller
+         brew link --overwrite ideviceinstaller
+         */
     }
 }
 
 - (IBAction)cycriptButtonClicked:(id)sender {
+    if (!_manager.selectedApp) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Dismiss"];
+        [alert setMessageText:@"Alert"];
+        [alert setInformativeText:@"No app selected. Select an app before using cycript"];
+        [alert setAlertStyle:NSAlertStyleWarning];
+        [alert beginSheetModalForWindow:self.view.window completionHandler:NULL];
+        return;
+    }
 //    NSAlert *alert = [[NSAlert alloc] init];
 //    [alert setMessageText:@"Cycript functionality disabled"];
 //    [alert setInformativeText:@"On the iOS 10.1 yalu mach_portal jailbreak, I had this code working but since cycript does not work on iOS 12, the functionality has been disabled. I may get this code working for iOS 11 jailbreaks but it is a lot trickier."];
@@ -93,13 +112,49 @@
     
     /* I had this code working on iOS 10.1 yalu mach_portal jb.
        Keeping it here in case cycript is ever revived */
-    NSString *loadCycriptPath = [NSString stringWithFormat:@"%@/loadCycript.sh", [_manager.fileManager mainDirectoryPath]];
-    [[NSWorkspace sharedWorkspace] openFile:loadCycriptPath withApplication:@"Terminal"];
-    NSLog(@"WORKING -> %@", loadCycriptPath);
+//    NSString *loadCycriptPath = [NSString stringWithFormat:@"%@/loadCycript.sh", [_manager.fileManager mainDirectoryPath]];
+//    [[NSWorkspace sharedWorkspace] openFile:loadCycriptPath withApplication:@"Terminal"];
+//    NSLog(@"WORKING -> %@", loadCycriptPath);
+    NSBundle *main = [NSBundle mainBundle];
+    NSString *loadCycriptPath = [main pathForResource:@"loadCycript" ofType:@"command"];
+    NSURL *loadCycriptUrl = [NSURL fileURLWithPath:loadCycriptPath];
+    NSLog(@"%@", [[NSWorkspace sharedWorkspace] URLForApplicationToOpenURL:loadCycriptUrl]);
+    NSLog(@"%@", [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:@"com.apple.terminal"]);
+    // Check to see if the default application for opening .command files is terminal
+    if ([[NSWorkspace sharedWorkspace] URLForApplicationToOpenURL:loadCycriptUrl] !=
+        [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier:@"com.apple.terminal"]) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Use terminal"];
+        [alert addButtonWithTitle:@"Use your default application"];
+        [alert setMessageText:@"Alert"];
+        [alert setInformativeText:@"Your default app to run .command files is not Terminal. I recommend that you use Terminal. If there is another terminal application that you would prefer to use, you can try it but I cannot guarantee that this script will work properly"];
+        [alert setAlertStyle:NSAlertStyleWarning];
+        [alert beginSheetModalForWindow:self.view.window completionHandler:^(NSModalResponse returnCode) {
+            if (returnCode == NSAlertFirstButtonReturn) { // Terminal
+                // TODO: Make sure this code works on 10.15
+                if (@available(macOS 10.15, *)) { // For anything newer than Mojave (10.14)
+                    NSWorkspaceOpenConfiguration *cycriptConfig = [NSWorkspaceOpenConfiguration configuration];
+                    cycriptConfig.arguments = @[_manager.selectedApp.executableName];
+                    // TODO: figure out how to force open with terminal
+                    [[NSWorkspace sharedWorkspace] openURL:loadCycriptUrl configuration:cycriptConfig completionHandler:NULL];
+                } else {
+                    [[NSWorkspace sharedWorkspace] openFile:loadCycriptPath withApplication:@"Terminal"];
+                }
+                return;
+            } else if (returnCode == NSAlertSecondButtonReturn) { // Another application
+                [[NSWorkspace sharedWorkspace] openURL:loadCycriptUrl];
+                return;
+            }
+            
+            NSLog(@"This project was deleted!");
+        }];
+    } else {
+        [[NSWorkspace sharedWorkspace] openURL:loadCycriptUrl];
+    }
 }
 - (IBAction)SSHSessionButtonClicked:(id)sender {
     NSBundle *main = [NSBundle mainBundle];
-    NSString *loadSSHPath = [main pathForResource:@"loadSSH" ofType:@"sh"];
+    NSString *loadSSHPath = [main pathForResource:@"loadSSH" ofType:@"command"];
     [[NSWorkspace sharedWorkspace] openFile:loadSSHPath withApplication:@"Terminal"];
 }
 
@@ -109,8 +164,17 @@
 }
 - (IBAction)killAppButtonClicked:(id)sender {
     NSError *error = nil;
-    NSString *command = [NSString stringWithFormat:@"killall -9 \"%@\"", _manager.selectedApp.executableName];
-    [_manager.connectionHandler.session.channel execute:command error:&error];
+    if (!_manager.selectedApp) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"Dismiss"];
+        [alert setMessageText:@"Alert"];
+        [alert setInformativeText:@"Cannot kill app because no app is selected"];
+        [alert setAlertStyle:NSAlertStyleWarning];
+        [alert beginSheetModalForWindow:self.view.window completionHandler:NULL];
+    } else {
+        NSString *command = [NSString stringWithFormat:@"killall -9 \"%@\"", _manager.selectedApp.executableName];
+        [_manager.connectionHandler.session.channel execute:command error:&error];
+    }
 }
 - (IBAction)iOSApplicationLogButtonClicked:(id)sender {
     NSButtonCell *selectedCell = [iOSApplicationLogButton cell];
@@ -206,7 +270,6 @@
     // lifesaver: https://stackoverflow.com/questions/16283652/understanding-dispatch-async?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
     
     NSLog(@"_manager.selectedApp = %@", [_manager.selectedApp displayName]);
-    
     /* this line below is used for interdevice communication between macOS and iOS so that cycript can launch with the executableName for the -p argument */
     [_manager.selectedApp.executableName writeToFile:[NSString stringWithFormat:@"%@/selectedApp.txt",
                                                       [_manager.fileManager mainDirectoryPath]]

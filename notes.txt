@@ -1,0 +1,1 @@
+If you are having trouble connecting to your iOS device with SSH, read this: https://github.com/NMSSH/NMSSH/issues/277

@@ -33,7 +33,8 @@
 		417FF84423FC8F4C0025E67B /* autofill_makedo.sh in Resources */ = {isa = PBXBuildFile; fileRef = 417FF84323FC8F4C0025E67B /* autofill_makedo.sh */; };
 		41AF52882329923500E3B506 /* AMR_ANSIEscapeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AF52872329923400E3B506 /* AMR_ANSIEscapeHelper.m */; };
 		41B2801022F49AEA0084FF57 /* AMDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */; };
-		41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */ = {isa = PBXBuildFile; fileRef = 41BE935F230DF3E000C9CEAF /* loadSSH.sh */; };
+		41BE9360230DF3E000C9CEAF /* loadSSH.command in Resources */ = {isa = PBXBuildFile; fileRef = 41BE935F230DF3E000C9CEAF /* loadSSH.command */; };
+		41DA0ED0255467A0007312AE /* loadCycript.command in Resources */ = {isa = PBXBuildFile; fileRef = 41DA0ECF255467A0007312AE /* loadCycript.command */; };
 		41E03BEE2339311500DB0834 /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E03BED2339311500DB0834 /* WindowController.m */; };
 		41EBB1AC2305CBDD00088422 /* icons.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 41EBB1AB2305CBDD00088422 /* icons.iconset */; };
 		41F5192D22FDF95400200C2A /* AMManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5192C22FDF95400200C2A /* AMManager.m */; };
@@ -140,7 +141,8 @@
 		41AF52872329923400E3B506 /* AMR_ANSIEscapeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMR_ANSIEscapeHelper.m; sourceTree = "<group>"; };
 		41B2800E22F49AEA0084FF57 /* AMDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMDeviceManager.h; sourceTree = "<group>"; };
 		41B2800F22F49AEA0084FF57 /* AMDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMDeviceManager.m; sourceTree = "<group>"; };
-		41BE935F230DF3E000C9CEAF /* loadSSH.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = loadSSH.sh; path = Resources/loadSSH.sh; sourceTree = SOURCE_ROOT; };
+		41BE935F230DF3E000C9CEAF /* loadSSH.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = loadSSH.command; path = Resources/loadSSH.command; sourceTree = SOURCE_ROOT; };
+		41DA0ECF255467A0007312AE /* loadCycript.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = loadCycript.command; sourceTree = "<group>"; };
 		41E03BEC2339311500DB0834 /* WindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
 		41E03BED2339311500DB0834 /* WindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
 		41EBB1AB2305CBDD00088422 /* icons.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icons.iconset; sourceTree = "<group>"; };
@@ -274,7 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				4104AE8C231582E700D3C42C /* iproxy */,
-				41BE935F230DF3E000C9CEAF /* loadSSH.sh */,
+				41DA0ECF255467A0007312AE /* loadCycript.command */,
+				41BE935F230DF3E000C9CEAF /* loadSSH.command */,
 				417FF84323FC8F4C0025E67B /* autofill_makedo.sh */,
 				41130D3C2316FDEC0045B659 /* icon_default.png */,
 			);
@@ -452,9 +455,10 @@
 			files = (
 				4104AE8D231582E800D3C42C /* iproxy in Resources */,
 				417FF84423FC8F4C0025E67B /* autofill_makedo.sh in Resources */,
+				41DA0ED0255467A0007312AE /* loadCycript.command in Resources */,
 				41130D382316D20D0045B659 /* AppsCollectionViewItem.xib in Resources */,
 				0C16DFB0207C1A0100AA0952 /* Assets.xcassets in Resources */,
-				41BE9360230DF3E000C9CEAF /* loadSSH.sh in Resources */,
+				41BE9360230DF3E000C9CEAF /* loadSSH.command in Resources */,
 				41130D3D2316FDEC0045B659 /* icon_default.png in Resources */,
 				0C16DFB3207C1A0100AA0952 /* Main.storyboard in Resources */,
 				41EBB1AC2305CBDD00088422 /* icons.iconset in Resources */,
